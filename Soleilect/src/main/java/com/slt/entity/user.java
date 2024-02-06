@@ -2,6 +2,8 @@ package com.slt.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -21,5 +23,7 @@ public class user {
 	private String name;
 	@Column(length = 100, nullable = false)
 	private String b_num;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 }

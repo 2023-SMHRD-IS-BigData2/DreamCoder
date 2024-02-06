@@ -19,8 +19,8 @@ public class JoinService {
 	@Autowired
 	private JoinMapper joinMapper;
 	
+	// 회원가입 
 	public int join(user user) {
-		
 		int row = joinMapper.join(user);
 		return row;
 	}
