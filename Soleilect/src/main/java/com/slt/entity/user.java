@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+//유저 정보
 @Entity
 @Data
 public class user {
