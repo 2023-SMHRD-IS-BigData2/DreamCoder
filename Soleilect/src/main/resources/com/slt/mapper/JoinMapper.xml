@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-	
+<mapper namespace="com.slt.mapper.JoinMapper">
+
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.slt.entity.user">
+		insert into user values(#{id},#{pw},#{nickname},#{name},#{b_num})
+	</insert>
 
 </mapper>
