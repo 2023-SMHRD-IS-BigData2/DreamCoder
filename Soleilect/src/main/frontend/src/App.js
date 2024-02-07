@@ -7,6 +7,8 @@ import Header from "./layouts/Header/Header";
 import Main from './Main';
 import ChartList from './components/Chart/ChartList';
 import ChartDetail from './components/Chart/ChartDetail';
+import SignUp from "./components/Auth/SignUp";
+import SignIn from "./components/Auth/SignIn";
 
 function App() {
   
@@ -30,6 +32,8 @@ function App() {
         <Route path="/Main" element={<Main/>}></Route>
         <Route path="/ChartList" element={<ChartList/>}></Route>
         <Route path='/detail/:num' element={<ChartDetail/>}></Route>
+        <Route path="/SignUp" element={<SignUp/>}></Route>
+        <Route path="/SignIn" element={<SignIn/>}></Route>
       </Routes>
     </div>
     </ChartContext.Provider>

@@ -18,7 +18,21 @@ body{
   background-position: 50% 50%;
   background-size: 50% 50%;
 }
+.icon-button{
+  border-radius: 50% 50%;
 
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+.icon-button:hover{
+  background-color: rgba(0, 0, 0, 0.05);
+}
 .main-log-icon {
   background-image: url('./assets/image/sunIcon.png') ;
   background-repeat: no-repeat;
@@ -35,4 +49,13 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
-
+.eye-light-off-icon{
+  background-image: url('./assets/image/eye-light-off.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.eye-light-on-icon{
+  background-image: url('./assets/image/eye-light-on.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
