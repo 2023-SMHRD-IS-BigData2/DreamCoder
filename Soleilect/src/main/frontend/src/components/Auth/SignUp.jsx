@@ -61,13 +61,12 @@ const SignIn = () => {
   //          state: 패스워드 버튼 숨김 아이콘 상태 
   const [passwordButtonIcon, setPasswordButtonIcon] = useState('eye-light-off-icon');
 
-  const submitPost = (e) => {
+  const submitPost = () => {
     let formData = new FormData();
-    formData.append("id", e.target.id.value)
-    formData.append("pw", e.target.pw.value)
-    formData.append("nickname", e.target.nickname.value)
-    formData.append("name", e.target.name.value)
-    formData.append("b_num", e.target.b_num.value)
+    formData.append("user_id", id)
+    formData.append("user_pw", password)
+    formData.append("user_nick", nickname)
+    formData.append("user_name", name)
     axios
       .post('/Sol/joinCon/join', formData)
       .then((response) => {
@@ -76,7 +75,8 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error)
       })
-    nav('/')
+    nav('/');
+
   }
 
   //          event handler: 다음 버튼 클릭 이벤트 처리 
@@ -92,35 +92,38 @@ const SignIn = () => {
       setPasswordError(true);
       setPasswordErrorMessage('비밀번호는 5자 이상 입력해주세요.');
     }
+    if (!isIdPattern || !isCheckedPassword) return;
+    setPage('2');
+  }
+  //          event handler: 회원가입 버튼 클릭 이벤트 처리 
+  const onSignUpButtonClickHandler = () => {
     const hasNickname = nickname.trim().length !== 0;
     if (!hasNickname) {
       setNicknameError(true);
       setNicknameErrorMessage('닉네임을 입력해주세요');
     }
-    if (!isIdPattern || !isCheckedPassword || !hasNickname) return;
-    setPage('2');
-  }
-  //          event handler: 회원가입 버튼 클릭 이벤트 처리 
-  const onSignUpButtonClickHandler = () => {
     const hasName = name.trim().length !== 0;
     if (!hasName) {
       setNameError(true);
       setNameErrorMessage('이름을 입력해주세요');
     }
-    const bnumberPattern = /^[0-9]{10,10}$/;
-    const isBnumberPattern = bnumberPattern.test(bnumber);
-    if (!isBnumberPattern) {
-      setBnumberError(true);
-      setBnumberErrorMessage('10자리 숫자만 입력해주세요.');
-    }
+    // 사업자번호였던것
+    // const bnumberPattern = /^[0-9]{10,10}$/;
+    // const isBnumberPattern = bnumberPattern.test(bnumber);
+    // if (!isBnumberPattern) {
+    //   setBnumberError(true);
+    //   setBnumberErrorMessage('10자리 숫자만 입력해주세요.');
+    // }
 
-    if (!hasName || !isBnumberPattern) return;
+    if (!hasName || !hasNickname) return;
+    {submitPost()}
     document.getElementById('header-sign-up-button').style.display = 'block';
     document.getElementById('header-sign-up-button').style.display = 'flex';
-    nav('/Main');
+    // nav('/Main');
   }
-  //          event handler: 회원가입 버튼 클릭 이벤트 처리 
+  //          event handler: 로그인 버튼 클릭 이벤트 처리 
   const onSignInButtonClickHandler = () => {
+
     nav('/SignIn');
   }
 
@@ -178,22 +181,19 @@ const SignIn = () => {
   //          event handler: 패스워드 키 다운 이벤트 처리 
   const onPasswordKeyDownHandler = (event) => {
     if (event.key !== 'Enter') return;
-    if (!nicknameRef.current) return;
-    nicknameRef.current.focus();
+    onNextButtonClickHandler();
   }
 
   //          event handler: 닉네임 키 다운 이벤트 처리 
   const onNicknameKeyDownHandler = (event) => {
     if (event.key !== 'Enter') return;
     if (!nameRef.current) return;
-    onNextButtonClickHandler(); // 이건 왜 적용이 안될까.. 
     nameRef.current.focus();
   }
   //          event handler: 이름 키 다운 이벤트 처리 
   const onNameKeyDownHandler = (event) => {
     if (event.key !== 'Enter') return;
-    if (!bnumberRef.current) return;
-    bnumberRef.current.focus();
+    onSignUpButtonClickHandler();
   }
   //          event handler: 사업자번호 키 다운 이벤트 처리 
   const onBnumberKeyDownHandler = (event) => {
@@ -217,25 +217,25 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-        <div className='auth-card'>
-          <div className='auth-card-box'>
-            <div className='auth-card-top'>
-              <div className='auth-card-title-box'>
-                <div className='auth-card-title'>{'회원가입'}</div>
-                <div className='auth-card-page'>{`${page}/2`}</div>
-              </div>
-              <form className='auth-form' onSubmit={submitPost}>
+        <form className='auth-form' onSubmit={submitPost}>
+          <div className='auth-card'>
+            <div className='auth-card-box'>
+              <div className='auth-card-top'>
+                <div className='auth-card-title-box'>
+                  <div className='auth-card-title'>{'회원가입'}</div>
+                  <div className='auth-card-page'>{`${page}/2`}</div>
+                </div>
                 {page === '1' && (
                   <>
-                    <InputBox ref={idRef} label='아이디*' type='text' name='id' placeholder='아이디를 입력해주세요' onChange={onIdChangeHandler} error={isIdError} message={idErrorMessage} onkeyDown={onIdKeyDownHandler} />
-                    <InputBox ref={passwordRef} label='비밀번호*' type={passwordType} name='pw' placeholder='비밀번호를 입력해주세요' onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} error={isPasswordError} message={passwordErrorMessage} onkeyDown={onPasswordKeyDownHandler} />
-                    <InputBox ref={nicknameRef} label='닉네임*' type='text' name='nickname' placeholder='닉네임을 입력해주세요' onChange={onNicknameChangeHandler} error={isNicknameError} message={nicknameErrorMessage} onkeyDown={onNicknameKeyDownHandler} />
+                    <InputBox ref={idRef} label='아이디*' type='text' name='user_id' placeholder='아이디를 입력해주세요' onChange={onIdChangeHandler} error={isIdError} message={idErrorMessage} onkeyDown={onIdKeyDownHandler} />
+                    <InputBox ref={passwordRef} label='비밀번호*' type={passwordType} name='user_pw' placeholder='비밀번호를 입력해주세요' onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} error={isPasswordError} message={passwordErrorMessage} onkeyDown={onPasswordKeyDownHandler} />
                   </>
                 )}
                 {page === '2' && (
                   <>
-                    <InputBox ref={nameRef} label='이름*' type='text' name='name' placeholder='이름을 입력해주세요' onChange={onNameChangeHandler} error={isNameError} message={nameErrorMessage} onkeyDown={onNameKeyDownHandler} />
-                    <InputBox ref={bnumberRef} label='사업자번호*' type='text' name='b_num' placeholder='사업자번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
+                    <InputBox ref={nicknameRef} label='닉네임*' type='text' name='user_nick' placeholder='닉네임을 입력해주세요' onChange={onNicknameChangeHandler} error={isNicknameError} message={nicknameErrorMessage} onkeyDown={onNicknameKeyDownHandler} />
+                    <InputBox ref={nameRef} label='이름*' type='text' name='user_name' placeholder='이름을 입력해주세요' onChange={onNameChangeHandler} error={isNameError} message={nameErrorMessage} onkeyDown={onNameKeyDownHandler} />
+                    {/* <InputBox ref={bnumberRef} label='사업자번호*' type='text' name='b_num' placeholder='사업자번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} /> */}
                   </>
                 )}
                 <div className='auth-card-bottom'>
@@ -243,18 +243,19 @@ const SignIn = () => {
                     <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
                   )}
                   {page === '2' && (
-                    <div className='black-large-full-button' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div>
+                    <div className='black-large-full-button' onClick={onSignUpButtonClickHandler} type='submit'>{'회원가입'}</div>
                   )}
                   <div className='auth-description-box'>
                     <div className='auth-description'>{'이미 회원이신가요? '}<span onClick={onSignInButtonClickHandler} className='auth-description-link'>{'로그인'}</span></div>
                   </div>
                 </div>
-              </form >
+              </div>
             </div>
           </div>
-        </div>
+        </form >
       </div>
-    </div>
+    </div >
+
 
   )
 }
