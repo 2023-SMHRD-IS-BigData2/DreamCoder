@@ -25,20 +25,26 @@ const SignIn = () => {
     //          state: 패스워드 버튼 숨김 아이콘 상태 
     const [passwordButtonIcon, setPasswordButtonIcon] = useState('eye-light-off-icon');
 
-    const submitPost = ()=>{
+    const submitPost = () => {
         let formData = new FormData();
-        formData.append("user_id",id)
-        formData.append("user_pw",password)
+        formData.append("user_id", id)
+        formData.append("user_pw", password)
         axios
-        .post('/Sol/logCon/login',formData)
-        .then((response)=>{
-          console.log(response.data)
-        })
-        .catch((error)=>{
-          console.log(error)
-        })
-        nav('/');
-      }
+            .post('/Sol/logCon/login', formData)
+            .then((response) => {
+                if ((response.data).length==0) {
+                    setError(true)
+                    return;
+                }else{
+                    nav('/Main');
+                }
+                console.log(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    }
     //          event handler: 아이디 변경 이벤트 처리
     const onIdChangeHandler = (event) => {
         setError(false);
@@ -56,8 +62,8 @@ const SignIn = () => {
     const onSignInButtonClickHandler = () => {
         // const requestBody: SignInRequestDto = { id, password };
         // signInRequest(requestBody).then(signInResponse);
-        {submitPost()}
-        nav('/Main');
+        { submitPost() }
+
     }
     //          event handler: 회원가입 버튼 클릭 이벤트 처리
     const onSignUpLinkClickHandler = () => {
@@ -105,7 +111,7 @@ const SignIn = () => {
                                     <div className='auth-card-title'>{'로그인'}</div>
                                 </div>
                                 <InputBox ref={idRef} label='아이디' type='text' name='user_id' placeholder='아이디를 입력해주세요' value={id} onChange={onIdChangeHandler} error={error} onkeyDown={onIdKeyDownHandler} />
-                                <InputBox ref={passwordRef} label='패스워드'name='user_pw' type={passwordType} placeholder='비밀번호를 입력해주세요.' error={error} value={password} onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler} />
+                                <InputBox ref={passwordRef} label='패스워드' name='user_pw' type={passwordType} placeholder='비밀번호를 입력해주세요.' error={error} value={password} onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler} />
                             </div>
                             <div className='auth-card-bottom'>
                                 {error &&
