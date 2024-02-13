@@ -10,21 +10,31 @@ const Header = () => {
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
     navigate('./Main');
-    document.getElementById('header-sign-up-button').style.display = 'block';
-    document.getElementById('header-sign-up-button').style.display = 'flex';
-    document.getElementById('header-sign-in-button').style.display = 'block';
-    document.getElementById('header-sign-in-button').style.display = 'flex';
+  
   };
   const onSignUpButtonClickHandler = () => {
     navigate('/SignUp');
-    document.getElementById('header-sign-up-button').style.display = 'none';
-    document.getElementById('header-sign-in-button').style.display = 'none';
+ 
   };
   const onSignInButtonClickHandler = () => {
     navigate('/SignIn');
-    document.getElementById('header-sign-in-button').style.display = 'none';
-    document.getElementById('header-sign-up-button').style.display = 'none';
+  
   };
+  const onLogoutButtonClickHandler = () =>{
+    sessionStorage.removeItem("user_id");
+    setIslogin(false);
+    navigate('/Main');
+  }
+  //          state: 로그인 상태
+  const [isLogin, setIslogin] = useState(false);
+  useEffect(() => {
+    if (sessionStorage.getItem("user_id") === null) {
+      console.log("isLogin ?? ::", isLogin);
+    } else {
+      setIslogin(true);
+      console.log("isLogin ?? ::", isLogin);
+    }
+  })
 
   //        component: 검색 버튼 컴포넌트                 //
   const SearchButton = () => {
@@ -115,8 +125,18 @@ const Header = () => {
 
 
         <div className='header-right-box'>
-          <div className='black-button' id='header-sign-up-button' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div>
-          <div className='black-button' id='header-sign-in-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+          {!isLogin ?
+            (<>
+              <div className='black-button' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div>
+              <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+            </>)
+            :
+           ( <>
+              <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
+              <div className='black-button' onClick={''}>{'마이페이지'}</div>
+            </>)
+          }
+
         </div>
 
       </div>

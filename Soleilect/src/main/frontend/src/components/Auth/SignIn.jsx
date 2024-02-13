@@ -36,6 +36,7 @@ const SignIn = () => {
                     setError(true)
                     return;
                 }else{
+                    sessionStorage.setItem("user_id",id);
                     nav('/Main');
                 }
                 console.log(response.data)

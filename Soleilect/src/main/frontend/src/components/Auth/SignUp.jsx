@@ -117,8 +117,6 @@ const SignIn = () => {
 
     if (!hasName || !hasNickname) return;
     {submitPost()}
-    document.getElementById('header-sign-up-button').style.display = 'block';
-    document.getElementById('header-sign-up-button').style.display = 'flex';
     // nav('/Main');
   }
   //          event handler: 로그인 버튼 클릭 이벤트 처리 
