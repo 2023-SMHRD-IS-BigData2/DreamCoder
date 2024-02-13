@@ -75,7 +75,7 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error)
       })
-    nav('/');
+    nav('/SignIn');
 
   }
 
