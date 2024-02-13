@@ -6,24 +6,21 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 //유저 정보
-@Entity
 @Data
-public class user {
-	@Id
-	@Column(length = 100)
-	private String id;
-	@Column(length = 100, nullable = false)
-	private String pw;
-	@Column(length = 100, nullable = false)
-	private String nickname;
-	@Column(length = 100, nullable = false)
-	private String name;
-	@Column(length = 100, nullable = false)
-	private String b_num;
-	@Enumerated(EnumType.STRING)
-	private Role role;
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+	private String user_id;
+	private String user_pw;
+	private String user_nick;
+	private String user_name;
+	private Role user_role;
 	
 }
