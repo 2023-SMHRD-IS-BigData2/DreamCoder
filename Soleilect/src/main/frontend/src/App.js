@@ -17,11 +17,11 @@ function App() {
   // 모집 게시판 useState
   const[list,setList] = useState([]);
 
-  useEffect(()=>{
-    axios.get('/Sol/test')
-    .then(res=>setData(res.data))
-    .catch(err=>console.log(err))
-  },[])
+  // useEffect(()=>{
+  //   axios.get('/Sol/test')
+  //   .then(res=>setData(res.data))
+  //   .catch(err=>console.log(err))
+  // },[])
 
 
   return (
