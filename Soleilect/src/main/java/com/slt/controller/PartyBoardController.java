@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.slt.entity.Party_boards;
 import com.slt.service.PartyBoardService;
 
-@RequestMapping("/Sol/PBCon")
+@RequestMapping("/Sol/partyboardCon")
 @RestController
 public class PartyBoardController {
 	
