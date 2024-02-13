@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-	<select id="login" ></select>
+<mapper namespace="com.slt.mapper.LoginMapper">
+	<select id="login" parameterType="com.slt.entity.Login" resultType="com.slt.entity.User">
+		select * from users where user_id = #{user_id} and user_pw=sha2(#{user_pw},384)
+	</select>
+	
 </mapper>

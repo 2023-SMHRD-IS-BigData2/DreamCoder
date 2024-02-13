@@ -22,7 +22,7 @@ public class JoinService {
 
 
 	// 회원가입 
-	public int join(User user) {
+	public int joinService(User user) {
 		
 		int row = joinMapper.join(user);
 		return row;

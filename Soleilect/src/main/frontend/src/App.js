@@ -9,6 +9,7 @@ import ChartList from './components/Chart/ChartList';
 import ChartDetail from './components/Chart/ChartDetail';
 import SignUp from "./components/Auth/SignUp";
 import SignIn from "./components/Auth/SignIn";
+import TLogin from "./TLogin";
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/Main" element={<Main/>}></Route>
+        <Route path="/TLogin" element={<TLogin/>}></Route>
         <Route path="/ChartList" element={<ChartList/>}></Route>
         <Route path='/detail/:num' element={<ChartDetail/>}></Route>
         <Route path="/SignUp" element={<SignUp/>}></Route>
