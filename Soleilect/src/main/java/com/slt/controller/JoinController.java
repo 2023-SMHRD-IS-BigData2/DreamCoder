@@ -32,7 +32,7 @@ public class JoinController {
 	public int nickCheck(String nick) {
 		System.out.println("닉네임 중복 검사");
 		System.out.println("들어온 닉네임 : "+nick);
-		return 0;
+		return joinSevice.nickCheck(nick);
 	}
 	
 }

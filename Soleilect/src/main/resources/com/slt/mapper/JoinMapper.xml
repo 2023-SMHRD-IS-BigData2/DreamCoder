@@ -4,6 +4,7 @@
 
 	<!-- 회원가입
 		현재 Role은 MEMBER로 고정되어 생성되게 되어있음! -->
+			<!-- sha2(user_pw,384) : 암호화 -->
 	<insert id="join" parameterType="com.slt.entity.User">
 		INSERT INTO users (user_id, user_pw, user_name, user_nick, user_role, joined_at) VALUES (#{user_id}, sha2(#{user_pw},384),#{user_name}, #{user_nick}, 'MEMBER', NOW());
 	</insert>

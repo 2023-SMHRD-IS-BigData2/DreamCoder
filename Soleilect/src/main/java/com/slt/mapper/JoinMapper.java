@@ -8,6 +8,6 @@ import com.slt.entity.User;
 public interface JoinMapper {
 	// 회원가입
 	public int join(User user);
-	public int idCheck(String id);
-	public int nickCheck(String nick);
+	public User idCheck(String id);
+	public User nickCheck(String nick);
 }

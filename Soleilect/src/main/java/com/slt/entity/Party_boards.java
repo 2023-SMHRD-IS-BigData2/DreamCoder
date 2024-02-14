@@ -1,6 +1,7 @@
 package com.slt.entity;
 
-import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,12 +15,12 @@ public class Party_boards {
 	private String party_title;
 	private String party_content;
 	private String party_loc;
-	private String start_at;
-	private String end_at;
+	private Date start_at;
+	private Date end_at;
 	private int party_views;
 	private int target_cnt;
 	private int now_cnt;
-	private String created_at;
+	private Timestamp created_at;
 	private String user_id;
 	private String user_nick;
 }
