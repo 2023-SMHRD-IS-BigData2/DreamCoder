@@ -77,7 +77,31 @@ const SignIn = () => {
       })
     nav('/SignIn');
 
-  }
+  };
+  const idCheckPost = () => {
+    console.log(id)
+    axios
+      .post('/Sol/joinCon/idcheck', id)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+  };
+  const nickCheckPost = () => {
+    axios
+      .post('/Sol/joinCon/nickCheck', nickname)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+  };
+
 
   //          event handler: 다음 버튼 클릭 이벤트 처리 
   const onNextButtonClickHandler = () => {
@@ -96,14 +120,15 @@ const SignIn = () => {
     setPage('2');
   }
   //         event handler: 아이디 중복체크 버튼 클릭 이벤트 처리
-  const onIdCheckButtonClickHandler=()=>{
-    alert('아이디중복체크이벤트')
-    console.log(id)
+  const onIdCheckButtonClickHandler = () => {
+
+    { idCheckPost() }
   }
   //         event handler: 닉네임 중복체크 버튼 클릭 이벤트 처리
-  const onNicknameCheckButtonClickHandler=()=>{
+  const onNicknameCheckButtonClickHandler = () => {
     alert('닉네임 중복체크 이벤트')
     console.log(nickname)
+    { nickCheckPost() }
   }
   //          event handler: 회원가입 버튼 클릭 이벤트 처리 
   const onSignUpButtonClickHandler = () => {
@@ -126,7 +151,7 @@ const SignIn = () => {
     // }
 
     if (!hasName || !hasNickname) return;
-    {submitPost()}
+    { submitPost() }
     // nav('/Main');
   }
   //          event handler: 로그인 버튼 클릭 이벤트 처리 
@@ -215,41 +240,41 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-          <div className='auth-card'>
-            <div className='auth-card-box'>
-              <div className='auth-card-top'>
-                <div className='auth-card-title-box'>
-                  <div className='auth-card-title'>{'회원가입'}</div>
-                  <div className='auth-card-page'>{`${page}/2`}</div>
-                </div>
-                {page === '1' && (
-                  <>
-                    <InputBox ref={idRef} label='아이디*' type='text' name='user_id' placeholder='아이디를 입력해주세요' onChange={onIdChangeHandler} error={isIdError} message={idErrorMessage} onkeyDown={onIdKeyDownHandler} />
-                    <InputBox ref={passwordRef} label='비밀번호*' type={passwordType} name='user_pw' placeholder='비밀번호를 입력해주세요' onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} error={isPasswordError} message={passwordErrorMessage} onkeyDown={onPasswordKeyDownHandler} />
-                  </>
-                )}
-                {page === '2' && (
-                  <>
-                    <InputBox ref={nicknameRef} label='닉네임*' type='text' name='user_nick' placeholder='닉네임을 입력해주세요' onChange={onNicknameChangeHandler} error={isNicknameError} message={nicknameErrorMessage} onkeyDown={onNicknameKeyDownHandler} />
-                    <InputBox ref={nameRef} label='이름*' type='text' name='user_name' placeholder='이름을 입력해주세요' onChange={onNameChangeHandler} error={isNameError} message={nameErrorMessage} onkeyDown={onNameKeyDownHandler} />
-                    {/* <InputBox ref={bnumberRef} label='사업자번호*' type='text' name='b_num' placeholder='사업자번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} /> */}
-                  </>
-                )}
+        <div className='auth-card'>
+          <div className='auth-card-box'>
+            <div className='auth-card-top'>
+              <div className='auth-card-title-box'>
+                <div className='auth-card-title'>{'회원가입'}</div>
+                <div className='auth-card-page'>{`${page}/2`}</div>
               </div>
-                <div className='auth-card-bottom'>
-                  {page === '1' && (
-                    <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
-                  )}
-                  {page === '2' && (
-                    <div className='black-large-full-button' onClick={onSignUpButtonClickHandler} type='submit'>{'회원가입'}</div>
-                  )}
-                  <div className='auth-description-box'>
-                    <div className='auth-description'>{'이미 회원이신가요? '}<span onClick={onSignInButtonClickHandler} className='auth-description-link'>{'로그인'}</span></div>
-                  </div>
-                </div>
-              <div className='id-check-button' onClick={page==='1'?onIdCheckButtonClickHandler:onNicknameCheckButtonClickHandler}>{'중복체크'}</div>
+              {page === '1' && (
+                <>
+                  <InputBox ref={idRef} label='아이디*' type='text' name='user_id' placeholder='아이디를 입력해주세요' onChange={onIdChangeHandler} error={isIdError} message={idErrorMessage} onkeyDown={onIdKeyDownHandler} />
+                  <InputBox ref={passwordRef} label='비밀번호*' type={passwordType} name='user_pw' placeholder='비밀번호를 입력해주세요' onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} error={isPasswordError} message={passwordErrorMessage} onkeyDown={onPasswordKeyDownHandler} />
+                </>
+              )}
+              {page === '2' && (
+                <>
+                  <InputBox ref={nicknameRef} label='닉네임*' type='text' name='user_nick' placeholder='닉네임을 입력해주세요' onChange={onNicknameChangeHandler} error={isNicknameError} message={nicknameErrorMessage} onkeyDown={onNicknameKeyDownHandler} />
+                  <InputBox ref={nameRef} label='이름*' type='text' name='user_name' placeholder='이름을 입력해주세요' onChange={onNameChangeHandler} error={isNameError} message={nameErrorMessage} onkeyDown={onNameKeyDownHandler} />
+                  {/* <InputBox ref={bnumberRef} label='사업자번호*' type='text' name='b_num' placeholder='사업자번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} /> */}
+                </>
+              )}
             </div>
+            <div className='auth-card-bottom'>
+              {page === '1' && (
+                <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
+              )}
+              {page === '2' && (
+                <div className='black-large-full-button' onClick={onSignUpButtonClickHandler} type='submit'>{'회원가입'}</div>
+              )}
+              <div className='auth-description-box'>
+                <div className='auth-description'>{'이미 회원이신가요? '}<span onClick={onSignInButtonClickHandler} className='auth-description-link'>{'로그인'}</span></div>
+              </div>
+            </div>
+            <div className='id-check-button' onClick={page === '1' ? onIdCheckButtonClickHandler : onNicknameCheckButtonClickHandler}>{'중복체크'}</div>
           </div>
+        </div>
       </div>
     </div >
 

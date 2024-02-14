@@ -21,7 +21,7 @@ public class JoinController {
 		return joinSevice.joinService(user);
 	}
 	
-	@RequestMapping("/idcheck")
+	@RequestMapping("/idCheck")
 	public int idcheck(String id) {
 		System.out.println("아이디 중복 검사");
 		System.out.println("들어온 id : "+id);
