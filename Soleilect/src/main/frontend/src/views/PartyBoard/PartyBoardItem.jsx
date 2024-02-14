@@ -24,7 +24,7 @@ const PartyBoardItem = ({ item, index }) => {
         },
         title: {
             verticalAlign: 'middle',
-            text: item.party_progress + '%',
+            text: Math.floor(item.now_cnt/item.target_cnt*100) + '%',
             size: 20,
         },
         // 워터마크 해제
@@ -40,7 +40,7 @@ const PartyBoardItem = ({ item, index }) => {
         },
         series: [
             {
-                data: [100 - item.party_progress, item.party_progress],
+                data: [item.target_cnt - item.now_cnt, item.now_cnt],
                 size: '80%',
                 innerSize: '75%',
                 showInLegend: false,
@@ -60,7 +60,7 @@ const PartyBoardItem = ({ item, index }) => {
             }}
         >
             <div className='board-top-date'>
-                <div className='board-top-end-date'>{item.party_recruit} {item.end_at}</div>
+                <div className='board-top-end-date'>{'마감일'} {item.end_at}</div>
             </div>
             <div className='Chart-item-box'>
                 <div className='chart'>
@@ -69,13 +69,13 @@ const PartyBoardItem = ({ item, index }) => {
             </div>
             <div className='chart-content'>
                     <div className='board-list-item-top'>
-                        <div className='board-list-item--nickname'>{item.user_id}</div>
+                        <div className='board-list-item--nickname'>{item.user_nick}</div>
                     </div>
                     <div className='board-list-item-middle'>
                         <div className='board-list-item-title'>{item.party_title}</div>
                     </div>
                     <div className='board-list-item-bottom'>
-                        <div className='board-list-item-recruit'>{item.party_recruit}</div>
+                        <div className='board-list-item-recruit'>{'모집중'}</div>
                         <div className='board-list-item-counts'>{`조회수 `}{item.party_views}</div>
                     </div>
                 </div>

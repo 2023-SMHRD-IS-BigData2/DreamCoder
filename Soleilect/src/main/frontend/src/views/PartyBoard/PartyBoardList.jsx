@@ -9,14 +9,29 @@ const PartyBoardList = () => {
 
   // 가데이터 넣어서 테스트
   const nav = useNavigate();
-   useEffect(()=>{
+  //  useEffect(()=>{
+  //   axios
+  //   .get('http://localhost:3000/Party.json')
+  //   .then((res)=>{
+  //       setList(res.data.list)
+  //   })
+  //   console.log(list);
+  // },[])
+
+  // 스프링부트 연결 ---------------------
+  useEffect(()=>{
+    let formData = new FormData();
     axios
-    .get('http://localhost:3000/Party.json')
+    .get('/Sol/partyBoardCon/list',formData)
     .then((res)=>{
-        setList(res.data.list)
+      setList(res.data)
     })
-    console.log(list);
+    .catch((error) => {
+      console.log(error)
+    })
+    
   },[])
+  console.log(list);
 
   return (
     <div className='list-container'>
@@ -24,7 +39,7 @@ const PartyBoardList = () => {
         <div className='write-button' onClick={()=>{
           nav('/PartyWrite');
         }}>{'모집하러 가기'}</div>
-        <div className='board-button' onClick={()=>{nav('/BoardWrite')}}>{'일반게시물작성'}</div>
+        <div className='board-button' onClick={()=>{nav('/BoardWrite')}} style={{cursor: "pointer"}}>{'[일반게시물작성버튼]'}</div>
       </div>
       <div className='list-item'>
         {list.map((item, index) => <PartyBoardItem item={item}

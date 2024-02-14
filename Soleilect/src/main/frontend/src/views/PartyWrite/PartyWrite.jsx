@@ -117,7 +117,8 @@ const PartyWrite = () => {
     // },[]);
 
     const nav = useNavigate();
-    // function -- submit --------------------- 
+
+    // function -- submit ----------------------------- 
     const submitPost = () => {
         
         let formData = new FormData();
@@ -128,6 +129,7 @@ const PartyWrite = () => {
         formData.append("end_at",end)
         formData.append("party_views",partyViews)
         formData.append("target_cnt",targetCnt)
+        formData.append("now_cnt",nowCnt)
         formData.append("user_id",userId)
         formData.append("user_nick",userNick)
         axios
@@ -189,7 +191,7 @@ const PartyWrite = () => {
                             
                             <input type='text' name='user_id' ref={userIdRef} placeholder='아이디' onChange={onuserIdChangeHandler}></input>
                             <input type='text' name='user_nick' ref={userNickRef} placeholder='닉네임' onChange={onuserNickChangeHandler}></input>
-                            <input type='text' name='party_views' ref={partyViewsRef} placeholder='조회수' onCanPlay={onpartyViewsChangeHandler}></input>
+                            <input type='text' name='party_views' ref={partyViewsRef} placeholder='조회수' onChange={onpartyViewsChangeHandler}></input>
                         
                         </div>
                         {/* content */}

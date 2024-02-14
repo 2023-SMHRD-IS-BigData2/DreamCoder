@@ -15,10 +15,14 @@ const PartyBoardDetail = () => {
     // const [chartViews, setChartViews] = useState(0);
 
     useEffect(() => {
+        let formData = new FormData();
         axios
-            .get('http://localhost:3000/Party.json')
+            .get('/Sol/partyBoardCon/list', formData)
             .then((res) => {
-                setList(res.data.list)
+                setList(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
             })
 
         // 조회수
@@ -47,7 +51,7 @@ const PartyBoardDetail = () => {
             },
             title: {
                 verticalAlign: 'middle',
-                text: list[num].party_progress + '%',
+                text: Math.floor(list[num].now_cnt/list[num].target_cnt*100)  + '%',
                 size: 40,
             },
             // 워터마크 해제
@@ -63,7 +67,7 @@ const PartyBoardDetail = () => {
             },
             series: [
                 {
-                    data: [100 - list[num].party_progress, list[num].party_progress],
+                    data: [list[num].target_cnt -list[num].now_cnt, list[num].now_cnt],
                     // data: [1,2],
                     size: '80%',
                     innerSize: '75%',
@@ -115,10 +119,10 @@ const PartyBoardDetail = () => {
                     <div className='detail-top-sub-box'>
                         <div className='board-detail-write-info-box'>
                             <div className='board-detail-writer-profile-image'></div>
-                            <div className='board-detail-writer-nickname'>{list[num].user_id}</div>
+                            <div className='board-detail-writer-nickname'>{list[num].user_nick}</div>
                             <div className='board-detail-write-divider'>{'|'}</div>
                             <div className='detail-chart-date'>{list[num].created_at}</div>
-                            <div className='detail-chart-recruit'>{list[num].party_recruit}</div>
+                            <div className='detail-chart-recruit'>{'모집중'}</div>
                         </div>
                     </div>
 
@@ -129,8 +133,11 @@ const PartyBoardDetail = () => {
                         <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}</div>
                         {/* <div className='detail-chart-view'>{`찐조회수 `} {chartViews}</div> */}
                         <div className='detail-chart-title'>{`[` + list[num].party_title + `]`}</div>
-                        <div className='detail-chart-start'>{'모집 기간 : '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
+                        <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
+                        <div className='detail-chart-cnt'>{'목표 수치 : '}{list[num].target_cnt}{'kw'}</div>
+                        <div className='detail-chart-cnt'>{'모집량 : '}{list[num].now_cnt}{'kw'}</div>
                         <div className='detail-chart-content'>{list[num].party_content}</div>
+                        <br/>
                         <div className='divider'></div>
                     </div>
                     <Comment />
