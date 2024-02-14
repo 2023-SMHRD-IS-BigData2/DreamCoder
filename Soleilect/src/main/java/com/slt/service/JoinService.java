@@ -28,5 +28,15 @@ public class JoinService {
 		return row;
 	}
 	
+	public int idCheck(String id) {
+		int row = joinMapper.idCheck(id);
+		return row;
+	}
+	
+	public int nickCheck(String nick) {
+		int row = joinMapper.nickCheck(nick);
+		return row;
+	}
+	
 
 }

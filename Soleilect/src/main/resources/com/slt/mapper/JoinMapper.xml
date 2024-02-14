@@ -7,5 +7,11 @@
 	<insert id="join" parameterType="com.slt.entity.User">
 		INSERT INTO users (user_id, user_pw, user_name, user_nick, user_role, joined_at) VALUES (#{user_id}, sha2(#{user_pw},384),#{user_name}, #{user_nick}, 'MEMBER', NOW());
 	</insert>
+	<select id="idCheck" parameterType="String">
+		select * from users where user_id = #{id}
+	</select>
+	<select id="nickCheck" parameterType="String">
+		select * from users where user_nick = #{nick}
+	</select>
 
 </mapper>

@@ -13,18 +13,18 @@ public class PartyBoardService {
 	@Autowired
 	private PartyBoardMapper partyboardmapper;
 	
-	public int PartyBoardInsert(Party_boards boards) {
-		int row = partyboardmapper.PartyBoardInsert(boards);
+	public int partyBoardInsert(Party_boards boards) {
+		int row = partyboardmapper.partyBoardInsert(boards);
 		return row;
 	}
 	
-	public int PartyBoardDelete(int num) {
-		int row = partyboardmapper.PartyBoardDelete();
+	public int partyBoardDelete(int num) {
+		int row = partyboardmapper.partyBoardDelete();
 		return row;
 	}
 	
-	public List<Party_boards> PartyBoardList(){
-		List<Party_boards> list = partyboardmapper.PartyBoardList();
+	public List<Party_boards> partyBoardList(){
+		List<Party_boards> list = partyboardmapper.partyBoardList();
 		return list;
 	}
 }

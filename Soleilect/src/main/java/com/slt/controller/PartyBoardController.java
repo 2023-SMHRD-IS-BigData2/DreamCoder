@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.slt.entity.Party_boards;
 import com.slt.service.PartyBoardService;
 
-@RequestMapping("/Sol/partyboardCon")
+@RequestMapping("/Sol/partyBoardCon")
 @RestController
 public class PartyBoardController {
 	
@@ -17,17 +17,20 @@ public class PartyBoardController {
 	private PartyBoardService partyboardservice;
 	
 	@RequestMapping("/insert")
-	public int PartyBoardInsert(Party_boards boards) {
-		return partyboardservice.PartyBoardInsert(boards);
+	public int partyBoardInsert(Party_boards boards) {
+		System.out.println("모집 게시판 삽입 시스템");
+		return partyboardservice.partyBoardInsert(boards);
 	}
 	
 	@RequestMapping("/delete")
-	public int PartyBoardDelete(int num) {
-		return partyboardservice.PartyBoardDelete(num);
+	public int partyBoardDelete(int num) {
+		System.out.println("모집 게시판 삭제 시스템");
+		return partyboardservice.partyBoardDelete(num);
 	}
 	
 	@RequestMapping("/list")
-	public List<Party_boards> PartyBoardList() {
-		return partyboardservice.PartyBoardList();
+	public List<Party_boards> partyBoardList() {
+		System.out.println("모집 게시판 출력 시스템");
+		return partyboardservice.partyBoardList();
 	}
 }

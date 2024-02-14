@@ -21,4 +21,18 @@ public class JoinController {
 		return joinSevice.joinService(user);
 	}
 	
+	@RequestMapping("/idcheck")
+	public int idcheck(String id) {
+		System.out.println("아이디 중복 검사");
+		System.out.println("들어온 id : "+id);
+		return joinSevice.idCheck(id);
+	}
+	
+	@RequestMapping("/nickCheck")
+	public int nickCheck(String nick) {
+		System.out.println("닉네임 중복 검사");
+		System.out.println("들어온 닉네임 : "+nick);
+		return 0;
+	}
+	
 }

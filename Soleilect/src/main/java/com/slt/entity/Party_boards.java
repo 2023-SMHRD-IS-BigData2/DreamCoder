@@ -19,7 +19,7 @@ public class Party_boards {
 	private int party_views;
 	private int target_cnt;
 	private int now_cnt;
-	private BigDecimal party_progress;
 	private String created_at;
 	private String user_id;
+	private String user_nick;
 }

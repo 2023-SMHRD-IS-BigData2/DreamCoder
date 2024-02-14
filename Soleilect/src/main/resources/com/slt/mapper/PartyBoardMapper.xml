@@ -2,16 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.slt.mapper.PartyBoardMapper">
 
-	<insert id="PartyBoardInsert" parameterType="com.slt.entity.Party_boards">
-		INSERT INTO party_boards (party_title, party_content, party_loc, start_at,
-		end_at, party_views, target_cnt, now_cnt, created_at,
-		user_id) VALUES (#{party_title}, #{party_content}, #{party_loc},
-		#{start_at}, #{end_at}, #{party_views}, #{target_cnt}, #{now_cnt}, NOW(), #{user_id});
+	<insert id="partyBoardInsert"
+		parameterType="com.slt.entity.Party_boards">
+		INSERT INTO party_boards (party_title, party_content,
+		party_loc, start_at, end_at, party_views, target_cnt, now_cnt,
+		created_at, user_id, user_nick) VALUES (#{party_title},
+		#{party_content,}, #{party_loc}, #{start_at}, #{end_at},
+		#{party_views}, #{target_cnt}, #{now_cnt}, NOW(),
+		#{user_id},
+		#{user_nick});
 	</insert>
-	<delete id="PartyBoardDelete">
+	<delete id="partyBoardDelete">
 		delete from party_boards where party_seq = #{num}
 	</delete>
-	<select id="PartyBoardList" resultType="com.slt.entity.Party_boards">
+	<select id="partyBoardList"
+		resultType="com.slt.entity.Party_boards">
 		select * from party_boards
 	</select>
 </mapper>

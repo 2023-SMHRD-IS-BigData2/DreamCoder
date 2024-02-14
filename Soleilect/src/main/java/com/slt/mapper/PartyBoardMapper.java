@@ -8,7 +8,7 @@ import com.slt.entity.Party_boards;
 
 @Mapper
 public interface PartyBoardMapper {
-	public int PartyBoardInsert(Party_boards boards);
-	public int PartyBoardDelete();
-	public List<Party_boards> PartyBoardList();
+	public int partyBoardInsert(Party_boards boards);
+	public int partyBoardDelete();
+	public List<Party_boards> partyBoardList();
 }
