@@ -19,7 +19,7 @@ public class PartyBoardService {
 	}
 	
 	public int partyBoardDelete(int num) {
-		int row = partyboardmapper.partyBoardDelete();
+		int row = partyboardmapper.partyBoardDelete(num);
 		return row;
 	}
 	
