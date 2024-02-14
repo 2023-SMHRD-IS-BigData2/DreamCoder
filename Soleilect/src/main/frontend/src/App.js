@@ -5,11 +5,13 @@ import './App.css';
 import { ChartContext } from "./context/ChartContext";
 import Header from "./layouts/Header/Header";
 import Main from './Main';
-import ChartList from './components/Chart/ChartList';
-import ChartDetail from './components/Chart/ChartDetail';
 import SignUp from "./components/Auth/SignUp";
 import SignIn from "./components/Auth/SignIn";
 import TLogin from "./TLogin";
+import PartyBoardList from "./views/PartyBoard/PartyBoardList";
+import PartyBoardDetail from "./views/PartyBoard/PartyBoardDetail";
+import './views/PartyBoard/PartyBoard.css';
+import './components/CommentItem/Comment.css'
 
 function App() {
   
@@ -32,8 +34,8 @@ function App() {
       <Routes>
         <Route path="/Main" element={<Main/>}></Route>
         <Route path="/TLogin" element={<TLogin/>}></Route>
-        <Route path="/ChartList" element={<ChartList/>}></Route>
-        <Route path='/detail/:num' element={<ChartDetail/>}></Route>
+        <Route path="/PartyBoardList" element={<PartyBoardList/>}></Route>
+        <Route path='/detail/:num' element={<PartyBoardDetail/>}></Route>
         <Route path="/SignUp" element={<SignUp/>}></Route>
         <Route path="/SignIn" element={<SignIn/>}></Route>
       </Routes>

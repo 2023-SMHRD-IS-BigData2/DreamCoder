@@ -59,3 +59,18 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+.board-detail-liked{
+  background-image: url('./assets//image/liked.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.board-detail-unliked{
+  background-image: url('./assets/image/unliked.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.image-box-light-icon{
+  background-image: url('./assets/image/photo-icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
