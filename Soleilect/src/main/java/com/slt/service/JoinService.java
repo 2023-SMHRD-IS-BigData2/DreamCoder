@@ -29,12 +29,26 @@ public class JoinService {
 	}
 	
 	public int idCheck(String id) {
-		int row = joinMapper.idCheck(id);
+		User user = joinMapper.idCheck(id);
+		int row = 0;
+		if(user==null) {
+			row=0;
+		}else {
+			row=1;
+		}
+			
 		return row;
 	}
 	
 	public int nickCheck(String nick) {
-		int row = joinMapper.nickCheck(nick);
+		User user = joinMapper.nickCheck(nick);
+		int row = 0;
+		if(user==null) {
+			row=0;
+		}else {
+			row=1;
+		}
+		
 		return row;
 	}
 	
