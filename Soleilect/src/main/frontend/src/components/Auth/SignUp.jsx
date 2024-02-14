@@ -95,6 +95,16 @@ const SignIn = () => {
     if (!isIdPattern || !isCheckedPassword) return;
     setPage('2');
   }
+  //         event handler: 아이디 중복체크 버튼 클릭 이벤트 처리
+  const onIdCheckButtonClickHandler=()=>{
+    alert('아이디중복체크이벤트')
+    console.log(id)
+  }
+  //         event handler: 닉네임 중복체크 버튼 클릭 이벤트 처리
+  const onNicknameCheckButtonClickHandler=()=>{
+    alert('닉네임 중복체크 이벤트')
+    console.log(nickname)
+  }
   //          event handler: 회원가입 버튼 클릭 이벤트 처리 
   const onSignUpButtonClickHandler = () => {
     const hasNickname = nickname.trim().length !== 0;
@@ -153,13 +163,7 @@ const SignIn = () => {
     setNameError(false);
     setNameErrorMessage('');
   }
-  //          event handler: 사업자번호 변경 이벤트 처리 
-  const onBnumberChangeHandler = (event) => {
-    const { value } = event.target;
-    setBnumber(value);
-    setBnumberError(false);
-    setBnumberErrorMessage('');
-  }
+
   //          event handler: 패스워드 버튼 클릭 이벤트 처리 
   const onPasswordButtonClickHandler = () => {
     if (passwordButtonIcon === 'eye-light-off-icon') {
@@ -193,11 +197,7 @@ const SignIn = () => {
     if (event.key !== 'Enter') return;
     onSignUpButtonClickHandler();
   }
-  //          event handler: 사업자번호 키 다운 이벤트 처리 
-  const onBnumberKeyDownHandler = (event) => {
-    if (event.key !== 'Enter') return;
-    onSignUpButtonClickHandler();
-  }
+
 
 
 
@@ -215,7 +215,6 @@ const SignIn = () => {
             </div>
           </div>
         </div>
-        <form className='auth-form' onSubmit={submitPost}>
           <div className='auth-card'>
             <div className='auth-card-box'>
               <div className='auth-card-top'>
@@ -236,6 +235,7 @@ const SignIn = () => {
                     {/* <InputBox ref={bnumberRef} label='사업자번호*' type='text' name='b_num' placeholder='사업자번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} /> */}
                   </>
                 )}
+              </div>
                 <div className='auth-card-bottom'>
                   {page === '1' && (
                     <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
@@ -247,10 +247,9 @@ const SignIn = () => {
                     <div className='auth-description'>{'이미 회원이신가요? '}<span onClick={onSignInButtonClickHandler} className='auth-description-link'>{'로그인'}</span></div>
                   </div>
                 </div>
-              </div>
+              <div className='id-check-button' onClick={page==='1'?onIdCheckButtonClickHandler:onNicknameCheckButtonClickHandler}>{'중복체크'}</div>
             </div>
           </div>
-        </form >
       </div>
     </div >
 
