@@ -80,8 +80,7 @@ const SignUp = () => {
   };
   const idCheckPost = () => {
     let formData = new FormData();
-    formData.append("user_id", id)
-    console.log(id)
+    formData.append("id", id)
     axios
       .post('/Sol/joinCon/idCheck', formData)
       .then((response) => {
@@ -93,8 +92,10 @@ const SignUp = () => {
 
   };
   const nickCheckPost = () => {
+    let formData = new FormData();
+    formData.append("nick", nickname)
     axios
-      .post('/Sol/joinCon/nickCheck', nickname)
+      .post('/Sol/joinCon/nickCheck', formData)
       .then((response) => {
         console.log(response.data)
       })
