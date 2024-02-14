@@ -32,11 +32,11 @@ const SignIn = () => {
         axios
             .post('/Sol/logCon/login', formData)
             .then((response) => {
-                if ((response.data).length==0) {
+                if ((response.data).length == 0) {
                     setError(true)
                     return;
-                }else{
-                    sessionStorage.setItem("user_id",id);
+                } else {
+                    sessionStorage.setItem("user_id", id);
                     nav('/Main');
                 }
                 console.log(response.data)
@@ -104,32 +104,31 @@ const SignIn = () => {
                         </div>
                     </div>
                 </div>
-                <form onSubmit={submitPost}>
-                    <div className='auth-card'>
-                        <div className='auth-card-box'>
-                            <div className='auth-card-top'>
-                                <div className='auth-card-title-box'>
-                                    <div className='auth-card-title'>{'로그인'}</div>
-                                </div>
-                                <InputBox ref={idRef} label='아이디' type='text' name='user_id' placeholder='아이디를 입력해주세요' value={id} onChange={onIdChangeHandler} error={error} onkeyDown={onIdKeyDownHandler} />
-                                <InputBox ref={passwordRef} label='패스워드' name='user_pw' type={passwordType} placeholder='비밀번호를 입력해주세요.' error={error} value={password} onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler} />
+                <div className='auth-card'>
+                    <div className='auth-card-box'>
+                        <div className='auth-card-top'>
+                            <div className='auth-card-title-box'>
+                                <div className='auth-card-title'>{'로그인'}</div>
                             </div>
-                            <div className='auth-card-bottom'>
-                                {error &&
-                                    <div className='auth-sign-in-error-box'>
-                                        <div className='auth-sign-in-error-message'>
-                                            {'아이디 또는 비밀번호를 잘못 입력했습니다. \n입력하신 내용을 다시 확인해주세요.'}
-                                        </div>
+                            <InputBox ref={idRef} label='아이디' type='text' name='user_id' placeholder='아이디를 입력해주세요' value={id} onChange={onIdChangeHandler} error={error} onkeyDown={onIdKeyDownHandler} />
+                            <InputBox ref={passwordRef} label='패스워드' name='user_pw' type={passwordType} placeholder='비밀번호를 입력해주세요.' error={error} value={password} onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onkeyDown={onPasswordKeyDownHandler} />
+                        </div>
+                        <div className='auth-card-bottom'>
+                            {error &&
+                                <div className='auth-sign-in-error-box'>
+                                    <div className='auth-sign-in-error-message'>
+                                        {'아이디 또는 비밀번호를 잘못 입력했습니다. \n입력하신 내용을 다시 확인해주세요.'}
                                     </div>
-                                }
-                                <div className='black-large-full-button' onClick={onSignInButtonClickHandler} type='submit'>{'로그인'}</div>
-                                <div className='auth-description-box'>
-                                    <div className='auth-description'>{'신규 사용자이신가요? '}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
                                 </div>
+                            }
+                            <div className='black-large-full-button' onClick={onSignInButtonClickHandler} type='submit'>{'로그인'}</div>
+                            <div className='auth-description-box'>
+                                <div className='auth-description'>{'신규 사용자이신가요? '}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
                             </div>
                         </div>
+                        <div></div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
