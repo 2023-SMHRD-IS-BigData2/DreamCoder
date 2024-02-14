@@ -12,6 +12,9 @@ import PartyBoardList from "./views/PartyBoard/PartyBoardList";
 import PartyBoardDetail from "./views/PartyBoard/PartyBoardDetail";
 import './views/PartyBoard/PartyBoard.css';
 import './components/CommentItem/Comment.css'
+import PartyWrite from "./views/PartyWrite/PartyWrite";
+import BoardWrite from "./views/BoardWrite/BoardWrite";
+                                                                         
 
 function App() {
   
@@ -38,6 +41,8 @@ function App() {
         <Route path='/detail/:num' element={<PartyBoardDetail/>}></Route>
         <Route path="/SignUp" element={<SignUp/>}></Route>
         <Route path="/SignIn" element={<SignIn/>}></Route>
+        <Route path="/PartyWrite" element={<PartyWrite/>}></Route>
+        <Route path="/BoardWrite" element={<BoardWrite/>}></Route>
       </Routes>
     </div>
     </ChartContext.Provider>

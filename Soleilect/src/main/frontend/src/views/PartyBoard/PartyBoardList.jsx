@@ -22,9 +22,9 @@ const PartyBoardList = () => {
     <div className='list-container'>
       <div className='write-box'>
         <div className='write-button' onClick={()=>{
-          nav('/write');
+          nav('/PartyWrite');
         }}>{'모집하러 가기'}</div>
-        <div className='board-button' onClick={()=>{nav('/boards')}}>{'일반게시물작성'}</div>
+        <div className='board-button' onClick={()=>{nav('/BoardWrite')}}>{'일반게시물작성'}</div>
       </div>
       <div className='list-item'>
         {list.map((item, index) => <PartyBoardItem item={item}
