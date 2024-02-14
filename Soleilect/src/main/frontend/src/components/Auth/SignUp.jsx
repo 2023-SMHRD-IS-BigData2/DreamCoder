@@ -5,7 +5,7 @@ import './index.css';
 import InputBox from '../InputBox';
 
 
-const SignIn = () => {
+const SignUp = () => {
 
   const nav = useNavigate();
 
@@ -79,9 +79,11 @@ const SignIn = () => {
 
   };
   const idCheckPost = () => {
+    let formData = new FormData();
+    formData.append("user_id", id)
     console.log(id)
     axios
-      .post('/Sol/joinCon/idcheck', id)
+      .post('/Sol/joinCon/idCheck', formData)
       .then((response) => {
         console.log(response)
       })
@@ -121,7 +123,6 @@ const SignIn = () => {
   }
   //         event handler: 아이디 중복체크 버튼 클릭 이벤트 처리
   const onIdCheckButtonClickHandler = () => {
-
     { idCheckPost() }
   }
   //         event handler: 닉네임 중복체크 버튼 클릭 이벤트 처리
@@ -282,4 +283,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignUp
