@@ -1,4 +1,4 @@
-.board-write-date, .board-write-progress, .board-write-region{
+ .board-write-progress, .board-write-region{
     width: 100%;
     border: none;
     outline: none;
@@ -10,7 +10,11 @@
 .board-wrtie-content-input{
     width: 100%;
 }
-
+/* 모집기간 */
+.board-write-date{
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.7);
+}
 
 .board-check-top{
     display: flex;
@@ -172,3 +176,7 @@ select.write-check-select {
     width: 100%;
     height: 100%;
 }
+
+/* 모집 기간 */
+
+  
