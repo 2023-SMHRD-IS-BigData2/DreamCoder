@@ -19,6 +19,9 @@ public class PartyBoardController {
 	@RequestMapping("/insert")
 	public int partyBoardInsert(Party_boards boards) {
 		System.out.println("모집 게시판 삽입 시스템");
+		System.out.println("들어온 정보 :");
+		System.out.println(boards.getUser_id());
+		System.out.println(boards.getUser_nick());
 		return partyboardservice.partyBoardInsert(boards);
 	}
 	
