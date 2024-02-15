@@ -40,6 +40,9 @@ const PartyWrite = () => {
     const [userNick, setUserNick] = useState("");
     const [partyViews, setPartyViews] = useState(0);
 
+    // state 회원정보  상태
+    const [user, setUser] =  useState("");
+
 
     const [resetBoard] = useState();
 
@@ -94,22 +97,22 @@ const PartyWrite = () => {
     }
 
     // event handler : 아이디 변경 이벤트 처리
-    const onuserIdChangeHandler = (e) => {
-        const value = e.target.value;
-        setUserId(value);
-    }
+    // const onuserIdChangeHandler = (e) => {
+    //     const value = e.target.value;
+    //     setUserId(value);
+    // }
 
     // event handler : 닉네임 변경 이벤트 처리
-    const onuserNickChangeHandler = (e) => {
-        const value = e.target.value;
-        setUserNick(value);
-    }
+    // const onuserNickChangeHandler = (e) => {
+    //     const value = e.target.value;
+    //     setUserNick(value);
+    // }
 
     // event handler : 조회수 변경 이벤트 처리
-    const onpartyViewsChangeHandler = (e) => {
-        const value = e.target.value;
-        setPartyViews(value);
-    }
+    // const onpartyViewsChangeHandler = (e) => {
+    //     const value = e.target.value;
+    //     setPartyViews(value);
+    // }
 
     // effect 마운트 시 실행할 함수
     // useEffect(()=>{
@@ -120,7 +123,7 @@ const PartyWrite = () => {
 
     // function -- submit ----------------------------- 
     const submitPost = () => {
-        
+
         let formData = new FormData();
         formData.append("party_title",title)
         formData.append("party_content",content)
@@ -135,7 +138,7 @@ const PartyWrite = () => {
         axios
             .post('/Sol/partyBoardCon/insert', formData)
             .then((response) => {
-                console.log(response.data)
+                console.log('게시글 작성 성공')
             })
             .catch((error) => {
                 console.log(error)
@@ -145,9 +148,35 @@ const PartyWrite = () => {
 
     // event handler : 게시판 작성 등록하기 버튼
     const onPartyBoardsonClickHandler = () => {
-        console.log(title);
         submitPost()
     }
+
+    useEffect(()=>{
+        let formData = new FormData();
+        console.log(sessionStorage.getItem("user_id"));
+        console.log(sessionStorage.getItem("user_pw"));
+        formData.append("user_id",sessionStorage.getItem("user_id"))
+        formData.append("user_pw",sessionStorage.getItem("user_pw"))
+        axios
+        .post('/Sol/logCon/login',formData)
+        .then((res) => {
+
+            console.log(res.data)
+            setUser(res.data)
+            console.log(user.user_id)
+            console.log(user.user_nick)
+            setUserId(user.user_id)
+            console.log(userId)
+            setUserNick(user.user_nick)
+
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+
+    },[])
+
 
     // render 게시물 작성 화면 컴포넌트 렌더링 
     return (
@@ -189,10 +218,9 @@ const PartyWrite = () => {
                             <input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} placeholder='모집 현재수치 :' onChange={onnowCntChangeHandler}/>
                             <input type='text' name='party_loc' className='board-write-region' ref={partLocRef} placeholder='모집장소 : ' onChange={onpartLocChangeHandler} />
                             
-                            <input type='text' name='user_id' ref={userIdRef} placeholder='아이디' onChange={onuserIdChangeHandler}></input>
-                            <input type='text' name='user_nick' ref={userNickRef} placeholder='닉네임' onChange={onuserNickChangeHandler}></input>
-                            <input type='text' name='party_views' ref={partyViewsRef} placeholder='조회수' onChange={onpartyViewsChangeHandler}></input>
-                        
+                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디'  value={user.user_id}></input>
+                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={user.user_nick}></input>
+                            <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수'  value={partyViews}></input>
                         </div>
                         {/* content */}
                         <textarea name='party_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onContentChangeHandler} value={content}></textarea>
