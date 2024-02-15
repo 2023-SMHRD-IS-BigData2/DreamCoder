@@ -20,6 +20,9 @@ const Header = () => {
     navigate('/SignIn');
   
   };
+  const onMypageButtonClickHandler = () =>{
+    navigate('/Mypage');
+  }
   const onLogoutButtonClickHandler = () =>{
     sessionStorage.removeItem("user_id");
     setIslogin(false);
@@ -133,7 +136,7 @@ const Header = () => {
             :
            ( <>
               <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
-              <div className='black-button' onClick={''}>{'마이페이지'}</div>
+              <div className='black-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>
             </>)
           }
 

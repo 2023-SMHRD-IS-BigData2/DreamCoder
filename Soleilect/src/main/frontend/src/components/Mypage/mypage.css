@@ -1,0 +1,539 @@
+#mypage-wrapper {
+    padding: 100px 0px 15px;
+    min-width: 1440px;
+    height: calc(100vh - 68px - 100px - 150px);
+    min-height: 600px;
+    max-height: 675px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mypage-container {
+    width: 1200px;
+    max-height: 675px;
+
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    column-gap: 78px;
+
+}
+
+.mypage-left-box {
+    height: 635px;
+    min-width: 314px;
+    padding: 40px 30px 0 30px;
+
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: rgba(252, 252, 252, 0.9);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mypage-profile-box {
+    height: 220px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mypage-profile-image-box {
+    width: 150px;
+    height: 150px;
+}
+
+.mypage-profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50%;
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(208, 208, 208);
+    /* 기본 프로필 고해상도 이미지 추가요망 */
+    background-image: url('../../assets/image/profile-image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.mypage-profile-name {
+    height: 30px;
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 25px;
+    font-weight: 520;
+    line-height: 140%;
+    /* 드래그방지 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
+}
+
+.mypage-left-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mypage-comp-button {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 10px;
+    padding-left: 10px;
+
+
+    background-color: rgba(241, 241, 241, 0.8);
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+
+}
+
+.mypage-comp-button-active {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 10px;
+    padding-left: 5px;
+
+
+    background-color: rgba(206, 206, 206, 0.8);
+    color: rgba(26, 117, 191, 0.9);
+    cursor: pointer;
+}
+
+.mypage-comp-button:hover {
+    color: rgba(26, 117, 191, 0.9);
+}
+
+.mypage-icon-bar {
+    width: 5px;
+    height: 85%;
+    border-radius: 5px;
+
+    background-color: rgba(26, 117, 191, 0.9);
+}
+
+
+.mypage-icon-box {
+    width: 30px;
+    height: 30px;
+    margin-left: 26px;
+}
+
+.mypage-comp-button-text {
+    margin-left: 15%;
+    /* 드래그 방지 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
+}
+
+/* filter를 사용해 색 변경한 아이콘.. 색맞추기 어려움 색 변경 아이콘 추가해 수정요망 */
+.mypage-comp-button:hover .icon {
+    filter: opacity(0.4) drop-shadow(0 0 0 rgb(0, 85, 255));
+}
+
+.mypage-comp-button-active .icon {
+    filter: opacity(0.4) drop-shadow(0 0 0 rgb(0, 85, 255));
+}
+
+.mypage-right-box {
+    height: 630px;
+    max-width: 698px;
+    padding: 20px 25px 25px;
+
+
+    display: flex;
+    flex-direction: column;
+
+    background-image: linear-gradient(to top, rgb(241, 241, 241) 90%, rgba(252, 252, 252, 0.9) 10%);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mypage-right-top {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(252, 252, 252, 0.9);
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 4px;
+}
+
+.mypage-right-icon-box {
+    width: 30px;
+    height: 30px;
+}
+
+.mypage-right-title {
+    margin-left: 15px;
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 140%;
+}
+
+.mypage-right-top-tab {
+    position: relative;
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.mypage-right-top-tab-box {
+    height: 20px;
+    border-radius: 5px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 140%;
+
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(241, 241, 241, 0.7);
+
+    cursor: pointer;
+}
+
+.mypage-right-top-tab-box-active {
+    height: 20px;
+    border-radius: 5px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 140%;
+
+    color: rgba(26, 117, 191, 1);
+    background-color: rgb(230, 230, 230);
+
+    cursor: pointer;
+}
+
+.mypage-right-top-tab-box:hover {
+    color: rgba(26, 117, 191, 1);
+    background-color: rgba(241, 241, 241, 1);
+}
+
+.mypage-right-bottom {
+    width: 100%;
+    height: 525px;
+    margin-top: 15px;
+    padding-top: 30px;
+    background-color: rgb(241, 241, 241);
+
+    /* overflow-y: scroll; */
+}
+
+.scroll {
+    overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 5px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(208, 208, 208);
+    border-radius: 5px;
+    height: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 5px;
+}
+
+.mypage-box {
+    background-color: rgb(255, 255, 255);
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(208, 208, 208);
+
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.mypage-right-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.mypage-right-first-list {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.edit-profile-image-box-card {
+    width: 360px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 20px;
+}
+
+.edit-box-profile-image-box {
+    width: 75px;
+    height: 75px;
+    position: relative;
+    left: 20px;
+}
+
+
+.edit-profile-image-button-box {
+    width: 100px;
+    height: 35px;
+
+    background-color: rgba(26, 117, 191, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    left: 140px;
+    top: 5px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.edit-profile-image-button-box:hover {
+    background-color: rgba(26, 117, 191, 0.9);
+}
+
+.edit-profile-image-button {
+    color: rgb(255, 255, 255);
+}
+
+.card-bottom {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    position: relative;
+    top: 10px;
+    left: 30px;
+}
+
+.edit-nickname-box-card {
+    width: 319px;
+    height: 120px;
+}
+
+.edit-title {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 140%;
+}
+
+.edit-box {
+    display: flex;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    outline: none;
+
+    padding: 10px;
+
+    position: relative;
+    align-items: center;
+
+    background-color: rgba(206, 206, 206, 0.8);
+}
+
+.edit-nickname-box {
+    width: 150px;
+    height: 22px;
+
+}
+
+
+.edit-password-box-card {
+    width: 700px;
+    height: 120px;
+}
+
+.edit-password-box {
+    width: 160px;
+    height: 22px;
+
+    text-align: left;
+}
+
+.edit-alarm-box-card {
+    width: 50%;
+    height: 120px;
+}
+
+.mypage-set-save-button-box {
+    width: 35%;
+    height: 45px;
+    margin-top: 50px;
+
+    background-color: rgb(26, 117, 191);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.mypage-set-save-button-box:hover {
+    background-color: rgba(26, 117, 191, 0.9);
+}
+
+.mypage-set-save-button {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.leave-link {
+    width: 100px;
+    color: rgba(26, 117, 191, 0.9);
+
+    position: relative;
+    left: 600px;
+    bottom: 30px;
+
+    cursor: pointer;
+}
+
+/* 알림 on off 버튼 */
+.wrapper {
+    position: relative;
+    left: 220px;
+}
+
+#switch {
+    position: absolute;
+    /* hidden */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.switch_label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 58px;
+    height: 28px;
+    background: rgba(252, 252, 252, 0.9);
+    border: 2px solid rgba(26, 117, 191, 1);
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+.switch_label:hover {
+    background: #efefef;
+    border: 2px solid rgba(26, 117, 191, 0.9);
+}
+
+.onf_btn {
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: rgba(26, 117, 191, 1);
+    transition: 0.2s;
+}
+
+/* checking style */
+#switch:checked+.switch_label {
+    background: rgba(26, 117, 191, 1);
+    border: 2px solid rgba(26, 117, 191, 1);
+}
+
+#switch:checked+.switch_label:hover {
+    background: rgba(26, 117, 191, 0.9);
+}
+
+/* move */
+#switch:checked+.switch_label .onf_btn {
+    left: 34px;
+    background: #fff;
+    box-shadow: 1px 2px 3px #00000020;
+}
+
+
+/* 탭 컨텐츠 */
+.tap-contents-list {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 15px;
+}
+.ownPower-add-button-box{
+    width: 35%;
+    height: 45px;
+    margin-top: 50px;
+
+    background-color: rgb(26, 117, 191);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+.ownPower-add-button-box:hover{
+    background-color: rgba(26, 117, 191,0.9);
+}
+.ownPower-add-button{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+}
