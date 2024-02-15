@@ -21,6 +21,11 @@ public class CommentController {
 		return commentservice.commentInsert(comments);
 	}
 	
+	@RequestMapping("/delete")
+	public int commentDelete(int num) {
+		return commentservice.commentDelete(num);
+	}
+	
 	@RequestMapping("/list")
 	public List<Comments> commentList(int num){
 		return commentservice.commentList(num);

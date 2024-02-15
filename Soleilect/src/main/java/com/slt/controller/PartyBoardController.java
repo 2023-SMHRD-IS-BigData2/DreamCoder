@@ -31,6 +31,11 @@ public class PartyBoardController {
 		return partyboardservice.partyBoardDelete(num);
 	}
 	
+	@RequestMapping("/update")
+	public int partyBoardUpdate(Party_boards boards) {
+		return 0;
+	}
+	
 	@RequestMapping("/list")
 	public List<Party_boards> partyBoardList() {
 		System.out.println("모집 게시판 출력 시스템");

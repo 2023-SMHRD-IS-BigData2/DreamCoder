@@ -23,4 +23,5 @@ public class Party_boards {
 	private Timestamp created_at;
 	private String user_id;
 	private String user_nick;
+	private String party_isJoin;
 }

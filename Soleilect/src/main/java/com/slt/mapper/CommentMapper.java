@@ -10,5 +10,7 @@ import com.slt.entity.Comments;
 public interface CommentMapper {
 	public int commentInsert(Comments comments);
 
+	public int commentDelete(int num);
+	
 	public List<Comments> commentList(int num);
 }

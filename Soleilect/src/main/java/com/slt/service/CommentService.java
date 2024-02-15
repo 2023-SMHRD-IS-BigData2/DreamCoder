@@ -19,6 +19,11 @@ public class CommentService {
 		return row;
 	}
 	
+	public int commentDelete(int num) {
+		int row = commentmapper.commentDelete(num);
+		return row;
+	}
+	
 	public List<Comments> commentList(int num){
 		List<Comments> list = commentmapper.commentList(num);
 		return list;

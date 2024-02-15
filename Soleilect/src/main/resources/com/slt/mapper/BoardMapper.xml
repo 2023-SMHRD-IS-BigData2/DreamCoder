@@ -4,7 +4,7 @@
 	<insert id="boardInsert">
 		INSERT INTO BOARDS_TB (B_TITLE, B_CONTENT,
 		CREATED_AT, B_VIEWS, B_LIKES, HD_CODE, USER_ID, USER_NICK) VALUES
-		(#{b_title}, #{b_content}, NOW(), 0, 0, #{hd_code}, #{user_id}, #{user_nick});
+		(#{b_title}, #{b_content}, NOW(), 0, #{hd_code}, #{user_id}, #{user_nick});
 	</insert>
 	<delete id="boardDelete">
 		delete from BOARDS_TB where B_SEQ = #{num}
