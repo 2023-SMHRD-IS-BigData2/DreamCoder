@@ -19,9 +19,30 @@
   .comment-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding-right: 10px;
+    border-radius: 5px;
+    flex-direction: row;
+    /* border: 1px solid rgba(0,0,0,0.5); */
+    /* box-shadow: 0px 0px 10px 10px rgba(104, 95, 95, 0.2);  */
+    /* 그림자 효과 */
+    margin-top: 10px;
   }
+
+  .divider-comment {
+    width: 98%;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    position: relative;
+    left: 5px;
+   }
+   .divider-comment-reply{
+    width: 98%;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    position: relative;
+    left: 5px;
+   }
 
   .board-detail-writer-profile-image{
     border-radius: 32px;
@@ -43,7 +64,7 @@
   }
   
   .comment-text {
-    margin-left: 10px;
+    margin-top: 5px;
     color: #333;
   }
   
@@ -92,5 +113,12 @@
   padding-left: 10px;
   font-size: 15px;
   color: rgba(0,0,0,0.5);
-  text-decoration: underline;
+  padding: 8px 12px;
+  background-color: #41A4C9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  align-items: center;
  }

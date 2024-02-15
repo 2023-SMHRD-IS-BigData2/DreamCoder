@@ -6,6 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
 import Comment from '../../components/CommentItem/Comment';
+import moment from 'moment';
 
 const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
@@ -95,11 +96,11 @@ const PartyBoardDetail = () => {
             <div id='board-detail-bottom'>
                 {/* <div className='board-detail-comment-box'></div> */}
                 <div className='board-detail-button-box'>
-                    <div className='icon-button'>
+                    {/* <div className='icon-button'>
                         <div className='icon favorite-fill-icon' onClick={handleLike}>
                             {liked ? <div className='icon board-detail-liked'></div> : <div className='icon board-detail-unliked'></div>}
                         </div>
-                    </div>
+                    </div> */}
                     <div className='board-detail-box btnFloat'>
                         <div className='board-detail-button'>
                             {'참여하기'}</div>
@@ -109,7 +110,7 @@ const PartyBoardDetail = () => {
         )
     }
 
-
+    const timestamp = list[num].created_at;
 
     //         render 게시물 상세 화면 컴포넌트 렌더링!!!  //
     return (
@@ -121,8 +122,9 @@ const PartyBoardDetail = () => {
                             <div className='board-detail-writer-profile-image'></div>
                             <div className='board-detail-writer-nickname'>{list[num].user_nick}</div>
                             <div className='board-detail-write-divider'>{'|'}</div>
-                            <div className='detail-chart-date'>{list[num].created_at}</div>
+                            <div className='detail-chart-date'>{moment(timestamp).format("YYYY-MM-DD")}</div>
                             <div className='detail-chart-recruit'>{'모집중'}</div>
+                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}</div>
                         </div>
                     </div>
 
@@ -130,7 +132,7 @@ const PartyBoardDetail = () => {
                         <HighchartsReact highcharts={Highcharts} options={options} />
                     </div>
                     <div className='board-detail-top-main'>
-                        <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}</div>
+                        
                         {/* <div className='detail-chart-view'>{`찐조회수 `} {chartViews}</div> */}
                         <div className='detail-chart-title'>{`[` + list[num].party_title + `]`}</div>
                         <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
