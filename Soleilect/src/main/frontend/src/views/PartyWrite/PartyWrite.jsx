@@ -153,30 +153,20 @@ const PartyWrite = () => {
 
     useEffect(()=>{
         let formData = new FormData();
-        console.log(sessionStorage.getItem("user_id"));
-        console.log(sessionStorage.getItem("user_pw"));
         formData.append("user_id",sessionStorage.getItem("user_id"))
         formData.append("user_pw",sessionStorage.getItem("user_pw"))
         axios
         .post('/Sol/logCon/login',formData)
         .then((res) => {
-
-            console.log(res.data)
-            setUser(res.data)
-            console.log(user.user_id)
-            console.log(user.user_nick)
-            setUserId(user.user_id)
+            setUserId(res.data.user_id)
+            setUserNick(res.data.user_nick)
             console.log(userId)
-            setUserNick(user.user_nick)
-
+            console.log(userNick)
         })
         .catch((error) => {
             console.log(error)
         })
-
-
-    },[])
-
+    },[sessionStorage.getItem("user_pw")])
 
     // render 게시물 작성 화면 컴포넌트 렌더링 
     return (
@@ -218,8 +208,8 @@ const PartyWrite = () => {
                             <input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} placeholder='모집 현재수치 :' onChange={onnowCntChangeHandler}/>
                             <input type='text' name='party_loc' className='board-write-region' ref={partLocRef} placeholder='모집장소 : ' onChange={onpartLocChangeHandler} />
                             
-                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디'  value={user.user_id}></input>
-                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={user.user_nick}></input>
+                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디'  value={userId}></input>
+                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={userNick}></input>
                             <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수'  value={partyViews}></input>
                         </div>
                         {/* content */}
