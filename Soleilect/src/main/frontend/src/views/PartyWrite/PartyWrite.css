@@ -1,4 +1,4 @@
- .board-write-progress, .board-write-region{
+ .board-write-region{
     width: 100%;
     border: none;
     outline: none;
@@ -11,9 +11,30 @@
     width: 100%;
 }
 /* 모집기간 */
-.board-write-date{
-    font-size: 25px;
+.board-write-user-input{
+    font-size: 23px;
     color: rgba(0, 0, 0, 0.7);
+}
+
+.board-write-date-box{
+    padding: 10px;
+}
+
+input[type="date"] {
+    width: 150px;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+.board-write-target_cnt_input, .board-write-now_cnt_input, .board-write-party_loc_input{
+
 }
 
 .board-check-top{
