@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './PartyWrite.css';
 import '../../App.css';
@@ -17,9 +17,9 @@ const PartyWrite = () => {
     const endRef = useRef(null);
 
     const targetCntRef = useRef(null);
-  
+
     const nowCntRef = useRef(null);
- 
+
     const partLocRef = useRef(null);
 
     const userIdRef = useRef(null);
@@ -34,14 +34,14 @@ const PartyWrite = () => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [targetCnt, setTargetCnt] = useState(0);
-    const [nowCnt,setNowCnt] = useState(0);
+    const [nowCnt, setNowCnt] = useState(0);
     const [partLoc, setPartyLoc] = useState("");
     const [userId, setUserId] = useState("");
     const [userNick, setUserNick] = useState("");
     const [partyViews, setPartyViews] = useState(0);
 
     // state 회원정보  상태
-    const [user, setUser] =  useState("");
+    const [user, setUser] = useState("");
 
 
     const [resetBoard] = useState();
@@ -96,24 +96,6 @@ const PartyWrite = () => {
         setPartyLoc(value);
     }
 
-    // event handler : 아이디 변경 이벤트 처리
-    // const onuserIdChangeHandler = (e) => {
-    //     const value = e.target.value;
-    //     setUserId(value);
-    // }
-
-    // event handler : 닉네임 변경 이벤트 처리
-    // const onuserNickChangeHandler = (e) => {
-    //     const value = e.target.value;
-    //     setUserNick(value);
-    // }
-
-    // event handler : 조회수 변경 이벤트 처리
-    // const onpartyViewsChangeHandler = (e) => {
-    //     const value = e.target.value;
-    //     setPartyViews(value);
-    // }
-
     // effect 마운트 시 실행할 함수
     // useEffect(()=>{
     //     resetBoard();
@@ -125,16 +107,16 @@ const PartyWrite = () => {
     const submitPost = () => {
 
         let formData = new FormData();
-        formData.append("party_title",title)
-        formData.append("party_content",content)
-        formData.append("party_loc",partLoc)
-        formData.append("start_at",start)
-        formData.append("end_at",end)
-        formData.append("party_views",partyViews)
-        formData.append("target_cnt",targetCnt)
-        formData.append("now_cnt",nowCnt)
-        formData.append("user_id",userId)
-        formData.append("user_nick",userNick)
+        formData.append("party_title", title)
+        formData.append("party_content", content)
+        formData.append("party_loc", partLoc)
+        formData.append("start_at", start)
+        formData.append("end_at", end)
+        formData.append("party_views", partyViews)
+        formData.append("target_cnt", targetCnt)
+        formData.append("now_cnt", nowCnt)
+        formData.append("user_id", userId)
+        formData.append("user_nick", userNick)
         axios
             .post('/Sol/partyBoardCon/insert', formData)
             .then((response) => {
@@ -151,32 +133,20 @@ const PartyWrite = () => {
         submitPost()
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         let formData = new FormData();
-        console.log(sessionStorage.getItem("user_id"));
-        console.log(sessionStorage.getItem("user_pw"));
-        formData.append("user_id",sessionStorage.getItem("user_id"))
-        formData.append("user_pw",sessionStorage.getItem("user_pw"))
+        formData.append("user_id", sessionStorage.getItem("user_id"))
+        formData.append("user_pw", sessionStorage.getItem("user_pw"))
         axios
-        .post('/Sol/logCon/login',formData)
-        .then((res) => {
-
-            console.log(res.data)
-            setUser(res.data)
-            console.log(user.user_id)
-            console.log(user.user_nick)
-            setUserId(user.user_id)
-            console.log(userId)
-            setUserNick(user.user_nick)
-
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-
-
-    },[])
-
+            .post('/Sol/logCon/login', formData)
+            .then((res) => {
+                setUserId(res.data.user_id)
+                setUserNick(res.data.user_nick)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [sessionStorage.getItem("user_pw")])
 
     // render 게시물 작성 화면 컴포넌트 렌더링 
     return (
@@ -186,8 +156,8 @@ const PartyWrite = () => {
                     <div className='board-write-top'>
                         <div><h2>게시판 글쓰기</h2></div>
                         <div className='write-button-box'>
-                        <div  className='Write-button' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
-                                {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
+                            <div className='Write-button' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
+                            {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
                         </div>
                     </div>
                     <div className='board-check-top'>
@@ -208,24 +178,31 @@ const PartyWrite = () => {
                     <div className='board-write-content'>
                         <div className='board-wrtie-content-input'>
                             {/* date,progress,region */}
+                            <div className='board-write-user-input'>
                             <div className='board-write-date'>
-                                 모집 기간 : <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler}></input> {' ~ '}
-                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler}></input>
+                                모집 기간  <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler} className='board-write-date-box'></input> {' ~ '}
+                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler} className='board-write-date-box'></input>
                             </div>
-                            {/* <div className='board-write-progress'> */}
-                                <input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} placeholder='모집 목표수치 : ' onChange={ontargetCntChangeHandler}/>
-                            {/* </div> */}
-                            <input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} placeholder='모집 현재수치 :' onChange={onnowCntChangeHandler}/>
-                            <input type='text' name='party_loc' className='board-write-region' ref={partLocRef} placeholder='모집장소 : ' onChange={onpartLocChangeHandler} />
-                            
-                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디'  value={user.user_id}></input>
-                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={user.user_nick}></input>
-                            <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수'  value={partyViews}></input>
+                            <div className='board-write-target_cnt'>
+                                모집 목표수치  <input type='text' name='target_cnt' className='board-write-target_cnt_input' ref={targetCntRef} onChange={ontargetCntChangeHandler} /> kw
+                            </div>
+                            <div className='board-write-now_cnt'>
+                                모집 현재수치  <input type='text' name='now_cnt' className='board-write-now_cnt_input' ref={nowCntRef} onChange={onnowCntChangeHandler} /> kw
+                            </div>
+                            <div className='board-write-party_loc'>
+                                모집장소  <input type='text' name='party_loc' className='board-write-party_loc_input' ref={partLocRef} onChange={onpartLocChangeHandler} />
+                            </div>
+                            </div>
+                            {/* <div className='party-board-user'> */}
+                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디' value={userId}></input>
+                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={userNick}></input>
+                            <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수' value={partyViews}></input>
                         </div>
+                        {/* </div> */}
                         {/* content */}
                         <textarea name='party_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onContentChangeHandler} value={content}></textarea>
                         {/* 임시로 넣어 놓음 */}
-                        
+
                     </div>
                 </div>
             </div>

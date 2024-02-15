@@ -19,19 +19,6 @@ const PartyBoardList = () => {
   // },[])
 
   // 스프링부트 연결 ---------------------
-  useEffect(()=>{
-    let formData = new FormData();
-    axios
-    .get('/Sol/partyBoardCon/list',formData)
-    .then((res)=>{
-      setList(res.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-    
-  },[])
-  console.log(list);
 
   return (
     <div className='list-container'>
@@ -42,10 +29,28 @@ const PartyBoardList = () => {
         <div className='board-button' onClick={()=>{nav('/BoardWrite')}} style={{cursor: "pointer"}}>{'[일반게시물작성버튼]'}</div>
       </div>
       <div className='list-item'>
-        {list.map((item, index) => <PartyBoardItem item={item}
-          key={index} index={index}></PartyBoardItem>)}
+        <div className='item-container'>
+              <div className='board-top-date'>
+                  <div className='board-top-end-date'>{'마감일 2024-02-15'}</div>
+              </div>
+              <div className='Chart-item-box'>
+              </div>
+              <div className='chart-content'>
+                      <div className='board-list-item-top'>
+                          <div className='board-list-item--nickname'></div>
+                      </div>
+                      <div className='board-list-item-middle'>
+                          <div className='board-list-item-title'></div>
+                      </div>
+                      <div className='board-list-item-bottom'>
+                          <div className='board-list-item-recruit'>{'모집중'}</div>
+                          <div className='board-list-item-counts'>{`조회수 `}</div>
+                      </div>
+                  </div>
+          </div>
       </div>
     </div>
+    
   )
 }
 
