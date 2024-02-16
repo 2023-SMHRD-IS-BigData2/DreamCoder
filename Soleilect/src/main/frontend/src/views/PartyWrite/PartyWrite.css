@@ -44,11 +44,35 @@ select.write-check-select {
     font-weight: bold;
   }
   
-  option {
+  option.write-check-select {
     font-size: 20px;
   }
   
   .info .write-check-select#write-select-box option {
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+
+
+  /* 모집 or 마감 선택 css */
+
+  select.write-check-isjoin-select{
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  option.write-check-isjoin-select {
+    font-size: 20px;
+  }
+  .info .write-check-isjoin-select#write-select-isjoin-box option {
     font-size: 20px;
     background-color: #ffffff;
   }
