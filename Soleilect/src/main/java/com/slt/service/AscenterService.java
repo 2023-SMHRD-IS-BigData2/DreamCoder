@@ -22,9 +22,11 @@ public class AscenterService {
 	
 	public void ascenterInsert(Ascenter ascenter) {
 		ascenterMapper.ascenterInsert(ascenter);
+		System.out.println(ascenter);
 	}
 	
 	public void ascenterDelete(Long num) {
 		ascenterMapper.ascenterDelete(num);
+		System.out.println(num);
 	}
 }
