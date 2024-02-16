@@ -18,16 +18,20 @@ public class CommentController {
 	
 	@RequestMapping("/insert")
 	public int commentInsert(Comments comments) {
+		System.out.println("일반게시판 댓글 삽입");
+		System.out.println(comments.toString());
 		return commentservice.commentInsert(comments);
 	}
 	
 	@RequestMapping("/delete")
 	public int commentDelete(int num) {
+		System.out.println("일반게시판 댓글 삭제");
 		return commentservice.commentDelete(num);
 	}
 	
 	@RequestMapping("/list")
 	public List<Comments> commentList(int num){
+		System.out.println("일반게시판 댓글 불러오기");
 		return commentservice.commentList(num);
 	}
 }

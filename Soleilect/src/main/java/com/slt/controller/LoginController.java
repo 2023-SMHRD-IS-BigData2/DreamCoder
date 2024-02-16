@@ -17,7 +17,7 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public User login(Login login) {
-		System.out.println("로그인 시스템 작동");
+		System.out.println("로그인");
 		
 		return loginService.loginService(login); 
 	}

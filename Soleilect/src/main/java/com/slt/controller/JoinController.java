@@ -16,8 +16,9 @@ public class JoinController {
 	
 	@RequestMapping("/join")
 	public int join(User user) {
-		System.out.println("회원가입 시스템 작동");
-		System.out.println("유저 id:"+user.getUser_id());		
+		System.out.println("회원가입");
+		System.out.println("들어온 정보 :");
+		System.out.println(user.toString());
 		return joinSevice.joinService(user);
 	}
 	

@@ -17,11 +17,15 @@ public class MyPageController {
 	
 	@RequestMapping("/plantInsert")
 	public int plantInsert(Plants plants) {
+		System.out.println("마이페이지 발전소 삽입");
+		System.out.println("들어온 정보 :");
+		System.out.println(plants.toString());
 		return mypageservice.plantInsert(plants);
 	}
 	
 	@RequestMapping("/plantList")
 	public List<Plants> plantList(String id){
+		System.out.println("마이페이지 발전소 목록");
 		return mypageservice.plantList(id);
 	}
 	
