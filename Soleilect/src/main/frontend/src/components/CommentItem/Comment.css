@@ -29,13 +29,33 @@
     margin-top: 10px;
   }
   
+  
+  /* 댓글 하단부  */
+  .comment-bottom-box{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding-left: 43px;
+    padding-bottom: 10px;
+  }
+
+
+  .comment-bottom-date{
+    display: flex;
+    font-size: 15-4px;
+    color: rgba(0,0,0,0.5);
+  }
+
   .comment-text-write-reply{
-    margin-left: 40px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    text-decoration: underline;
+    display: flex;
+
+    font-size: 13px;
     color: rgba(0,0,0,0.5);
     cursor: pointer;
+
+    position: relative;
+    padding-left: 10px;
+    align-items: center;
   }
 
   .divider-comment {

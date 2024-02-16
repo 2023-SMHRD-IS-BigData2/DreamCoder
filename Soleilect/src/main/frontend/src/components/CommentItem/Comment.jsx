@@ -57,7 +57,10 @@ const Comment = () => {
                                 </div>
                                 <div onClick={() => deleteComment(commentIndex)} className='comment-text-delete' >{'삭제'}</div>
                             </div>
+                            <div className='comment-bottom-box'>
+                            <div className='comment-bottom-date'>{'2024-02-16'}</div>
                             <div className='comment-text-write-reply'>{'답글쓰기'}</div>
+                            </div>
                             <div className='divider-comment'></div>
 
                             <ul>
