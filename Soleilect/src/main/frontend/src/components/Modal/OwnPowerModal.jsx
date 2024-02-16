@@ -1,6 +1,7 @@
 import React, { useEffect, forwardRef, useRef, useState } from 'react';
 import './style.css';
 import InputBox from '../InputBox';
+import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
 const OwnPowerModal = forwardRef((props, ref) => {
     const { setModalOpen } = props;
@@ -11,23 +12,23 @@ const OwnPowerModal = forwardRef((props, ref) => {
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
 
-    useEffect(() => {
-        // 이벤트 핸들러 함수
-        const handler = (event) => {
-            // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                setModalOpen(false);
-            }
-        };
+    // useEffect(() => {
+    //     // 이벤트 핸들러 함수
+    //     const handler = (event) => {
+    //         // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
+    //         if (modalRef.current && !modalRef.current.contains(event.target)) {
+    //             setModalOpen(false);
+    //         }
+    //     };
 
-        // 이벤트 핸들러 등록
-        document.addEventListener('mousedown', handler);
+    //     // 이벤트 핸들러 등록
+    //     document.addEventListener('mousedown', handler);
 
-        return () => {
-            // 이벤트 핸들러 해제
-            document.removeEventListener('mousedown', handler);
-        };
-    }, [setModalOpen]);
+    //     return () => {
+    //         // 이벤트 핸들러 해제
+    //         document.removeEventListener('mousedown', handler);
+    //     };
+    // }, [setModalOpen]);
 
 
     //          state: 발전소 이름 요소 참조 상태 
@@ -44,7 +45,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
     //          state: 발전소 이름 상태 
     const [plName, setPlName] = useState('');
     //          state: 발전소 주소 상태 
-    const [pladdress, setPladdress] = useState('');
+    const [pladdress, setPlAddress] = useState('');
     //          state: 발전량 상태 
     const [generation, setGeneration] = useState('');
     //          state: 사업자번호 상태 
@@ -71,13 +72,43 @@ const OwnPowerModal = forwardRef((props, ref) => {
     //          state: 주소입력 아이콘 상태 
     const [addressButtonIcon, setAddressButtonIcon] = useState('expand-right-light-icon');
 
+    //          function: 다음 주소 검색 팝업 오픈 함수
+    const open = useDaumPostcodePopup();
+
     //          event handler: 다음 버튼 클릭 이벤트 처리 
     const onNextButtonClickHandler = () => {
+        const hasPlName = plName.trim().length !== 0;
+        if (!hasPlName) {
+            setPlNameError(true);
+            setPlNameErrorMessage('발전소 이름을 입력해주세요')
+        }
+        const hasPlAddress = pladdress.trim().length !== 0;
+        if (!hasPlAddress) {
+            setPlAddressError(true);
+            setPlAddressErrorMessage('주소를 입력해주세요')
+        }
+        if (!hasPlName || !hasPlAddress) {
+            setPage('1');
+            return;
+        }
         setPage('2');
     }
     //          event handler: 등록하기 버튼 클릭 이벤트 처리 
     const onsubmitPlantButtonClickHandler = () => {
-
+        const generationPattern = /[0-9]/
+        const isGenertationPattern = generationPattern.test(generation);
+        if (!isGenertationPattern) {
+            setGenerationError(true);
+            setGenerationErrorMessage('숫자만 입력해주세요.')
+        }
+        const bnumberPattern = /[0-9]{10}$/
+        const isBnumberPattern = bnumberPattern.test(bnumber);
+        if (!isBnumberPattern) {
+            setBnumberError(true);
+            setBnumberErrorMessage('사업자 번호 형태가 맞지 않습니다.');
+        }
+        if (!isGenertationPattern || !isBnumberPattern) return;
+        setModalOpen(false);
     }
 
     //          event handler: 발전소 이름 변경 이벤트 처리 
@@ -90,7 +121,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
     //          event handler: 발전소 주소 변경 이벤트 처리 
     const onPlAddressChangeHandler = (event) => {
         const { value } = event.target;
-        setPladdress(value);
+        setPlAddress(value);
         setPlAddressError(false);
         setPlAddressErrorMessage('');
     }
@@ -109,34 +140,43 @@ const OwnPowerModal = forwardRef((props, ref) => {
         setBnumberErrorMessage('');
     }
     //          event handler: 주소 버튼 클릭 이벤트 처리
-    const onAddressButtonClickHandler=()=>{
-        
+    const onAddressButtonClickHandler = () => {
+        open({ onComplete });
     }
+
 
     //          event handler: 발전소 이름 키 다운 이벤트 처리 
     const onPlNameKeyDownHandler = (event) => {
         if (event.key !== 'Enter') return;
         if (!pladdressRef.current) return;
+        onAddressButtonClickHandler();
         pladdressRef.current.focus();
     }
     //          event handler: 발전소 주소 키 다운 이벤트 처리 
     const onPlAddressKeyDownHandler = (event) => {
         if (event.key !== 'Enter') return;
-        // if (!passwordRef.current) return;
-        // passwordRef.current.focus();
+        onNextButtonClickHandler();
     }
     //          event handler: 발전량 키 다운 이벤트 처리 
     const onGenerationKeyDownHandler = (event) => {
         if (event.key !== 'Enter') return;
-        // if (!passwordRef.current) return;
-        // passwordRef.current.focus();
+        if (!bnumberRef.current) return;
+        bnumberRef.current.focus();
     }
     //          event handler: 사업자번호 키 다운 이벤트 처리 
     const onBnumberKeyDownHandler = (event) => {
         if (event.key !== 'Enter') return;
-        // if (!passwordRef.current) return;
-        // passwordRef.current.focus();
+        onsubmitPlantButtonClickHandler();
     }
+    //          event handler: 다음 주소 검색 완료 이벤트 처리
+    const onComplete = (data) => {
+        const { address } = data;
+        setPlAddress(address);
+        setPlAddressError(false);
+        setPlAddressErrorMessage('');
+
+    }
+
 
     return (
         <div className='Modal'>
@@ -153,12 +193,12 @@ const OwnPowerModal = forwardRef((props, ref) => {
                         {page === '1' && (
                             <>
                                 <InputBox ref={plNameRef} label='발전소 이름*' type='text' name='user_id' placeholder='발전소 이름을 입력해주세요' onChange={onPlNameChangeHandler} error={isPlNameError} message={plNameErrorMessage} onkeyDown={onPlNameKeyDownHandler} />
-                                <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
+                                <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' value={pladdress} onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
                             </>
                         )}
                         {page === '2' && (
                             <>
-                                <InputBox ref={generationRef} label='발전량*' type='text' name='user_id' placeholder='발전량 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
+                                <InputBox ref={generationRef} label='발전량(kw)*' type='text' name='user_id' placeholder='발전량을 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
                                 <InputBox ref={bnumberRef} label='사업자 번호*' type='text' name='user_id' placeholder='사업자 번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
                             </>
                         )}
