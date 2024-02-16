@@ -39,7 +39,9 @@ const PartyBoardList = () => {
         <div className='write-button' onClick={()=>{
           nav('/PartyWrite');
         }}>{'모집하러 가기'}</div>
-        <div className='board-button' onClick={()=>{nav('/BoardWrite')}} style={{cursor: "pointer"}}>{'[일반게시물작성버튼]'}</div>
+        {/* <div className='board-button' onClick={()=>{nav('/BoardWrite')}} style={{cursor: "pointer"}}>
+          {'[일반게시물작성버튼]'}
+          </div> */}
       </div>
       <div className='list-item'>
         {list.map((item, index) => <PartyBoardItem item={item}

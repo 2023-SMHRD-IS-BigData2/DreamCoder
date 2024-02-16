@@ -72,10 +72,10 @@ const PartyBoardItem = ({ item, index }) => {
                         <div className='board-list-item--nickname'>{item.user_nick}</div>
                     </div>
                     <div className='board-list-item-middle'>
-                        <div className='board-list-item-title'>{item.party_title}</div>
+                        <div className='board-list-item-title' >{item.party_title}</div>
                     </div>
                     <div className='board-list-item-bottom'>
-                        <div className='board-list-item-recruit'>{'모집중'}</div>
+                        <div className='board-list-item-recruit' style={{color: item.party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>{item.party_isJoin}</div>
                         <div className='board-list-item-counts'>{`조회수 `}{item.party_views}</div>
                     </div>
                 </div>

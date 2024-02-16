@@ -31,6 +31,15 @@ const Comment = () => {
         setComments(updatedComments);
     };
 
+    // const writereply = () =>{
+    //     const onWriteReplyClickHandler = ()=>{
+    //         return(
+                
+    //         )
+    //     }
+    // }
+
+    console.log(sessionStorage.getItem("user_nick"));
     return (
         <div className="comment-container">
             <h2>댓글</h2>
@@ -45,11 +54,10 @@ const Comment = () => {
                                 <div className='board-detail-writer-profile-conten'>
                                     <span className="comment-username">{comment.username}</span>
                                     <div className="comment-text">{comment.text}</div>
-                                    
                                 </div>
                                 <div onClick={() => deleteComment(commentIndex)} className='comment-text-delete' >{'삭제'}</div>
-                                
                             </div>
+                            <div className='comment-text-write-reply'>{'답글쓰기'}</div>
                             <div className='divider-comment'></div>
 
                             <ul>
@@ -91,6 +99,7 @@ const Comment = () => {
                 </ul>
             </div>
             <div className='comment-new-box'>
+
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
@@ -106,8 +115,6 @@ const Comment = () => {
                 >
                     <input type="text" name="comment" placeholder="댓글 입력" />
                     <button type="submit">댓글 등록</button>
-
-
                 </form>
             </div>
         </div>

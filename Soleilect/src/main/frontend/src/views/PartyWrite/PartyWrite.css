@@ -1,19 +1,63 @@
- .board-write-progress, .board-write-region{
+ .board-write-progres ,.board-write-input-fix, .board-write-input-fix-loc{
     width: 100%;
     border: none;
     outline: none;
     background: none;
-    font-size: 25px;
+    font-size: 23px;
     padding-bottom: 10px;
     font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
 }
 .board-wrtie-content-input{
     width: 100%;
 }
 /* 모집기간 */
 .board-write-date{
-    font-size: 25px;
+    font-size: 23px;
     color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
+}
+
+/* 장소 */
+.board-write-input-fix-loc input{
+    width: 200px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* 목표, 현재 수치 */
+.board-write-input-fix input{
+    width: 120px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 달력 css */
+.board-write-date-calender{
+    width: 110px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
 }
 
 .board-check-top{
@@ -21,7 +65,7 @@
     align-items: row;
 }
 .board-write-check-box{
-    font-size: 25px;
+    font-size: 23px;
     color: rgba(0, 0, 0, 0.7);
 }
 .icon-button-image{
@@ -110,17 +154,22 @@ select.write-check-select {
     
 }
 
-.Write-button{
-    background-color: rgb(209, 209, 209);
+.Write-button-regist{
+    background-color:#e9e9e9;
     text-align: center;
     position: absolute;
     top: 50%;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: bolder;
     border-radius: 5px;
     padding: 10px;
 
+    width: 100px;
     cursor: pointer;
+
+}
+.Write-button-regist:hover{
+    background-color: #c9c9c9;
 }
 
 /* 상단부  */

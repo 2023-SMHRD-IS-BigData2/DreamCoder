@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import HighchartsReact from 'highcharts-react-official';
-import Highcharts from 'highcharts';
+import Highcharts, { color } from 'highcharts';
 import { useState } from 'react';
 import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
@@ -12,6 +12,8 @@ const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
     let { num } = useParams();
 
+    const [timestamp,setTimeStamp] = useState();
+
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
 
@@ -21,6 +23,7 @@ const PartyBoardDetail = () => {
             .get('/Sol/partyBoardCon/list', formData)
             .then((res) => {
                 setList(res.data)
+                setTimeStamp(list[num].created_at);
             })
             .catch((error) => {
                 console.log(error)
@@ -30,8 +33,6 @@ const PartyBoardDetail = () => {
         // setChartViews((chartViews) => chartViews + 1);
 
     }, [])
-
-
 
     // chart 부분
     let options = {};
@@ -47,7 +48,7 @@ const PartyBoardDetail = () => {
                     fontSize: '50',
                     fontWeight: '400',
                     width: 100 + `%`,
-                    height: 100 + `%`,
+                    height: 70 + `%`,
                 }
             },
             title: {
@@ -80,17 +81,17 @@ const PartyBoardDetail = () => {
             ],
         };
     }
-
+    
     //        component : 게시물 상세 하단 컴포넌트   //
     const BoardDetailBottom = () => {
 
         // state 관심 버튼
-        const [liked, setLiked] = useState(false);
+        // const [liked, setLiked] = useState(false);
 
         // function onClick 찜 상태 반전 시키기
-        const handleLike = () => {
-            setLiked(!liked);
-        }
+        // const handleLike = () => {
+        //     setLiked(!liked);
+        // }
         //         render : 게시물 하단 컴포넌트 렌더링 //
         return (
             <div id='board-detail-bottom'>
@@ -109,8 +110,7 @@ const PartyBoardDetail = () => {
             </div>
         )
     }
-
-    const timestamp = list[num].created_at;
+        
 
     //         render 게시물 상세 화면 컴포넌트 렌더링!!!  //
     return (
@@ -123,21 +123,24 @@ const PartyBoardDetail = () => {
                             <div className='board-detail-writer-nickname'>{list[num].user_nick}</div>
                             <div className='board-detail-write-divider'>{'|'}</div>
                             <div className='detail-chart-date'>{moment(timestamp).format("YYYY-MM-DD")}</div>
-                            <div className='detail-chart-recruit'>{'모집중'}</div>
-                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}</div>
+                            <div className='detail-chart-recruit' style={{color: list[num].party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>
+                                {list[num].party_isJoin}
+                                </div>
+                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>
                         </div>
                     </div>
 
-                    <div className='detail-chart'>
+                    <div className='detail-chart-highchart'>
                         <HighchartsReact highcharts={Highcharts} options={options} />
                     </div>
                     <div className='board-detail-top-main'>
                         
-                        {/* <div className='detail-chart-view'>{`찐조회수 `} {chartViews}</div> */}
                         <div className='detail-chart-title'>{`[` + list[num].party_title + `]`}</div>
+                        <div className='detail-chart-fix'>
                         <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
                         <div className='detail-chart-cnt'>{'목표 수치 : '}{list[num].target_cnt}{'kw'}</div>
                         <div className='detail-chart-cnt'>{'모집량 : '}{list[num].now_cnt}{'kw'}</div>
+                        </div>
                         <div className='detail-chart-content'>{list[num].party_content}</div>
                         <br/>
                         <div className='divider'></div>

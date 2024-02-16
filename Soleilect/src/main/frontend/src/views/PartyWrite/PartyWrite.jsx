@@ -104,7 +104,6 @@ const PartyWrite = () => {
         const value = e.target.value;
         setPartyIsJoin(value);
     }
-    console.log(partyIsJoin);
 
     // effect 마운트 시 실행할 함수
     // useEffect(()=>{
@@ -170,7 +169,7 @@ const PartyWrite = () => {
                     <div className='board-write-top'>
                         <div><h2>게시판 글쓰기</h2></div>
                         <div className='write-button-box'>
-                            <div className='Write-button' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
+                            <div className='Write-button-regist' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
                             {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
                         </div>
                     </div>
@@ -193,22 +192,26 @@ const PartyWrite = () => {
                         <div className='board-wrtie-content-input'>
                             {/* date,progress,region */}
                             <div className='board-write-date'>
-                                모집 기간 : <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler}></input> {' ~ '}
-                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler}></input>
+                                모집 기간 : <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler} className='board-write-date-calender'></input> {' ~ '}
+                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler}className='board-write-date-calender'></input>
                             </div>
 
 
-
-                            <input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} placeholder='모집 목표수치 : ' onChange={ontargetCntChangeHandler} />
-                            <input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} placeholder='모집 현재수치 :' onChange={onnowCntChangeHandler} />
-                            <input type='text' name='party_loc' className='board-write-region' ref={partLocRef} placeholder='모집장소 : ' onChange={onpartLocChangeHandler} />
-
-
+                            <div className='board-write-input-fix'>
+                                모집 목표 수치 <input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} />{' kw'}
+                            </div>
+                            <div className='board-write-input-fix'>
+                                모집 현재수치<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} onChange={onnowCntChangeHandler} />{' kw'}
+                            </div>
+                            <div className='board-write-input-fix'>
+                                모집 장소<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} />
+                            </div>
+                            <div className='board-write-input-fix-loc'>
                             모집 상황 :<select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
                                 <option value="모집 중" className="write-check-isjoin-select">{'모집 중 '}</option>
                                 <option value="마감" className="write-check-select">{'마감 '}</option>
                             </select>
-
+                            </div>
                             <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디' value={userId}></input>
                             <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={userNick}></input>
                             <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수' value={partyViews}></input>
