@@ -12,7 +12,7 @@
 	</select>
 	
 	<delete id="ascenterDelete">
-		delete from ascenter_tb where as_seq = #{num}
+		delete from ascenter_tb where as_seq = #{as_seq}
 	</delete>
 	
 </mapper>
