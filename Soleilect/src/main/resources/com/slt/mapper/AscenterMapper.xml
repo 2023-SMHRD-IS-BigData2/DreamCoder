@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slt.mapper.AscenterMapper">
+
+	<insert id="ascenterInsert" parameterType="com.slt.entity.Ascenter">
+		insert into ascenter_tb(as_region, company_name, company_tel)
+		values(#{as_region}, #{company_name}, #{company_tel})
+	</insert>
+
+	<select id="ascenterList" resultType="com.slt.entity.Ascenter">
+		select * from ascenter_tb
+	</select>
+	
+	<delete id="ascenterDelete">
+		delete from ascenter_tb where as_seq = #{num}
+	</delete>
+	
+</mapper>
