@@ -9,5 +9,71 @@
     background-color: white;
   }
  #map{
-    background: white;      
+    background: white;  
+    position: absolute;
+    z-index: 1;    
+  }
+
+  .map-info-box{
+    position: absolute;
+    z-index: 2;
+/* 
+    margin-left: 1350px;
+    margin-top: 130px; */
+
+    margin-left: 70%;
+    margin-top: 6%;
+    width: 300px;
+    height: 300px;
+
+    background-color: white;
+    border-radius: 8%;
+
+  }
+
+  /* 인포메이션 */
+  .map-info-content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-info-content-loc{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .map-info-content-power{
+    display: flex;
+    margin: 10px;
+  }
+  .map-info-content-power-key{
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 18px;
+    color: rgba(0, 0,0,0.7);
+    font-weight: bold;
+  }
+  .map-info-content-power-value{
+    font-size: 18px;
+    color: rgba(0, 0,0,0.9);
+    font-weight: bold;
+  }
+
+  /* 예상 수익 */
+  .map-info-content-revenu{
+    display: flex;
+    margin: 10px;
+  }
+  .map-info-content-revenu-key{
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 18px;
+    color: rgba(0, 0,0,0.7);
+    font-weight: bold;
+  }
+  .map-info-content-revenu-value{
+    font-size: 18px;
+    color: rgba(0, 0,0,0.9);
+    font-weight: bold;
   }
