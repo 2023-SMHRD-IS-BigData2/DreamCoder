@@ -9,7 +9,7 @@
 		INSERT INTO PARTY_BOARDS_TB (PARTY_TITLE, PARTY_CONTENT,
 		PARTY_LOC, START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT,
 		CREATED_AT, USER_ID, USER_NICK, PARTY_ISJOIN) VALUES (#{party_title},
-		#{party_content,}, #{party_loc}, #{start_at}, #{end_at},
+		#{party_content}, #{party_loc}, #{start_at}, #{end_at},
 		0, #{target_cnt}, #{now_cnt}, NOW(),
 		#{user_id},
 		#{user_nick},#{party_isJoin});
