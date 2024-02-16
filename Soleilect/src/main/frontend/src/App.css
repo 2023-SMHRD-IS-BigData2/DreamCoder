@@ -117,3 +117,8 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+.expand-right-light-icon {
+  background-image: url('./assets/image/expand-right-light.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

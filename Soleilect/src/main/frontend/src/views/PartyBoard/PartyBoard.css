@@ -248,10 +248,7 @@ hr{
     box-shadow: 0px 0px 10px 10px rgba(116, 94, 94, 0.2); /* 그림자 효과 */
     margin: 10px;
 }
-.icon-button{
-    display: flex;
-    padding-left: 20px; 
-}
+
 .board-detail-box{
     display: flex;
     width: 500px;
