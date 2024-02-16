@@ -15,6 +15,7 @@ import './components/CommentItem/Comment.css'
 import PartyWrite from "./views/PartyWrite/PartyWrite";
 import BoardWrite from "./views/BoardWrite/BoardWrite";
 import Mypage from "./components/Mypage/Mypage";
+import Map from "./views/Map/Map";
                                                                          
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/PartyWrite" element={<PartyWrite/>}></Route>
         <Route path="/BoardWrite" element={<BoardWrite/>}></Route>
         <Route path="/Mypage" element={<Mypage/>}></Route>
+        <Route path="/map" element={<Map/>}></Route>
       </Routes>
     </div>
     </ChartContext.Provider>

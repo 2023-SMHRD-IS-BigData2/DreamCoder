@@ -121,7 +121,7 @@ const Header = () => {
           </div>
 
           <div><Link to='/PartyBoardList'>모집게시판</Link></div>
-          <div><Link to='./Main'>발전소설립</Link></div>
+          <div><Link to='/map'>발전소설립</Link></div>
           <div><Link to='/Main'>정보게시판</Link></div>
           <div><Link to='/Main'>자유게시판</Link></div>
         </div>
