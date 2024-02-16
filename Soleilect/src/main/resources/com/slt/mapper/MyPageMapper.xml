@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.slt.mapper.MyPageMapper">
+	<insert id="plantInsert" parameterType="com.slt.entity.Plants">
+		INSERT INTO PLANTS_TB
+		(PL_NAME,
+		USER_ID,
+		PL_LOC,
+		PL_POWER,
+		BS_NUM,
+		PL_ISJOIN)
+		VALUES
+		(#{pl_name},
+		#{user_id},
+		#{pl_loc},
+		#{pl_power},
+		#{bs_num},
+		#{pl_isJoin});
+	</insert>
+	<delete id="plantDelete">
+		DELETE FROM PLANTS_TB
+		WHERE PL_SEQ = #{num};
+	</delete>
+	<select id="plantList" resultType="com.slt.entity.Plants">
+		SELECT * FROM PLANTS_TB where USER_ID=#{id};
+	</select>
 
 </mapper>

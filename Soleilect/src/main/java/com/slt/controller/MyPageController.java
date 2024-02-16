@@ -23,6 +23,12 @@ public class MyPageController {
 		return mypageservice.plantInsert(plants);
 	}
 	
+	@RequestMapping("/plantDelete")
+	public int plantDelete(int num) {
+		System.out.println("마이페이지 발전소 삭제");	
+		return 0;
+	}
+	
 	@RequestMapping("/plantList")
 	public List<Plants> plantList(String id){
 		System.out.println("마이페이지 발전소 목록");

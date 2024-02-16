@@ -20,6 +20,11 @@ public class MyPageService {
 		return row;
 	}
 	
+	public int plantDelete(int num) {
+		int row = mypagemapper.plantDelete(num);
+		
+		return row;
+	}
 	
 	public List<Plants> plantList(String id){
 		List<Plants> list = mypagemapper.plantList(id);

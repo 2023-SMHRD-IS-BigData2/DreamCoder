@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.slt.mapper.BoardMapper">
-	<insert id="boardInsert">
+	<insert id="boardInsert" parameterType="com.slt.entity.Boards">
 		INSERT INTO BOARDS_TB (B_TITLE, B_CONTENT,
 		CREATED_AT, B_VIEWS, B_LIKES, HD_CODE, USER_ID, USER_NICK) VALUES
-		(#{b_title}, #{b_content}, NOW(), 0, #{hd_code}, #{user_id}, #{user_nick});
+		(#{b_title}, #{b_content}, NOW(), 0, #{hd_code}, #{user_id},
+		#{user_nick});
 	</insert>
 	<delete id="boardDelete">
 		delete from BOARDS_TB where B_SEQ = #{num}
 	</delete>
-	<select id="boardList"
-		resultType="com.slt.entity.Boards">
+	<update id="boardUpdate">
+		UPDATE BOARDS_TB
+		SET
+		B_TITLE = #{b_title},
+		B_CONTENT = #{b_content},
+		CREATED_AT = #{created_at},
+		B_VIEWS = #{b_views},
+		HD_CODE = #{hd_code},
+		HD_NAME = #{hd_name},
+		USER_ID = #{user_id},
+		USER_NICK = #{user_nick}
+		WHERE B_SEQ = #{b_seq};
+	</update>
+	<select id="boardList" resultType="com.slt.entity.Boards">
 		select * from BOARDS_TB
 	</select>
 </mapper>

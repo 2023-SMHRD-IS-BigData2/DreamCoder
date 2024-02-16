@@ -19,3 +19,4 @@ public class Boards {
 	private String user_id;
 	private String user_nick;
 }
+

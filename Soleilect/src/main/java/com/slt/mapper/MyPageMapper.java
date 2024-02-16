@@ -10,5 +10,7 @@ import com.slt.entity.Plants;
 public interface MyPageMapper {
 	public int plantInsert(Plants plants);
 	
+	public int plantDelete(int num);
+	
 	public List<Plants> plantList(String id);
 }

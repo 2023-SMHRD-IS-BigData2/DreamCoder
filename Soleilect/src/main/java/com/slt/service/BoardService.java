@@ -23,6 +23,11 @@ public class BoardService {
 		int row = boardmapper.boardDelete(num);
 		return row;
 	}
+	
+	public int boardUpdate(Boards boards) {
+		int row = boardmapper.boardUpdate(boards);
+		return row;
+	}
 
 	public List<Boards> boardList() {
 		List<Boards> list = boardmapper.boardList();
