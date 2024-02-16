@@ -20,8 +20,7 @@ public class PartyBoardController {
 	public int partyBoardInsert(Party_boards boards) {
 		System.out.println("모집 게시판 삽입 시스템");
 		System.out.println("들어온 정보 :");
-		System.out.println(boards.getUser_id());
-		System.out.println(boards.getUser_nick());
+		System.out.println(boards.toString());
 		return partyboardservice.partyBoardInsert(boards);
 	}
 	
@@ -33,7 +32,8 @@ public class PartyBoardController {
 	
 	@RequestMapping("/update")
 	public int partyBoardUpdate(Party_boards boards) {
-		return 0;
+		System.out.println("모집 게시판 갱신 시스템");
+		return partyboardservice.partyBoardUpdate(boards);
 	}
 	
 	@RequestMapping("/list")

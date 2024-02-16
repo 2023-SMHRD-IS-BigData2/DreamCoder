@@ -23,6 +23,11 @@ public class PartyBoardService {
 		return row;
 	}
 	
+	public int partyBoardUpdate(Party_boards boards) {
+		int row = partyboardmapper.partyBoardUpdate(boards);
+		return row;
+	}
+	
 	public List<Party_boards> partyBoardList(){
 		List<Party_boards> list = partyboardmapper.partyBoardList();
 		return list;
