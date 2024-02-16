@@ -154,7 +154,7 @@ export default function Mypage() {
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
                         <div className='ownPower-add-button' >{'발전소 등록'}</div>
                     </div>
-                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen}/>}
+                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage='add-plant'/>}
                 </div>
 
             );

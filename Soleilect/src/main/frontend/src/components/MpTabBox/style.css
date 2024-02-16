@@ -177,6 +177,33 @@
     filter: opacity(0.4) drop-shadow(0 0 0 rgb(0, 85, 255));
 }
 
+.tab-content-button-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.delete-content-box{
+    width: 25px;
+    height: 25px;
+
+    position: relative;
+    bottom:15px;
+    left: 110px;
+    color: rgb(56, 56, 56);
+
+    display: flex;
+
+    align-items: center;
+}
+.delete-content-box:hover{
+    color: rgba(26, 117, 191, 1);
+}
+.delete-button{
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+}
 
 .tab-content-edit-button-box{
     width: 100px;

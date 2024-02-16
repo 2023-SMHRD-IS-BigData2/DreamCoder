@@ -4,13 +4,15 @@ import InputBox from '../InputBox';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 
 const OwnPowerModal = forwardRef((props, ref) => {
-    const { setModalOpen } = props;
+    const { setModalOpen, setModalPage } = props;
     const closeModal = () => {
         setModalOpen(false);
     };
     // 모달 외부 클릭시 끄기 처리
     // Modal 창을 useRef로 취득
     const modalRef = useRef(null);
+    //          state: 페이지 상태 
+    const modalPagestate = setModalPage;
 
     // useEffect(() => {
     //     // 이벤트 핸들러 함수
@@ -39,6 +41,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
     const generationRef = useRef(null);
     //          state: 사업자번호 요소 참조 상태 
     const bnumberRef = useRef(null);
+
 
     //          state: 페이지 상태 
     const [page, setPage] = useState('1');
@@ -176,48 +179,112 @@ const OwnPowerModal = forwardRef((props, ref) => {
         setPlAddressErrorMessage('');
 
     }
-
+    //              event handler: 보유 발전소 삭제하기 버튼 클릭 이벤트
+    const deletOwnPlantClickHandler = () => {
+        alert('발전소삭제이벤트');
+        closeModal();
+    }
 
     return (
-        <div className='Modal'>
-            <div ref={modalRef} className='container'>
-                <div className='auth-card-box'>
-                    <div className='auth-card-top'>
-                        <div className='auth-card-title-box'>
-                            <div className='auth-card-title'>{'발전소 등록'}</div>
-                            <div className='auth-card-page'>{`${page}/2`}</div>
-                            <button className='close' onClick={closeModal}>
-                                X
-                            </button>
+        <>
+            {modalPagestate === 'add-plant' && (
+                <div className='Modal'>
+                    <div ref={modalRef} className='container'>
+                        <div className='auth-card-box'>
+                            <div className='auth-card-top'>
+                                <div className='auth-card-title-box'>
+                                    <div className='auth-card-title'>{'발전소 등록'}</div>
+                                    <div className='auth-card-page'>{`${page}/2`}</div>
+                                    <button className='close' onClick={closeModal}>
+                                        X
+                                    </button>
+                                </div>
+                                {page === '1' && (
+                                    <>
+                                        <InputBox ref={plNameRef} label='발전소 이름*' type='text' name='user_id' placeholder='발전소 이름을 입력해주세요' onChange={onPlNameChangeHandler} error={isPlNameError} message={plNameErrorMessage} onkeyDown={onPlNameKeyDownHandler} />
+                                        <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' value={pladdress} onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
+                                    </>
+                                )}
+                                {page === '2' && (
+                                    <>
+                                        <InputBox ref={generationRef} label='발전량(kw)*' type='text' name='user_id' placeholder='발전량을 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
+                                        <InputBox ref={bnumberRef} label='사업자 번호*' type='text' name='user_id' placeholder='사업자 번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
+                                    </>
+                                )}
+                            </div>
+                            <div className='auth-card-bottom'>
+                                {page === '1' && (
+                                    <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
+                                )}
+                                {page === '2' && (
+                                    <div className='black-large-full-button' onClick={onsubmitPlantButtonClickHandler} type='submit'>{'등록하기'}</div>
+                                )}
+                                <div className='auth-description-box'>
+                                    <div className='auth-description'></div>
+                                </div>
+                            </div>
+                            <div></div>
                         </div>
-                        {page === '1' && (
-                            <>
-                                <InputBox ref={plNameRef} label='발전소 이름*' type='text' name='user_id' placeholder='발전소 이름을 입력해주세요' onChange={onPlNameChangeHandler} error={isPlNameError} message={plNameErrorMessage} onkeyDown={onPlNameKeyDownHandler} />
-                                <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' value={pladdress} onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
-                            </>
-                        )}
-                        {page === '2' && (
-                            <>
-                                <InputBox ref={generationRef} label='발전량(kw)*' type='text' name='user_id' placeholder='발전량을 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
-                                <InputBox ref={bnumberRef} label='사업자 번호*' type='text' name='user_id' placeholder='사업자 번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
-                            </>
-                        )}
                     </div>
-                    <div className='auth-card-bottom'>
-                        {page === '1' && (
-                            <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
-                        )}
-                        {page === '2' && (
-                            <div className='black-large-full-button' onClick={onsubmitPlantButtonClickHandler} type='submit'>{'등록하기'}</div>
-                        )}
-                        <div className='auth-description-box'>
-                            <div className='auth-description'></div>
-                        </div>
-                    </div>
-                    <div></div>
                 </div>
-            </div>
-        </div>
+            )}
+            {modalPagestate === 'edit-plant' && (
+                <div className='Modal'>
+                    <div ref={modalRef} className='container'>
+                        <div className='auth-card-box'>
+                            <div className='auth-card-top'>
+                                <div className='auth-card-title-box'>
+                                    <div className='auth-card-title'>{'발전소 수정'}</div>
+                                    <div className='auth-card-page'>{`${page}/2`}</div>
+                                    <button className='close' onClick={closeModal}>
+                                        X
+                                    </button>
+                                </div>
+                                {page === '1' && (
+                                    <>
+                                        <InputBox ref={plNameRef} label='발전소 이름*' type='text' name='user_id' placeholder='발전소 이름을 입력해주세요' onChange={onPlNameChangeHandler} error={isPlNameError} message={plNameErrorMessage} onkeyDown={onPlNameKeyDownHandler} />
+                                        <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' value={pladdress} onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
+                                    </>
+                                )}
+                                {page === '2' && (
+                                    <>
+                                        <InputBox ref={generationRef} label='발전량(kw)*' type='text' name='user_id' placeholder='발전량을 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
+                                        <InputBox ref={bnumberRef} label='사업자 번호*' type='text' name='user_id' placeholder='사업자 번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
+                                    </>
+                                )}
+                            </div>
+                            <div className='auth-card-bottom'>
+                                {page === '1' && (
+                                    <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
+                                )}
+                                {page === '2' && (
+                                    <div className='black-large-full-button' onClick={onsubmitPlantButtonClickHandler} type='submit'>{'수정하기'}</div>
+                                )}
+                                <div className='auth-description-box'>
+                                    <div className='auth-description'></div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {modalPagestate === 'delete-plant' && (
+                <div className='Modal'>
+                    <div ref={modalRef} className='delete-container'>
+                        <button className='close' onClick={closeModal}>
+                            X
+                        </button>
+                        <div className='delete-modal-text'>{'발전소 이름'}</div>
+                        <div className='delete-modal-text'>발전소 정보를 삭제하시겠습니까?</div>
+                        <div className='delete-ownplant-button-box'>
+                            <div className='delete-ownplant-button' onClick={deletOwnPlantClickHandler}>{'삭제하기'}</div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+
 
     );
 
