@@ -12,5 +12,7 @@ public interface PartyBoardMapper {
 	
 	public int partyBoardDelete(int num);
 	
+	public int partyBoardUpdate(Party_boards boards);
+	
 	public List<Party_boards> partyBoardList();
 }

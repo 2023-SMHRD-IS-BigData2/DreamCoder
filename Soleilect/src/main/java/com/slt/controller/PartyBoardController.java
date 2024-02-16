@@ -33,7 +33,8 @@ public class PartyBoardController {
 	
 	@RequestMapping("/update")
 	public int partyBoardUpdate(Party_boards boards) {
-		return 0;
+		System.out.println("모집 게시판 갱신 시스템");
+		return partyboardservice.partyBoardUpdate(boards);
 	}
 	
 	@RequestMapping("/list")

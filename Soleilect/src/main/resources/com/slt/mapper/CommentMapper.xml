@@ -22,10 +22,10 @@
 		#{cmt_parent});
 	</insert>
 	<delete id="commentDelete">
-	delete from COMMENTS_TB where CMT_SEQ=#{num}
+		delete from COMMENTS_TB where CMT_SEQ=#{num}
 	</delete>
-	
+
 	<select id="commentList">
-		select * from COMMENTS_TB
+		select * from COMMENTS_TB where B_SEQ=#{num}
 	</select>
 </mapper>

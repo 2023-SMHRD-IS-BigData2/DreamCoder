@@ -12,5 +12,7 @@ public int boardInsert(Boards boards);
 	
 	public int boardDelete(int num);
 	
+	public int boardUpdate(int num);
+	
 	public List<Boards> boardList();
 }

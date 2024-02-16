@@ -17,19 +17,25 @@ public class BoardController {
 	private BoardService boardservice;
 	
 	@RequestMapping("/insert")
-	public int BoardInsert(Boards boards) {
+	public int boardInsert(Boards boards) {
 		System.out.println("일반 게시판 삽입 시스템");
 		return boardservice.boardInsert(boards);
 	}
 	
 	@RequestMapping("/delete")
-	public int BoardDelete(int num) {
+	public int boardDelete(int num) {
 		System.out.println("일반 게시판 삭제 시스템");
 		return boardservice.boardDelete(num);
 	}
 	
+	@RequestMapping("/update")
+	public int boardUpdate(Boards boards) {
+		System.out.println("일반 게시판 갱신 시스템");
+		return 0;
+	}
+	
 	@RequestMapping("/list")
-	public List<Boards> partyBoardList() {
+	public List<Boards> boardList() {
 		System.out.println("일반 게시판 출력 시스템");
 		return boardservice.boardList();
 	}
