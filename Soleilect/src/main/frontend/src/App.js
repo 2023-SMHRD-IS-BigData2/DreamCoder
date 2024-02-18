@@ -16,6 +16,7 @@ import PartyWrite from "./views/PartyWrite/PartyWrite";
 import BoardWrite from "./views/BoardWrite/BoardWrite";
 import Mypage from "./components/Mypage/Mypage";
 import Map from "./views/Map/Map";
+import InfoList from "./views/InfoList/InfoList";
                                                                          
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/BoardWrite" element={<BoardWrite/>}></Route>
         <Route path="/Mypage" element={<Mypage/>}></Route>
         <Route path="/map" element={<Map/>}></Route>
+        <Route path="/InfoList" element={<InfoList/>}></Route>
       </Routes>
     </div>
     </ChartContext.Provider>
