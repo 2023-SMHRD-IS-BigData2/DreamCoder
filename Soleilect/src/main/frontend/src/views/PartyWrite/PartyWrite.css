@@ -146,6 +146,7 @@ select.write-check-select {
     display: flex;
     
 }
+/* 모집 게시글 작성 등록하기 버튼 */
 .write-button-box{
     width: 100px;
     height: 20px;
@@ -168,8 +169,10 @@ select.write-check-select {
     cursor: pointer;
 
 }
+
 .Write-button-regist:hover{
-    background-color: #c9c9c9;
+    background-color: rgba(226, 226, 226, 0.9);
+    color: rgba(26, 117, 191, 1);
 }
 
 /* 상단부  */

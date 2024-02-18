@@ -170,7 +170,8 @@ select.write-check-select {
 }
 
 .Write-button:hover{
-    background-color: #c9c9c9;
+    background-color: rgba(226, 226, 226, 0.9);
+    color: rgba(26, 117, 191, 1);
 }
 
 /* 상단부  */

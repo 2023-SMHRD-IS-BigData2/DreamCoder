@@ -92,10 +92,17 @@ const Map = () => {
           <div className='map-info-content'>
             <div className='map-info-content-loc'>{loc}</div>
             <div className='map-info-content-power'>
+              <div className='mypage-right-icon-box'>
+              <div className='icon sun-icon'></div>
+              </div>
               <div className='map-info-content-power-key'>{'발전량'}</div>
               <div className='map-info-content-power-value'>{count}{'kw'}</div>
             </div>
+
             <div className='map-info-content-revenu'>
+              <div className='mypage-right-icon-box'>
+                <div className='icon dollar-coin-icon'></div>
+              </div>
               <div className='map-info-content-revenu-key'>{'예상수익'}</div>
               <div className='map-info-content-revenu-value'>{revenue}{'원'}</div>
             </div>

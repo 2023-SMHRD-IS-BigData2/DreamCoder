@@ -17,6 +17,7 @@ import BoardWrite from "./views/BoardWrite/BoardWrite";
 import Mypage from "./components/Mypage/Mypage";
 import Map from "./views/Map/Map";
 import InfoList from "./views/InfoList/InfoList";
+import BoardList from "./views/Board/BoardList";
                                                                          
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/Mypage" element={<Mypage/>}></Route>
         <Route path="/map" element={<Map/>}></Route>
         <Route path="/InfoList" element={<InfoList/>}></Route>
+        <Route path="/BoardList" element={<BoardList/>}></Route>
 
       </Routes>
     </div>

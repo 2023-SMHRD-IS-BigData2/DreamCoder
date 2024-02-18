@@ -48,6 +48,7 @@
   .map-info-content-power{
     display: flex;
     margin: 5px;
+    margin: 5px 10px 5px;
   }
   .map-info-content-power-key{
     margin-left: 10px;
@@ -66,6 +67,7 @@
   .map-info-content-revenu{
     display: flex;
     margin: 5px;
+    margin: 5px 10px 5px;
   }
   .map-info-content-revenu-key{
     margin-left: 10px;
@@ -79,3 +81,9 @@
     color: rgba(0, 0,0,0.9);
     font-weight: bold;
   }
+
+  /* 아이콘 */
+  .mypage-right-icon-box {
+    width: 25px;
+    height: 25px;
+}
