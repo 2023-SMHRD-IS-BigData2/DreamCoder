@@ -9,9 +9,8 @@ const PartyWrite = () => {
     // state 제목 영역 요소 참조 상태
     const titleRef = useRef(null);
 
-    // state 본문 영역 요소 참조 상태
     const contentRef = useRef(null);
-
+    
     const startRef = useRef(null);
 
     const endRef = useRef(null);
@@ -45,7 +44,6 @@ const PartyWrite = () => {
 
     // state 회원정보  상태
     const [user, setUser] = useState("");
-
 
     const [resetBoard] = useState();
 

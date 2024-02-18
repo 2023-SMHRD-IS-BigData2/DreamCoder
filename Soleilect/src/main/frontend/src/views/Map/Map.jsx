@@ -57,10 +57,32 @@ const Map = () => {
 
 
   // 우측 발전량 예측 인포메이션  ------------------
+
+  //  test 인포메이션 
+  // state 예측 발전량
   const [count,setCount] = useState(0);
-  // useInterval(()=>{
-  //   setCount(count+1);
-  // },2000);
+
+  // state 예측 수익
+  const [revenue,setRevenue] = useState(0);
+
+  // state 지역 이름
+  const locations = ['광주광역시 동구','부산광역시 남구', '대구광역시 서구'];
+  const [loc, setLoc] = useState(locations[0]);
+  const [locIndex, setLocIndex] = useState(0);
+
+  useInterval(() => {
+    setCount(count + 1);
+    setRevenue(revenue + 1);
+    
+    const nextIndex = (locIndex + 1) % locations.length;
+    // console.log(locIndex+1);
+    // console.log(locations.length);
+    // console.log((locIndex + 1) % locations.length);
+    setLoc(locations[nextIndex]);
+    setLocIndex(nextIndex);
+
+  }, 2000);
+
 
   return (
     <div className='map-container'>
@@ -68,14 +90,14 @@ const Map = () => {
       <div className='map-info-container'>
         <div className='map-info-box'>
           <div className='map-info-content'>
-            <div className='map-info-content-loc'>{'광주광역시 동구'}</div>
+            <div className='map-info-content-loc'>{loc}</div>
             <div className='map-info-content-power'>
               <div className='map-info-content-power-key'>{'발전량'}</div>
               <div className='map-info-content-power-value'>{count}{'kw'}</div>
             </div>
             <div className='map-info-content-revenu'>
               <div className='map-info-content-revenu-key'>{'예상수익'}</div>
-              <div className='map-info-content-revenu-value'>{'000'}{'원'}</div>
+              <div className='map-info-content-revenu-value'>{revenue}{'원'}</div>
             </div>
           </div>
         </div>

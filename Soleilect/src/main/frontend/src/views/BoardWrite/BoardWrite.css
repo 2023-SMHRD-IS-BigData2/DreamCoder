@@ -1,0 +1,256 @@
+.board-write-progres ,.board-write-input-fix, .board-write-input-fix-loc{
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 23px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+}
+.board-wrtie-content-input{
+    width: 100%;
+}
+/* 모집기간 */
+.board-write-date{
+    font-size: 23px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
+}
+
+/* 장소 */
+.board-write-input-fix-loc input{
+    width: 200px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* 목표, 현재 수치 */
+.board-write-input-fix input{
+    width: 120px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 달력 css */
+.board-write-date-calender{
+    width: 110px;
+    height: 30px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+}
+
+.board-check-top{
+    display: flex;
+    align-items: row;
+}
+.board-write-check-box{
+    font-size: 23px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.icon-button-image{
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+/* 게시글 카테고리 선택 css */
+select.write-check-select {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  option.write-check-select {
+    font-size: 20px;
+  }
+  
+  .info .write-check-select#write-select-box option {
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+
+
+  /* 모집 or 마감 선택 css */
+
+  select.write-check-isjoin-select{
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding: 5px 0 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  option.write-check-isjoin-select {
+    font-size: 20px;
+  }
+  .info .write-check-isjoin-select#write-select-isjoin-box option {
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+
+/* -------------------------------------------------------- */
+/* ------------------- 나머지 게시판---------------------- */
+#board-write-wrapper {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    /* background-color: rgba(0,0,0,0.05); */
+}
+
+.board-write-container {
+    padding: 30px 24px;
+    width: 996px;
+    min-height: 1000px;
+}
+
+.board-write-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.board-write-top{
+    display: flex;
+    
+}
+.write-button-box{
+    width: 100px;
+    height: 20px;
+    margin-left: auto;
+    position: relative;
+    
+}
+
+.Write-button{
+    background-color:#e9e9e9;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 5px;
+    padding: 10px;
+
+    width: 100px;
+    cursor: pointer;
+
+}
+
+.Write-button:hover{
+    background-color: #c9c9c9;
+}
+
+/* 상단부  */
+.board-write-top-box {
+    background-color: rgb(247, 244, 244);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.board-write-title {
+    width: 100%;
+}
+
+.board-write-title-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    color: rgb(112, 112, 112);
+    font-size: 32px;
+}
+
+.board-write-content {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.board-write-content-textarea {
+    border: none;
+    outline: none;
+    background: none;
+    resize: none;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+    font-weight: 500px;
+    flex: 1;
+}
+
+.board-write-images-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.board-write-image-box {
+    width: 100%;
+    position: relative;
+}
+
+.board-write-img {
+    width: 100%;
+
+}
+.icon-button-image {
+    width: 32px;
+    height: 32px;
+
+    margin-right: 10px;
+}
+.image-box-light-icon{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.image-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+}
+
+.close-icon{
+    width: 100%;
+    height: 100%;
+}
+
+/* 모집 기간 */
+
+  
