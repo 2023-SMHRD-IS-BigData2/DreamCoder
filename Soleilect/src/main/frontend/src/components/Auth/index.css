@@ -1,5 +1,5 @@
 #auth-wrapper {
-    padding: 100px 0px 100px;
+    padding: 100px 0px 15px;
     min-width: 1440px;
     height: calc(100vh - 68px - 100px - 150px);
     min-height: 600px;
@@ -7,8 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    overflow: hidden;
 }
 
 .auth-container {
@@ -28,17 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeInLeft 0.5s;
-}
-@keyframes fadeInLeft {
-    0% {
-        opacity: 0;
-        transform: translate3d(-100%, 0, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
 }
 
 .auth-jumbotron-contents {
@@ -84,19 +71,6 @@
 
     background-color: rgba(252, 252, 252, 0.9);
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
-    animation: fadeInUp 0.5s;
-
-    
-}
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translateZ(0);
-    }
 }
 
 .auth-card-box {
