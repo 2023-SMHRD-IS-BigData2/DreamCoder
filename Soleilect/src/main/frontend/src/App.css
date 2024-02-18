@@ -127,3 +127,13 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+.expand-right-icon{
+  background-image: url('./assets/image/expand-right.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.expand-left-icon{
+  background-image: url('./assets/image/expand-left.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
