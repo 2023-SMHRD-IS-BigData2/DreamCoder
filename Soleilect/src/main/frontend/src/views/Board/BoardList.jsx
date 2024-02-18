@@ -32,6 +32,7 @@ const BoardList = () => {
                     <table>
                         <thead className='board-contant-thead'>
                             <tr>
+                                <th>{''}</th>
                                 <th>{'제목'}</th>
                                 <th>{'작성자'}</th>
                                 <th>{'작성일'}</th>
@@ -41,7 +42,12 @@ const BoardList = () => {
                         {/* 게시글 list */}
 
                         <tbody>                        
-                            <tr className='board-bottom-list'>                          
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'1'}</div>
+                                    </div>
+                                </td>        
                                 <td>
                                     <div className='board-content-title'>
                                         <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
@@ -64,7 +70,12 @@ const BoardList = () => {
                                 </td>                            
                             </tr>  
 
-                            <tr className='board-bottom-list'>                           
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'2'}</div>
+                                    </div>
+                                </td>        
                                 <td>
                                     <div className='board-content-title'>
                                         <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
@@ -85,9 +96,14 @@ const BoardList = () => {
                                         <div className='board-bottom-view'>{'52'}</div>
                                     </div>
                                 </td>                            
-                            </tr>  
+                            </tr> 
 
-                            <tr className='board-bottom-list'>                           
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'3'}</div>
+                                    </div>
+                                </td>        
                                 <td>
                                     <div className='board-content-title'>
                                         <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
@@ -108,9 +124,14 @@ const BoardList = () => {
                                         <div className='board-bottom-view'>{'52'}</div>
                                     </div>
                                 </td>                            
-                            </tr>
+                            </tr> 
 
-                            <tr className='board-bottom-list'>                           
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'4'}</div>
+                                    </div>
+                                </td>        
                                 <td>
                                     <div className='board-content-title'>
                                         <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
@@ -131,7 +152,61 @@ const BoardList = () => {
                                         <div className='board-bottom-view'>{'52'}</div>
                                     </div>
                                 </td>                            
-                            </tr>  
+                            </tr> 
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'5'}</div>
+                                    </div>
+                                </td>        
+                                <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom'>
+                                        <div className='board-bottom-name'>{'홍길동'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom-date'>
+                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom-view'>
+                                        <div className='board-bottom-view'>{'52'}</div>
+                                    </div>
+                                </td>                            
+                            </tr> 
+                            <tr className='board-bottom-list'>   
+                            <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'6'}</div>
+                                    </div>
+                                </td>        
+                                <td>
+                                    <div className='board-content-title'>
+                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom'>
+                                        <div className='board-bottom-name'>{'홍길동'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom-date'>
+                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='board-content-bottom-view'>
+                                        <div className='board-bottom-view'>{'52'}</div>
+                                    </div>
+                                </td>                            
+                            </tr> 
 
 
                         </tbody>                      

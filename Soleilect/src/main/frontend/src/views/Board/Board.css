@@ -152,15 +152,41 @@ display: flex;
     margin-left: 60px;
    }
 
-thead{
-    border-bottom: 2px solid black;
+table{
+    border-collapse :collapse;
+    table-layout:fixed;
+    width: 100%;
    }
-.board-list-divider{
+table th {
+    background-color: #ffffff;
+    /* border-top: 1px solid rgba(0,0,0,0.2); */
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    height: 40px;
+    /* width: 80px; */
+}
+
+table td {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    /* width: 80px; */
+}
+th:first-child,
+td:first-child {
+  width: 100px;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 600px;
+}
+
+/* .board-list-divider{
     width: 160%;
     justify-content: center;
     margin-left: 40px;
     border-top: 1px solid rgba(0,0,0,0.2);
-}
+} */
+
+/* 게시판 리스트 */
 tbody{
     padding-top: 10px;
 }
@@ -168,6 +194,9 @@ tbody{
     padding-top: 10px;
     height: 65px;
     cursor: pointer;
+}
+.board-bottom-list:hover{
+    background-color: aqua;
 }
 
 
