@@ -23,7 +23,7 @@ public class JoinServiceImp implements JoinService {
 	@Autowired
 	private JoinDAO joinDao;
 	
-
+	@Override
 	public ResultVO join(User user) {
 		try {
 			if (user.getUser_id() != null) {
@@ -37,7 +37,7 @@ public class JoinServiceImp implements JoinService {
 		}
 		
 	}
-	
+	@Override
 	public ResultVO idCheck(String id) {
 		try {
 			int row = joinDao.idCheck(id);
@@ -48,7 +48,7 @@ public class JoinServiceImp implements JoinService {
 			return new ResultVO("99", null);
 		}
 	}
-	
+	@Override
 	public ResultVO nickCheck(String nick) {
 		try {
 			int row = joinDao.nickCheck(nick);

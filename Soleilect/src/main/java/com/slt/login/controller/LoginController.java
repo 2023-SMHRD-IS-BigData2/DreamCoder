@@ -16,6 +16,7 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public ResultVO login(Login login) {
+		System.out.println("로그인");
 		return loginservice.login(login);
 	}
 	

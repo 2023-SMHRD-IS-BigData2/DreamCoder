@@ -1,7 +1,6 @@
 package com.slt.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +21,7 @@ public class BoardController {
 	 */
 	@RequestMapping("/list")
 	public ResultVO boardList() {
+		System.out.println("일반 게시판 목록 조회");
 		return boardService.boardList();
 	}
 	
@@ -38,11 +38,15 @@ public class BoardController {
 	
 	@RequestMapping("/update")
 	public ResultVO boardUpdate(@ModelAttribute Boards boards) {
+		System.out.println("일반 게시판 갱신");
+		System.out.println("들어온 정보 :");
+		System.out.println(boards.toString());
 		return boardService.boardUpdate(boards);
 	}
 	
 	@RequestMapping("/delete")
 	public ResultVO boardDelete(int num) {
+		System.out.println("일반 게시판 삭제");
 		return boardService.boardDelete(num);
 	}
 

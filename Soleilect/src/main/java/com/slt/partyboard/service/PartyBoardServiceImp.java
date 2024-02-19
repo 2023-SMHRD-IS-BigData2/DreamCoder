@@ -28,13 +28,14 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
-
+	
+	@Override
 	public ResultVO partyBoardDelete(int num) {
 		try {
 			int row = partyboardDao.partyBoardDelete(num);
-			if (row!=0) {
+			if (row != 0) {
 				return new ResultVO("00", null);
-			}else {
+			} else {
 				return new ResultVO("05", null);
 			}
 
@@ -42,28 +43,33 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
-
+	
+	@Override
 	public ResultVO partyBoardUpdate(Party_boards boards) {
 		try {
-			int row = partyboardDao.partyBoardUpdate(boards);
-			if (row!=0) {
-				return new ResultVO("00", null);
-			}else {
-				return new ResultVO("05", null);
+			if (boards.getParty_title() != null) {
+				int row = partyboardDao.partyBoardUpdate(boards);
+				if (row != 0) {
+					return new ResultVO("00", null);
+				} else {
+					return new ResultVO("05", null);
+				}
+			} else {
+				return new ResultVO("03", null);
 			}
 
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}
 	}
-
+	
+	@Override
 	public ResultVO partyBoardList() {
 		try {
-			List<Party_boards> dtList = partyboardDao.partyBoardList();
-			List<Object> dataList = new ArrayList<Object>();
-			dtList.get(0).getParty_title();
-			dataList.addAll(dtList);
-			return new ResultVO("00", dataList);
+		List<Party_boards> dtList = partyboardDao.partyBoardList();
+		List<Object> dataList = new ArrayList<Object>();
+		dataList.addAll(dtList);
+		return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}
