@@ -4,25 +4,26 @@ import './Board.css';
 import FreeBoard from './FreeBoard';
 import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
+import moment from 'moment';
 
 const BoardList = () => {
-    const {list,setList} = useContext(ChartContext);
+    const { list, setList } = useContext(ChartContext);
     const nav = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         let formData = new FormData();
         axios
-        .get('/Sol/boardCon/list', formData)
-        .then((res)=>{
-            setList(res.data.data)
-            console.log(res.data.data);
-            console.log(list);
-            console.log(list.map((item,index)=>item.b_title));
-        })
-        .catch((error) => {
-            console.log(error)
-          })
-    },[])
+            .get('/Sol/boardCon/list', formData)
+            .then((res) => {
+                setList(res.data.data)
+                console.log(res.data.data);
+                console.log(list);
+                console.log(list.map((item) => item.b_title));
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
 
     // state 탭 상태
     const [toggle, setToggle] = useState('notion-board');
@@ -66,7 +67,10 @@ const BoardList = () => {
                 <div className='board-contant-container-box'>
                     <div className='board-contant-top'>{'자유게시판'}</div>
 
-                    <table className='board-table'>
+                    <table className='board-table' onClick={() => {
+                        // nav(`/Detail/${index}`);
+                        nav(`/BoardDetail`);
+                    }}>
                         <thead >
                             <tr>
                                 <th className='board-contant-th'>{''}</th>
@@ -77,181 +81,38 @@ const BoardList = () => {
                             </tr>
                         </thead>
                         {/* 게시글 list */}
-
-                        <tbody>
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'2'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'3'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'4'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'5'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className='board-bottom-list'>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'6'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-title'>
-                                        <div className='board-title'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom'>
-                                        <div className='board-bottom-name'>{'홍길동'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-date'>
-                                        <div className='board-bottom-date'>{'2024-01-21'}</div>
-                                    </div>
-                                </td>
-                                <td className='board-contant-td'>
-                                    <div className='board-content-bottom-view'>
-                                        <div className='board-bottom-view'>{'52'}</div>
-                                    </div>
-                                </td>
-                            </tr>
-
-
-                        </tbody>
+                        {list.map((item, index) => (
+                            <tbody key={index}>
+                                <tr className='board-bottom-list'>
+                                    <td className='board-contant-td'>
+                                        <div className='board-content-title'>
+                                            <div className='board-title'>{item.b_seq}</div>
+                                        </div>
+                                    </td>
+                                    <td className='board-contant-td'>
+                                        <div className='board-content-title'>
+                                            <div className='board-title'>{item.b_title}</div>
+                                        </div>
+                                    </td>
+                                    <td className='board-contant-td'>
+                                        <div className='board-content-bottom'>
+                                            <div className='board-bottom-name'>{item.user_nick}</div>
+                                        </div>
+                                    </td>
+                                    <td className='board-contant-td'>
+                                        <div className='board-content-bottom-date'>
+                                            <div className='board-bottom-date'>{moment(item.created_at).format("YYYY-MM-DD")}</div>
+                                        </div>
+                                    </td>
+                                    <td className='board-contant-td'>
+                                        <div className='board-content-bottom-view'>
+                                            <div className='board-bottom-view'>{item.b_views}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        ))}
                     </table>
-
-
                 </div>
             </div>
         </div>
