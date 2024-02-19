@@ -22,7 +22,7 @@ const PartyBoardDetail = () => {
         axios
             .get('/Sol/partyBoardCon/list', formData)
             .then((res) => {
-                setList(res.data)
+                setList(res.data.data)
                 setTimeStamp(list[num].created_at);
             })
             .catch((error) => {

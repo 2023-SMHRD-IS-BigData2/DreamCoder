@@ -131,6 +131,7 @@ const BoardWrite = () => {
             .post('/Sol/boardCon/insert', formData)
             .then((response) => {
                 console.log('일반 게시글 작성 성공')
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error)

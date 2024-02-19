@@ -24,7 +24,8 @@ const PartyBoardList = () => {
     axios
     .get('/Sol/partyBoardCon/list',formData)
     .then((res)=>{
-      setList(res.data)
+      setList(res.data.data)
+      console.log(res.data.data);
     })
     .catch((error) => {
       console.log(error)
