@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.slt.comment.dao.PartyCommentDAO">
 
-	<insert id="partyCommentInsert" parameterType="com.slt.entity.Party_comments">
+	<insert id="partyCommentInsert"
+		parameterType="com.slt.entity.Party_comments">
 		INSERT INTO PARTY_COMMENTS_TB
 		(PARTY_SEQ,
 		P_CMT_REF,
@@ -26,7 +27,11 @@
 		delete from COMMENTS_TB where P_CMT_SEQ=#{num}
 	</delete>
 
-	<select id="partyCommentList" resultType="com.slt.entity.Party_comments">
-		select * from COMMENTS_TB where PARTY_SEQ=#{num}
+	<select id="partyCommentList"
+		resultType="com.slt.entity.Party_comments">
+		SELECT P_CMT_SEQ, PARTY_SEQ, P_CMT_REF, P_CMT_REF_LEVEL,
+		USER_ID, USER_NICK, P_CMT_CONTENT, CREATED_AT, P_CMT_PARENT
+		FROM PARTY_COMMENTS_TB
+		WHERE PARTY_SEQ=#{num}
 	</select>
 </mapper>

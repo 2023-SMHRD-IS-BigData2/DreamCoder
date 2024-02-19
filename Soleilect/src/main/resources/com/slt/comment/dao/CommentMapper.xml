@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.slt.comment.dao.CommentDAO">
-	<insert id="commentInsert" parameterType="com.slt.entity.Comments">
+	<insert id="commentInsert"
+		parameterType="com.slt.entity.Comments">
 		INSERT INTO COMMENTS_TB
 		(B_SEQ,
 		CMT_REF,
@@ -26,6 +27,9 @@
 	</delete>
 
 	<select id="commentList" resultType="com.slt.entity.Comments">
-		select * from COMMENTS_TB where B_SEQ=#{num}
+		SELECT CMT_SEQ, B_SEQ,
+		CMT_REF, CMT_REF_LEVEL, USER_ID, USER_NICK, CMT_CONTENT, CREATED_AT,
+		CMT_PARENT
+		FROM COMMENTS_TB WHERE B_SEQ=#{num}
 	</select>
 </mapper>
