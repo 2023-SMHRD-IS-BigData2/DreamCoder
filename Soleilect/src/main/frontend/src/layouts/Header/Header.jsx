@@ -10,20 +10,20 @@ const Header = () => {
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
     navigate('./Main');
-  
+
   };
   const onSignUpButtonClickHandler = () => {
     navigate('/SignUp');
- 
+
   };
   const onSignInButtonClickHandler = () => {
     navigate('/SignIn');
-  
+
   };
-  const onMypageButtonClickHandler = () =>{
+  const onMypageButtonClickHandler = () => {
     navigate('/Mypage');
   }
-  const onLogoutButtonClickHandler = () =>{
+  const onLogoutButtonClickHandler = () => {
     sessionStorage.removeItem("user_id");
     setIslogin(false);
     navigate('/Main');
@@ -112,39 +112,42 @@ const Header = () => {
   }
 
   return (
-    <div id="header">
-      <div className='header-container'>
+    <div id='header-wrapper'>
+      <div id="header">
+        <div className='header-container'>
 
-        <div className='header-left-box' >
-          <div className='main-icon-box' onClick={onLogoClickHandler}>
-            <div className='icon main-log-icon'></div>
+          <div className='header-left-box' >
+            <div className='main-icon-box' onClick={onLogoClickHandler}>
+              <div className='icon main-log-icon'></div>
+            </div>
+
+            <div><Link to='/PartyBoardList'>모집게시판</Link></div>
+            <div><Link to='/map'>발전소설립</Link></div>
+            <div><Link to='/InfoList'>정보게시판</Link></div>
+            <div><Link to='/BoardList'>자유게시판</Link></div>
+
           </div>
 
-          <div><Link to='/PartyBoardList'>모집게시판</Link></div>
-          <div><Link to='/map'>발전소설립</Link></div>
-          <div><Link to='/InfoList'>정보게시판</Link></div>
-          <div><Link to='/BoardList'>자유게시판</Link></div>
+
+          <div className='header-right-box'>
+            {!isLogin ?
+              (<>
+                <div className='black-button' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div>
+                <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
+              </>)
+              :
+              (<>
+                <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
+                <div className='black-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>
+              </>)
+            }
+
+          </div>
 
         </div>
-
-
-        <div className='header-right-box'>
-          {!isLogin ?
-            (<>
-              <div className='black-button' onClick={onSignUpButtonClickHandler}>{'회원가입'}</div>
-              <div className='black-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
-            </>)
-            :
-           ( <>
-              <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
-              <div className='black-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>
-            </>)
-          }
-
-        </div>
-
       </div>
     </div>
+
   )
 }
 
