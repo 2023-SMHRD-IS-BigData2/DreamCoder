@@ -32,7 +32,7 @@ const SignIn = () => {
         axios
             .post('/Sol/logCon/login', formData)
             .then((response) => {
-                if ((response.data).length == 0) {
+                if (response.data.data[0] == null) {
                     setError(true)
                     return;
                 } else {
@@ -40,7 +40,7 @@ const SignIn = () => {
                     sessionStorage.setItem("user_pw", password);
                     nav('/Main');
                 }
-                console.log(response.data)
+                console.log(response.data.data)
             })
             .catch((error) => {
                 console.log(error)

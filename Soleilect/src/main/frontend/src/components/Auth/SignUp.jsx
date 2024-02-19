@@ -74,11 +74,12 @@ const SignUp = () => {
       .post('/Sol/joinCon/join', formData)
       .then((response) => {
         console.log(response.data)
+        setModalOpen(true);
       })
       .catch((error) => {
         console.log(error)
       })
-      setModalOpen(true);
+      
 
   };
   const idCheckPost = () => {
