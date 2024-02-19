@@ -1,25 +1,22 @@
-package com.slt.controller;
+package com.slt.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.slt.cmmn.vo.ResultVO;
 import com.slt.entity.Login;
-import com.slt.entity.User;
-import com.slt.service.LoginService;
 
 @RequestMapping("/Sol/logCon")
 @RestController
 public class LoginController {
-	
 	@Autowired
-	private LoginService loginService;
+	private com.slt.login.service.LoginService loginservice;
+	
 	
 	@RequestMapping("/login")
-	public User login(Login login) {
-		System.out.println("로그인");
-		
-		return loginService.loginService(login); 
+	public ResultVO login(Login login) {
+		return loginservice.login(login);
 	}
 	
 }
