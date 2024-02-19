@@ -137,10 +137,23 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+.insta-icon{
+  filter: opacity(0.7) drop-shadow(0 0 0 rgb(0, 0, 0));
+  background-image: url('./assets/image/insta.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.naver-blog-icon{
+  filter: opacity(0.7) drop-shadow(0 0 0 rgb(0, 0, 0));
+  background-image: url('./assets/image/naver-blog.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 
 /* map 아이콘 */
 .dollar-coin-icon{
   background-image: url('./assets/image/dollar-coin.png');
   background-repeat: no-repeat;
   background-size: contain;
+}
+
 }
