@@ -149,11 +149,11 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 
+}
+
 /* map 아이콘 */
 .dollar-coin-icon{
   background-image: url('./assets/image/dollar-coin.png');
   background-repeat: no-repeat;
   background-size: contain;
-}
-
 }
