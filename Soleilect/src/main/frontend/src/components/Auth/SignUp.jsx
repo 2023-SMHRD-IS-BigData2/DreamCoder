@@ -3,11 +3,14 @@ import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import InputBox from '../InputBox';
+import SuccessModal from '../Modal/SuccessModal';
 
 
 const SignUp = () => {
 
   const nav = useNavigate();
+  //          state: 모달창 상태 
+  const [modalOpen, setModalOpen] = useState(false);
 
   //          state: 아이디 요소 참조 상태 
   const idRef = useRef(null);
@@ -71,13 +74,11 @@ const SignUp = () => {
       .post('/Sol/joinCon/join', formData)
       .then((response) => {
         console.log(response.data)
-        setModalOpen(true);
       })
       .catch((error) => {
         console.log(error)
       })
-      
-
+      setModalOpen(true);
 
   };
   const idCheckPost = () => {
@@ -279,6 +280,7 @@ const SignUp = () => {
             <div className='id-check-button' onClick={page === '1' ? onIdCheckButtonClickHandler : onNicknameCheckButtonClickHandler}>{'중복체크'}</div>
           </div>
         </div>
+        {modalOpen && <SuccessModal setModalOpen={setModalOpen} />}
       </div>
     </div >
 
