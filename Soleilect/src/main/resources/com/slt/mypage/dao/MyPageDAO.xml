@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.slt.mapper.MyPageMapper">
+<mapper namespace="com.slt.mypage.dao.MyPageDAO">
 	<insert id="plantInsert" parameterType="com.slt.entity.Plants">
 		INSERT INTO PLANTS_TB
 		(PL_NAME,
