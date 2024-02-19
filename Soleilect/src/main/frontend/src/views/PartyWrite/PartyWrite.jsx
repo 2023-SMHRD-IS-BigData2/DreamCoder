@@ -144,14 +144,15 @@ const PartyWrite = () => {
 
     useEffect(() => {
         let formData = new FormData();
+        console.log(sessionStorage.getItem("user_id"));
         formData.append("user_id", sessionStorage.getItem("user_id"))
         formData.append("user_pw", sessionStorage.getItem("user_pw"))
         axios
             .post('/Sol/logCon/login', formData)
             .then((res) => {
-                setUser(res.data)
-                setUserId(res.data.user_id)
-                setUserNick(res.data.user_nick)
+                setUser(res.data.data)
+                setUserId(res.data.data[0].user_id)
+                setUserNick(res.data.data[0].user_nick)
             })
             .catch((error) => {
                 console.log(error)

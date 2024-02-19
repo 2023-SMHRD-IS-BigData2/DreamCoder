@@ -146,9 +146,9 @@ const BoardWrite = () => {
         axios
             .post('/Sol/logCon/login', formData)
             .then((res) => {
-                setUser(res.data)
-                setUserId(res.data.user_id)
-                setUserNick(res.data.user_nick)
+                setUser(res.data.data)
+                setUserId(res.data.data[0].user_id)
+                setUserNick(res.data.data[0].user_nick)
             })
             .catch((error) => {
                 console.log(error)

@@ -1,10 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Board.css';
 import FreeBoard from './FreeBoard';
+import axios from 'axios';
+import { ChartContext } from '../../context/ChartContext';
 
 const BoardList = () => {
+    const {list,setList} = useContext(ChartContext);
     const nav = useNavigate();
+
+    useEffect(()=>{
+        let formData = new FormData();
+        axios
+        .get('/Sol/boardCon/list', formData)
+        .then((res)=>{
+            setList(res.data.data)
+            console.log(res.data.data);
+            console.log(list);
+            console.log(list.map((item,index)=>item.b_title));
+        })
+        .catch((error) => {
+            console.log(error)
+          })
+    },[])
 
     // state 탭 상태
     const [toggle, setToggle] = useState('notion-board');
