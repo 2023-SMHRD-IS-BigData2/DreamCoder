@@ -48,7 +48,7 @@ const InfoList = () => {
                     {toggle === 'repair-info' &&
                         <>
                             <div className='repair-info-list'>
-                                <RepairInfobox />
+                                <RepairInfobox key={1} index={1} />
                                 <RepairInfobox />
                                 <RepairInfobox />
                             </div>
@@ -62,7 +62,7 @@ const InfoList = () => {
                 </div>
                 <div className='repair-info-bottom-box'>
                     <div className='info-list-pagination-box'>
-                        <Pagination/>
+                        <Pagination />
                     </div>
                 </div>
             </div>

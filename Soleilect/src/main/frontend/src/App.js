@@ -18,6 +18,8 @@ import Mypage from "./components/Mypage/Mypage";
 import Map from "./views/Map/Map";
 import InfoList from "./views/InfoList/InfoList";
 import BoardList from "./views/Board/BoardList";
+import RepairInfoDetail from "./views/InfoList/RepairInfoDetail";
+import Footer from "./layouts/Footer/Footer";
                                                                          
 
 function App() {
@@ -51,8 +53,9 @@ function App() {
         <Route path="/map" element={<Map/>}></Route>
         <Route path="/InfoList" element={<InfoList/>}></Route>
         <Route path="/BoardList" element={<BoardList/>}></Route>
-
+        <Route path='/RInfodetail/:num' element={<RepairInfoDetail/>}></Route>
       </Routes>
+      <Footer/>
     </div>
     </ChartContext.Provider>
   );

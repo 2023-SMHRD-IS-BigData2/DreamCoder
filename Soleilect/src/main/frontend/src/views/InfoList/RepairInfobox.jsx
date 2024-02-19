@@ -1,12 +1,15 @@
 
 import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './index.css';
 
-const RepairInfobox = () => {
-
+const RepairInfobox = ({ index }) => {
+    const nav = useNavigate();
 
     return (
-        <div className='repair-info-box'>
+        <div className='repair-info-box' onClick={() => {
+            nav(`/RInfodetail/${index}`);
+        }}>
             <div className='repair-info-box-image-box'>
                 <div className='repair-info-box-image'></div>
             </div>
