@@ -20,6 +20,7 @@ import InfoList from "./views/InfoList/InfoList";
 import BoardList from "./views/Board/BoardList";
 import RepairInfoDetail from "./views/InfoList/RepairInfoDetail";
 import Footer from "./layouts/Footer/Footer";
+import MessagePage from "./views/MessagePage/MessagePage";
                                                                          
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="/InfoList" element={<InfoList/>}></Route>
         <Route path="/BoardList" element={<BoardList/>}></Route>
         <Route path='/RInfodetail/:num' element={<RepairInfoDetail/>}></Route>
+        <Route path='/MessagePage' element={<MessagePage/>}></Route>
       </Routes>
       <Footer/>
     </div>

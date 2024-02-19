@@ -28,6 +28,9 @@ const Header = () => {
     setIslogin(false);
     navigate('/Main');
   }
+  const onMessagepageButtonClickHandler = () => {
+    navigate('/MessagePage');
+  }
   //          state: 로그인 상태
   const [isLogin, setIslogin] = useState(false);
   useEffect(() => {
@@ -139,6 +142,7 @@ const Header = () => {
               (<>
                 <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
                 <div className='black-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>
+                <div className='header-icon-box' onClick={onMessagepageButtonClickHandler}><div className='icon message-icon'></div></div>
               </>)
             }
 
