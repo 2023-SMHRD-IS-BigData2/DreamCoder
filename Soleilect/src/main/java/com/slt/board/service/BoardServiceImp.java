@@ -15,12 +15,12 @@ public class BoardServiceImp implements BoardService {
 
 	@Autowired
 	private BoardDAO boardDao;
-	
-	//게시판 정보 조회
+
+	// 게시판 정보 조회
 	@Override
-	public ResultVO boardSelectList() {
+	public ResultVO boardList() {
 		try {
-			List<Boards> dtList = boardDao.boardSelectList();
+			List<Boards> dtList = boardDao.boardList();
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
@@ -29,16 +29,41 @@ public class BoardServiceImp implements BoardService {
 		}
 	}
 
-	//게시판 정보 등록
+	// 게시판 정보 등록
 	@Override
-	public ResultVO boardInfoInsert(Boards boards) {
+	public ResultVO boardInsert(Boards boards) {
 		try {
-			if(boards.getB_title() != null) {
-				boardDao.boardInfoInsert(boards);
+			if (boards.getB_title() != null) {
+				boardDao.boardInsert(boards);
 				return new ResultVO("00", null);
-			}else {
+			} else {
 				return new ResultVO("03", null);
 			}
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO boardUpdate(Boards boards) {
+		try {
+			if (boards.getB_title() != null) {
+				boardDao.boardUpdate(boards);
+				return new ResultVO("00", null);
+			} else {
+				return new ResultVO("03", null);
+			}
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO boardDelete(int num) {
+		try {
+			boardDao.boardDelete(num);
+			return new ResultVO("00", null);
+
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}

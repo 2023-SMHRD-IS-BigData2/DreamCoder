@@ -5,10 +5,16 @@ import com.slt.entity.Boards;
 
 public interface BoardService {
 
-	//게시판 정보 조회
-	ResultVO boardSelectList();
+	ResultVO boardList();
+	
+	ResultVO boardInsert(Boards boards);
 
-	//게시판 정보 등록
-	ResultVO boardInfoInsert(Boards boards);
+	ResultVO boardUpdate(Boards boards);
+
+	ResultVO boardDelete(int num);
+
+	
+
+
 
 }

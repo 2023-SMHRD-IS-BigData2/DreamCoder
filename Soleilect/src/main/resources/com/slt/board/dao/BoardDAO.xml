@@ -15,7 +15,7 @@
 		(#{b_title},
 		#{b_content},
 		NOW(),
-		#{B_VIEWS},
+		#{b_views},
 		#{hd_code},
 		#{hd_name},
 		#{user_id},

@@ -10,9 +10,13 @@ import com.slt.entity.Boards;
 public interface BoardDAO {
 
 	//게시판 정보 조회
-	List<Boards> boardSelectList();
+	List<Boards> boardList();
 
 	//게시판 정보 등록
-	void boardInfoInsert(Boards boards);
+	void boardInsert(Boards boards);
+	
+	void boardUpdate(Boards boards);
+	
+	void boardDelete(int num);
 
 }
