@@ -19,23 +19,31 @@
 	<update id="partyBoardUpdate">
 		UPDATE PARTY_BOARDS_TB
 		SET
-		PARTY_TITLE = #{party_title},
+		PARTY_TITLE =
+		#{party_title},
 		PARTY_CONTENT = #{party_content},
-		PARTY_LOC = 'PARTY_LOC 1',
+		PARTY_LOC = 'PARTY_LOC
+		1',
 		START_AT = #{start_at},
 		END_AT = #{end_at},
-		PARTY_VIEWS = #{party_views},
+		PARTY_VIEWS =
+		#{party_views},
 		TARGET_CNT = #{target_cnt},
 		NOW_CNT = #{now_cnt},
 		CREATED_AT = #{created_at},
 		USER_ID = #{user_id},
-		USER_NICK = #{user_nick},
+		USER_NICK =
+		#{user_nick},
 		PARTY_ISJOIN = #{party_isJoin}
-		WHERE PARTY_SEQ = #{party_seq};
+		WHERE PARTY_SEQ =
+		#{party_seq};
 	</update>
 
 	<select id="partyBoardList"
 		resultType="com.slt.entity.Party_boards">
-		select * from PARTY_BOARDS_TB
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
+		START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
+		USER_ID, USER_NICK, PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
 	</select>
 </mapper>

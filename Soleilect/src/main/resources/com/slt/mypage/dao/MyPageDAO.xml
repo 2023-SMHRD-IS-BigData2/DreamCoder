@@ -22,7 +22,10 @@
 		WHERE PL_SEQ = #{num};
 	</delete>
 	<select id="plantList" resultType="com.slt.entity.Plants">
-		SELECT * FROM PLANTS_TB where USER_ID=#{id};
+		SELECT PL_SEQ, PL_NAME,
+		USER_ID, PL_LOC, PL_POWER, BS_NUM, PL_ISJOIN
+		FROM PLANTS_TB
+		WHERE where USER_ID=#{id};
 	</select>
 
 </mapper>
