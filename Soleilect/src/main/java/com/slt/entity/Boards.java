@@ -16,6 +16,7 @@ public class Boards {
 	private Timestamp created_at;
 	private int b_views;
 	private String hd_code;
+	private String hd_name;
 	private String user_id;
 	private String user_nick;
 }
