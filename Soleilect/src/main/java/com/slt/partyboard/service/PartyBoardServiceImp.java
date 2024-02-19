@@ -58,14 +58,14 @@ public class PartyBoardServiceImp implements PartyBoardService {
 	}
 
 	public ResultVO partyBoardList() {
-//		try {
+		try {
 			List<Party_boards> dtList = partyboardDao.partyBoardList();
 			List<Object> dataList = new ArrayList<Object>();
 			dtList.get(0).getParty_title();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
-//		} catch (Exception e) {
-//			return new ResultVO("99", null);
-//		}
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
 	}
 }

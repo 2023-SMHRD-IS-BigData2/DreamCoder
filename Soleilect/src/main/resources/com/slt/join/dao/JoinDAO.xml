@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.slt.mapper.JoinMapper">
+<mapper namespace="com.slt.join.dao.JoinDAO">
 
 	<!-- 회원가입
 		현재 Role은 MEMBER로 고정되어 생성되게 되어있음! -->
@@ -9,10 +9,10 @@
 		INSERT INTO USERS_TB (USER_ID, USER_PW, USER_NAME, USER_NICK, USER_ROLE, JOINED_AT) VALUES (#{user_id}, sha2(#{user_pw},384),#{user_name}, #{user_nick}, 'MEMBER', NOW());
 	</insert>
 	<select id="idCheck" parameterType="String">
-		select * from USERS_TB where USER_ID = #{id}
+		select count(*) from USERS_TB where USER_ID = #{id}
 	</select>
 	<select id="nickCheck" parameterType="String">
-		select * from USERS_TB where USER_NICK = #{nick}
+		select count(*) from USERS_TB where USER_NICK = #{nick}
 	</select>
 
 </mapper>

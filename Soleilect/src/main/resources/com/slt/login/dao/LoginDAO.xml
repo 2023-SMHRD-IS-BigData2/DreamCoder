@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.slt.mapper.LoginMapper">
+<mapper namespace="com.slt.login.dao.LoginDAO">
 	<!-- sha2(user_pw,384) : 암호화 -->
 	<select id="login" parameterType="com.slt.entity.Login" resultType="com.slt.entity.User">
 		select * from USERS_TB where USER_ID = #{user_id} and USER_PW=sha2(#{user_pw},384)
