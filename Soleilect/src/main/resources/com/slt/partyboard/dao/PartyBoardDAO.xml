@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slt.partyboard.dao.PartyBoardDAO">
+	<!-- 모집 게시판 삽입 : 모집 조회수(party_views)는 0부터 시작 생성시간(created_at)은 자동으로 입력 -->
+	<insert id="partyBoardInsert"
+		parameterType="com.slt.entity.Party_boards">
+		INSERT INTO PARTY_BOARDS_TB (PARTY_TITLE, PARTY_CONTENT,
+		PARTY_LOC, START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT,
+		CREATED_AT, USER_ID, USER_NICK, PARTY_ISJOIN) VALUES (#{party_title},
+		#{party_content}, #{party_loc}, #{start_at}, #{end_at},
+		0,
+		#{target_cnt}, #{now_cnt}, NOW(),
+		#{user_id},
+		#{user_nick},#{party_isJoin});
+	</insert>
+	<delete id="partyBoardDelete">
+		delete from PARTY_BOARDS_TB where PARTY_SEQ = #{num}
+	</delete>
+	<update id="partyBoardUpdate">
+		UPDATE PARTY_BOARDS_TB
+		SET
+		PARTY_TITLE = #{party_title},
+		PARTY_CONTENT = #{party_content},
+		PARTY_LOC = 'PARTY_LOC 1',
+		START_AT = #{start_at},
+		END_AT = #{end_at},
+		PARTY_VIEWS = #{party_views},
+		TARGET_CNT = #{target_cnt},
+		NOW_CNT = #{now_cnt},
+		CREATED_AT = #{created_at},
+		USER_ID = #{user_id},
+		USER_NICK = #{user_nick},
+		PARTY_ISJOIN = #{party_isJoin}
+		WHERE PARTY_SEQ = #{party_seq};
+	</update>
+
+	<select id="partyBoardList"
+		resultType="com.slt.entity.Party_boards">
+		select * from PARTY_BOARDS_TB
+	</select>
+</mapper>
