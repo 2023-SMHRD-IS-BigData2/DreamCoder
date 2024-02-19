@@ -32,16 +32,16 @@ public class BoardServiceImp implements BoardService {
 	// 게시판 정보 등록
 	@Override
 	public ResultVO boardInsert(Boards boards) {
-		try {
-			if (boards.getB_title() != null) {
+//		try {
+//			if (boards.getB_title() != null) {
 				boardDao.boardInsert(boards);
 				return new ResultVO("00", null);
-			} else {
-				return new ResultVO("03", null);
-			}
-		} catch (Exception e) {
-			return new ResultVO("99", null);
-		}
+//			} else {
+//				return new ResultVO("03", null);
+//			}
+//		} catch (Exception e) {
+//			return new ResultVO("99", null);
+//		}
 	}
 
 	@Override
