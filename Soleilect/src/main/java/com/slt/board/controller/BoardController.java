@@ -30,6 +30,9 @@ public class BoardController {
 	 */
 	@RequestMapping("/insert")
 	public ResultVO boardInsert(@ModelAttribute Boards boards) {
+		System.out.println("일반 게시판 삽입");
+		System.out.println("들어온 정보 :");
+		System.out.println(boards.toString());
 		return boardService.boardInsert(boards);
 	}
 	
