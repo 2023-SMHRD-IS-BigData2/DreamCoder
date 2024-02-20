@@ -12,6 +12,9 @@
 }
 
 .repair-info-top-box {
+    position: relative;
+    
+    left: 100px;
     display: flex;
     flex-direction: row;
 
@@ -50,7 +53,7 @@
 }
 
 .repair-info-middle-box {
-    padding: 60px 0 50px;
+    padding: 0 0 50px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -193,12 +196,7 @@
 
     background-color: rgba(226, 226, 226, 0.9);
 }
-.repair-info-detail-image{
 
-}
-.repair-info-detail-text{
-
-}
 .repair-info-detail-bottom{
     display: flex;
     align-items: center;

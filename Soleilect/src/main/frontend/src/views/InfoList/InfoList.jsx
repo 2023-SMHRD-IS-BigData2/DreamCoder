@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './index.css';
-import RepairInfobox from './RepairInfobox.jsx';
 import usePagination from '../../hooks/pagination.js';
 import Pagination from '../../components/Pagination/Pagination.jsx';
 
@@ -45,19 +44,48 @@ const InfoList = () => {
                     </div>
                 </div>
                 <div className='repair-info-middle-box'>
-                    {toggle === 'repair-info' &&
-                        <>
-                            <div className='repair-info-list'>
-                                <RepairInfobox key={1} index={1} />
-                                <RepairInfobox />
-                                <RepairInfobox />
+                    {toggle == 'repair-info' &&
+                        <div className='board-content-container'>
+                            <div className='board-contant-container-box'>
+                                <div className='board-contant-top'>{'정보게시판'}</div>
+                                <table className='board-table'>
+                                    <thead >
+                                        <tr>
+                                            <th className='board-contant-th'>{''}</th>
+                                            <th className='board-contant-th'>{'업체명'}</th>
+                                            <th className='board-contant-th'>{'지역'}</th>
+                                            <th className='board-contant-th'>{'전화번호'}</th>
+                                        </tr>
+                                    </thead>
+                                    {/* 게시글 list */}
+                                    <tbody>
+                                        <tr className='board-bottom-list'>
+                                            <td className='board-contant-td'>
+                                                <div className='board-content-title'>
+                                                    <div className='board-title'>{1}</div>
+                                                </div>
+                                            </td>
+                                            <td className='board-contant-td'>
+                                                <div className='board-content-title'>
+                                                    <div className='board-title'>{'업체명'}</div>
+                                                </div>
+                                            </td>
+                                            <td className='board-contant-td'>
+                                                <div className='board-content-bottom'>
+                                                    <div className='board-bottom-name'>{'지역'}</div>
+                                                </div>
+                                            </td>
+                                            <td className='board-contant-td'>
+                                                <div className='board-content-bottom-date'>
+                                                    <div className='board-bottom-date'>{'번호'}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
                             </div>
-                            <div className='repair-info-list'>
-                                <RepairInfobox />
-                                <RepairInfobox />
-                                <RepairInfobox />
-                            </div>
-                        </>
+                        </div>
                     }
                 </div>
                 <div className='repair-info-bottom-box'>

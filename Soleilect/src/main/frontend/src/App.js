@@ -18,7 +18,6 @@ import Mypage from "./components/Mypage/Mypage";
 import Map from "./views/Map/Map";
 import InfoList from "./views/InfoList/InfoList";
 import BoardList from "./views/Board/BoardList";
-import RepairInfoDetail from "./views/InfoList/RepairInfoDetail";
 import Footer from "./layouts/Footer/Footer";
 import MessagePage from "./views/MessagePage/MessagePage";
 import BoardDetail from "./views/Board/BoardDetail";
@@ -55,7 +54,6 @@ function App() {
         <Route path="/map" element={<Map/>}></Route>
         <Route path="/InfoList" element={<InfoList/>}></Route>
         <Route path="/BoardList" element={<BoardList/>}></Route>
-        <Route path='/RInfodetail/:num' element={<RepairInfoDetail/>}></Route>
         <Route path='/MessagePage' element={<MessagePage/>}></Route>
         <Route path="/BoardDetail/:num" element={<BoardDetail/>}></Route>
       </Routes>
