@@ -1,8 +1,5 @@
 package com.slt.join.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,11 +38,11 @@ public class JoinServiceImp implements JoinService {
 	public ResultVO idCheck(String id) {
 		try {
 			int row = joinDao.idCheck(id);
-			List<Object> dataList = new ArrayList<Object>();
-			List<Integer> dtList = new ArrayList<Integer>();
-			dtList.add(row);
-			dataList.add(dtList);
-			return new ResultVO("00", null);
+			if(row == 0) {
+				return new ResultVO("00", null);
+			}else {
+				return new ResultVO("01", null);
+			}
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}
@@ -54,11 +51,11 @@ public class JoinServiceImp implements JoinService {
 	public ResultVO nickCheck(String nick) {
 		try {
 			int row = joinDao.nickCheck(nick);
-			List<Object> dataList = new ArrayList<Object>();
-			List<Integer> dtList = new ArrayList<Integer>();
-			dtList.add(row);
-			dataList.add(dtList);
-			return new ResultVO("00", null);
+			if(row == 0) {
+				return new ResultVO("00", null);
+			}else {
+				return new ResultVO("01", null);
+			}
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}
