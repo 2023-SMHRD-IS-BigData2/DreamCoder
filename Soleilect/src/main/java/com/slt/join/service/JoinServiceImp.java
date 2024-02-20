@@ -42,7 +42,9 @@ public class JoinServiceImp implements JoinService {
 		try {
 			int row = joinDao.idCheck(id);
 			List<Object> dataList = new ArrayList<Object>();
-			dataList.add(row);
+			List<Integer> dtList = new ArrayList<Integer>();
+			dtList.add(row);
+			dataList.add(dtList);
 			return new ResultVO("00", null);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
@@ -53,7 +55,9 @@ public class JoinServiceImp implements JoinService {
 		try {
 			int row = joinDao.nickCheck(nick);
 			List<Object> dataList = new ArrayList<Object>();
-			dataList.add(row);
+			List<Integer> dtList = new ArrayList<Integer>();
+			dtList.add(row);
+			dataList.add(dtList);
 			return new ResultVO("00", null);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
