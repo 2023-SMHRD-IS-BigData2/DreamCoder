@@ -84,8 +84,11 @@ public class ChatsServicelmp implements ChatsService {
 	}
 
 	private Boolean within5Minutes(Timestamp timestamp) {
+		
+		// 현재시각
 		Timestamp currentDateTime = new Timestamp(System.currentTimeMillis());
 		
+		// 현재시각-지정된시각
 		long differenceInMillis = currentDateTime.getTime() - timestamp.getTime();
 
 		long fiveMinutesInMillis = 5 * 60 * 1000;
