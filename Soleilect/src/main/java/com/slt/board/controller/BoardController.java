@@ -73,5 +73,14 @@ public class BoardController {
 		 System.out.println("일반 게시판 검색 기능");
 		 return boardService.boardSearch(search);
 	 }
+	
+	/**
+	 * 게시판 조회수 상승
+	 */
+	@RequestMapping("/views")
+	public ResultVO boardViewUP(int num) {
+		System.out.println("일반 게시판 조회수 상승");
+		return boardService.boardViewUP(num);
+	}
 
 }

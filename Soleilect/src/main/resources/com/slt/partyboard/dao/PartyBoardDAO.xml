@@ -57,4 +57,11 @@
 			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
 		</if>
 	</select>
+	<update id="partyBoardViewUp" parameterType="int">
+		UPDATE
+		PARTY_BOARDS_TB
+		SET
+		PARTY_VIEWS = PARTY_VIEWS + 1,
+		WHERE PARTY_SEQ = #{num};
+	</update>
 </mapper>

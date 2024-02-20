@@ -18,4 +18,6 @@ public interface PartyBoardDAO {
 	List<Party_boards> partyBoardList();
 	
 	List<Party_boards> partyBoardSearch(String search);
+	
+	int partyBoardViewUp(int num);
 }

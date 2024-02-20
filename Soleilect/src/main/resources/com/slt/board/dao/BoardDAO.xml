@@ -64,4 +64,11 @@
 			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
 		</if>
 	</select>
+	<update id="boardViewUp" parameterType="int">
+		UPDATE
+		BOARDS_TB
+		SET
+		B_VIEWS = B_VIEWS + 1,
+		WHERE B_SEQ = #{num};
+	</update>
 </mapper>

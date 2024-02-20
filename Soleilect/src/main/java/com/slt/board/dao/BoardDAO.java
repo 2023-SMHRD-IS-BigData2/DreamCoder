@@ -22,4 +22,6 @@ public interface BoardDAO {
 	List<Boards> boardFilter(String hd_code);
 
 	List<Boards> boardSearch(String search);
+	
+	int boardViewUP(int num);
 }

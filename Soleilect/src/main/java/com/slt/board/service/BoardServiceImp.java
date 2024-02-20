@@ -93,4 +93,15 @@ public class BoardServiceImp implements BoardService {
 		}
 	}
 
+	@Override
+	public ResultVO boardViewUP(int num) {
+		try {
+			boardDao.boardViewUP(num);
+			return new ResultVO("00", null);
+
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
 }
