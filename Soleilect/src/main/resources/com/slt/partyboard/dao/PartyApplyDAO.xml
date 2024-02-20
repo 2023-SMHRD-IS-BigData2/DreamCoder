@@ -18,8 +18,14 @@
 		#{pl_name},
 		#{user_nick},
 		#{pl_power},
-		#{pl_isJoin});
+		0);
 	</insert>
+	<update id="partyAccept" parameterType="int">
+		UPDATE PARTY_LIST_TB
+		SET
+		PL_ISJOIN = 1
+		WHERE LIST_SEQ = {num};
+	</update>
 	<update id="partyApplypbUpdate" parameterType="int">
 		UPDATE
 		PARTY_BOARDS_TB

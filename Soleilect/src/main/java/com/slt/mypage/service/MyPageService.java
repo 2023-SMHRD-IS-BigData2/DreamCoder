@@ -12,4 +12,11 @@ public interface MyPageService {
 	ResultVO plantList(String id);
 	
 	ResultVO myPost(String id);
+	
+	ResultVO myGroupPlant(String nick);
+	
+	ResultVO myGroupAccept(String nick);
+	
+	ResultVO myGroupSearch(String nick);
+	
 }

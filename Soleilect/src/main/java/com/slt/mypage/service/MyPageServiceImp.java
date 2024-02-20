@@ -9,16 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.slt.cmmn.vo.ResultVO;
 import com.slt.entity.Boards;
+import com.slt.entity.Party_application;
 import com.slt.entity.Party_boards;
 import com.slt.entity.Plants;
 import com.slt.mypage.dao.MyPageDAO;
 
 @Service
-public class MyPageServiceImp implements MyPageService{
+public class MyPageServiceImp implements MyPageService {
 
 	@Autowired
 	private MyPageDAO mypageDao;
-	
+
 	@Override
 	public ResultVO plantInsert(Plants plants) {
 		try {
@@ -32,7 +33,7 @@ public class MyPageServiceImp implements MyPageService{
 			return new ResultVO("99", null);
 		}
 	}
-	
+
 	@Override
 	public ResultVO plantDelete(int num) {
 		try {
@@ -47,7 +48,7 @@ public class MyPageServiceImp implements MyPageService{
 			return new ResultVO("99", null);
 		}
 	}
-	
+
 	@Override
 	public ResultVO plantList(String id) {
 		try {
@@ -69,10 +70,52 @@ public class MyPageServiceImp implements MyPageService{
 			HashMap<String, List<Boards>> bMap = new HashMap<String, List<Boards>>();
 			pbMap.put("모집", pbList);
 			bMap.put("자유", bList);
-			
+
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.add(pbMap);
 			dataList.add(bMap);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO myGroupPlant(String nick) {
+		try {
+			List<Party_application> dtList = mypageDao.myGroupPlant(nick);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO myGroupAccept(String nick) {
+		try {
+			List<Party_application> dtList = mypageDao.myGroupAccept(nick);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO myGroupSearch(String nick) {
+		try {
+			int row = mypageDao.myGroupSearch(nick);
+			boolean isNick = false;
+			if (row == 0) {
+				isNick = false;
+			} else {
+				isNick = true;
+			}
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.add(isNick);
 			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.slt.entity.Boards;
+import com.slt.entity.Party_application;
 import com.slt.entity.Party_boards;
 import com.slt.entity.Plants;
 
@@ -19,4 +20,10 @@ public interface MyPageDAO {
 	List<Party_boards> myPartyBoardPost(String id);
 	
 	List<Boards> myBoardPost(String id);
+	
+	List<Party_application> myGroupPlant(String nick);
+	
+	List<Party_application> myGroupAccept(String nick);
+	
+	int myGroupSearch(String nick);
 }

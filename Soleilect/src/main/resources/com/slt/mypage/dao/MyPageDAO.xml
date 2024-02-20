@@ -41,9 +41,34 @@
 	</select>
 	<select id="myBoardPost" parameterType="String"
 		resultType="com.slt.entity.Boards">
-		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS, HD_CODE, HD_NAME,
+		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS,
+		HD_CODE, HD_NAME,
 		USER_ID, USER_NICK
 		FROM BOARDS_TB
-		WHERE USER_ID = #{id};
+		WHERE USER_ID =
+		#{id};
 	</select>
+	<select id="myGroupPlant"
+		resultType="com.slt.entity.Party_application">
+		SELECT LIST_SEQ, PARTY_SEQ, PARTY_TITLE, PL_SEQ, PL_NAME,
+		USER_NICK, PL_POWER, PL_ISJOIN
+		FROM PARTY_LIST_TB
+		WHERE PARTY_SEQ =
+		(SELECT PARTY_SEQ
+		WHERE USER_NICK=#{nick}) AND PL_ISJOIN = 1;
+	</select>
+	<select id="myGroupAccept"
+		resultType="com.slt.entity.Party_application">
+		SELECT LIST_SEQ, PARTY_SEQ, PARTY_TITLE, PL_SEQ, PL_NAME,
+		USER_NICK, PL_POWER, PL_ISJOIN
+		FROM PARTY_LIST_TB
+		WHERE PARTY_SEQ =
+		(SELECT PARTY_SEQ
+		WHERE USER_NICK=#{nick}) AND PL_ISJOIN = 0;
+	</select>
+	<select id="myGroupSearch" parameterType="String">
+		SELECT count(*)
+		FROM PARTY_BOARDS_TB WHERE USER_NICK = #{nick}
+	</select>
+
 </mapper>

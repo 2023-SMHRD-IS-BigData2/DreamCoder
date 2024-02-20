@@ -54,4 +54,30 @@ public class MyPageController {
 		return mypageservice.myPost(id);
 	}
 	
+	/**
+	 * 자기가 참여중인 그룹의 발전소 목록 불러오기
+	 */
+	@RequestMapping("/myGroupPlant")
+	public ResultVO myGroupPlant(String nick) {
+		System.out.println("자신이 참여중인 그룹의 발전소 목록 불러오기");
+		return mypageservice.myGroupPlant(nick);
+	}
+	
+	/**
+	 * 자기가 만든 그룹의 가입 신청자 목록 불러오기
+	 */
+	@RequestMapping("/myGroupAccept")
+	public ResultVO myGroupAccept(String nick) {
+		System.out.println("자기가 만든 그룹의 가입 신청자 목록 불러오기");
+		return mypageservice.myGroupAccept(nick);
+	}
+	
+	/**
+	 * 자신이 모집자인 그룹이 있는지 탐색
+	 */
+	@RequestMapping("/myGroupSearch")
+	public ResultVO myGroupSearch(String nick) {
+		System.out.println("자신이 모집자인 그룹이 있는지 탐색");
+		return mypageservice.myGroupSearch(nick);
+	}
 }
