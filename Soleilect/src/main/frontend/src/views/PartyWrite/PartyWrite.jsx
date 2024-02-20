@@ -10,7 +10,7 @@ const PartyWrite = () => {
     const titleRef = useRef(null);
 
     const contentRef = useRef(null);
-    
+
     const startRef = useRef(null);
 
     const endRef = useRef(null);
@@ -41,9 +41,6 @@ const PartyWrite = () => {
     const [userNick, setUserNick] = useState("");
     const [partyViews, setPartyViews] = useState(0);
     const [partyIsJoin, setPartyIsJoin] = useState("모집중");
-
-    // state 회원정보  상태
-    const [user, setUser] = useState("");
 
     const [resetBoard] = useState();
 
@@ -85,11 +82,6 @@ const PartyWrite = () => {
         setTargetCnt(value);
     }
 
-    // event handler : 현재수치 변경 이벤트 처리
-    const onnowCntChangeHandler = (e) => {
-        const value = e.target.value;
-        setNowCnt(value);
-    }
 
     // event handler : 모집장소 변경 이벤트 처리
     const onpartLocChangeHandler = (e) => {
@@ -142,15 +134,14 @@ const PartyWrite = () => {
         submitPost()
     }
 
+    //  회원정보 상태 가져오기
     useEffect(() => {
         let formData = new FormData();
-        console.log(sessionStorage.getItem("user_id"));
         formData.append("user_id", sessionStorage.getItem("user_id"))
         formData.append("user_pw", sessionStorage.getItem("user_pw"))
         axios
             .post('/Sol/logCon/login', formData)
-            .then((res) => {
-                setUser(res.data.data)
+            .then((res) => {   
                 setUserId(res.data.data[0].user_id)
                 setUserNick(res.data.data[0].user_nick)
             })
@@ -167,10 +158,6 @@ const PartyWrite = () => {
                 <div className='board-write-box'>
                     <div className='board-write-top'>
                         <div><h2>게시판 글쓰기</h2></div>
-                        <div className='write-button-box'>
-                            <div className='Write-button-regist' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
-                            {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
-                        </div>
                     </div>
                     <div className='board-check-top'>
                         <div className='board-write-check'>
@@ -192,7 +179,7 @@ const PartyWrite = () => {
                             {/* date,progress,region */}
                             <div className='board-write-date'>
                                 모집 기간 : <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler} className='board-write-date-calender'></input> {' ~ '}
-                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler}className='board-write-date-calender'></input>
+                                <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler} className='board-write-date-calender'></input>
                             </div>
 
 
@@ -200,16 +187,16 @@ const PartyWrite = () => {
                                 모집 목표 수치 <input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} />{' kw'}
                             </div>
                             <div className='board-write-input-fix'>
-                                모집 현재수치<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} onChange={onnowCntChangeHandler} />{' kw'}
+                                모집 현재수치<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} value={nowCnt} placeholder='현재수치' />{' kw'}
                             </div>
                             <div className='board-write-input-fix'>
                                 모집 장소<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} />
                             </div>
                             <div className='board-write-input-fix-loc'>
-                            모집 상황 :<select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
-                                <option value="모집 중" className="write-check-isjoin-select">{'모집 중 '}</option>
-                                <option value="마감" className="write-check-select">{'마감 '}</option>
-                            </select>
+                                모집 상황 :<select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
+                                    <option value="모집 중" className="write-check-isjoin-select">{'모집 중 '}</option>
+                                    <option value="마감" className="write-check-select">{'마감 '}</option>
+                                </select>
                             </div>
                             <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디' value={userId}></input>
                             <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={userNick}></input>
@@ -220,6 +207,10 @@ const PartyWrite = () => {
                         {/* 임시로 넣어 놓음 */}
 
                     </div>
+                </div>
+                <div className='write-button-box'>
+                    <div className='Write-button-regist' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
+                    {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
                 </div>
             </div>
         </div>
