@@ -25,7 +25,25 @@
 		SELECT PL_SEQ, PL_NAME,
 		USER_ID, PL_LOC, PL_POWER, BS_NUM, PL_ISJOIN
 		FROM PLANTS_TB
-		WHERE where USER_ID=#{id};
+		WHERE where
+		USER_ID=#{id};
 	</select>
-
+	<select id="myPartyBoardPost" parameterType="String"
+		resultType="com.slt.entity.Party_boards">
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
+		START_AT, END_AT,
+		PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
+		USER_ID, USER_NICK,
+		PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
+		WHERE USER_ID =
+		#{id};
+	</select>
+	<select id="myBoardPost" parameterType="String"
+		resultType="com.slt.entity.Boards">
+		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS, HD_CODE, HD_NAME,
+		USER_ID, USER_NICK
+		FROM BOARDS_TB
+		WHERE USER_ID = #{id};
+	</select>
 </mapper>
