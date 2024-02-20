@@ -62,7 +62,7 @@ public class BoardController {
 	@RequestMapping("/filter")
 	public ResultVO boardFilter(String hd_code) {
 		System.out.println("일반 게시판 말머리 필터링");
-		return null;
+		return boardService.boardFilter(hd_code);
 	}
 
 }
