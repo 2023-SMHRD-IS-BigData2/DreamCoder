@@ -13,7 +13,9 @@ public class LoginController {
 	@Autowired
 	private com.slt.login.service.LoginService loginservice;
 	
-	
+	/**
+	 * 로그인
+	 */
 	@RequestMapping("/login")
 	public ResultVO login(Login login) {
 		System.out.println("로그인");

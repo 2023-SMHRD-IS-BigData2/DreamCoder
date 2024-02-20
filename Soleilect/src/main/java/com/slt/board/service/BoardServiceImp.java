@@ -68,5 +68,17 @@ public class BoardServiceImp implements BoardService {
 			return new ResultVO("99", null);
 		}
 	}
+	
+	@Override
+	public ResultVO boardFilter(String hd_code) {
+		try {
+			List<Boards> dtList = boardDao.boardFilter(hd_code);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 
 }

@@ -36,6 +36,9 @@ public class BoardController {
 		return boardService.boardInsert(boards);
 	}
 	
+	/**
+	 * 게시판 정보 갱신
+	 */
 	@RequestMapping("/update")
 	public ResultVO boardUpdate(@ModelAttribute Boards boards) {
 		System.out.println("일반 게시판 갱신");
@@ -44,10 +47,22 @@ public class BoardController {
 		return boardService.boardUpdate(boards);
 	}
 	
+	/**
+	 * 게시판 삭제
+	 */
 	@RequestMapping("/delete")
 	public ResultVO boardDelete(int num) {
 		System.out.println("일반 게시판 삭제");
 		return boardService.boardDelete(num);
+	}
+	
+	/**
+	 * 게시판 말머리별로 나눠서 가져오기
+	 */
+	@RequestMapping("/filter")
+	public ResultVO boardFilter(String hd_code) {
+		System.out.println("일반 게시판 말머리 필터링");
+		return null;
 	}
 
 }

@@ -15,6 +15,9 @@ public class MyPageController {
 	@Autowired
 	private MyPageServiceImp mypageservice;
 	
+	/**
+	 * 발전소 삽입
+	 */
 	@RequestMapping("/plantInsert")
 	public ResultVO plantInsert(Plants plants) {
 		System.out.println("마이페이지 발전소 삽입");
@@ -23,18 +26,27 @@ public class MyPageController {
 		return mypageservice.plantInsert(plants);
 	}
 	
+	/**
+	 * 발전소 삭제
+	 */
 	@RequestMapping("/plantDelete")
 	public ResultVO plantDelete(int num) {
 		System.out.println("마이페이지 발전소 삭제");	
 		return mypageservice.plantDelete(num);
 	}
 	
+	/**
+	 * 발전소 목록
+	 */
 	@RequestMapping("/plantList")
 	public ResultVO plantList(String id){
 		System.out.println("마이페이지 발전소 목록");
 		return mypageservice.plantList(id);
 	}
 	
+	/**
+	 * 마이페이지 자신이 작성한 글 목록 불러오기
+	 */
 	@RequestMapping("/myPost")
 	public ResultVO myPost(String id) {
 		System.out.println("마이페이지 내가 작성한 글 목록");

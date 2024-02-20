@@ -28,7 +28,7 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
-	
+
 	@Override
 	public ResultVO partyBoardDelete(int num) {
 		try {
@@ -43,7 +43,7 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
-	
+
 	@Override
 	public ResultVO partyBoardUpdate(Party_boards boards) {
 		try {
@@ -62,14 +62,14 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
-	
+
 	@Override
 	public ResultVO partyBoardList() {
 		try {
-		List<Party_boards> dtList = partyboardDao.partyBoardList();
-		List<Object> dataList = new ArrayList<Object>();
-		dataList.addAll(dtList);
-		return new ResultVO("00", dataList);
+			List<Party_boards> dtList = partyboardDao.partyBoardList();
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}

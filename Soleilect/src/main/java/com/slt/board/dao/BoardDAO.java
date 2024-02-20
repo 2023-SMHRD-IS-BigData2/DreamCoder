@@ -18,5 +18,7 @@ public interface BoardDAO {
 	void boardUpdate(Boards boards);
 	
 	void boardDelete(int num);
+	
+	List<Boards> boardFilter(String hd_code);
 
 }

@@ -16,6 +16,9 @@ public class CommentController {
 	@Autowired
 	private CommentServiceImp commentservice;
 	
+	/**
+	 * 댓글 삽입
+	 */
 	@RequestMapping("/insert")
 	public ResultVO commentInsert(Comments comments) {
 		System.out.println("일반게시판 댓글 삽입");
@@ -23,12 +26,20 @@ public class CommentController {
 		return commentservice.commentInsert(comments);
 	}
 	
+	/**
+	 * 댓글 삭제
+	 * num으로 댓글이 달려있는 게시글 값 가져옴
+	 */
 	@RequestMapping("/delete")
 	public ResultVO commentDelete(int num) {
 		System.out.println("일반게시판 댓글 삭제");
 		return commentservice.commentDelete(num);
 	}
 	
+	/**
+	 * 댓글 목록 불러오기
+	 * num으로 댓글이 달려있는 게시글 값 가져옴
+	 */
 	@RequestMapping("/list")
 	public ResultVO commentList(int num){
 		System.out.println("일반게시판 댓글 불러오기");

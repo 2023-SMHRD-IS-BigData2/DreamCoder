@@ -15,6 +15,9 @@ public class JoinController {
 	@Autowired 
 	private JoinServiceImp joinSevice;
 	
+	/**
+	 *  회원가입
+	 */
 	@RequestMapping("/join")
 	public ResultVO join(User user) {
 		System.out.println("회원가입");
@@ -23,6 +26,9 @@ public class JoinController {
 		return joinSevice.join(user);
 	}
 	
+	/**
+	 * 아이디 중복 체크
+	 */
 	@RequestMapping("/idCheck")
 	public ResultVO idcheck(String id) {
 		System.out.println("아이디 중복 검사");
@@ -30,6 +36,9 @@ public class JoinController {
 		return joinSevice.idCheck(id);
 	}
 	
+	/**
+	 * 닉네임 중복 체크
+	 */
 	@RequestMapping("/nickCheck")
 	public ResultVO nickCheck(String nick) {
 		System.out.println("닉네임 중복 검사");

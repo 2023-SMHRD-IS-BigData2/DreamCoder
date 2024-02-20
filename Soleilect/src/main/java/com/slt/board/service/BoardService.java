@@ -13,7 +13,7 @@ public interface BoardService {
 
 	ResultVO boardDelete(int num);
 
-	
+	ResultVO boardFilter(String hd_code);
 
 
 

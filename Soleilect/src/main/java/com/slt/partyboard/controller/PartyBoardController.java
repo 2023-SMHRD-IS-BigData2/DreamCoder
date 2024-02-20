@@ -17,6 +17,9 @@ public class PartyBoardController {
 	@Autowired
 	private PartyBoardService partyboardservice;
 	
+	/**
+	 * 모집 게시판 삽입
+	 */
 	@RequestMapping("/insert")
 	public ResultVO partyBoardInsert(@ModelAttribute Party_boards boards) {
 		System.out.println("모집 게시판 삽입");
@@ -25,12 +28,18 @@ public class PartyBoardController {
 		return partyboardservice.partyBoardInsert(boards);
 	}
 	
+	/**
+	 * 모집 게시판 삭제
+	 */
 	@RequestMapping("/delete")
 	public ResultVO partyBoardDelete(int num) {
 		System.out.println("모집 게시판 삭제");
 		return partyboardservice.partyBoardDelete(num);
 	}
 	
+	/**
+	 * 모집 게시판 갱신
+	 */
 	@RequestMapping("/update")
 	public ResultVO partyBoardUpdate(@ModelAttribute Party_boards boards) {
 		System.out.println("모집 게시판 갱신");
@@ -39,11 +48,16 @@ public class PartyBoardController {
 		return partyboardservice.partyBoardUpdate(boards);
 	}
 	
+	/**
+	 * 모집 게시판 불러오기
+	 */
 	@RequestMapping("/list")
 	public ResultVO partyBoardList() {
 		System.out.println("모집 게시판 출력");
 		return partyboardservice.partyBoardList();
 	}
+	
+	
 	
 	
 }
