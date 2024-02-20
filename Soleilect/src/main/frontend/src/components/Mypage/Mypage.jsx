@@ -16,26 +16,7 @@ export default function Mypage() {
     const [toggle, setToggle] = useState(1);
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
-    //          state: 회원정보 상태
-    const [userId, setUserId] = useState("");
-    const [userNick, setUserNick] = useState("");
 
-    //  회원정보 상태 가져오기
-    useEffect(() => {
-        let formData = new FormData();
-        formData.append("user_id", sessionStorage.getItem("user_id"))
-        formData.append("user_pw", sessionStorage.getItem("user_pw"))
-        axios
-            .post('/Sol/logCon/login', formData)
-            .then((res) => {
-                setUserId(res.data.data[0].user_id)
-                setUserNick(res.data.data[0].user_nick)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-
-    }, [])
 
     const myPostList = () => {
         let formData = new FormData();
@@ -284,7 +265,7 @@ export default function Mypage() {
                             <div className='mypage-profile-image-box'>
                                 <div className='mypage-profile-image'></div>
                             </div>
-                            <div className='mypage-profile-name'>{userNick}</div>
+                            <div className='mypage-profile-name'>{sessionStorage.getItem("user_nick")}</div>
                         </div>
                         <div className='mypage-left-list'>
                             {/* 클릭이벤트 발생해서 컴포넌트 넘어가면 className 변경시키고 css에 따로 추가하기 */}
