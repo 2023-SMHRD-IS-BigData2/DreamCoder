@@ -1,6 +1,8 @@
 import React, { useEffect ,useState } from 'react'
 import './Map.css';
 import useInterval from './useInterval';
+import HighchartsReact from 'highcharts-react-official';
+import Highcharts from 'highcharts';
 
 const Map = () => {
 
@@ -60,20 +62,20 @@ const Map = () => {
 
   //  test 인포메이션 
   // state 예측 발전량
-  const [count,setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   // state 예측 수익
-  const [revenue,setRevenue] = useState(0);
+  const [revenue, setRevenue] = useState(0);
 
   // state 지역 이름
-  const locations = ['광주광역시 동구','부산광역시 남구', '대구광역시 서구'];
+  const locations = ['광주광역시 동구', '부산광역시 남구', '대구광역시 서구'];
   const [loc, setLoc] = useState(locations[0]);
   const [locIndex, setLocIndex] = useState(0);
 
   useInterval(() => {
     setCount(count + 1);
     setRevenue(revenue + 1);
-    
+
     const nextIndex = (locIndex + 1) % locations.length;
     // console.log(locIndex+1);
     // console.log(locations.length);
@@ -83,6 +85,83 @@ const Map = () => {
 
   }, 2000);
 
+  // 우측 꺾은선 그래프 발전량 예측 인포메이션
+  const options = {
+    title: {
+      text: '발전량 예측',
+      align: 'center'
+    },
+
+    yAxis: {
+      title: {
+        text: ''
+      }
+    },
+
+    xAxis: {
+      categories:[
+        '6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'
+      ]
+
+    },
+    // 워터마크 해제
+    credits: {
+      enabled: false,
+    },
+    legend: {
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom'
+    },
+
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false
+        },
+        pointStart: 0
+      }
+    },
+
+    series: [{
+      name: '광주광역시 동구',
+      data: [10000, 20000, 25000, 40000, 35000, 60000,
+        55000, 40000, 45000, 20000, 10000]
+    }, {
+      name: '부산광역시 서구',
+      data: [20000, 40000, 35000, 80000, 70000, 120000,
+        110000, 80000, 90000, 40000, 20000]
+    }, {
+      name: '대전광역시 서구',
+      data: [15000, 30000, 35000, 60000, 55000, 90000,
+        85000, 60000, 65000, 30000, 15000]
+    }, {
+      name: '울산광역시 남구',
+      data: [20000, 30000, 20000, 60000, 55000, 90000, 55000,
+        60000, 40000, 30000, 15000]
+    }, {
+      name: '인천광역시 서구',
+      data: [25000, 50000, 55000, 100000, 95000, 150000,
+        145000, 100000, 105000, 50000, 45000]
+    }],
+
+
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 400
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'left',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+  };
+
 
   return (
     <div className='map-container'>
@@ -90,7 +169,9 @@ const Map = () => {
       <div className='map-info-container'>
         <div className='map-info-box'>
           <div className='map-info-content'>
-            <div className='map-info-content-loc'>{loc}</div>
+
+
+            {/* <div className='map-info-content-loc'>{loc}</div>
             <div className='map-info-content-power'>
               <div className='mypage-right-icon-box'>
               <div className='icon sun-icon'></div>
@@ -105,7 +186,9 @@ const Map = () => {
               </div>
               <div className='map-info-content-revenu-key'>{'예상수익'}</div>
               <div className='map-info-content-revenu-value'>{revenue}{'원'}</div>
-            </div>
+            </div> */}
+
+            <HighchartsReact highcharts={Highcharts} options={options} />
           </div>
         </div>
       </div>
