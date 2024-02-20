@@ -11,25 +11,18 @@ import moment from 'moment';
 const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
     let { num } = useParams();
+    const nav = useNavigate();
 
     // state 년월일 시간 자르기
-    const [timestamp,setTimeStamp] = useState();
+    const [timestamp, setTimeStamp] = useState();
 
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
 
-    // state 삭제 버튼 상태
-    const [button,setButton] = useState('');
-
-    // event handler 게시글 삭제 클릭 이벤트
-    const onPartyDeleteClickHandler = () => {
-        setButton('true')
-    }
-
     useEffect(() => {
         let formData = new FormData();
         axios
-            .get('/Sol/partyBoardCon//delete', formData)
+            .get('/Sol/partyBoardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
                 setTimeStamp(list[num].created_at);
@@ -43,20 +36,36 @@ const PartyBoardDetail = () => {
 
     }, [])
 
-    // useEffect(()=>{
-    //     let formData = new FormData();
-    //     formData.append("party_seq", list[num].party_seq)
-    //     axios
-    //         .post('/Sol/partyBoardCon/delete',formData)
-    //         .then((res) => {
-    //             setList(res.data.data)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // },[button])
+    // state 삭제 버튼 상태
+    const [button, setButton] = useState('');
 
-    // console.log(list[num].party_seq);
+    // event handler 게시글 삭제 클릭 이벤트
+    const onPartyDeleteClickHandler = () => {
+            setButton(true)
+            console.log('클릭');
+        }
+
+    useEffect(()=>{
+        if(button){
+        let formData = new FormData();
+        console.log(list[num].party_seq);
+        formData.append("party_seq", list[num].party_seq)
+        axios
+            .post('/Sol/partyBoardCon/delete',formData)
+            .then((res) => {
+                setList(res.data.data)
+                console.log(res.data.data);
+                console.log('삭제 완료');
+                // nav('/PartyBoardList')
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
+        
+    },[button])
+
+
     // chart 부분
     let options = {};
 
@@ -76,7 +85,7 @@ const PartyBoardDetail = () => {
             },
             title: {
                 verticalAlign: 'middle',
-                text: Math.floor(list[num].now_cnt/list[num].target_cnt*100)  + '%',
+                text: Math.floor(list[num].now_cnt / list[num].target_cnt * 100) + '%',
                 size: 40,
             },
             // 워터마크 해제
@@ -92,7 +101,7 @@ const PartyBoardDetail = () => {
             },
             series: [
                 {
-                    data: [list[num].target_cnt -list[num].now_cnt, list[num].now_cnt],
+                    data: [list[num].target_cnt - list[num].now_cnt, list[num].now_cnt],
                     // data: [1,2],
                     size: '80%',
                     innerSize: '75%',
@@ -104,27 +113,14 @@ const PartyBoardDetail = () => {
             ],
         };
     }
-    
+
     //        component : 게시물 상세 하단 컴포넌트   //
     const BoardDetailBottom = () => {
 
-        // state 관심 버튼
-        // const [liked, setLiked] = useState(false);
-
-        // function onClick 찜 상태 반전 시키기
-        // const handleLike = () => {
-        //     setLiked(!liked);
-        // }
         //         render : 게시물 하단 컴포넌트 렌더링 //
         return (
             <div id='board-detail-bottom'>
-                {/* <div className='board-detail-comment-box'></div> */}
                 <div className='board-detail-button-box'>
-                    {/* <div className='icon-button'>
-                        <div className='icon favorite-fill-icon' onClick={handleLike}>
-                            {liked ? <div className='icon board-detail-liked'></div> : <div className='icon board-detail-unliked'></div>}
-                        </div>
-                    </div> */}
                     <div className='board-detail-box btnFloat'>
                         <div className='board-detail-button'>
                             {'참여하기'}</div>
@@ -133,7 +129,24 @@ const PartyBoardDetail = () => {
             </div>
         )
     }
-        
+
+    // event handler : 삭제 토글 클릭시 수정 삭제 버튼 생성
+
+    // state 수정 삭제 토글 상태
+    const [showEditDelete, setShowEditDelete] = useState(false);
+
+    // component : 게시글 수정, 삭제 컴포넌트  
+    const BoardEditDelete = () => {
+        console.log('dkssud');
+        return (
+            <div className='party-board-edit-delete'>
+                <div className='edit-icon-box'>{'수정하기'}<div className='edit-icon'></div>
+                </div>
+                <div className='delete-icon-box' onClick={onPartyDeleteClickHandler}>{'삭제하기'}<div className='delete-icon' ></div>
+                </div>
+            </div>
+        )
+    }
 
     //         render 게시물 상세 화면 컴포넌트 렌더링!!!  //
     return (
@@ -146,29 +159,29 @@ const PartyBoardDetail = () => {
                             <div className='board-detail-writer-nickname'>{list[num].user_nick}</div>
                             <div className='board-detail-write-divider'>{'|'}</div>
                             <div className='detail-chart-date'>{moment(timestamp).format("YYYY-MM-DD")}</div>
-                            <div className='detail-chart-recruit' style={{color: list[num].party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>
+                            <div className='detail-chart-recruit' style={{ color: list[num].party_isJoin == '모집중' ? '#35AF4B' : '#D1180B' }}>
                                 {list[num].party_isJoin}
-                                </div>
-                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>                  
+                            </div>
+                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>
+                            {/* 'more-icon' 클릭 시 showEditDelete 상태를 이전 상태의 반대로 설정 */}
+                            {list[num].user_id == sessionStorage.getItem('user_id') ? <div className='more-icon' onClick={() => setShowEditDelete(prev => !prev)}></div> : <></>}
+                            {/* showEditDelete 상태에 따라 BoardEditDelete 컴포넌트 렌더링 */}
+                            {showEditDelete && <BoardEditDelete />}
                         </div>
                     </div>
-                    {list[num].user_id == sessionStorage.getItem('user_id') ? <>
-                            <div className='board-detail-writer-delete' onClick={onPartyDeleteClickHandler}>{'삭제'}</div>
-                            <div className='board-detail-writer-delete'>{'수정'}</div> </>:<></>}
-
                     <div className='detail-chart-highchart'>
                         <HighchartsReact highcharts={Highcharts} options={options} />
                     </div>
                     <div className='board-detail-top-main'>
-                        
+
                         <div className='detail-chart-title'>{`[` + list[num].party_title + `]`}</div>
                         <div className='detail-chart-fix'>
-                        <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
-                        <div className='detail-chart-cnt'>{'목표 수치 : '}{list[num].target_cnt}{'kw'}</div>
-                        <div className='detail-chart-cnt'>{'모집량 : '}{list[num].now_cnt}{'kw'}</div>
+                            <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
+                            <div className='detail-chart-cnt'>{'목표 수치 : '}{list[num].target_cnt}{'kw'}</div>
+                            <div className='detail-chart-cnt'>{'모집량 : '}{list[num].now_cnt}{'kw'}</div>
                         </div>
                         <div className='detail-chart-content'>{list[num].party_content}</div>
-                        <br/>
+                        <br />
                         <div className='divider'></div>
                     </div>
                     <Comment />
