@@ -81,4 +81,16 @@ public class BoardServiceImp implements BoardService {
 		}
 	}
 
+	@Override
+	public ResultVO boardSearch(String search) {
+		try {
+			List<Boards> dtList = boardDao.boardSearch(search);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
 }

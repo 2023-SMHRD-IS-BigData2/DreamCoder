@@ -15,6 +15,6 @@ public interface BoardService {
 
 	ResultVO boardFilter(String hd_code);
 
-
+	ResultVO boardSearch(String search);
 
 }

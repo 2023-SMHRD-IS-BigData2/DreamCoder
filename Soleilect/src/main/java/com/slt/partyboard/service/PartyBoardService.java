@@ -12,4 +12,6 @@ public interface PartyBoardService {
 	ResultVO partyBoardUpdate(Party_boards boards);
 	
 	ResultVO partyBoardList();
+	
+	ResultVO partyBoardSearch(String search);
 }

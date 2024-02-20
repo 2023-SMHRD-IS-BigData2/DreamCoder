@@ -16,4 +16,6 @@ public interface PartyBoardDAO {
 	int partyBoardUpdate(Party_boards boards);
 	
 	List<Party_boards> partyBoardList();
+	
+	List<Party_boards> partyBoardSearch(String search);
 }

@@ -38,12 +38,23 @@
 		WHERE PARTY_SEQ =
 		#{party_seq};
 	</update>
-
 	<select id="partyBoardList"
 		resultType="com.slt.entity.Party_boards">
 		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
 		START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
 		USER_ID, USER_NICK, PARTY_ISJOIN
 		FROM PARTY_BOARDS_TB
+	</select>
+	<select id="partyBoardSearch"
+		resultType="com.slt.entity.Party_boards">
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
+		START_AT,
+		END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
+		USER_ID,
+		USER_NICK, PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
+		<if test="search != null">
+			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
+		</if>
 	</select>
 </mapper>

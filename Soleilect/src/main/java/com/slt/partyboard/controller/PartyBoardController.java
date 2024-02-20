@@ -57,7 +57,13 @@ public class PartyBoardController {
 		return partyboardservice.partyBoardList();
 	}
 	
-	
-	
+	/**
+	 * 모집 게시판 검색 기능 
+	 */
+	@RequestMapping("/search")
+	public ResultVO partyBoardSearch(String search) {
+		System.out.println("모집 게시판 검색 기능");
+		return partyboardservice.partyBoardSearch(search);
+	}
 	
 }

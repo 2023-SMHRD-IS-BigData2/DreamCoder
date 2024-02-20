@@ -74,4 +74,16 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
+
+	@Override
+	public ResultVO partyBoardSearch(String search) {
+		try {
+			List<Party_boards> dtList = partyboardDao.partyBoardSearch(search);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 }

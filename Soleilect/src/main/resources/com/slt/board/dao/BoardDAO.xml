@@ -47,12 +47,21 @@
 		HD_CODE, HD_NAME, USER_ID, USER_NICK
 		FROM BOARDS_TB
 	</select>
-
 	<select id="boardFilter" parameterType="String"
 		resultType="com.slt.entity.Boards">
 		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS,
 		HD_CODE, HD_NAME, USER_ID, USER_NICK
 		FROM BOARDS_TB
-		WHERE HD_CODE = #{hd_code};
+		WHERE HD_CODE =
+		#{hd_code};
+	</select>
+	<select id="boardSearch" parameterType="String">
+		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS,
+		HD_CODE,
+		HD_NAME, USER_ID, USER_NICK
+		FROM BOARDS_TB
+		<if test="search != null">
+			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
+		</if>
 	</select>
 </mapper>

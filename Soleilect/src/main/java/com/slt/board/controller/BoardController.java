@@ -64,5 +64,14 @@ public class BoardController {
 		System.out.println("일반 게시판 말머리 필터링");
 		return boardService.boardFilter(hd_code);
 	}
+	
+	/**
+	 * 게시판 검색 기능 
+	 */
+	@RequestMapping("/search")
+	 public ResultVO boardSearch(String search) {
+		 System.out.println("일반 게시판 검색 기능");
+		 return boardService.boardSearch(search);
+	 }
 
 }
