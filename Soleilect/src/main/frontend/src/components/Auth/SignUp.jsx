@@ -41,10 +41,14 @@ const SignUp = () => {
   const [passwordType, setPasswordType] = useState('password');
   //          state: 아이디 에러 상태 
   const [isIdError, setIdError] = useState(false);
+  //          state: 아이디중복 에러 상태 
+  const [isIdCheckError, setIdCheckError] = useState(false);
   //          state: 패스워드 에러 상태 
   const [isPasswordError, setPasswordError] = useState(false);
   //          state: 닉네임 에러 상태 
   const [isNicknameError, setNicknameError] = useState(false);
+  //          state: 닉네임중복 에러 상태 
+  const [isNicknameCheckError, setNicknameCheckError] = useState(false);
   //          state: 이름 에러 상태 
   const [isNameError, setNameError] = useState(false);
   //          state: 사업자번호 에러 상태 
@@ -79,7 +83,7 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error)
       })
-      
+
 
   };
   const idCheckPost = () => {
@@ -88,7 +92,14 @@ const SignUp = () => {
     axios
       .post('/Sol/joinCon/idCheck', formData)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data.reMsg)
+        if (response.data.reMsg == '실패') {
+          setIdError(true);
+          setIdCheckError(true);
+          setIdErrorMessage('중복되는 아이디입니다.');
+        } else {
+          setIdCheckError(false);
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -102,6 +113,13 @@ const SignUp = () => {
       .post('/Sol/joinCon/nickCheck', formData)
       .then((response) => {
         console.log(response.data)
+        if (response.data.reMsg == '실패') {
+          setNicknameError(true);
+          setNicknameCheckError(true);
+          setNicknameErrorMessage('중복되는 닉네임입니다.');
+        } else {
+          setNicknameCheckError(false);
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -123,18 +141,20 @@ const SignUp = () => {
       setPasswordError(true);
       setPasswordErrorMessage('비밀번호는 5자 이상 입력해주세요.');
     }
-    if (!isIdPattern || !isCheckedPassword) return;
+    if (!isIdPattern || !isCheckedPassword || isIdCheckError == true) return;
     setPage('2');
   }
   //         event handler: 아이디 중복체크 버튼 클릭 이벤트 처리
   const onIdCheckButtonClickHandler = () => {
     { idCheckPost() }
+    if (!passwordRef.current) return;
+    passwordRef.current.focus();
   }
   //         event handler: 닉네임 중복체크 버튼 클릭 이벤트 처리
   const onNicknameCheckButtonClickHandler = () => {
-    alert('닉네임 중복체크 이벤트')
-    console.log(nickname)
     { nickCheckPost() }
+    if (!nameRef.current) return;
+    nameRef.current.focus();
   }
   //          event handler: 회원가입 버튼 클릭 이벤트 처리 
   const onSignUpButtonClickHandler = () => {
@@ -148,17 +168,8 @@ const SignUp = () => {
       setNameError(true);
       setNameErrorMessage('이름을 입력해주세요');
     }
-    // 사업자번호였던것
-    // const bnumberPattern = /^[0-9]{10,10}$/;
-    // const isBnumberPattern = bnumberPattern.test(bnumber);
-    // if (!isBnumberPattern) {
-    //   setBnumberError(true);
-    //   setBnumberErrorMessage('10자리 숫자만 입력해주세요.');
-    // }
-
-    if (!hasName || !hasNickname) return;
+    if (!hasName || !hasNickname || isNicknameCheckError == true) return;
     { submitPost() }
-    // nav('/Main');
   }
   //          event handler: 로그인 버튼 클릭 이벤트 처리 
   const onSignInButtonClickHandler = () => {
@@ -208,8 +219,7 @@ const SignUp = () => {
   //          event handler: 아이디 키 다운 이벤트 처리 
   const onIdKeyDownHandler = (event) => {
     if (event.key !== 'Enter') return;
-    if (!passwordRef.current) return;
-    passwordRef.current.focus();
+    onIdCheckButtonClickHandler();
   }
   //          event handler: 패스워드 키 다운 이벤트 처리 
   const onPasswordKeyDownHandler = (event) => {
@@ -220,8 +230,8 @@ const SignUp = () => {
   //          event handler: 닉네임 키 다운 이벤트 처리 
   const onNicknameKeyDownHandler = (event) => {
     if (event.key !== 'Enter') return;
-    if (!nameRef.current) return;
-    nameRef.current.focus();
+    onNicknameCheckButtonClickHandler();
+
   }
   //          event handler: 이름 키 다운 이벤트 처리 
   const onNameKeyDownHandler = (event) => {
