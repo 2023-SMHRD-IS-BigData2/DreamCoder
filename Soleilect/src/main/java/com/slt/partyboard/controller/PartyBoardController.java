@@ -34,6 +34,7 @@ public class PartyBoardController {
 	@RequestMapping("/delete")
 	public ResultVO partyBoardDelete(int num) {
 		System.out.println("모집 게시판 삭제");
+		System.out.println("들어온 값 : "+num);
 		return partyboardservice.partyBoardDelete(num);
 	}
 	
