@@ -1,0 +1,348 @@
+#message-page-wrapper {
+    padding: 50px 470px 15px;
+    min-width: 940px;
+    max-width: 940px;
+
+    min-height: 750px;
+    max-height: 750px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-page-container {
+    width: 1200px;
+    max-height: 675px;
+
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    column-gap: 40px;
+
+}
+
+/* 왼쪽 쪽지내용 css */
+.messageContentBox-container {
+    width: 100%;
+    height: 675px;
+    background-color: rgb(245, 245, 245);
+
+    box-shadow: 0px 5px 10px rgba(116, 94, 94, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.messageContentBox-top {
+    width: 480px;
+    height: 50px;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+
+    gap: 10px;
+}
+
+.messageContentBox-icon-box {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50% 50%;
+    border: 1px solid rgb(154, 154, 154);
+}
+
+.messageContentBox-icon {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/image/profile-image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.messageContentBox-nickname {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 140%;
+}
+
+.messageContentBox-middle {
+    width: 520px;
+    height: 530px;
+
+    background-color: rgb(254, 254, 254);
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.messageContentBox-middle::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 5px;
+}
+
+.messageContentBox-middle::-webkit-scrollbar-thumb {
+    background-color: rgb(208, 208, 208);
+    border-radius: 5px;
+    height: 10px;
+}
+
+.messageContentBox-middle::-webkit-scrollbar-track {
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 5px;
+}
+
+.messageContentBox-bottom {
+    width: 100%;
+    height: 60px;
+    padding-top: 25px;
+}
+
+.messageContentBox-send-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messageContentBox-input-box {
+    width: 90%;
+    height: 40px;
+
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 10px;
+    background-color: rgb(248, 248, 248);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 180px;
+}
+
+.messageContentBox-input {
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+
+    background-color: rgb(248, 248, 248);
+
+    padding-left: 20px;
+}
+
+.messageContentBox-input-button {
+    width: 80px;
+    height: 30px;
+
+    background-color: rgba(26, 117, 191, 1);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 140%;
+}
+
+.messageContentBox-input-button:hover {
+    background-color: rgba(26, 117, 191, 0.9);
+}
+
+/* 쪽지 내용 컴포넌트 CSS */
+.messageContentCard-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.messageContentCard-container {
+    width: 477px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0 20px;
+    gap: 12px;
+
+
+}
+
+.messageContentCard-top-box {
+    display: flex;
+    flex-direction: row;
+    gap: 310px;
+}
+
+.messageContentCard-title-send {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+    color: rgba(26, 117, 191, 1);
+}
+
+.messageContentCard-title-receive {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+    color: rgb(221, 188, 80);
+}
+
+.messageContentCard-date {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    color: rgba(167, 167, 167, 0.9);
+}
+
+
+.messageContentCard-content {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 140%;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.division-line {
+    width: 100%;
+    border-top: 1px solid #bbbbbb;
+}
+
+/* 오른쪽 쪽지리스트 css */
+.messageListBox-container {
+    width: 100%;
+    height: 675px;
+    background-color: rgb(255, 255, 255);
+
+    box-shadow: 0px 5px 10px rgba(116, 94, 94, 0.2);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.messageListBox-top {
+    width: 100%;
+    height: 30px;
+}
+
+.messageListBox-middle {
+    width: 100%;
+    height: 615px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: scroll;
+}
+.messageListBox-middle::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 5px;
+}
+
+.messageListBox-middle::-webkit-scrollbar-thumb {
+    background-color: rgb(208, 208, 208);
+    border-radius: 5px;
+    height: 10px;
+}
+
+.messageListBox-middle::-webkit-scrollbar-track {
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 5px;
+}
+
+.messageListBox-bottom {
+    width: 100%;
+    height: 30px
+}
+
+/* 쪽지창 CSS */
+
+.messageRoom-container-active {
+    width: 330px;
+    height: 50px;
+
+    padding: 10px;
+    gap: 10px;
+
+    background-color: rgba(218, 218, 218, 0.9);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.messageRoom-container {
+    width: 330px;
+    height: 50px;
+
+    padding: 10px;
+    gap: 10px;
+
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+}
+.messageRoom-container:hover {
+    background-color: rgba(243, 243, 243, 0.9);
+}
+.messageRoom-icon-box{
+    width: 50px;
+    height: 50px;
+}
+.messageRoom-icon{
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50% 50%;
+    border: 1px solid rgba(167, 167, 167, 0.9);
+}
+.messageRoom-text-box{
+    display: flex;
+    flex-direction: column;
+}
+.messageRoom-top-text{
+    display: flex;
+    flex-direction: row;
+
+    gap: 5px;
+}
+.messageRoom-nickname{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 140%;
+    color: rgba(0, 0, 0, 0.9);
+}
+.messageRoom-date{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    color: rgba(167, 167, 167, 0.9);
+
+    position: relative;
+    top: 5px;
+}
+.messageRoom-bottom-text-box{
+    width: 260px;
+    height: 20px;
+
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.messageRoom-bottom-text{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 140%;
+    color: rgba(0, 0, 0, 0.9);
+}
