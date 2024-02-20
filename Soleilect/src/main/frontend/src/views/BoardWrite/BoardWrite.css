@@ -128,13 +128,14 @@ select.write-check-select {
 
     display: flex;
     justify-content: center;
+    
     /* background-color: rgba(0,0,0,0.05); */
 }
 
 .board-write-container {
     padding: 50px 24px;
     width: 996px;
-    min-height: 1000px;
+    min-height: 700px;
 }
 
 .board-write-box {
@@ -149,7 +150,8 @@ select.write-check-select {
 .write-button-box{
     width: 100px;
     height: 20px;
-    margin-left: auto;
+    margin-top: 300px;
+    margin-left: 40%;
     position: relative;
     
 }
@@ -196,6 +198,7 @@ select.write-check-select {
 
 .board-write-content {
     width: 100%;
+    height: 100%;
     display: flex;
     gap: 16px;
     flex-direction: column;

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Board.css';
-import FreeBoard from './FreeBoard';
 import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
 import moment from 'moment';
@@ -10,42 +9,78 @@ const BoardList = () => {
     const { list, setList } = useContext(ChartContext);
     const nav = useNavigate();
 
+    // state 탭 상태
+    const [toggle, setToggle] = useState('all-board');
+    // state 말머리 코드 상태
+    const [toggleCode, setToggleCode] = useState('');
+    // state 말머리 전체 클릭 상태
+    const [toggleHeadCode, setToggleHeadCode] = useState(true);
+
     useEffect(() => {
+        if(toggleCode=='')return;
+        let formData = new FormData();
+        formData.append('hd_code', toggleCode)
+        axios
+            .post('/Sol/boardCon/filter', formData)
+            .then((res) => {
+                setList(res.data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [toggleCode])
+
+
+    useEffect(() => {
+
         let formData = new FormData();
         axios
             .get('/Sol/boardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
-                console.log(res.data.data);
-                console.log(list);
-                console.log(list.map((item) => item.b_title));
+                setToggleHeadCode(false);
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
+    }, [toggleHeadCode])
 
-    // state 탭 상태
-    const [toggle, setToggle] = useState('notion-board');
+    
+    // event handler : 전체 탭 클릭 이벤트
+    const allTabonClickHandler = () => {
+
+        setToggle('all-board');
+        setToggleCode('')
+        setToggleHeadCode(true);
+    }
 
     // event handler : 공지 탭 클릭 이벤트
     const notionTabonClickHandler = () => {
         setToggle('notion-board');
-        console.log(toggle);
+        setToggleCode('n1');
+     
     }
     // event handler : 자유 게시판 탭 클릭 이벤트
     const freeTabonClickHandler = () => {
         setToggle('free-board');
+        setToggleCode('f1');
+       
     }
     // event handler : 꿀팁 메뉴얼 탭 클릭 이벤트
     const tipTabonClickHandler = () => {
         setToggle('tip-board');
+        setToggleCode('h1');
+       
     }
+
 
     return (
         <div className='board-container'>
             <div className='board-continer-box'>
                 <div className='board-top-container'>
+                    <div className={toggle === 'all-board' ? 'board-tab-button-box-active' : 'board-tab-button-box'} onClick={allTabonClickHandler}>
+                        <div className='board-top-tap-button'>{'전체'}</div>
+                    </div>
                     <div className={toggle === 'notion-board' ? 'board-tab-button-box-active' : 'board-tab-button-box'} onClick={notionTabonClickHandler}>
                         <div className='board-top-tap-button'>{'공지'}</div>
                     </div>
@@ -78,15 +113,15 @@ const BoardList = () => {
                             </tr>
                         </thead>
                         {/* 게시글 list */}
-                        {list.map((item, index) => (
-                            <tbody key={index}  onClick={() => {
-                                // nav(`/Detail/${index}`);
-                                nav(`/BoardDetail/${index}`);
-                            }}>
+                        {list && list.map((item, index) => (
+                            <tbody key={index} className={index % 2 === 0 ? 'even' : 'odd'}
+                                onClick={() => {
+                                    nav(`/BoardDetail/${index}`);
+                                }}>
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>
-                                            <div className='board-title'>{item.b_seq}</div>
+                                            <div className='board-title'>{index + 1}</div>
                                         </div>
                                     </td>
                                     <td className='board-contant-td'>

@@ -8,21 +8,6 @@ const BoardDetail = () => {
   const { list, setList } = useContext(ChartContext);
   let { num } = useParams();
 
-  useEffect(() => {
-    let formData = new FormData();
-    axios
-      .get('/Sol/boardCon/list', formData)
-      .then((res) => {
-        setList(res.data.data)
-        console.log(res.data.data[num]);
-        // console.log(list[num]);
-        // console.log(list.map((item) => item.b_title));
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-
   return (
     <div className='board2-detail-container'>
       <div className='board2-detail-list'>

@@ -66,7 +66,7 @@ const BoardWrite = () => {
     const oncategorionChangeHandler = (e) => {
         const value = e.target.value;
         setHeadName(value);
-        headName == '자유게시판' ? setHeadCode('f1') : setHeadCode('h1')
+        value == '자유게시판' ? setHeadCode('f1') : setHeadCode('h1')
     }
 
     // event handler : 이미지 변경 이벤트 처리
@@ -170,9 +170,6 @@ const BoardWrite = () => {
                 <div className='board-write-box'>
                     <div className='board-write-top'>
                         <div><h2>게시판 글쓰기</h2></div>
-                        <div className='write-button-box'>
-                            <div className='Write-button' onClick={onBoardonClickHandler}>{'등록하기'}</div>
-                        </div>
                     </div>
                     <div className='board-check-top'>
                         <div className='board-write-check'>
@@ -201,7 +198,7 @@ const BoardWrite = () => {
                         <div className='board-wrtie-content-input'>
                         </div>
                         {/* content */}
-                        <textarea name='b_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onBoardContentChangeHandler} value={content}></textarea>
+                        <textarea name='b_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onBoardContentChangeHandler} value={content} rows={10}></textarea>
 
                         {/* 아이디, 닉네임, 조회수 */}
                         <input name='user_id' type="hidden" ref={userIdRef} value={userId} />
@@ -218,10 +215,13 @@ const BoardWrite = () => {
                                 </div>
                             </div>
                         )}
-
                     </div>
                 </div>
+                <div className='write-button-box'>
+                            <div className='Write-button' onClick={onBoardonClickHandler}>{'등록하기'}</div>
+                        </div>
             </div>
+
         </div>
     )
 }

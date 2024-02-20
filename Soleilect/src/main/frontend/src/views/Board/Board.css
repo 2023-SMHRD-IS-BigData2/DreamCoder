@@ -180,17 +180,26 @@ tbody{
     cursor: pointer;
 }
 .board-bottom-list:hover{
-    background-color: aqua;
+    background-color: #e1e1e1;
 }
 
 
-.board-bottom-list:nth-child(even) {
+/* .board-bottom-list:nth-child(even) {
     background-color: #ffffff;
 }
 
 .board-bottom-list:nth-child(odd) {
     background-color: #f2f2f2;
+} */
+
+tbody.even {
+    background-color: #f2f2f2; /* 짝수 번째 행의 배경색 */
 }
+
+tbody.odd {
+    background-color: #ffffff; /* 홀수 번째 행의 배경색 */
+}
+
 
 
 /* ------------------ 상세 일반 게시물 ------------------------  */
