@@ -11,7 +11,7 @@ public interface PartyBoardDAO {
 	
 	void partyBoardInsert(Party_boards boards);
 	
-	int partyBoardDelete(int num);
+	int partyBoardDelete(int party_seq);
 	
 	int partyBoardUpdate(Party_boards boards);
 	

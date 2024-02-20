@@ -7,7 +7,7 @@ public interface PartyBoardService {
 	
 	ResultVO partyBoardInsert(Party_boards boards);
 	
-	ResultVO partyBoardDelete(int num);
+	ResultVO partyBoardDelete(int party_seq);
 	
 	ResultVO partyBoardUpdate(Party_boards boards);
 	
