@@ -4,15 +4,15 @@
 
 	<insert id="ascenterInfoInsert" parameterType="com.slt.entity.Ascenter">
 		insert into ASCENTER_TB(as_region, company_name, company_tel)
-		values(#{as_region}, #{company_name}, #{company_tel})
+		values(#{as_region}, #{company_name}, #{company_tel});
 	</insert>
 
 	<select id="ascenterSelectList" resultType="com.slt.entity.Ascenter">
-		select * from ASCENTER_TB
+		select * from ASCENTER_TB;
 	</select>
 	
 	<delete id="ascenterDelete">
-		delete from ASCENTER_TB where as_seq = #{as_seq}
+		delete from ASCENTER_TB where as_seq = #{as_seq};
 	</delete>
 	
 </mapper>

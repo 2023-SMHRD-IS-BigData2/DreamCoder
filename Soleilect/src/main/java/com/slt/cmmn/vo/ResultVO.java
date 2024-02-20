@@ -36,7 +36,7 @@ public class ResultVO {
             case "05":
             	return "시스템 오류"; 
             case "06":
-            	return "해당 데이터 없음"; 
+            	return "해당 데이터 없음";
             case "98":
             	return "NULL";
             case "99":
