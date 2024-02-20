@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import './mypage.css';
+import axios from 'axios';
 import OwnPowerTab from '../MpTabBox/OwnPowerTab';
 import JoinedProjectTab from '../MpTabBox/JoinedProjectTab';
 import CreatePowerTab from '../MpTabBox/CreatePowerTab';
@@ -15,6 +16,20 @@ export default function Mypage() {
     const [toggle, setToggle] = useState(1);
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
+
+    const myPostList = () => {
+        let formData = new FormData();
+        formData.append("id", sessionStorage.getItem("user_id"))
+        axios
+            .post('/Sol/myPageCon/myPost', formData)
+            .then((res) => {
+                console.log(res.data.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    };
+
     //          event handler: 환경설정 버튼 클릭 이벤트 처리
     const onEditProfileClickHandler = () => {
         setView('edit-profile');
@@ -34,6 +49,7 @@ export default function Mypage() {
     const onMyPostCardClickHandler = () => {
         setView('my-post');
         setToggle(4);
+        { myPostList() }
     }
     //          event handler: 즐겨찾기 클릭 이벤트 처리
     const onFavoritesCardClickHandler = () => {
