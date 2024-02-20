@@ -221,6 +221,13 @@
     font-size: 16px;
 }
 
+/* 모집 게시판 삭제 버튼 */
+.board-detail-writer-delete{
+    display: flex;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
 .board-detail-top-main{
     display: flex;
     flex-direction: column;

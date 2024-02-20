@@ -12,15 +12,24 @@ const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
     let { num } = useParams();
 
+    // state 년월일 시간 자르기
     const [timestamp,setTimeStamp] = useState();
 
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
 
+    // state 삭제 버튼 상태
+    const [button,setButton] = useState('');
+
+    // event handler 게시글 삭제 클릭 이벤트
+    const onPartyDeleteClickHandler = () => {
+        setButton('true')
+    }
+
     useEffect(() => {
         let formData = new FormData();
         axios
-            .get('/Sol/partyBoardCon/list', formData)
+            .get('/Sol/partyBoardCon//delete', formData)
             .then((res) => {
                 setList(res.data.data)
                 setTimeStamp(list[num].created_at);
@@ -34,6 +43,20 @@ const PartyBoardDetail = () => {
 
     }, [])
 
+    // useEffect(()=>{
+    //     let formData = new FormData();
+    //     formData.append("party_seq", list[num].party_seq)
+    //     axios
+    //         .post('/Sol/partyBoardCon/delete',formData)
+    //         .then((res) => {
+    //             setList(res.data.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // },[button])
+
+    // console.log(list[num].party_seq);
     // chart 부분
     let options = {};
 
@@ -126,9 +149,12 @@ const PartyBoardDetail = () => {
                             <div className='detail-chart-recruit' style={{color: list[num].party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>
                                 {list[num].party_isJoin}
                                 </div>
-                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>
+                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>                  
                         </div>
                     </div>
+                    {list[num].user_id == sessionStorage.getItem('user_id') ? <>
+                            <div className='board-detail-writer-delete' onClick={onPartyDeleteClickHandler}>{'삭제'}</div>
+                            <div className='board-detail-writer-delete'>{'수정'}</div> </>:<></>}
 
                     <div className='detail-chart-highchart'>
                         <HighchartsReact highcharts={Highcharts} options={options} />

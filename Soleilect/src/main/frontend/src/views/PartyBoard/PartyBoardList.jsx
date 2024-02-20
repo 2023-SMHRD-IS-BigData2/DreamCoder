@@ -25,7 +25,6 @@ const PartyBoardList = () => {
     .get('/Sol/partyBoardCon/list',formData)
     .then((res)=>{
       setList(res.data.data)
-      console.log(res.data.data);
     })
     .catch((error) => {
       console.log(error)

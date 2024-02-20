@@ -1,17 +1,22 @@
-import axios from 'axios';
-import React, { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext} from 'react'
+import { useParams,useNavigate } from 'react-router-dom'
 import { ChartContext } from '../../context/ChartContext';
 import moment from 'moment';
 
 const BoardDetail = () => {
-  const { list, setList } = useContext(ChartContext);
+  const { list } = useContext(ChartContext);
   let { num } = useParams();
+  const nav = useNavigate();
+
+  // event 일반게시판 목록으로 돌아가기
+  const onListClickHandler = () => {
+    nav('/BoardList')
+  }
 
   return (
     <div className='board2-detail-container'>
       <div className='board2-detail-list'>
-        <div className='board2-detail-list-box'>{'목록'}</div>
+        <div className='board2-detail-list-box' onClick={onListClickHandler}>{'목록'}</div>
       </div>
       {/* list[num] 값이 있으면 다음 렌덩링 - 새로고침 시 오류가 나서 이렇게 해결*/}
       {list[num] && <div className='board2-detail-content-box'>

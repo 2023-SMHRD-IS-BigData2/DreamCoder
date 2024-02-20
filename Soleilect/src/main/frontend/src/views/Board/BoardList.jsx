@@ -38,7 +38,6 @@ const BoardList = () => {
             .get('/Sol/boardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
-                setToggleHeadCode(false);
             })
             .catch((error) => {
                 console.log(error)
@@ -51,7 +50,7 @@ const BoardList = () => {
 
         setToggle('all-board');
         setToggleCode('')
-        setToggleHeadCode(true);
+        setToggleHeadCode(!toggleHeadCode);
     }
 
     // event handler : 공지 탭 클릭 이벤트
