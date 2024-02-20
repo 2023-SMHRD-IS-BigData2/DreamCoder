@@ -1,7 +1,9 @@
 package com.slt.partyboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.slt.cmmn.vo.ResultVO;
@@ -19,7 +21,7 @@ public class PartyApplyController {
 	 * 발전소를 모집 그룹에 가입
 	 */
 	@RequestMapping("/apply")
-	public ResultVO partyApply(Party_application party) {
+	public ResultVO partyApply(@ModelAttribute Party_application party) {
 		return partyapplyservice.partyApply(party);
 	}
 	
@@ -27,7 +29,7 @@ public class PartyApplyController {
 	 * 모집 게시판 현재 발전량 갱신
 	 */
 	@RequestMapping("/pbUpdate")
-	public ResultVO partyApplypbUpdate(int num) {
-		return null;
+	public ResultVO partyApplypbUpdate(@RequestParam int party_seq, int now_cnt) {
+		return partyapplyservice.partyApplypbUpdate(party_seq, now_cnt);
 	}
 }

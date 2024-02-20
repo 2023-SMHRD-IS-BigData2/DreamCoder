@@ -12,7 +12,6 @@ public class PartyApplyServiceImp implements PartyApplyService {
 
 	@Autowired
 	private PartyApplyDAO partyapplyDao;
-	
 
 	@Override
 	public ResultVO partyApply(Party_application party) {
@@ -24,6 +23,17 @@ public class PartyApplyServiceImp implements PartyApplyService {
 			} else {
 				return new ResultVO("03", null);
 			}
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO partyApplypbUpdate(int party_seq, int now_cnt) {
+
+		try {
+			partyapplyDao.partyApplypbUpdate(party_seq, now_cnt);
+			return new ResultVO("00", null);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}

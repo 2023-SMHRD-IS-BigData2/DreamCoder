@@ -1,6 +1,7 @@
 package com.slt.join.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class JoinController {
 	 *  회원가입
 	 */
 	@RequestMapping("/join")
-	public ResultVO join(User user) {
+	public ResultVO join(@ModelAttribute User user) {
 		System.out.println("회원가입");
 		System.out.println("들어온 정보 :");
 		System.out.println(user.toString());

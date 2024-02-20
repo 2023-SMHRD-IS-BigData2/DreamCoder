@@ -1,6 +1,7 @@
 package com.slt.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class LoginController {
 	 * 로그인
 	 */
 	@RequestMapping("/login")
-	public ResultVO login(Login login) {
+	public ResultVO login(@ModelAttribute Login login) {
 		System.out.println("로그인");
 		return loginservice.login(login);
 	}

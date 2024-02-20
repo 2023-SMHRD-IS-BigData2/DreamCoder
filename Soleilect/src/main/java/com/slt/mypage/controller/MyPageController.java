@@ -2,6 +2,7 @@ package com.slt.mypage.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class MyPageController {
 	 * 발전소 삽입
 	 */
 	@RequestMapping("/plantInsert")
-	public ResultVO plantInsert(Plants plants) {
+	public ResultVO plantInsert(@ModelAttribute Plants plants) {
 		System.out.println("마이페이지 발전소 삽입");
 		System.out.println("들어온 정보 :");
 		System.out.println(plants.toString());

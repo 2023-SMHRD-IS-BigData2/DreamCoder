@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slt.partyboard.dao.PartyApplyDAO">
+	<insert id="partyApply"
+		parameterType="com.slt.entity.Party_application">
+		INSERT INTO PARTY_LIST_TB
+		(PARTY_SEQ,
+		PARTY_TITLE,
+		PL_SEQ,
+		PL_NAME,
+		USER_NICK,
+		PL_POWER,
+		PL_ISJOIN)
+		VALUES
+		(#{party_seq},
+		#{party_title},
+		#{pl_seq},
+		#{pl_name},
+		#{user_nick},
+		#{pl_power},
+		#{pl_isJoin});
+	</insert>
+	<update id="partyApplypbUpdate" parameterType="int">
+		UPDATE
+		PARTY_BOARDS_TB
+		SET
+		NOW_CNT = #{now_cnt},
+		WHERE PARTY_SEQ = #{party_seq};
+	</update>
+</mapper>

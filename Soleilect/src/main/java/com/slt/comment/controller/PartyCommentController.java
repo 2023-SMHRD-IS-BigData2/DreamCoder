@@ -2,6 +2,7 @@ package com.slt.comment.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class PartyCommentController {
 	 * 댓글 삽입
 	 */
 	@RequestMapping("/insert")
-	public ResultVO partyCommentInsert(Party_comments comments) {
+	public ResultVO partyCommentInsert(@ModelAttribute Party_comments comments) {
 		System.out.println("모집 게시판 댓글 삽입");
 		System.out.println("들어온 정보 :");
 		System.out.println(comments.toString());
