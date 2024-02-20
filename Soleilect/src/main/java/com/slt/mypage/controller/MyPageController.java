@@ -35,4 +35,10 @@ public class MyPageController {
 		return mypageservice.plantList(id);
 	}
 	
+	@RequestMapping("/myPost")
+	public ResultVO myPost(String id) {
+		System.out.println("마이페이지 내가 작성한 글 목록");
+		return mypageservice.myPost(id);
+	}
+	
 }

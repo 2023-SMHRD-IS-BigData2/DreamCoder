@@ -10,4 +10,6 @@ public interface MyPageService {
 	ResultVO plantDelete(int num);
 	
 	ResultVO plantList(String id);
+	
+	ResultVO myPost(String id);
 }

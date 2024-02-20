@@ -1,12 +1,15 @@
 package com.slt.mypage.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.slt.cmmn.vo.ResultVO;
+import com.slt.entity.Boards;
+import com.slt.entity.Party_boards;
 import com.slt.entity.Plants;
 import com.slt.mypage.dao.MyPageDAO;
 
@@ -51,6 +54,25 @@ public class MyPageServiceImp implements MyPageService{
 			List<Plants> dtList = mypageDao.plantList(id);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO myPost(String id) {
+		try {
+			List<Party_boards> pbList = mypageDao.myPartyBoardPost(id);
+			List<Boards> bList = mypageDao.myBoardPost(id);
+			HashMap<String, List<Party_boards>> pbMap = new HashMap<String, List<Party_boards>>();
+			HashMap<String, List<Boards>> bMap = new HashMap<String, List<Boards>>();
+			pbMap.put("모집", pbList);
+			bMap.put("자유", bList);
+			
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.add(pbMap);
+			dataList.add(bMap);
 			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
