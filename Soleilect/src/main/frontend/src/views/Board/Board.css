@@ -58,7 +58,7 @@
     border-radius: 5px;
     color: rgb(0, 0, 0);
     cursor: pointer;
-    margin-left: 600px;
+    margin-left: 500px;
     
 }
 .board-top-write-box:hover {
@@ -90,6 +90,7 @@
     border: 1px solid rgba(0,0,0,0.1);
     width: 1200px;
     height: 600px;
+    border-radius: 5px;
 }
 
 /* 어떤 게시판인지 */
@@ -168,12 +169,6 @@ display: flex;
   width: 600px;
 }
 
-/* .board-list-divider{
-    width: 160%;
-    justify-content: center;
-    margin-left: 40px;
-    border-top: 1px solid rgba(0,0,0,0.2);
-} */
 
 /* 게시판 리스트 */
 tbody{
@@ -195,4 +190,114 @@ tbody{
 
 .board-bottom-list:nth-child(odd) {
     background-color: #f2f2f2;
+}
+
+
+/* ------------------ 상세 일반 게시물 ------------------------  */
+.board2-detail-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+}
+/* 말머리 */
+.board2-detail-categori{
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+
+/* 버튼 css */
+.board2-detail-list{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 35%;
+    padding-bottom: 20px;
+}
+.board2-detail-list-box{
+    background-color:rgba(237, 237, 237, 0.9);
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+.board2-detail-list-box:hover{
+    background-color: rgba(226, 226, 226, 0.9);
+    color: rgba(26, 117, 191, 1);
+}
+
+/* 상세 일반 게시물 컨텐츠 */
+.board2-detail-content-box{
+    width: 900px;
+    background-color: white;
+    height: 780px;
+    justify-content: center;
+    border: 1px solid rgb(0, 0, 0,0.1);
+    border-radius: 5px;
+}
+.board2-detail-content{
+    padding-left: 50px;
+}
+.board2-detail-top{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.board2-detal-titile-box{
+    font-size: 26px;
+}
+
+.board2-detail-middle{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+.board2-detail-top-icon{
+    padding-top: 7.5px;
+    display: flex;
+}
+
+
+/* 이름, 날짜, 조회수 */
+.board2-detail-top-info{
+display: flex;
+flex-direction: column;
+}
+.board2-detail-top-name{
+    font-size: 17px;
+}
+
+.board2-detail-top-date-view{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 5px;
+    font-size: 15px;
+    color: rgba(0,0,0,0.7);
+}
+
+.board2-divider{
+    width: 95%;
+    border-top: 1px solid rgba(0,0,0,0.2)
+}
+
+/* 상세 일반 게시판 내용 */
+.board2-detail-bottom{
+    display: flex;
+}
+
+.board2-detail-detailcontent{
+    padding-top: 20px;
 }

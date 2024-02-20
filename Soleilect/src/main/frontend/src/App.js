@@ -21,6 +21,7 @@ import BoardList from "./views/Board/BoardList";
 import RepairInfoDetail from "./views/InfoList/RepairInfoDetail";
 import Footer from "./layouts/Footer/Footer";
 import MessagePage from "./views/MessagePage/MessagePage";
+import BoardDetail from "./views/Board/BoardDetail";
                                                                          
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/BoardList" element={<BoardList/>}></Route>
         <Route path='/RInfodetail/:num' element={<RepairInfoDetail/>}></Route>
         <Route path='/MessagePage' element={<MessagePage/>}></Route>
+        <Route path="/BoardDetail/:num" element={<BoardDetail/>}></Route>
       </Routes>
       <Footer/>
     </div>

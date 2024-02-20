@@ -1,44 +1,67 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { ChartContext } from '../../context/ChartContext';
+import moment from 'moment';
 
 const BoardDetail = () => {
-    return (
-        <div className='board2-detail-container'>
-          <div className='board2-detail-list'>
-              <div className='board2-detail-list-box'>{'목록'}</div>
+  const { list, setList } = useContext(ChartContext);
+  let { num } = useParams();
+
+  useEffect(() => {
+    let formData = new FormData();
+    axios
+      .get('/Sol/boardCon/list', formData)
+      .then((res) => {
+        setList(res.data.data)
+        console.log(res.data.data[num]);
+        // console.log(list[num]);
+        // console.log(list.map((item) => item.b_title));
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
+  return (
+    <div className='board2-detail-container'>
+      <div className='board2-detail-list'>
+        <div className='board2-detail-list-box'>{'목록'}</div>
+      </div>
+      {/* list[num] 값이 있으면 다음 렌덩링 - 새로고침 시 오류가 나서 이렇게 해결*/}
+      {list[num] && <div className='board2-detail-content-box'>
+        <div className='board2-detail-categori'>{'['}{list[num].hd_name}{']'}</div>
+        <div className='board2-detail-content'>
+          <div className='board2-detail-top'>
+            <div className='board2-detail-title'>
+              <div className='board2-detal-titile-box'>{list[num].b_title}</div>
             </div>
-          <div className='board2-detail-content-box'>
-            <div className='board2-detail-categori'>{'[자유게시판]'}</div>
-            <div className='board2-detail-content'>
-              <div className='board2-detail-top'>
-                <div className='board2-detail-title'>
-                  <div className='board2-detal-titile-box'>{'1년에 수리업체 몇번 정도 부르세요?'}</div>
-                </div>
+          </div>
+
+          <div className='board2-detail-middle'>
+            <div className='board2-detail-top-icon'>
+              <div className='board-detail-writer-profile-image'></div>
+            </div>
+            <div className='board2-detail-top-info'>
+              <div className='board2-detail-top-name'>
+                <div className='board2-detail-top-name-box'>{list[num].user_nick}</div>
               </div>
-    
-              <div className='board2-detail-middle'>
-                <div className='board2-detail-top-icon'>
-                  <div className='board-detail-writer-profile-image'></div>
-                </div>
-                <div className='board2-detail-top-info'>
-                  <div className='board2-detail-top-name'>
-                    <div className='board2-detail-top-name-box'>{'홍길동'}</div>
-                  </div>
-                  <div className='board2-detail-top-date-view'>
-                    <div className='board2-detail-top-date-box'>{'2024-02-19'}</div>
-                    <div className='board2-detail-top-view-box'>{'조회수'}{'52'}</div>
-                  </div>
-                </div>
-              </div>
-              <div className='board2-divider'></div>
-              <div className='board2-detail-bottom'>
-                <div className='board2-detail-detailcontent'>
-                  <div className='board2-detail-detailcontent-box'>{'1년에 수리업체 몇번 정도 부르세요? 비용이 꽤 나가네요'}</div>
-                </div>
+              <div className='board2-detail-top-date-view'>
+                <div className='board2-detail-top-date-box'>{moment(list[num].created_at).format("YYYY-MM-DD")}</div>
+                <div className='board2-detail-top-view-box'>{'조회수'}{list[num].b_views}</div>
               </div>
             </div>
           </div>
+          <div className='board2-divider'></div>
+          <div className='board2-detail-bottom'>
+            <div className='board2-detail-detailcontent'>
+              <div className='board2-detail-detailcontent-box'>{list[num].b_content}</div>
+            </div>
+          </div>
         </div>
-      )
+      </div>}
+    </div>
+  )
 }
 
 export default BoardDetail

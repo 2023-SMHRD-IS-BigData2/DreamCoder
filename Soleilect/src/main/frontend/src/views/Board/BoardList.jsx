@@ -67,10 +67,7 @@ const BoardList = () => {
                 <div className='board-contant-container-box'>
                     <div className='board-contant-top'>{'자유게시판'}</div>
 
-                    <table className='board-table' onClick={() => {
-                        // nav(`/Detail/${index}`);
-                        nav(`/BoardDetail`);
-                    }}>
+                    <table className='board-table'>
                         <thead >
                             <tr>
                                 <th className='board-contant-th'>{''}</th>
@@ -82,7 +79,10 @@ const BoardList = () => {
                         </thead>
                         {/* 게시글 list */}
                         {list.map((item, index) => (
-                            <tbody key={index}>
+                            <tbody key={index}  onClick={() => {
+                                // nav(`/Detail/${index}`);
+                                nav(`/BoardDetail/${index}`);
+                            }}>
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>
