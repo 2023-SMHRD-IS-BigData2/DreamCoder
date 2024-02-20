@@ -7,11 +7,11 @@ const OwnPowerTab = () => {
     const [modalOpen, setModalOpen] = useState(false);
     //          state: 모달페이지 상태
     const [modalPage, setModalPage] = useState('');
-    //          event handler: 발전소 수정하기 버튼 클릭 이벤트 핸들러
-    const onOwnPowerModalClickHandler = () => {
-        setModalPage('edit-plant');
-        setModalOpen(true);
-    }
+    // //          event handler: 발전소 수정하기 버튼 클릭 이벤트 핸들러
+    // const onOwnPowerModalClickHandler = () => {
+    //     setModalPage('edit-plant');
+    //     setModalOpen(true);
+    // }
     //          event handler: 삭제하기 버튼 클릭 이벤트 핸들러
     const onOwnPowerModalDeleteClickHandler = () => {
         setModalPage('delete-plant');
@@ -38,11 +38,8 @@ const OwnPowerTab = () => {
                     </div>
                 </div>
                 <div className='tab-content-button-list'>
-                    <div className='delete-content-box' onClick={onOwnPowerModalDeleteClickHandler}>
-                        <div className='delete-button'>X</div>
-                    </div>
                     <div className='tab-content-edit-button-box'>
-                        <div className='edit-button' onClick={onOwnPowerModalClickHandler}>{'수정하기'}</div>
+                        <div className='edit-button' onClick={onOwnPowerModalDeleteClickHandler}>{'삭제하기'}</div>
                     </div>
                 </div>
             </div>

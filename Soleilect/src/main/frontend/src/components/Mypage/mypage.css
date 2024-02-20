@@ -1,3 +1,7 @@
+#body{
+    width: 100%;
+    height: 100%;
+}
 #mypage-wrapper {
     padding: 100px 0px 15px;
     min-width: 1440px;
@@ -254,6 +258,7 @@
 
 .scroll {
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .scroll::-webkit-scrollbar {

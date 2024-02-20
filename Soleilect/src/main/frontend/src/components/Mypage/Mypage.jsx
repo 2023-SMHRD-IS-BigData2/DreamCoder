@@ -6,6 +6,7 @@ import CreatePowerTab from '../MpTabBox/CreatePowerTab';
 import FreeBoardTab from '../MpTabBox/FreeBoardTab';
 import AlarmTab from '../MpTabBox/AlarmTab';
 import OwnPowerModal from '../Modal/OwnPowerModal';
+import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
 
 export default function Mypage() {
     //          state: 화면 상태 
@@ -115,8 +116,17 @@ export default function Mypage() {
                     </div>
                     <div className='mypage-right-title'>{'알림 내역'}</div>
                 </div>
-                <div className='mypage-right-bottom'>
-                    <AlarmTab />
+                <div className='mypage-right-bottom scroll'>
+                    <div className='tap-contents-list'>
+                        <AlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                        <JoinAlarmTab />
+                    </div>
                 </div>
             </div>
         );
@@ -154,7 +164,7 @@ export default function Mypage() {
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
                         <div className='ownPower-add-button' >{'발전소 등록'}</div>
                     </div>
-                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage='add-plant'/>}
+                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage='add-plant' />}
                 </div>
 
             );
