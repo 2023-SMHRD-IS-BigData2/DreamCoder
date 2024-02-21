@@ -5,7 +5,7 @@ import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 import axios from 'axios';
 
 const OwnPowerModal = forwardRef((props, ref) => {
-    const { setModalOpen, setModalPage } = props;
+    const { pl_name,pl_seq,setModalOpen, setModalPage } = props;
     const closeModal = () => {
         setModalOpen(false);
     };
@@ -25,8 +25,24 @@ const OwnPowerModal = forwardRef((props, ref) => {
         axios
           .post('/Sol/myPageCon/plantInsert', formData)
           .then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             alert('발전소 등록완료')
+            setModalOpen(false)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    
+      };
+
+      const deleteMyPlant = () => {
+        let formData = new FormData();
+        formData.append("pl_seq", pl_seq)
+
+        axios
+          .post('/Sol/myPageCon/plantDelete', formData)
+          .then((response) => {
+            alert('발전소 삭제완료')
             setModalOpen(false)
           })
           .catch((error) => {
@@ -202,8 +218,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
     }
     //              event handler: 보유 발전소 삭제하기 버튼 클릭 이벤트
     const deletOwnPlantClickHandler = () => {
-        alert('발전소삭제이벤트');
-        closeModal();
+        {deleteMyPlant()}
     }
 
     return (
@@ -296,7 +311,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
                         <button className='close' onClick={closeModal}>
                             X
                         </button>
-                        <div className='delete-modal-text'>{'발전소 이름'}</div>
+                        <div className='delete-modal-text'>{pl_name}</div>
                         <div className='delete-modal-text'>발전소 정보를 삭제하시겠습니까?</div>
                         <div className='delete-ownplant-button-box'>
                             <div className='delete-ownplant-button' onClick={deletOwnPlantClickHandler}>{'삭제하기'}</div>
