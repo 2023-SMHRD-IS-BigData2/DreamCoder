@@ -8,10 +8,10 @@ const MessagePage = () => {
         <div id='message-page-wrapper'>
             <div className='message-page-container'>
                 <div className='message-page-left-box'>
-                    <MessageContentBox/>
+                    <MessageListBox/>
                 </div>
                 <div className='message-page-right-box'>
-                    <MessageListBox/>
+                    <MessageContentBox/>
                 </div>
             </div>
         </div>

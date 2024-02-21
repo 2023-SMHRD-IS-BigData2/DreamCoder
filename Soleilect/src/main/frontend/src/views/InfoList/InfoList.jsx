@@ -17,7 +17,6 @@ const InfoList = () => {
 
     useEffect(() => {
         let formData = new FormData();
-        console.log('수리업체정보불러오기');
         axios
             .get('/Sol/ascenterCon/list', formData)
             .then((res) => {

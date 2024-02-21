@@ -28,7 +28,8 @@
     width: 80px;
     height: 80px;
 
-    background-color: rgba(241, 241, 241, 1);
+    display: flex;
+    align-items: center;
 }
 
 /* 알림내역의 원 */

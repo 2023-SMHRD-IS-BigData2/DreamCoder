@@ -27,7 +27,7 @@ const OwnPowerTab = (props) => {
         <div className='tab-content-list'>
             <div className='tab-content-box'>
                 <div className='tab-image-box'>
-                    <div className='tab-image'></div>
+                    <div className='icon solar-power-icon'></div>
                 </div>
                 <div className='tab-text-content-box owned'>
                     <div className='tab-top-text-box'>
