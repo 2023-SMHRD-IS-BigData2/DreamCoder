@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const usePagination = (perPage, data) => {
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -29,6 +29,11 @@ const usePagination = (perPage, data) => {
         const pageNumber = Math.max(1, Math.min(page, totalPageCount));
         setCurrentPage(pageNumber);
     };
+
+    // 데이터가 변경될 때마다 총 데이터 업데이트
+    useEffect(() => {
+        setTotalData(data);
+    }, [data]);
 
     return {
         currentPage,
