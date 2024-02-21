@@ -11,8 +11,9 @@ import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
 
 
 export default function Mypage() {
-    const [list, setList ] = useState([]);
-    const [secList, setSecList ] = useState([]);
+    const [list, setList] = useState([]);
+    const [secList, setSecList] = useState([]);
+    const [ownPList, setOwnPList] = useState([]);
     //          state: 화면 상태 
     const [view, setView] = useState('edit-profile');
     //          state: 버튼 상태 
@@ -33,12 +34,12 @@ export default function Mypage() {
                 console.log(error)
             })
     };
-    
+
     const readMyRecruitment = (res) => {
         const data = res.data.data[0].recruitment;
         setList(data);
     };
-    
+
     const myFreePostList = () => {
         let formData = new FormData();
         formData.append("user_id", sessionStorage.getItem("user_id"))
@@ -51,10 +52,25 @@ export default function Mypage() {
                 console.log(error)
             })
     };
-    
+
     const readMyFree = (res) => {
         const data = res.data.data[1].free;
         setSecList(data);
+    };
+    //          마이페이지 보유발전소 불러오기
+    const readMyPlantList = () => {
+        let formData = new FormData();
+        formData.append("user_id", sessionStorage.getItem("user_id"))
+        axios
+            .post('/Sol/myPageCon/plantList', formData)
+            .then((response) => {
+                console.log(response.data.data)
+                setOwnPList(response.data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     };
 
     //          event handler: 환경설정 버튼 클릭 이벤트 처리
@@ -71,6 +87,7 @@ export default function Mypage() {
     const onMyPowerClickHandler = () => {
         setView('my-power');
         setToggle(3);
+        { readMyPlantList() };
     }
     //          event handler: 작성한 게시물 클릭 이벤트 처리
     const onMyPostCardClickHandler = () => {
@@ -186,6 +203,7 @@ export default function Mypage() {
         const onfirstTabClickHandler = () => {
             setToggle(1);
             setView('own-power')
+            { readMyPlantList() }
         }
         //          event handler: 두번째 탭 클릭 이벤트 처리
         const onsecondTabClickHandler = () => {
@@ -203,8 +221,10 @@ export default function Mypage() {
             return (
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
-                    <OwnPowerTab />
-                    <OwnPowerTab />
+                    {ownPList && ownPList.map((item, index) => (
+                        <OwnPowerTab pl_power={item.pl_power}pl_name={item.pl_name}pl_loc={item.pl_loc}  />
+                    ))}
+
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
                         <div className='ownPower-add-button' >{'발전소 등록'}</div>
                     </div>

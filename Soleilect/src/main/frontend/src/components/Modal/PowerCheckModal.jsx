@@ -6,7 +6,7 @@ import { ChartContext } from '../../context/ChartContext';
 
 const PowerCheckModal = forwardRef((props, ref) => {
     const { list, setList } = useContext(ChartContext);
-    const { setModalOpen } = props;
+    const { setModalOpen ,modalOpen } = props;
     const closeModal = () => {
         setModalOpen(false);
     };
@@ -26,14 +26,14 @@ const PowerCheckModal = forwardRef((props, ref) => {
                 .post('/Sol/myPageCon/plantList', formData)
                 .then((res) => {
                     setList(res.data.data)
-                    console.log(res.data);
+                    console.log(res.data.data);
                     console.log('나의 발전소 출력 완료');
                     // nav('/PartyBoardList')
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-    }, [])
+    }, [modalOpen])
 
     // state 신청완료 버튼 상태
     const [button, setButton] = useState('');
