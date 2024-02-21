@@ -31,9 +31,10 @@ const PartyBoardList = () => {
     })
     
   },[])
-  console.log(list);
+  // console.log(list);
 
   return (
+    list ?
     <div className='list-container'>
       <div className='write-box'>
         <div className='write-button' onClick={()=>{
@@ -45,6 +46,7 @@ const PartyBoardList = () => {
           key={index} index={index}></PartyBoardItem>)}
       </div>
     </div>
+    :<div> Loading...</div>
   )
 }
 
