@@ -3,7 +3,7 @@ import './style.css';
 import OwnPowerModal from '../Modal/OwnPowerModal';
 
 const OwnPowerTab = (props) => {
-    const{pl_power,pl_name,pl_loc}=props;
+    const{pl_power,pl_name,pl_loc,pl_seq}=props;
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
     //          state: 모달페이지 상태
@@ -13,6 +13,8 @@ const OwnPowerTab = (props) => {
     //     setModalPage('edit-plant');
     //     setModalOpen(true);
     // }
+
+    
     //          event handler: 삭제하기 버튼 클릭 이벤트 핸들러
     const onOwnPowerModalDeleteClickHandler = () => {
         setModalPage('delete-plant');
@@ -44,7 +46,7 @@ const OwnPowerTab = (props) => {
                     </div>
                 </div>
             </div>
-            {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage={modalPage} />}
+            {modalOpen && <OwnPowerModal pl_seq={pl_seq} pl_name={pl_name} setModalOpen={setModalOpen} setModalPage={modalPage} />}
         </div>
     );
 };

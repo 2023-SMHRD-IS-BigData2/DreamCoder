@@ -64,7 +64,6 @@ export default function Mypage() {
         axios
             .post('/Sol/myPageCon/plantList', formData)
             .then((response) => {
-                console.log(response.data.data)
                 setOwnPList(response.data.data)
             })
             .catch((error) => {
@@ -222,7 +221,7 @@ export default function Mypage() {
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
                     {ownPList && ownPList.map((item, index) => (
-                        <OwnPowerTab pl_power={item.pl_power}pl_name={item.pl_name}pl_loc={item.pl_loc}  />
+                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power}pl_name={item.pl_name}pl_loc={item.pl_loc}  />
                     ))}
 
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
