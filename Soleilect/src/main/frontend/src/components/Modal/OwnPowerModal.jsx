@@ -2,6 +2,7 @@ import React, { useEffect, forwardRef, useRef, useState } from 'react';
 import './style.css';
 import InputBox from '../InputBox';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+import axios from 'axios';
 
 const OwnPowerModal = forwardRef((props, ref) => {
     const { setModalOpen, setModalPage } = props;
@@ -13,6 +14,26 @@ const OwnPowerModal = forwardRef((props, ref) => {
     const modalRef = useRef(null);
     //          state: 페이지 상태 
     const modalPagestate = setModalPage;
+    //           발전소 등록하기
+    const submitMyPlant = () => {
+        let formData = new FormData();
+        formData.append("user_id", sessionStorage.getItem("user_id"))
+        formData.append("pl_name", plName)
+        formData.append("pl_loc", pladdress)
+        formData.append("bs_num", bnumber)
+        formData.append("pl_power", generation)
+        axios
+          .post('/Sol/myPageCon/plantInsert', formData)
+          .then((response) => {
+            console.log(response.data)
+            alert('발전소 등록완료')
+            setModalOpen(false)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    
+      };
 
     // useEffect(() => {
     //     // 이벤트 핸들러 함수
@@ -111,7 +132,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
             setBnumberErrorMessage('사업자 번호 형태가 맞지 않습니다.');
         }
         if (!isGenertationPattern || !isBnumberPattern) return;
-        setModalOpen(false);
+        {submitMyPlant()};
     }
 
     //          event handler: 발전소 이름 변경 이벤트 처리 
@@ -228,7 +249,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
                     </div>
                 </div>
             )}
-            {modalPagestate === 'edit-plant' && (
+            {/* {modalPagestate === 'edit-plant' && (
                 <div className='Modal'>
                     <div ref={modalRef} className='container'>
                         <div className='auth-card-box'>
@@ -268,7 +289,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
             {modalPagestate === 'delete-plant' && (
                 <div className='Modal'>
                     <div ref={modalRef} className='delete-container'>
