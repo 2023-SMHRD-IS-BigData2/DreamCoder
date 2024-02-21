@@ -113,8 +113,7 @@ const InfoList = () => {
                             </div>
                         </div>
                     )}
-                </div>
-                <div className='repair-info-bottom-box'>
+                    <div className='repair-info-bottom-box'>
                     <div className='info-list-pagination-box'>
                         {/* 페이지네이션 컴포넌트 */}
                         <Pagination
@@ -126,6 +125,8 @@ const InfoList = () => {
                         />
                     </div>
                 </div>
+                </div>
+                
             </div>
         </div>
     );

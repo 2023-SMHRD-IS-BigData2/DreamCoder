@@ -4,6 +4,8 @@ import './Board.css';
 import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
 import moment from 'moment';
+import Pagination from '../../components/Pagination/Pagination';
+import usePagination from '../../hooks/pagination';
 
 const BoardList = () => {
     const { list, setList } = useContext(ChartContext);
@@ -15,6 +17,12 @@ const BoardList = () => {
     const [toggleCode, setToggleCode] = useState('');
     // state 말머리 전체 클릭 상태
     const [toggleHeadCode, setToggleHeadCode] = useState(true);
+    // state 말머리 이름 상태 
+    const [headName, setHeadName] = useState('전체 게시판')
+
+    // 페이지네이션 훅 호출
+    const { currentPage, currentData, totalPageCount, nextPage, prevPage, goToPage } = usePagination(8, list); 
+    // 한 페이지당 8개의 항목 설정
 
     useEffect(() => {
         if(toggleCode=='')return;
@@ -51,25 +59,28 @@ const BoardList = () => {
         setToggle('all-board');
         setToggleCode('')
         setToggleHeadCode(!toggleHeadCode);
+        setHeadName('전체 게시판')
     }
 
     // event handler : 공지 탭 클릭 이벤트
     const notionTabonClickHandler = () => {
         setToggle('notion-board');
         setToggleCode('n1');
+        setHeadName('공지')
      
     }
     // event handler : 자유 게시판 탭 클릭 이벤트
     const freeTabonClickHandler = () => {
         setToggle('free-board');
         setToggleCode('f1');
+        setHeadName('자유게시판')
        
     }
     // event handler : 꿀팁 메뉴얼 탭 클릭 이벤트
     const tipTabonClickHandler = () => {
         setToggle('tip-board');
         setToggleCode('h1');
-       
+        setHeadName('꿀팁 메뉴얼')
     }
 
 
@@ -99,7 +110,7 @@ const BoardList = () => {
 
             <div className='board-content-container'>
                 <div className='board-contant-container-box'>
-                    <div className='board-contant-top'>{'자유게시판'}</div>
+                    <div className='board-contant-top'>{headName}</div>
 
                     <table className='board-table'>
                         <thead >
@@ -112,8 +123,8 @@ const BoardList = () => {
                             </tr>
                         </thead>
                         {/* 게시글 list */}
-                        {list && list.map((item, index) => (
-                            <tbody key={index} className={index % 2 === 0 ? 'even' : 'odd'}
+                        {list && currentData() && currentData().map((item, index) => (
+                            <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}
                                 onClick={() => {
                                     nav(`/BoardDetail/${index}`);
                                 }}>
@@ -148,7 +159,21 @@ const BoardList = () => {
                         ))}
                     </table>
                 </div>
+
             </div>
+            <br></br>
+            <div className='repair-info-bottom-box'>
+                    <div className='info-list-pagination-box'>
+                        {/* 페이지네이션 컴포넌트 */}
+                        {/* <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPageCount}
+                            onNextPage={nextPage}
+                            onPrevPage={prevPage}
+                            onGoToPage={goToPage}
+                        /> */}
+                    </div>
+                </div>
         </div>
     )
 }

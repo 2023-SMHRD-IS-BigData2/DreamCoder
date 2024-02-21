@@ -275,7 +275,7 @@ export default function Mypage() {
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
                         {list && list.map((item, index) => (
-                            <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} />
+                            <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index}/>
 
                         ))}
                         {secList && secList.map((item, index) => (

@@ -208,11 +208,12 @@ const PartyWrite = () => {
 
                     </div>
                 </div>
-                <div className='write-button-box'>
+
+            </div>
+            <div className='write-button-box'>
                     <div className='Write-button-regist' onClick={onPartyBoardsonClickHandler} >{'등록하기'}</div>
                     {/* <input type='submit' value='등록하기' className='Write-button' onClick={onPartyBoardsonClickHandler} ></input> */}
                 </div>
-            </div>
         </div>
     )
 }

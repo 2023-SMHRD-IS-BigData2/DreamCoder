@@ -3,20 +3,15 @@ import PartyBoardItem from './PartyBoardItem'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ChartContext } from '../../context/ChartContext';
+import Pagination from '../../components/Pagination/Pagination';
+import usePagination from '../../hooks/pagination';
 
 const PartyBoardList = () => {
     const {list,setList} = useContext(ChartContext);
+    const nav = useNavigate();
 
-  // 가데이터 넣어서 테스트
-  const nav = useNavigate();
-  //  useEffect(()=>{
-  //   axios
-  //   .get('http://localhost:3000/Party.json')
-  //   .then((res)=>{
-  //       setList(res.data.list)
-  //   })
-  //   console.log(list);
-  // },[])
+     // 페이지네이션 훅 호출
+    //  const { currentPage, currentData, totalPageCount, nextPage, prevPage, goToPage } = usePagination(6, list); 
 
   // 스프링부트 연결 ---------------------
   useEffect(()=>{
@@ -42,9 +37,24 @@ const PartyBoardList = () => {
         }}>{'모집하러 가기'}</div>
       </div>
       <div className='list-item'>
-        {list.map((item, index) => <PartyBoardItem item={item}
+        {/* {list && currentData() && currentData().map((item, index) => <PartyBoardItem item={item}
+          key={(currentPage - 1) * 6 + index} index={index}></PartyBoardItem>)} */}
+           {list.map((item, index) => <PartyBoardItem item={item}
           key={index} index={index}></PartyBoardItem>)}
       </div>
+      <br></br>
+            <div className='repair-info-bottom-box'>
+                    <div className='info-list-pagination-box'>
+                        {/* 페이지네이션 컴포넌트 */}
+                        {/* <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPageCount}
+                            onNextPage={nextPage}
+                            onPrevPage={prevPage}
+                            onGoToPage={goToPage}
+                        /> */}
+                    </div>
+                </div>
     </div>
     :<div> Loading...</div>
   )

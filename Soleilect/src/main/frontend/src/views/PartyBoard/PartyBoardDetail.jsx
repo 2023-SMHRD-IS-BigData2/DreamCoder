@@ -21,6 +21,10 @@ const PartyBoardDetail = () => {
     const [powerPlantList, setPowerPlantList] = useState([]);
     // state 발전소 신청 상태
     const [powerButton, setPowerButton] = useState(false);
+    // state 수정 삭제 토글 상태  다시 누르면 사라지게
+    const [showEditDelete, setShowEditDelete] = useState(false);
+    // state : 모달 열기를 위한 상태 선언
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
@@ -49,7 +53,7 @@ const PartyBoardDetail = () => {
 
     if (list && list[num]) {
         options = {
-            colors: ["#F5F5F5", "#41A4C9"],
+            colors: ["#F5F5F5", "#1A74BD"],
             chart: {
                 renderTo: `subscribers-graph-${list[num].party_seq}`,
                 type: 'pie',
@@ -93,7 +97,7 @@ const PartyBoardDetail = () => {
     }
 
 
-    //        component : 게시물 상세 하단 컴포넌트   //
+    //        component : 게시물 상세 하단 참여하기 컴포넌트  --------------------- //
     const BoardDetailBottom = () => {
 
         //         render : 게시물 하단 컴포넌트 렌더링 //
@@ -109,10 +113,6 @@ const PartyBoardDetail = () => {
             </div>
         )
     }
-    // event handler : 삭제 토글 클릭시 수정 삭제 버튼 생성
-
-    // state 수정 삭제 토글 상태  다시 누르면 사라지게
-    const [showEditDelete, setShowEditDelete] = useState(false);
 
     // component : 게시글 수정, 삭제 컴포넌트  
     const BoardEditDelete = () => {
@@ -125,30 +125,59 @@ const PartyBoardDetail = () => {
             </div>
         )
     }
-    // state 삭제 버튼 상태
-    const [button, setButton] = useState('');
 
-    // event handler 게시글 삭제 클릭 이벤트
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const modalRef = useRef(null);
+
+    // event handler  삭제 버튼 클릭 핸들러 -------------------
     const onPartyDeleteClickHandler = () => {
-        setButton(true)
+        console.log('삭제버튼 클릭');
+        // 모달 열기 상태 변경
+        setIsModalOpen(true);
     }
-    // 삭제 정보 보내기 --------------------------------------
-    useEffect(() => {
-        if (button) {
-            let formData = new FormData();
-            formData.append("party_seq", list[num].party_seq)
-            axios
-                .post('/Sol/partyBoardCon/delete', formData)
-                .then((res) => {
-                    setList(res.data.data)
-                    // nav('/PartyBoardList')
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
 
-    }, [button])
+    // event handler 모달 안의 삭제하기 버튼 클릭 핸들러 ------------------
+    const ondeletePartyBoardClickHandler = () => {
+        let formData = new FormData();
+        formData.append("party_seq", list[num].party_seq)
+        console.log(list[num].party_seq);
+        axios
+            .post('/Sol/partyBoardCon/delete', formData)
+            .then((res) => {
+                setList(res.data.data)
+                console.log(res.data);
+                alert('삭제 성공!')
+                nav('/PartyBoardList')
+                // window.location.reload()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        // 모달 닫기 상태 변경
+        setIsModalOpen(false);
+    }
+
+    // 삭제 확인 모달 컴포넌트 ---------------------------------
+    const Modal = () => {
+        return (
+            <div className='p_Modal'>
+                <div ref={modalRef} className='delete-container'>
+                    <button className='close' onClick={() => setIsModalOpen(false)}>
+                        X
+                    </button>
+                    <div className='delete-modal-text'>{'['}{list[num].party_title}{']'}</div>
+                    <div className='delete-modal-text'> 게시글을 삭제하시겠습니까?</div>
+                    <div className='delete-ownplant-button-box'>
+                        <div className='delete-ownplant-button' onClick={ondeletePartyBoardClickHandler}>{'삭제하기'}</div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
 
     // event handler : 발전소 선택 클릭 이벤트 처리---------
     const onPowerCheckClickHandler = () => {
@@ -190,19 +219,12 @@ const PartyBoardDetail = () => {
         // event handler 나의 발전소 선택하기 클릭 이벤트
         const onPowerIsJoinClickHandler = (power) => {
             console.log('선택하기 클릭', power);
-            setSelectedPower(power);
+            powerChecksend(power);
         }
 
-        // selectedPower값이 들어있을 때 실행
-        useEffect(() => {
-            if (selectedPower) {
-                setPowerButton(true);
-            }
-        }, [selectedPower]);
-
         // 발전소 신청 정보 보내기 --------------------------------------
-        useEffect(() => {
-            if (powerButton && selectedPower) {
+        const powerChecksend = (selectedPower) => {
+            if (selectedPower) {
                 console.log(selectedPower.pl_loc, '이거');
                 let formData = new FormData();
                 formData.append("party_seq", list[num].party_seq);
@@ -215,15 +237,19 @@ const PartyBoardDetail = () => {
                     .post('/Sol/partyApplyCon/apply', formData)
                     .then((res) => {
                         setList(res.data.data);
-                        console.log('성공!!');
-                        // nav('/PartyBoardList')
+                        alert('신청 성공!')
+                        nav('/PartyBoardList')
+
                     })
                     .catch((error) => {
                         console.log(error);
                     });
-                    setPowerButton(false);
+                setPowerButton(false);
+            } else {
+                console.log("selectedPower is null");
             }
-        }, [powerButton, selectedPower]);
+        };
+
 
         //          state: 페이지 상태  모달 창  render -----------  
         return (
@@ -257,7 +283,6 @@ const PartyBoardDetail = () => {
                                         </div>
                                         <div className='p_tab-content-button-list'>
                                             <div className='p_tab-content-edit-button-box'>
-                                                {/* <div className='edit-button' onClick={onOwnPowerModalDeleteClickHandler}>{'선택하기'}</div> */}
                                                 <div className='p_edit-button' onClick={() => onPowerIsJoinClickHandler(power)} >{'선택하기'}</div>
                                             </div>
                                         </div>
@@ -319,7 +344,10 @@ const PartyBoardDetail = () => {
                     <Comment />
                     <BoardDetailBottom />
                 </div>
+                {/* 삭제 확인 모달 */}
+                {isModalOpen && <Modal />}
             </div>
+
             //  데이터를 가져오는 동안에는 "Loading..."을 표시하고, 데이터가 준비되면 컴포넌트를 렌더링
             : <div>Loading...</div>
     )
