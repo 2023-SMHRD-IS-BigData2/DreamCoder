@@ -25,8 +25,7 @@
 		SELECT PL_SEQ, PL_NAME,
 		USER_ID, PL_LOC, PL_POWER, BS_NUM, PL_ISJOIN
 		FROM PLANTS_TB
-		WHERE where
-		USER_ID=#{user_id};
+		WHERE USER_ID=#{user_id};
 	</select>
 	<select id="myPartyBoardPost" parameterType="String"
 		resultType="com.slt.entity.Party_boards">
