@@ -28,4 +28,6 @@ public interface MyPageDAO {
 	Party_boards myGroupAcceptParty(int party_seq);
 	
 	int myGroupSearch(String user_nick);
+	
+	int userUpdate(String user_id, String user_nick, String user_pw);
 }

@@ -19,4 +19,6 @@ public interface MyPageService {
 	
 	ResultVO myGroupSearch(String user_nick);
 	
+	ResultVO userUpdate(String user_id, String user_nick, String user_pw);
+	
 }

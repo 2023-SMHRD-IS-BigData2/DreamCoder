@@ -125,4 +125,20 @@ public class MyPageServiceImp implements MyPageService {
 			return new ResultVO("99", null);
 		}
 	}
+
+	@Override
+	public ResultVO userUpdate(String user_id, String user_nick, String user_pw) {
+		try {
+			int row = mypageDao.userUpdate(user_id, user_nick, user_pw);
+
+			if (row == 0) {
+				return new ResultVO("01", null);
+			} else {
+				return new ResultVO("00", null);
+			}
+
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 }
