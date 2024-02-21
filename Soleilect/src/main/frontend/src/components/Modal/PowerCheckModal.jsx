@@ -20,8 +20,8 @@ const PowerCheckModal = forwardRef((props, ref) => {
     // ------- 나의 발전소 가져오기
     useEffect(() => {
             let formData = new FormData();
-            console.log();
-            formData.append("id", sessionStorage.getItem('user_id'))
+            console.log(sessionStorage.getItem('user_id'));
+            formData.append("user_id", sessionStorage.getItem('user_id'))
             axios
                 .post('/Sol/myPageCon/plantList', formData)
                 .then((res) => {
