@@ -19,6 +19,8 @@ const PartyBoardDetail = () => {
     const [modalOpen, setModalOpen] = useState(false);
     // state 발전소 목록
     const [powerPlantList, setPowerPlantList] = useState([]);
+    // state 발전소 신청 상태
+    const [powerButton, setPowerButton] = useState(false);
 
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
@@ -129,20 +131,16 @@ const PartyBoardDetail = () => {
     // event handler 게시글 삭제 클릭 이벤트
     const onPartyDeleteClickHandler = () => {
         setButton(true)
-        console.log('클릭');
     }
     // 삭제 정보 보내기 --------------------------------------
     useEffect(() => {
         if (button) {
             let formData = new FormData();
-            console.log(list[num].party_seq);
             formData.append("party_seq", list[num].party_seq)
             axios
                 .post('/Sol/partyBoardCon/delete', formData)
                 .then((res) => {
                     setList(res.data.data)
-                    console.log(res.data.data);
-                    console.log('삭제 완료');
                     // nav('/PartyBoardList')
                 })
                 .catch((error) => {
@@ -154,7 +152,6 @@ const PartyBoardDetail = () => {
 
     // event handler : 발전소 선택 클릭 이벤트 처리---------
     const onPowerCheckClickHandler = () => {
-        console.log('클릭');
         return (
             setModalOpen(true)
         )
@@ -164,14 +161,11 @@ const PartyBoardDetail = () => {
     useEffect(() => {
         if (modalOpen) {
             let formData = new FormData();
-            console.log(sessionStorage.getItem('user_id'));
             formData.append("user_id", sessionStorage.getItem('user_id'));
             axios
                 .post('/Sol/myPageCon/plantList', formData)
                 .then((res) => {
                     setPowerPlantList(res.data.data);
-                    console.log(powerPlantList.pl_loc);
-                    console.log('나의 발전소 출력 완료');
                 })
                 .catch((error) => {
                     console.log(error);
@@ -190,6 +184,46 @@ const PartyBoardDetail = () => {
         // Modal 창을 useRef로 취득
         const modalRef = useRef(null);
 
+        // state 선택한 발전소 정보 클릭시 데이터 넘어가는 상태
+        const [selectedPower, setSelectedPower] = useState(null);
+
+        // event handler 나의 발전소 선택하기 클릭 이벤트
+        const onPowerIsJoinClickHandler = (power) => {
+            console.log('선택하기 클릭', power);
+            setSelectedPower(power);
+        }
+
+        // selectedPower값이 들어있을 때 실행
+        useEffect(() => {
+            if (selectedPower) {
+                setPowerButton(true);
+            }
+        }, [selectedPower]);
+
+        // 발전소 신청 정보 보내기 --------------------------------------
+        useEffect(() => {
+            if (powerButton && selectedPower) {
+                console.log(selectedPower.pl_loc, '이거');
+                let formData = new FormData();
+                formData.append("party_seq", list[num].party_seq);
+                formData.append("party_title", list[num].party_title);
+                formData.append("pl_name", selectedPower.pl_name);
+                formData.append("pl_power", selectedPower.pl_power);
+                formData.append("pl_seq", selectedPower.pl_seq);
+                formData.append("user_nick", sessionStorage.getItem('user_nick'));
+                axios
+                    .post('/Sol/partyApplyCon/apply', formData)
+                    .then((res) => {
+                        setList(res.data.data);
+                        console.log('성공!!');
+                        // nav('/PartyBoardList')
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                    setPowerButton(false);
+            }
+        }, [powerButton, selectedPower]);
 
         //          state: 페이지 상태  모달 창  render -----------  
         return (
@@ -203,37 +237,35 @@ const PartyBoardDetail = () => {
                                     X
                                 </button>
                             </div>
-                            {powerPlantList && powerPlantList.map((power, index)=>(
-                            <div className='p_tab-content-list'>
-                                
+                            {powerPlantList && powerPlantList.map((power, index) => (
+                                <div className='p_tab-content-list' key={index}>
 
-                               
-                                <div className='p_tab-content-box'>
-                                    <div className='p_tab-image-box'>
-                                        <div className='p_tab-image'></div>
-                                    </div>
-                                    <div className='p_tab-text-content-box p_owned'>
-                                        <div className='p_tab-top-text-box'>
-                                            <div className='p_border-text-box'>
-                                                <div className='p_border-text'>{power.pl_power}kw</div>
+                                    <div className='p_tab-content-box'>
+                                        <div className='p_tab-image-box'>
+                                            <div className='p_tab-image'></div>
+                                        </div>
+                                        <div className='p_tab-text-content-box p_owned'>
+                                            <div className='p_tab-top-text-box'>
+                                                <div className='p_border-text-box'>
+                                                    <div className='p_border-text'>{power.pl_power}kw</div>
+                                                </div>
+                                                <div className='p_content-name'>{power.pl_name}</div>
                                             </div>
-                                            <div className='p_content-name'>{power.pl_name}</div>
+                                            <div className='p_tab-bottom-text-box'>
+                                                <div className='p_bottom-text'>{power.pl_loc}</div>
+                                            </div>
                                         </div>
-                                        <div className='p_tab-bottom-text-box'>
-                                            <div className='p_bottom-text'>{power.pl_loc}</div>
+                                        <div className='p_tab-content-button-list'>
+                                            <div className='p_tab-content-edit-button-box'>
+                                                {/* <div className='edit-button' onClick={onOwnPowerModalDeleteClickHandler}>{'선택하기'}</div> */}
+                                                <div className='p_edit-button' onClick={() => onPowerIsJoinClickHandler(power)} >{'선택하기'}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className='p_tab-content-button-list'>
-                                        <div className='p_tab-content-edit-button-box'>
-                                            {/* <div className='edit-button' onClick={onOwnPowerModalDeleteClickHandler}>{'선택하기'}</div> */}
-                                            <div className='p_edit-button' onClick={onPowerCheckClickHandler} >{'선택하기'}</div>
-                                        </div>
-                                    </div>
+
+                                    {/* {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage={modalPage} />} */}
                                 </div>
-                               
-                                {/* {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage={modalPage} />} */}
-                            </div>
-                             ))}
+                            ))}
                         </div>
                         <div className='auth-card-bottom'>
                             <div className='auth-description-box'>
