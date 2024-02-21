@@ -9,7 +9,7 @@ const Header = () => {
 
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
-    navigate('./Main');
+    navigate('/');
 
   };
   const onSignUpButtonClickHandler = () => {

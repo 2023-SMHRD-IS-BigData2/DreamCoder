@@ -39,7 +39,7 @@ const SignIn = () => {
                     sessionStorage.setItem("user_id", id);
                     sessionStorage.setItem("user_pw", password);
                     storageNick();
-                    nav('/Main');
+                    nav('/');
                 }
                 console.log(response.data.data)
             })
