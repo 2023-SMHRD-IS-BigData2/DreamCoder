@@ -24,7 +24,7 @@
 		#{p_cmt_parent});
 	</insert>
 	<delete id="partyCommentDelete">
-		delete from COMMENTS_TB where P_CMT_SEQ=#{num}
+		delete from COMMENTS_TB where P_CMT_SEQ=#{p_cmt_seq}
 	</delete>
 
 	<select id="partyCommentList"
@@ -32,6 +32,6 @@
 		SELECT P_CMT_SEQ, PARTY_SEQ, P_CMT_REF, P_CMT_REF_LEVEL,
 		USER_ID, USER_NICK, P_CMT_CONTENT, CREATED_AT, P_CMT_PARENT
 		FROM PARTY_COMMENTS_TB
-		WHERE PARTY_SEQ=#{num}
+		WHERE PARTY_SEQ=#{party_seq}
 	</select>
 </mapper>

@@ -14,7 +14,7 @@
 		#{user_nick},#{party_isJoin});
 	</insert>
 	<delete id="partyBoardDelete">
-		delete from PARTY_BOARDS_TB where PARTY_SEQ = #{num}
+		delete from PARTY_BOARDS_TB where PARTY_SEQ = #{party_seq}
 	</delete>
 	<update id="partyBoardUpdate">
 		UPDATE PARTY_BOARDS_TB
@@ -62,6 +62,6 @@
 		PARTY_BOARDS_TB
 		SET
 		PARTY_VIEWS = PARTY_VIEWS + 1,
-		WHERE PARTY_SEQ = #{num};
+		WHERE PARTY_SEQ = #{party_seq};
 	</update>
 </mapper>

@@ -19,14 +19,14 @@
 	</insert>
 	<delete id="plantDelete">
 		DELETE FROM PLANTS_TB
-		WHERE PL_SEQ = #{num};
+		WHERE PL_SEQ = #{pl_seq};
 	</delete>
 	<select id="plantList" resultType="com.slt.entity.Plants">
 		SELECT PL_SEQ, PL_NAME,
 		USER_ID, PL_LOC, PL_POWER, BS_NUM, PL_ISJOIN
 		FROM PLANTS_TB
 		WHERE where
-		USER_ID=#{id};
+		USER_ID=#{user_id};
 	</select>
 	<select id="myPartyBoardPost" parameterType="String"
 		resultType="com.slt.entity.Party_boards">
@@ -37,7 +37,7 @@
 		PARTY_ISJOIN
 		FROM PARTY_BOARDS_TB
 		WHERE USER_ID =
-		#{id};
+		#{user_id};
 	</select>
 	<select id="myBoardPost" parameterType="String"
 		resultType="com.slt.entity.Boards">
@@ -46,7 +46,7 @@
 		USER_ID, USER_NICK
 		FROM BOARDS_TB
 		WHERE USER_ID =
-		#{id};
+		#{user_id};
 	</select>
 	<select id="myGroupPlant"
 		resultType="com.slt.entity.Party_application">
@@ -55,7 +55,7 @@
 		FROM PARTY_LIST_TB
 		WHERE PARTY_SEQ =
 		(SELECT PARTY_SEQ
-		WHERE USER_NICK=#{nick}) AND PL_ISJOIN = 1;
+		WHERE USER_NICK=#{user_nick}) AND PL_ISJOIN = 1;
 	</select>
 	<select id="myGroupAccept"
 		resultType="com.slt.entity.Party_application">
@@ -64,11 +64,11 @@
 		FROM PARTY_LIST_TB
 		WHERE PARTY_SEQ =
 		(SELECT PARTY_SEQ
-		WHERE USER_NICK=#{nick}) AND PL_ISJOIN = 0;
+		WHERE USER_NICK=#{user_nick}) AND PL_ISJOIN = 0;
 	</select>
 	<select id="myGroupSearch" parameterType="String">
 		SELECT count(*)
-		FROM PARTY_BOARDS_TB WHERE USER_NICK = #{nick}
+		FROM PARTY_BOARDS_TB WHERE USER_NICK = #{user_nick}
 	</select>
 
 </mapper>

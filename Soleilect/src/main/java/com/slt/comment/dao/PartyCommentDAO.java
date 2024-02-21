@@ -9,7 +9,7 @@ import com.slt.entity.Party_comments;
 public interface PartyCommentDAO {
 	int partyCommentInsert(Party_comments comments);
 	
-	int partyCommentDelete(int num);
+	int partyCommentDelete(int p_cmt_seq);
 	
-	List<Party_comments> partyCommentList(int num);
+	List<Party_comments> partyCommentList(int party_seq);
 }

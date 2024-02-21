@@ -13,17 +13,17 @@ import com.slt.entity.Plants;
 public interface MyPageDAO {
 	int plantInsert(Plants plants);
 	
-	int plantDelete(int num);
+	int plantDelete(int pl_seq);
 	
-	List<Plants> plantList(String id);
+	List<Plants> plantList(String user_id);
 	
-	List<Party_boards> myPartyBoardPost(String id);
+	List<Party_boards> myPartyBoardPost(String user_id);
 	
-	List<Boards> myBoardPost(String id);
+	List<Boards> myBoardPost(String user_id);
 	
-	List<Party_application> myGroupPlant(String nick);
+	List<Party_application> myGroupPlant(String user_nick);
 	
-	List<Party_application> myGroupAccept(String nick);
+	List<Party_application> myGroupAccept(String user_nick);
 	
-	int myGroupSearch(String nick);
+	int myGroupSearch(String user_nick);
 }

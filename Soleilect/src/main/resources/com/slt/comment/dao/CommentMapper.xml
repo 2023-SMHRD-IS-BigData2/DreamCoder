@@ -23,13 +23,13 @@
 		#{cmt_parent});
 	</insert>
 	<delete id="commentDelete">
-		delete from COMMENTS_TB where CMT_SEQ=#{num}
+		delete from COMMENTS_TB where CMT_SEQ=#{cmt_seq}
 	</delete>
 
 	<select id="commentList" resultType="com.slt.entity.Comments">
 		SELECT CMT_SEQ, B_SEQ,
 		CMT_REF, CMT_REF_LEVEL, USER_ID, USER_NICK, CMT_CONTENT, CREATED_AT,
 		CMT_PARENT
-		FROM COMMENTS_TB WHERE B_SEQ=#{num}
+		FROM COMMENTS_TB WHERE B_SEQ=#{b_seq}
 	</select>
 </mapper>

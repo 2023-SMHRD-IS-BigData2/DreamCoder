@@ -23,7 +23,7 @@
 
 	</insert>
 	<delete id="boardDelete">
-		delete from BOARDS_TB where B_SEQ = #{num}
+		delete from BOARDS_TB where B_SEQ = #{b_seq}
 	</delete>
 	<update id="boardUpdate">
 		UPDATE BOARDS_TB
@@ -69,6 +69,6 @@
 		BOARDS_TB
 		SET
 		B_VIEWS = B_VIEWS + 1,
-		WHERE B_SEQ = #{num};
+		WHERE B_SEQ = #{b_seq};
 	</update>
 </mapper>

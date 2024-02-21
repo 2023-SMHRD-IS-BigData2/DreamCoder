@@ -31,9 +31,9 @@ public class PartyCommentServiceImp implements PartyCommentService{
 	}
 	
 	@Override
-	public ResultVO partyCommentDelete(int num) {
+	public ResultVO partyCommentDelete(int p_cmt_seq) {
 		try {
-			partycommentDao.partyCommentDelete(num);
+			partycommentDao.partyCommentDelete(p_cmt_seq);
 			return new ResultVO("00", null);
 
 		} catch (Exception e) {
@@ -42,9 +42,9 @@ public class PartyCommentServiceImp implements PartyCommentService{
 	}
 	
 	@Override
-	public ResultVO partyCommentList(int num){
+	public ResultVO partyCommentList(int party_seq){
 		try {
-			List<Party_comments> dtList = partycommentDao.partyCommentList(num);
+			List<Party_comments> dtList = partycommentDao.partyCommentList(party_seq);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);

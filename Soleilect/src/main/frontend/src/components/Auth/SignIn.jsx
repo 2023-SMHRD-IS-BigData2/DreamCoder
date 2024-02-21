@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 import InputBox from '../InputBox';
@@ -38,6 +38,7 @@ const SignIn = () => {
                 } else {
                     sessionStorage.setItem("user_id", id);
                     sessionStorage.setItem("user_pw", password);
+                    storageNick();
                     nav('/Main');
                 }
                 console.log(response.data.data)
@@ -45,7 +46,22 @@ const SignIn = () => {
             .catch((error) => {
                 console.log(error)
             })
-
+    }
+    //  회원정보 상태 가져오기
+    const storageNick = () => {
+        let formData = new FormData();
+        console.log('회원닉가져오기');
+        formData.append("user_id", sessionStorage.getItem("user_id"))
+        formData.append("user_pw", sessionStorage.getItem("user_pw"))
+        axios
+            .post('/Sol/logCon/login', formData)
+            .then((res) => {
+                sessionStorage.setItem("user_nick", res.data.data[0].user_nick);
+                console.log(sessionStorage.getItem("user_nick"));
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     //          event handler: 아이디 변경 이벤트 처리
     const onIdChangeHandler = (event) => {

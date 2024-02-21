@@ -6,7 +6,7 @@ import com.slt.entity.Party_comments;
 public interface PartyCommentService {
 	ResultVO partyCommentInsert(Party_comments comments);
 	
-	ResultVO partyCommentDelete(int num);
+	ResultVO partyCommentDelete(int p_cmt_seq);
 	
-	ResultVO partyCommentList(int num);
+	ResultVO partyCommentList(int party_seq);
 }

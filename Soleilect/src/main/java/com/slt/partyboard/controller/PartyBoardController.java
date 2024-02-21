@@ -32,9 +32,10 @@ public class PartyBoardController {
 	 * 모집 게시판 삭제
 	 */
 	@RequestMapping("/delete")
-	public ResultVO partyBoardDelete(int num) {
+	public ResultVO partyBoardDelete(int party_seq) {
 		System.out.println("모집 게시판 삭제");
-		return partyboardservice.partyBoardDelete(num);
+		System.out.println("들어온 값 : "+party_seq);
+		return partyboardservice.partyBoardDelete(party_seq);
 	}
 	
 	/**
@@ -70,9 +71,9 @@ public class PartyBoardController {
 	 * 모집 게시판 조회수 상승 
 	 */
 	@RequestMapping("/views")
-	public ResultVO partyBoardViewUp(int num) {
+	public ResultVO partyBoardViewUp(int party_seq) {
 		System.out.println("모집 게시판 조회수 상승");
-		return partyBoardViewUp(num);
+		return partyBoardViewUp(party_seq);
 	}
 	
 	

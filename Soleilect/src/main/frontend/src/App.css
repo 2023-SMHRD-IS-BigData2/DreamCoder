@@ -157,3 +157,20 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+/* 게시판 수정 삭제 아이콘 */
+.more-icon{
+  background-image: url('./assets/image/more.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.edit-icon{
+  background-image: url('./assets/image/edit-light.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.delete-icon{
+  background-image: url('./assets/image/delete-icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

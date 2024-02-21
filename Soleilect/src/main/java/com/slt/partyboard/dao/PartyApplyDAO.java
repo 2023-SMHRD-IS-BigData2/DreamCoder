@@ -11,7 +11,7 @@ public interface PartyApplyDAO {
 
 	int partyApply(Party_application party);
 	
-	int partyAccept(int num);
+	int partyAccept(int list_seq);
 	
 	int partyApplypbUpdate(int party_seq, int now_cnt);
 }

@@ -11,7 +11,7 @@ public interface PartyBoardDAO {
 	
 	void partyBoardInsert(Party_boards boards);
 	
-	int partyBoardDelete(int num);
+	int partyBoardDelete(int party_seq);
 	
 	int partyBoardUpdate(Party_boards boards);
 	
@@ -19,5 +19,5 @@ public interface PartyBoardDAO {
 	
 	List<Party_boards> partyBoardSearch(String search);
 	
-	int partyBoardViewUp(int num);
+	int partyBoardViewUp(int party_seq);
 }
