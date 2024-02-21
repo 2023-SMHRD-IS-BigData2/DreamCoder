@@ -31,7 +31,7 @@ const PartyBoardList = () => {
     })
     
   },[])
-  console.log(list);
+  // console.log(list);
 
   return (
     <div className='list-container'>

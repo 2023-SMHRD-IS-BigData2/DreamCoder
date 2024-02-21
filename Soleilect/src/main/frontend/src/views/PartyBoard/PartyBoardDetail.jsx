@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ChartContext } from '../../context/ChartContext';
 import Comment from '../../components/CommentItem/Comment';
 import moment from 'moment';
+import PowerCheckModal from '../../components/Modal/PowerCheckModal';
 
 const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
@@ -15,6 +16,8 @@ const PartyBoardDetail = () => {
 
     // state 년월일 시간 자르기
     const [timestamp, setTimeStamp] = useState();
+    // state 모달창 상태
+    const [modalOpen, setModalOpen] =  useState(false);
 
     //  조회수
     // const [chartViews, setChartViews] = useState(0);
@@ -35,6 +38,7 @@ const PartyBoardDetail = () => {
         // setChartViews((chartViews) => chartViews + 1);
 
     }, [])
+
 
     // state 삭제 버튼 상태
     const [button, setButton] = useState('');
@@ -114,6 +118,14 @@ const PartyBoardDetail = () => {
         };
     }
 
+    // event handler : 발전소 선택 클릭 이벤트 처리
+    const onPowerCheckClickHandler = () => {
+        console.log('클릭');
+        return (
+            setModalOpen(true)
+        )
+    }
+
     //        component : 게시물 상세 하단 컴포넌트   //
     const BoardDetailBottom = () => {
 
@@ -121,11 +133,12 @@ const PartyBoardDetail = () => {
         return (
             <div id='board-detail-bottom'>
                 <div className='board-detail-button-box'>
-                    <div className='board-detail-box btnFloat'>
+                    <div className='board-detail-box btnFloat' onClick={onPowerCheckClickHandler}>
                         <div className='board-detail-button'>
                             {'참여하기'}</div>
                     </div>
                 </div>
+                {modalOpen && <PowerCheckModal setModalOpen={setModalOpen} setModalPage='add-plant'/>}
             </div>
         )
     }
