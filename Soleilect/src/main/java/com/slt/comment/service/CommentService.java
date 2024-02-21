@@ -7,7 +7,7 @@ import com.slt.entity.Comments;
 public interface CommentService {
 	ResultVO commentInsert(Comments comments);
 
-	ResultVO commentDelete(int num);
+	ResultVO commentDelete(int cmt_seq);
 	
-	ResultVO commentList(int num);
+	ResultVO commentList(int b_seq);
 }

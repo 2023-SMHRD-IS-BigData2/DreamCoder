@@ -24,7 +24,7 @@
 		UPDATE PARTY_LIST_TB
 		SET
 		PL_ISJOIN = 1
-		WHERE LIST_SEQ = {num};
+		WHERE LIST_SEQ = {list_seq};
 	</update>
 	<update id="partyApplypbUpdate" parameterType="int">
 		UPDATE

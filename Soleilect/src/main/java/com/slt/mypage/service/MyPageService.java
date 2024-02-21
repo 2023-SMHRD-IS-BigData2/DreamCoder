@@ -7,16 +7,16 @@ import com.slt.entity.Plants;
 public interface MyPageService {
 	ResultVO plantInsert(Plants plants);
 	
-	ResultVO plantDelete(int num);
+	ResultVO plantDelete(int pl_seq);
 	
-	ResultVO plantList(String id);
+	ResultVO plantList(String user_id);
 	
-	ResultVO myPost(String id);
+	ResultVO myPost(String user_id);
 	
-	ResultVO myGroupPlant(String nick);
+	ResultVO myGroupPlant(String user_nick);
 	
-	ResultVO myGroupAccept(String nick);
+	ResultVO myGroupAccept(String user_nick);
 	
-	ResultVO myGroupSearch(String nick);
+	ResultVO myGroupSearch(String user_nick);
 	
 }

@@ -71,9 +71,9 @@ public class PartyBoardController {
 	 * 모집 게시판 조회수 상승 
 	 */
 	@RequestMapping("/views")
-	public ResultVO partyBoardViewUp(int num) {
+	public ResultVO partyBoardViewUp(int party_seq) {
 		System.out.println("모집 게시판 조회수 상승");
-		return partyBoardViewUp(num);
+		return partyBoardViewUp(party_seq);
 	}
 	
 	

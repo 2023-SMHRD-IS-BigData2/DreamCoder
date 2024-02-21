@@ -51,9 +51,9 @@ public class BoardController {
 	 * 게시판 삭제
 	 */
 	@RequestMapping("/delete")
-	public ResultVO boardDelete(int num) {
+	public ResultVO boardDelete(int b_seq) {
 		System.out.println("일반 게시판 삭제");
-		return boardService.boardDelete(num);
+		return boardService.boardDelete(b_seq);
 	}
 	
 	/**
@@ -78,9 +78,9 @@ public class BoardController {
 	 * 게시판 조회수 상승
 	 */
 	@RequestMapping("/views")
-	public ResultVO boardViewUP(int num) {
+	public ResultVO boardViewUP(int b_seq) {
 		System.out.println("일반 게시판 조회수 상승");
-		return boardService.boardViewUP(num);
+		return boardService.boardViewUP(b_seq);
 	}
 
 }

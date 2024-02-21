@@ -31,9 +31,9 @@ public class CommentServiceImp implements CommentService {
 	}
 	
 	@Override
-	public ResultVO commentDelete(int num) {
+	public ResultVO commentDelete(int cmt_seq) {
 		try {
-			commentDao.commentDelete(num);
+			commentDao.commentDelete(cmt_seq);
 			return new ResultVO("00", null);
 
 		} catch (Exception e) {
@@ -42,9 +42,9 @@ public class CommentServiceImp implements CommentService {
 	}
 	
 	@Override
-	public ResultVO commentList(int num){
+	public ResultVO commentList(int b_seq){
 		try {
-			List<Comments> dtList = commentDao.commentList(num);
+			List<Comments> dtList = commentDao.commentList(b_seq);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);

@@ -10,7 +10,7 @@ import com.slt.entity.Comments;
 public interface CommentDAO {
 	int commentInsert(Comments comments);
 
-	int commentDelete(int num);
+	int commentDelete(int cmt_seq);
 	
-	List<Comments> commentList(int num);
+	List<Comments> commentList(int b_seq);
 }

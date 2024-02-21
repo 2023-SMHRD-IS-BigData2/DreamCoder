@@ -88,9 +88,9 @@ public class PartyBoardServiceImp implements PartyBoardService {
 	}
 
 	@Override
-	public ResultVO partyBoardViewUp(int num) {
+	public ResultVO partyBoardViewUp(int party_seq) {
 		try {
-			int row = partyboardDao.partyBoardViewUp(num);
+			int row = partyboardDao.partyBoardViewUp(party_seq);
 			if (row != 0) {
 				return new ResultVO("00", null);
 			} else {

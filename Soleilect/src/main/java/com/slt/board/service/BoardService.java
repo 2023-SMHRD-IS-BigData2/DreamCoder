@@ -11,11 +11,11 @@ public interface BoardService {
 
 	ResultVO boardUpdate(Boards boards);
 
-	ResultVO boardDelete(int num);
+	ResultVO boardDelete(int b_seq);
 
 	ResultVO boardFilter(String hd_code);
 
 	ResultVO boardSearch(String search);
 	
-	ResultVO boardViewUP(int num);
+	ResultVO boardViewUP(int b_seq);
 }

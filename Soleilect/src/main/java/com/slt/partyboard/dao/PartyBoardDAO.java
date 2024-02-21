@@ -19,5 +19,5 @@ public interface PartyBoardDAO {
 	
 	List<Party_boards> partyBoardSearch(String search);
 	
-	int partyBoardViewUp(int num);
+	int partyBoardViewUp(int party_seq);
 }

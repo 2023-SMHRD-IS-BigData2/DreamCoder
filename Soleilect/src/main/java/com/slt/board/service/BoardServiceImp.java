@@ -59,9 +59,9 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public ResultVO boardDelete(int num) {
+	public ResultVO boardDelete(int b_seq) {
 		try {
-			boardDao.boardDelete(num);
+			boardDao.boardDelete(b_seq);
 			return new ResultVO("00", null);
 
 		} catch (Exception e) {
@@ -94,9 +94,9 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public ResultVO boardViewUP(int num) {
+	public ResultVO boardViewUP(int b_seq) {
 		try {
-			boardDao.boardViewUP(num);
+			boardDao.boardViewUP(b_seq);
 			return new ResultVO("00", null);
 
 		} catch (Exception e) {

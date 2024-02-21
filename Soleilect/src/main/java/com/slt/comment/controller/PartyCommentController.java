@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.slt.cmmn.vo.ResultVO;
-import com.slt.comment.service.PartyCommentServiceImp;
+import com.slt.comment.service.PartyCommentService;
 import com.slt.entity.Party_comments;
 
 @RequestMapping("/Sol/partyCommentCon")
 @RestController
 public class PartyCommentController {
 	@Autowired
-	private PartyCommentServiceImp partycommentservice;
+	private PartyCommentService partycommentservice;
 	
 	/**
 	 * 댓글 삽입
@@ -32,9 +32,9 @@ public class PartyCommentController {
 	 * num으로 댓글이 달린 게시물 값 가져옴
 	 */
 	@RequestMapping("/delete")
-	public ResultVO partyCommentDelete(int num) {
+	public ResultVO partyCommentDelete(int p_cmt_seq) {
 		System.out.println("모집 게시판 댓글 삭제");
-		return partycommentservice.partyCommentDelete(num);
+		return partycommentservice.partyCommentDelete(p_cmt_seq);
 	}
 	
 	/**
@@ -42,8 +42,8 @@ public class PartyCommentController {
 	 * num으로 댓글이 달린 게시물 값 가져옴
 	 */
 	@RequestMapping("/list")
-	public ResultVO partyCommentList(int num){
+	public ResultVO partyCommentList(int party_seq){
 		System.out.println("모집 게시판 댓글 조회");
-		return partycommentservice.partyCommentList(num);
+		return partycommentservice.partyCommentList(party_seq);
 	}
 }

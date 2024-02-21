@@ -35,9 +35,9 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO plantDelete(int num) {
+	public ResultVO plantDelete(int pl_seq) {
 		try {
-			int row = mypageDao.plantDelete(num);
+			int row = mypageDao.plantDelete(pl_seq);
 			if (row != 0) {
 				return new ResultVO("00", null);
 			} else {
@@ -50,9 +50,9 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO plantList(String id) {
+	public ResultVO plantList(String user_id) {
 		try {
-			List<Plants> dtList = mypageDao.plantList(id);
+			List<Plants> dtList = mypageDao.plantList(user_id);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
@@ -62,10 +62,10 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO myPost(String id) {
+	public ResultVO myPost(String user_id) {
 		try {
-			List<Party_boards> pbList = mypageDao.myPartyBoardPost(id);
-			List<Boards> bList = mypageDao.myBoardPost(id);
+			List<Party_boards> pbList = mypageDao.myPartyBoardPost(user_id);
+			List<Boards> bList = mypageDao.myBoardPost(user_id);
 			HashMap<String, List<Party_boards>> pbMap = new HashMap<String, List<Party_boards>>();
 			HashMap<String, List<Boards>> bMap = new HashMap<String, List<Boards>>();
 			pbMap.put("모집", pbList);
@@ -81,9 +81,9 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO myGroupPlant(String nick) {
+	public ResultVO myGroupPlant(String user_nick) {
 		try {
-			List<Party_application> dtList = mypageDao.myGroupPlant(nick);
+			List<Party_application> dtList = mypageDao.myGroupPlant(user_nick);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
@@ -93,9 +93,9 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO myGroupAccept(String nick) {
+	public ResultVO myGroupAccept(String user_nick) {
 		try {
-			List<Party_application> dtList = mypageDao.myGroupAccept(nick);
+			List<Party_application> dtList = mypageDao.myGroupAccept(user_nick);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
@@ -105,18 +105,16 @@ public class MyPageServiceImp implements MyPageService {
 	}
 
 	@Override
-	public ResultVO myGroupSearch(String nick) {
+	public ResultVO myGroupSearch(String user_nick) {
 		try {
-			int row = mypageDao.myGroupSearch(nick);
-			boolean isNick = false;
+			int row = mypageDao.myGroupSearch(user_nick);
+
 			if (row == 0) {
-				isNick = false;
+				return new ResultVO("01", null);
 			} else {
-				isNick = true;
+				return new ResultVO("00", null);
 			}
-			List<Object> dataList = new ArrayList<Object>();
-			dataList.add(isNick);
-			return new ResultVO("00", dataList);
+
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}

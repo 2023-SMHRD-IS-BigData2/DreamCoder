@@ -17,11 +17,11 @@ public interface BoardDAO {
 	
 	void boardUpdate(Boards boards);
 	
-	void boardDelete(int num);
+	void boardDelete(int b_seq);
 	
 	List<Boards> boardFilter(String hd_code);
 
 	List<Boards> boardSearch(String search);
 	
-	int boardViewUP(int num);
+	int boardViewUP(int b_seq);
 }

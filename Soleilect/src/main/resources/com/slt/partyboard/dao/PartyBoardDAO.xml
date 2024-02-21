@@ -62,6 +62,6 @@
 		PARTY_BOARDS_TB
 		SET
 		PARTY_VIEWS = PARTY_VIEWS + 1,
-		WHERE PARTY_SEQ = #{num};
+		WHERE PARTY_SEQ = #{party_seq};
 	</update>
 </mapper>

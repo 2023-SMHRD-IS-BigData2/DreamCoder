@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.slt.cmmn.vo.ResultVO;
-import com.slt.comment.service.CommentServiceImp;
+import com.slt.comment.service.CommentService;
 import com.slt.entity.Comments;
 
 @RequestMapping("/Sol/commentCon")
@@ -15,7 +15,7 @@ import com.slt.entity.Comments;
 public class CommentController {
 	
 	@Autowired
-	private CommentServiceImp commentservice;
+	private CommentService commentservice;
 	
 	/**
 	 * 댓글 삽입
@@ -29,21 +29,21 @@ public class CommentController {
 	
 	/**
 	 * 댓글 삭제
-	 * num으로 댓글이 달려있는 게시글 값 가져옴
+	 * cmt_seq로 댓글 고유 번호 가져옴
 	 */
 	@RequestMapping("/delete")
-	public ResultVO commentDelete(int num) {
+	public ResultVO commentDelete(int cmt_seq) {
 		System.out.println("일반게시판 댓글 삭제");
-		return commentservice.commentDelete(num);
+		return commentservice.commentDelete(cmt_seq);
 	}
 	
 	/**
 	 * 댓글 목록 불러오기
-	 * num으로 댓글이 달려있는 게시글 값 가져옴
+	 * b_seq으로 댓글이 달려있는 게시글 값 가져옴
 	 */
 	@RequestMapping("/list")
-	public ResultVO commentList(int num){
+	public ResultVO commentList(int b_seq){
 		System.out.println("일반게시판 댓글 불러오기");
-		return commentservice.commentList(num);
+		return commentservice.commentList(b_seq);
 	}
 }

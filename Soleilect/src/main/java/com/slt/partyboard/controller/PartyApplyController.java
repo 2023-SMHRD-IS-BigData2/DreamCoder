@@ -31,9 +31,9 @@ public class PartyApplyController {
 	 *
 	 */
 	@RequestMapping("/accept")
-	public ResultVO partyAccept(int num) {
+	public ResultVO partyAccept(int list_seq) {
 		System.out.println("발전소 가입 신청 수락");
-		return partyapplyservice.partyAccept(num);
+		return partyapplyservice.partyAccept(list_seq);
 	}
 	
 	/**
