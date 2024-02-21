@@ -150,11 +150,7 @@ body{
   background-size: contain;
 
 }
-.solar-power-icon{
-  background-image: url('./assets/image/solar-power.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-}
+
 
 /* map 아이콘 */
 .dollar-coin-icon{

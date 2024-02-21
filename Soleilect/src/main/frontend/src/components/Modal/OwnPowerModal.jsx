@@ -27,7 +27,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
           .then((response) => {
             // console.log(response.data)
             alert('발전소 등록완료')
-            setModalOpen(false)
+            closeModal();
           })
           .catch((error) => {
             console.log(error)
@@ -43,7 +43,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
           .post('/Sol/myPageCon/plantDelete', formData)
           .then((response) => {
             alert('발전소 삭제완료')
-            setModalOpen(false)
+            closeModal();
             
           })
           .catch((error) => {
@@ -265,47 +265,6 @@ const OwnPowerModal = forwardRef((props, ref) => {
                     </div>
                 </div>
             )}
-            {/* {modalPagestate === 'edit-plant' && (
-                <div className='Modal'>
-                    <div ref={modalRef} className='container'>
-                        <div className='auth-card-box'>
-                            <div className='auth-card-top'>
-                                <div className='auth-card-title-box'>
-                                    <div className='auth-card-title'>{'발전소 수정'}</div>
-                                    <div className='auth-card-page'>{`${page}/2`}</div>
-                                    <button className='close' onClick={closeModal}>
-                                        X
-                                    </button>
-                                </div>
-                                {page === '1' && (
-                                    <>
-                                        <InputBox ref={plNameRef} label='발전소 이름*' type='text' name='user_id' placeholder='발전소 이름을 입력해주세요' onChange={onPlNameChangeHandler} error={isPlNameError} message={plNameErrorMessage} onkeyDown={onPlNameKeyDownHandler} />
-                                        <InputBox ref={pladdressRef} label='발전소 주소*' type='text' name='user_id' placeholder='발전소 주소를 입력해주세요' value={pladdress} onChange={onPlAddressChangeHandler} icon={addressButtonIcon} onButtonClick={onAddressButtonClickHandler} error={isPlAddressError} message={plAddressErrorMessage} onkeyDown={onPlAddressKeyDownHandler} />
-                                    </>
-                                )}
-                                {page === '2' && (
-                                    <>
-                                        <InputBox ref={generationRef} label='발전량(kw)*' type='text' name='user_id' placeholder='발전량을 입력해주세요' onChange={onGenerationChangeHandler} error={isGenerationError} message={generationErrorMessage} onkeyDown={onGenerationKeyDownHandler} />
-                                        <InputBox ref={bnumberRef} label='사업자 번호*' type='text' name='user_id' placeholder='사업자 번호를 입력해주세요' onChange={onBnumberChangeHandler} error={isBnumberError} message={bnumberErrorMessage} onkeyDown={onBnumberKeyDownHandler} />
-                                    </>
-                                )}
-                            </div>
-                            <div className='auth-card-bottom'>
-                                {page === '1' && (
-                                    <div className='black-large-full-button' onClick={onNextButtonClickHandler}>{'다음 단계'}</div>
-                                )}
-                                {page === '2' && (
-                                    <div className='black-large-full-button' onClick={onsubmitPlantButtonClickHandler} type='submit'>{'수정하기'}</div>
-                                )}
-                                <div className='auth-description-box'>
-                                    <div className='auth-description'></div>
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            )} */}
             {modalPagestate === 'delete-plant' && (
                 <div className='Modal'>
                     <div ref={modalRef} className='delete-container'>

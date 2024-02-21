@@ -19,7 +19,7 @@ const JoinedProjectTab = (props) => {
         <div className='tab-content-list'>
             <div className='tab-content-box'>
                 <div className='tab-image-box'>
-                    <div className='tab-image'></div>
+                    <div className='tab-image'></div> {/*여기에 차트 들어가야함 */}
                 </div>
                 <div className='tab-text-content-box'>
                     <div className='tab-top-text-box'>

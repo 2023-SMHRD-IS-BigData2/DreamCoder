@@ -10,7 +10,7 @@ const JoinAlarmTab = () => {
                     <div className='icon alarm-circle-icon'></div>
                 </div> */}
                 <div className='tab-image-box'>
-                    <div className='tab-image'></div>
+                    <div className='tab-image'></div> {/*여기에 차트 들어가야함 */}
                 </div>
                 <div className='alarm-tab-text-content-box'>
                     <div className='tab-top-text-box'>

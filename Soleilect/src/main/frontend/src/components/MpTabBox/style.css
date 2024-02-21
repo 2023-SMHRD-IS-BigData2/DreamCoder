@@ -31,7 +31,18 @@
     display: flex;
     align-items: center;
 }
-
+.icons{
+    width: 100%;
+    height: 100%;
+  
+    background-position: 50% 50%;
+    background-size: 50% 50%;
+  }
+  .solar-power-icon{
+    background-image: url('../../assets/image/solar-power.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 /* 알림내역의 원 */
 .alarm-circle-icon-box {
     width: 15px;
