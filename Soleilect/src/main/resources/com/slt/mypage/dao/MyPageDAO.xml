@@ -25,7 +25,8 @@
 		SELECT PL_SEQ, PL_NAME,
 		USER_ID, PL_LOC, PL_POWER, BS_NUM, PL_ISJOIN
 		FROM PLANTS_TB
-		WHERE USER_ID=#{user_id};
+		WHERE
+		USER_ID=#{user_id};
 	</select>
 	<select id="myPartyBoardPost" parameterType="String"
 		resultType="com.slt.entity.Party_boards">
@@ -65,9 +66,17 @@
 		(SELECT PARTY_SEQ
 		WHERE USER_NICK=#{user_nick}) AND PL_ISJOIN = 0;
 	</select>
+	<select id="myGroupAcceptParty" resultType="com.slt.entity.Party_boards">
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT,
+		PARTY_LOC, START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT,
+		CREATED_AT, USER_ID, USER_NICK, PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
+		WHERE PARTY_SEQ = #{party_seq};
+	</select>
 	<select id="myGroupSearch" parameterType="String">
 		SELECT count(*)
-		FROM PARTY_BOARDS_TB WHERE USER_NICK = #{user_nick}
+		FROM
+		PARTY_BOARDS_TB WHERE USER_NICK = #{user_nick}
 	</select>
 
 </mapper>

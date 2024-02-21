@@ -25,5 +25,7 @@ public interface MyPageDAO {
 	
 	List<Party_application> myGroupAccept(String user_nick);
 	
+	Party_boards myGroupAcceptParty(int party_seq);
+	
 	int myGroupSearch(String user_nick);
 }

@@ -97,7 +97,13 @@ public class MyPageServiceImp implements MyPageService {
 		try {
 			List<Party_application> dtList = mypageDao.myGroupAccept(user_nick);
 			List<Object> dataList = new ArrayList<Object>();
-			dataList.addAll(dtList);
+			int party_seq = dtList.get(0).getParty_seq();
+			Party_boards pb = mypageDao.myGroupAcceptParty(party_seq);
+			HashMap<Party_boards, List<Party_application>> map = new HashMap<Party_boards, List<Party_application>>();
+			map.put(pb, dtList);
+			
+			dataList.add(map);
+			
 			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
