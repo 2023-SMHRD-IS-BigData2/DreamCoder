@@ -68,8 +68,8 @@ public class MyPageServiceImp implements MyPageService {
 			List<Boards> bList = mypageDao.myBoardPost(user_id);
 			HashMap<String, List<Party_boards>> pbMap = new HashMap<String, List<Party_boards>>();
 			HashMap<String, List<Boards>> bMap = new HashMap<String, List<Boards>>();
-			pbMap.put("모집", pbList);
-			bMap.put("자유", bList);
+			pbMap.put("recruitment", pbList);
+			bMap.put("free", bList);
 
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.add(pbMap);
