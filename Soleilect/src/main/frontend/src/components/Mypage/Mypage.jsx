@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './mypage.css';
 import axios from 'axios';
 import OwnPowerTab from '../MpTabBox/OwnPowerTab';
@@ -8,8 +8,11 @@ import FreeBoardTab from '../MpTabBox/FreeBoardTab';
 import AlarmTab from '../MpTabBox/AlarmTab';
 import OwnPowerModal from '../Modal/OwnPowerModal';
 import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
+import {ChartContext} from '../../context/ChartContext';
 
 export default function Mypage() {
+    const { list, setList } = useContext(ChartContext);
+    const recruitmentArray = [];
     //          state: 화면 상태 
     const [view, setView] = useState('edit-profile');
     //          state: 버튼 상태 
@@ -17,18 +20,21 @@ export default function Mypage() {
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
 
-
+    //          마이페이지 작성한 게시물 불러오기
     const myPostList = () => {
         let formData = new FormData();
-        formData.append("id", sessionStorage.getItem("user_id"))
+        formData.append("user_id", sessionStorage.getItem("user_id"))
         axios
             .post('/Sol/myPageCon/myPost', formData)
-            .then((res) => {
-                console.log(res.data.data);
-            })
+            .then(readMyRecruitment)
             .catch((error) => {
                 console.log(error)
             })
+    };
+    
+    const readMyRecruitment = (res) => {
+        const data = res.data.data[0].recruitment;
+        setList(data);
     };
 
     //          event handler: 환경설정 버튼 클릭 이벤트 처리
@@ -228,7 +234,10 @@ export default function Mypage() {
                 </div>
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
-                        <JoinedProjectTab />
+                    {list && list.map((item, index) => (
+                        <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} />
+
+                    ))}
                         <CreatePowerTab />
                         <FreeBoardTab />
                         <CreatePowerTab />
