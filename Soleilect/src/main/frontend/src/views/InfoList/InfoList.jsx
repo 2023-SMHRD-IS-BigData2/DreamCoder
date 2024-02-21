@@ -17,6 +17,7 @@ const InfoList = () => {
 
     useEffect(() => {
         let formData = new FormData();
+        console.log('수리업체정보불러오기');
         axios
             .get('/Sol/ascenterCon/list', formData)
             .then((res) => {
@@ -25,7 +26,22 @@ const InfoList = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, [list]);
+    }, []);
+        // 새로고침될 때 데이터를 다시 가져오도록 useEffect 사용
+        useEffect(() => {
+            if (!list.length) { // list가 비어있으면 데이터를 다시 가져옴
+                let formData = new FormData();
+                axios
+                    .get('/Sol/ascenterCon/list', formData)
+                    .then((res) => {
+                        console.log(res.data.data);
+                        setList(res.data.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        }, []);
 
     const repairTabClickHandler = () => {
         setToggle('repair-info');
