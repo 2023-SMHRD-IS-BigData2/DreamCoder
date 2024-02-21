@@ -44,6 +44,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
           .then((response) => {
             alert('발전소 삭제완료')
             setModalOpen(false)
+            
           })
           .catch((error) => {
             console.log(error)

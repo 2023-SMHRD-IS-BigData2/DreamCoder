@@ -35,10 +35,10 @@ const Header = () => {
   const [isLogin, setIslogin] = useState(false);
   useEffect(() => {
     if (sessionStorage.getItem("user_id") === null) {
-      console.log("isLogin ?? ::", isLogin);
+     
     } else {
       setIslogin(true);
-      console.log("isLogin ?? ::", isLogin);
+     
     }
   })
 

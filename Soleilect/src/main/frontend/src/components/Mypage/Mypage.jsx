@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './mypage.css';
 import axios from 'axios';
 import OwnPowerTab from '../MpTabBox/OwnPowerTab';
@@ -8,6 +8,7 @@ import FreeBoardTab from '../MpTabBox/FreeBoardTab';
 import AlarmTab from '../MpTabBox/AlarmTab';
 import OwnPowerModal from '../Modal/OwnPowerModal';
 import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
+
 
 
 export default function Mypage() {
