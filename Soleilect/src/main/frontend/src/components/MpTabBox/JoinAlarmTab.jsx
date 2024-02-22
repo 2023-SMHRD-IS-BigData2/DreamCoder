@@ -79,7 +79,7 @@ const JoinAlarmTab = (props) => {
                         <div className='bottom-text'>{start_at + '-' + end_at}</div>
                     </div> */}
                 </div>
-                <div class='v-line'></div>
+                <div className='v-line'></div>
                 <div className='alarm-tab-second-text-content-box'>
                     <div className='tab-top-second-text-box'>
                         <div className='second-content-name'>{user_nick}</div>
