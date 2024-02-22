@@ -88,6 +88,18 @@ public class PartyBoardServiceImp implements PartyBoardService {
 	}
 
 	@Override
+	public ResultVO partyBoardDetail(int party_seq) {
+		try {
+			Party_boards dt = partyboardDao.partyBoardDetail(party_seq);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.add(dt);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+	
+	@Override
 	public ResultVO partyBoardViewUp(int party_seq) {
 		try {
 			int row = partyboardDao.partyBoardViewUp(party_seq);
@@ -101,4 +113,5 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			return new ResultVO("99", null);
 		}
 	}
+
 }

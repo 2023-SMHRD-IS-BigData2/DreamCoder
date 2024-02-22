@@ -57,11 +57,20 @@
 			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
 		</if>
 	</select>
+	<select id="partyBoardDetail" resultType="com.slt.entity.Party_boards">
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
+		START_AT,
+		END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
+		USER_ID,
+		USER_NICK, PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
+		WHERE PARTY_SEQ = #{party_seq};
+	</select>	
 	<update id="partyBoardViewUp" parameterType="int">
 		UPDATE
 		PARTY_BOARDS_TB
 		SET
-		PARTY_VIEWS = PARTY_VIEWS + 1,
+		PARTY_VIEWS = PARTY_BOARDS_TB.PARTY_VIEWS + 1,
 		WHERE PARTY_SEQ = #{party_seq};
 	</update>
 </mapper>

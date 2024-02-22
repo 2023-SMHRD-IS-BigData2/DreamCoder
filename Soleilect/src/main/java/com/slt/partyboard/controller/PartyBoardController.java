@@ -68,6 +68,16 @@ public class PartyBoardController {
 	}
 	
 	/**
+	 * 모집 게시판 검색 기능 
+	 */
+	@RequestMapping("/detail")
+	public ResultVO partyBoardDetail(int party_seq) {
+		System.out.println("모집 게시판 상세 조회");
+		return partyboardservice.partyBoardDetail(party_seq);
+	}
+	
+	
+	/**
 	 * 모집 게시판 조회수 상승 
 	 */
 	@RequestMapping("/views")
