@@ -43,6 +43,9 @@ const JoinAlarmTab = (props) => {
         plusPartyPower();
         setModalOpen(true);
     }
+    const onJoinAlarmDeny = () => {
+        setModalOpen(true);
+    }
     return (
         <div className='tab-content-list'>
             <div className='tab-content-box'>
@@ -84,10 +87,11 @@ const JoinAlarmTab = (props) => {
                     </div>
                 </div>
                 <div className='alarm-delete-content-box'>
-                    <div className='delete-button'>X</div>
+                    <div className='delete-button' onClick={onJoinAlarmDeny}>X</div>
                 </div>
                 <div className='accept-join-button-box' onClick={onJoinAlarmAgree}>{'수락하기'}</div>
-                {modalOpen && <AlarmSuccessModal setModalOpen={setModalOpen} user_nick={user_nick} />}
+                {modalOpen && <AlarmSuccessModal toggle={'agree'} setModalOpen={setModalOpen} user_nick={user_nick} />}
+                {modalOpen && <AlarmSuccessModal toggle={'deny'} setModalOpen={setModalOpen} user_nick={user_nick} />}
             </div>
         </div>
     );
