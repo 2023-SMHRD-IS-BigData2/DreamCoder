@@ -43,7 +43,7 @@
 		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT, PARTY_LOC,
 		START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT, CREATED_AT,
 		USER_ID, USER_NICK, PARTY_ISJOIN
-		FROM PARTY_BOARDS_TB order by PARTY_ISJOIN desc;
+		FROM PARTY_BOARDS_TB order by PARTY_ISJOIN DESC, END_AT;
 	</select>
 	<select id="partyBoardSearch"
 		resultType="com.slt.entity.Party_boards">
