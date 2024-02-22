@@ -36,7 +36,7 @@
 		UPDATE
 		PARTY_BOARDS_TB
 		SET
-		NOW_CNT = #{now_cnt},
+		NOW_CNT = PARTY_BOARDS_TB.NOW_CNT+#{now_cnt}
 		WHERE PARTY_SEQ = #{party_seq};
 	</update>
 </mapper>
