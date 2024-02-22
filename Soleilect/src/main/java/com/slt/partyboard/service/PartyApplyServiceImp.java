@@ -38,6 +38,16 @@ public class PartyApplyServiceImp implements PartyApplyService {
 			return new ResultVO("99", null);
 		}
 	}
+	
+	@Override
+	public ResultVO partyRefuse(int list_seq) {
+		try {
+			partyapplyDao.partyRefuse(list_seq);
+			return new ResultVO("00", null);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 
 	@Override
 	public ResultVO partyAccept(int list_seq, int pl_seq) {
@@ -49,5 +59,7 @@ public class PartyApplyServiceImp implements PartyApplyService {
 			return new ResultVO("99", null);
 		}
 	}
+
+
 
 }

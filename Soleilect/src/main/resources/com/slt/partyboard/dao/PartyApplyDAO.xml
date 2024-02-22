@@ -32,6 +32,9 @@
 		PL_ISJOIN = 1
 		WHERE PL_SEQ = #{pl_seq};
 	</update>
+	<delete id="partyRefuse">
+		DELETE FROM PARTY_LIST_TB WHERE LIST_SEQ = #{list_seq}
+	</delete>
 	<update id="partyApplypbUpdate" parameterType="int">
 		UPDATE
 		PARTY_BOARDS_TB
