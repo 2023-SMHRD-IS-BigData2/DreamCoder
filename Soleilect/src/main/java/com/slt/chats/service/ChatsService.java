@@ -8,8 +8,4 @@ public interface ChatsService {
 	ResultVO chatsSelectList(Chats chats);
 
 	ResultVO chatsInfoInsert(Chats chats);
-
-	ResultVO chatsCancelUpdate(Chats chats);
-
-	ResultVO chatsDelete(Chats chats);
 }

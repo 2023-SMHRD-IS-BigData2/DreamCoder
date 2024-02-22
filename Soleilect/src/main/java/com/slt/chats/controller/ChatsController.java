@@ -26,14 +26,4 @@ public class ChatsController {
 	public ResultVO chatsInfoInsert(@ModelAttribute Chats chats) {
 		return chatsService.chatsInfoInsert(chats);
 	}
-	
-	@GetMapping("/CancelUpdate")
-	public ResultVO chatsCancelUpdate(@ModelAttribute Chats chats) {
-		return chatsService.chatsCancelUpdate(chats);
-	}
-	
-	@GetMapping("/delete")
-	public ResultVO chatsDelete(@ModelAttribute Chats chats) {
-		return chatsService.chatsDelete(chats);
-	}
 }
