@@ -51,10 +51,8 @@ const PartyBoardDetail = () => {
             .post('/Sol/partyBoardCon/detail', formData)
             .then((res) => {
                 setList(res.data.data)
-                console.log(list[0].user_nick);
                 setTimeStamp(list[0].created_at);
                 setChartViews(list[0].party_views + 1);
-                setChartViews(true)
 
                 // 아직 partyview()가 실행되지 않았다면 실행
                 if (!hasViewed) {
@@ -69,21 +67,21 @@ const PartyBoardDetail = () => {
     }, []);
 
     // function 모집 게시판 조회수 실행 함수 한번만 실행 되게!!
-    const partyview = () => {
-        let formData = new FormData();
-        console.log('조회수');
-        formData.append("party_seq", list[0].party_seq)
-        console.log(list[0].party_views);
-        axios
-            .post('/Sol/partyBoardCon/views', formData)
-            .then((res) => {
-                setList(res.data.data)
-                console.log('조회수 상승!');
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+    // const partyview = () => {
+    //     let formData = new FormData();
+    //     console.log('조회수');
+    //     formData.append("party_seq", list[0].party_seq)
+    //     console.log(list[0].party_views);
+    //     axios
+    //         .post('/Sol/partyBoardCon/views', formData)
+    //         .then((res) => {
+    //             setList(res.data.data)
+    //             console.log('조회수 상승!');
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }
 
     // highcharts 옵션 부분 ---------------------------------
     let options = {};
@@ -171,7 +169,6 @@ const PartyBoardDetail = () => {
 
     // event handler  삭제 버튼 클릭 핸들러 -------------------
     const onPartyDeleteClickHandler = () => {
-        console.log('삭제버튼 클릭');
         // 모달 열기 상태 변경
         setIsModalOpen(true);
     }
@@ -180,7 +177,6 @@ const PartyBoardDetail = () => {
     const ondeletePartyBoardClickHandler = () => {
         let formData = new FormData();
         formData.append("party_seq", list[0].party_seq)
-        console.log(list[0].party_seq);
         axios
             .post('/Sol/partyBoardCon/delete', formData)
             .then((res) => {

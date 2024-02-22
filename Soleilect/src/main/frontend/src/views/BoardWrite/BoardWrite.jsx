@@ -27,7 +27,7 @@ const BoardWrite = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [views, setViews] = useState(0);
-    const [headCode, setHeadCode] = useState("f1");
+    const [headCode, setHeadCode] = useState("hd01");
     const [headName, setHeadName] = useState("자유게시판");
     const [userId, setUserId] = useState("");
     const [userNick, setUserNick] = useState("");
@@ -66,7 +66,7 @@ const BoardWrite = () => {
     const oncategorionChangeHandler = (e) => {
         const value = e.target.value;
         setHeadName(value);
-        value == '자유게시판' ? setHeadCode('f1') : setHeadCode('h1')
+        value == '자유게시판' ? setHeadCode('hd01') : setHeadCode('hd02')
     }
 
     // event handler : 이미지 변경 이벤트 처리
@@ -176,7 +176,7 @@ const BoardWrite = () => {
                             <div className='board-write-check-box'>
                                 <select name="hd_name" className="write-check-select" id='write-select-box' onChange={oncategorionChangeHandler} ref={headNameRef}>
                                     <option value="자유게시판" className="write-check-select">{'자유 게시판 '}</option>
-                                    <option value="꿀팁 메뉴얼" className="write-check-select">{'꿀팁 메뉴얼'}</option>
+                                    <option value="꿀팁메뉴얼" className="write-check-select">{'꿀팁 메뉴얼'}</option>
                                 </select>
                                 <input name='hd_code' type="hidden" ref={headCodeRef} value={headCode} />
                             </div>

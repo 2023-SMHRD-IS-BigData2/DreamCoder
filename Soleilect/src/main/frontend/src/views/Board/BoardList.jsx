@@ -32,6 +32,7 @@ const BoardList = () => {
             .post('/Sol/boardCon/filter', formData)
             .then((res) => {
                 setList(res.data.data)
+                console.log(list);
             })
             .catch((error) => {
                 console.log(error)
@@ -72,14 +73,14 @@ const BoardList = () => {
     // event handler : 자유 게시판 탭 클릭 이벤트
     const freeTabonClickHandler = () => {
         setToggle('free-board');
-        setToggleCode('f1');
+        setToggleCode('hd01');
         setHeadName('자유게시판')
        
     }
     // event handler : 꿀팁 메뉴얼 탭 클릭 이벤트
     const tipTabonClickHandler = () => {
         setToggle('tip-board');
-        setToggleCode('h1');
+        setToggleCode('hd02');
         setHeadName('꿀팁 메뉴얼')
     }
 
@@ -126,8 +127,9 @@ const BoardList = () => {
                         {list && currentData() && currentData().map((item, index) => (
                             <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}                                
                                 onClick={() => {
-                                    nav(`/BoardDetail/${(currentPage - 1) * 8 + index}`);
+                                    nav(`/BoardDetail/${item.b_seq}`,{state:{b_seq:item.b_seq}});
                                 }}>
+                                    {console.log(item.b_seq)}
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>

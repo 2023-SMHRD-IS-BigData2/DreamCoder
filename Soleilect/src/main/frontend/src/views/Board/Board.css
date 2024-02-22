@@ -62,8 +62,7 @@
     
 }
 .board-top-write-box:hover {
-    background-color: rgba(226, 226, 226, 0.9);
-    color: rgba(26, 117, 191, 1);
+    background-color: #f3c279;
 }
 .board-top-write-button{
     font-size: 20px;
