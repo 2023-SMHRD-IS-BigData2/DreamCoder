@@ -15,8 +15,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/accept', formData)
             .then((res) => {
-                console.log(res);
-                console.log('가입승인완료!');
             })
             .catch((error) => {
                 console.log(error)
@@ -29,8 +27,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/refuse', formData)
             .then((res) => {
-                console.log(res);
-                console.log('가입거절완료!');
                 window.location.reload();
             })
             .catch((error) => {
@@ -45,8 +41,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/pbUpdate', formData)
             .then((res) => {
-                console.log(res);
-                console.log('발전량변경완료!');
                 window.location.reload();
             })
             .catch((error) => {

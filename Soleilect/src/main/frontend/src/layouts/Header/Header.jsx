@@ -26,7 +26,7 @@ const Header = () => {
   const onLogoutButtonClickHandler = () => {
     sessionStorage.removeItem("user_id");
     setIslogin(false);
-    navigate('/Main');
+    navigate('/');
   }
   const onMessagepageButtonClickHandler = () => {
     navigate('/MessagePage');
