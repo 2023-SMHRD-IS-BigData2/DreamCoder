@@ -86,7 +86,7 @@
 	<update id="userUpdate" parameterType="String">
 		UPDATE USERS_TB
 		SET
-		USER_NICK = #{user_nick}
+		USER_NICK = #{user_nick},
 		USER_PW =sha2(#{user_pw},384)
 		WHERE USER_ID = #{user_id};
 
