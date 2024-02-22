@@ -127,11 +127,19 @@ export default function Mypage() {
     const EditProfileCard = () => {
         //          state: 패스워드 요소 참조 상태 
         const passwordRef = useRef(null);
+        //          state: 재패스워드 요소 참조 상태 
+        const passwordSecRef = useRef(null);
+        //          state: 재재패스워드 요소 참조 상태 
+        const passwordThrdRef = useRef(null);
         //          state: 닉네임 요소 참조 상태 
         const nicknameRef = useRef(null);
 
         //          state: 패스워드 상태 
         const [password, setPassword] = useState('');
+        //          state: 재패스워드 상태 
+        const [passwordSec, setPasswordSec] = useState('');
+        //          state: 재재패스워드 상태 
+        const [passwordThrd, setPasswordThrd] = useState('');
         //          state: 닉네임 상태 
         const [nickname, setNickname] = useState(sessionStorage.getItem("user_nick"));
         //          event handler: 닉네임 변경 이벤트 처리 
@@ -144,14 +152,25 @@ export default function Mypage() {
             const { value } = event.target;
             setPassword(value);
         }
+        //          event handler: 재패스워드 변경 이벤트 처리 
+        const onPasswordSecChangeHandler = (event) => {
+            const { value } = event.target;
+            setPasswordSec(value);
+        }
+        //          event handler: 재패스워드 변경 이벤트 처리 
+        const onPasswordThrdChangeHandler = (event) => {
+            const { value } = event.target;
+            setPasswordThrd(value);
+        }
         const submitPost = () => {
             let formData = new FormData();
-            console.log(sessionStorage.getItem("user_id"),sessionStorage.getItem("user_pw"));
+            console.log(sessionStorage.getItem("user_id"), sessionStorage.getItem("user_pw"));
             formData.append("user_id", sessionStorage.getItem("user_id"))
             if (password == '') {
                 formData.append("user_pw", sessionStorage.getItem("user_pw"))
             } else {
-                formData.append("user_pw", password)
+                formData.append("user_pw", passwordThrd)
+                sessionStorage.setItem("user_pw", passwordThrd)
             }
             if (nickname == sessionStorage.getItem("user_nick")) {
                 formData.append("user_nick", sessionStorage.getItem("user_nick"))
@@ -161,10 +180,11 @@ export default function Mypage() {
             axios
                 .post('/Sol/myPageCon/userUpdate', formData)
                 .then((response) => {
-                    console.log(password, nickname);
+                    console.log(passwordThrd, nickname);
                     console.log(response);
-                    // sessionStorage.setItem("user_nick",nickname)
+                    sessionStorage.setItem("user_nick", nickname)
                     alert('수정 완료');
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.log(error)
@@ -194,7 +214,18 @@ export default function Mypage() {
         }
         //          event handler: 수정하기 버튼 클릭 이벤트 처리 
         const onChangeButtonClickHandler = () => {
-            { submitPost() }
+            const nowPassword = sessionStorage.getItem("user_pw");
+            if (password === '' || password === nowPassword) { // password가 비어 있거나 nowPassword와 일치하는 경우
+                if (passwordSec !== passwordThrd) {
+                    alert('재입력한 비밀번호가 일치하지않습니다.');
+                    return;
+                }
+                // submitPost 함수를 호출하는 중괄호는 제거하고, submitPost를 바로 호출합니다.
+                submitPost();
+            } else {
+                alert('현재 비밀번호가 일치하지 않습니다.');
+                return;
+            }
         }
 
         return (
@@ -233,8 +264,8 @@ export default function Mypage() {
                             </div>
                             <div className='card-bottom'>
                                 <input ref={passwordRef} value={password} onChange={onPasswordChangeHandler} className='edit-box edit-password-box' type="password" placeholder={'현재 비밀번호'} />
-                                <input ref={passwordRef} onChange={onPasswordChangeHandler} className='edit-box edit-password-box' type="text" placeholder={'새 비밀번호'} />
-                                <input className='edit-box edit-password-box' type="password" placeholder={'새 비밀번호 재입력'} />
+                                <input ref={passwordSecRef} value={passwordSec} onChange={onPasswordSecChangeHandler} className='edit-box edit-password-box' type="text" placeholder={'새 비밀번호'} />
+                                <input ref={passwordThrdRef} value={passwordThrd} onChange={onPasswordThrdChangeHandler} className='edit-box edit-password-box' type="password" placeholder={'새 비밀번호 재입력'} />
                             </div>
                         </div>
                         <div className='mypage-box edit-alarm-box-card'>
