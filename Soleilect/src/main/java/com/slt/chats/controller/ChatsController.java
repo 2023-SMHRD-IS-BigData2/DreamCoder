@@ -26,4 +26,5 @@ public class ChatsController {
 	public ResultVO chatsInfoInsert(@ModelAttribute Chats chats) {
 		return chatsService.chatsInfoInsert(chats);
 	}
+	
 }

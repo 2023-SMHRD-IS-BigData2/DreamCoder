@@ -13,10 +13,4 @@ public interface ChatsDAO {
 	
 	public void chatsInfoInsert(Chats chats);
 	
-	public void chatsCancelUpdate(Long num);
-	
-	public void chatsUpdateDelete(Chats chats);
-	
-	public void chatsDelete(Long num);
-	
 }
