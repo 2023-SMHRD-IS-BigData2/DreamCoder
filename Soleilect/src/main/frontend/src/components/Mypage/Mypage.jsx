@@ -105,6 +105,7 @@ export default function Mypage() {
             .post('/Sol/myPageCon/myGroupAccept', formData)
             .then((res) => {
                 console.log(res);
+                console.log(res.data.data[0][0]);
             })
             .catch((error) => {
                 console.log(error)

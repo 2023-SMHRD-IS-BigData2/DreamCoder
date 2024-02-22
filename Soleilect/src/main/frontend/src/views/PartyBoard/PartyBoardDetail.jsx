@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts, { color } from 'highcharts';
 import { useState } from 'react';
@@ -10,7 +10,13 @@ import moment from 'moment';
 
 const PartyBoardDetail = () => {
     const { list, setList } = useContext(ChartContext);
-    let { num } = useParams();
+
+    // 모집 게시판 party_seq 받아옴
+    const location = useLocation();
+    const number = location.state.party_seq;
+    console.log(number);
+
+    // let { num } = useParams();
     const nav = useNavigate();
 
     // state 년월일 시간 자르기
@@ -30,31 +36,44 @@ const PartyBoardDetail = () => {
     const [chartViews, setChartViews] = useState(0);
 
     // state : 조회수  axios 실행 상태
-    const [checkViews,setCheckViews] = useState(false);
+    const [checkViews, setCheckViews] = useState(false);
 
+    //  state 를 추가
+    const [hasViewed, setHasViewed] = useState(false);
 
     // 모집 게시글 정보 가져오기 ---------------------
+
     useEffect(() => {
         let formData = new FormData();
+        console.log(number);
+        formData.append("party_seq", number);
         axios
-            .get('/Sol/partyBoardCon/list', formData)
+            .post('/Sol/partyBoardCon/detail', formData)
             .then((res) => {
                 setList(res.data.data)
-                setTimeStamp(list[num].created_at);
-                setChartViews(list[num].party_views+1);
-                // setChartViews(true)
-                partyview();
+                console.log(list[0].user_nick);
+                setTimeStamp(list[0].created_at);
+                setChartViews(list[0].party_views + 1);
+                setChartViews(true)
+
+                // 아직 partyview()가 실행되지 않았다면 실행
+                if (!hasViewed) {
+                    // partyview();
+                    setHasViewed(true);  
+                    // partyview()가 실행되었음을 표시
+                }
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
+    }, []);
 
-    // function 모집 게시판 조회수 실행 함수
+    // function 모집 게시판 조회수 실행 함수 한번만 실행 되게!!
     const partyview = () => {
         let formData = new FormData();
         console.log('조회수');
-        formData.append("party_seq", list[num].party_seq)
+        formData.append("party_seq", list[0].party_seq)
+        console.log(list[0].party_views);
         axios
             .post('/Sol/partyBoardCon/views', formData)
             .then((res) => {
@@ -66,14 +85,14 @@ const PartyBoardDetail = () => {
             })
     }
 
-    // chart 부분 ---------------------------------
+    // highcharts 옵션 부분 ---------------------------------
     let options = {};
 
-    if (list && list[num]) {
+    if (list && list[0]) {
         options = {
             colors: ["#F5F5F5", "#1A74BD"],
             chart: {
-                renderTo: `subscribers-graph-${list[num].party_seq}`,
+                renderTo: `subscribers-graph-${list[0].party_seq}`,
                 type: 'pie',
                 backgroundColor: null,
                 style: {
@@ -85,7 +104,7 @@ const PartyBoardDetail = () => {
             },
             title: {
                 verticalAlign: 'middle',
-                text: Math.floor(list[num].now_cnt / list[num].target_cnt * 100) + '%',
+                text: Math.floor(list[0].now_cnt / list[0].target_cnt * 100) + '%',
                 size: 40,
             },
             // 워터마크 해제
@@ -101,7 +120,7 @@ const PartyBoardDetail = () => {
             },
             series: [
                 {
-                    data: [list[num].target_cnt - list[num].now_cnt, list[num].now_cnt],
+                    data: [list[0].target_cnt - list[0].now_cnt, list[0].now_cnt],
                     // data: [1,2],
                     size: '80%',
                     innerSize: '75%',
@@ -160,8 +179,8 @@ const PartyBoardDetail = () => {
     // event handler 모달 안의 삭제하기 버튼 클릭 핸들러 ------------------
     const ondeletePartyBoardClickHandler = () => {
         let formData = new FormData();
-        formData.append("party_seq", list[num].party_seq)
-        console.log(list[num].party_seq);
+        formData.append("party_seq", list[0].party_seq)
+        console.log(list[0].party_seq);
         axios
             .post('/Sol/partyBoardCon/delete', formData)
             .then((res) => {
@@ -186,7 +205,7 @@ const PartyBoardDetail = () => {
                     <button className='close' onClick={() => setIsModalOpen(false)}>
                         X
                     </button>
-                    <div className='delete-modal-text'>{'['}{list[num].party_title}{']'}</div>
+                    <div className='delete-modal-text'>{'['}{list[0].party_title}{']'}</div>
                     <div className='delete-modal-text'> 게시글을 삭제하시겠습니까?</div>
                     <div className='delete-ownplant-button-box'>
                         <div className='delete-ownplant-button' onClick={ondeletePartyBoardClickHandler}>{'삭제하기'}</div>
@@ -245,8 +264,8 @@ const PartyBoardDetail = () => {
             if (selectedPower) {
                 console.log(selectedPower.pl_loc, '이거');
                 let formData = new FormData();
-                formData.append("party_seq", list[num].party_seq);
-                formData.append("party_title", list[num].party_title);
+                formData.append("party_seq", list[0].party_seq);
+                formData.append("party_title", list[0].party_title);
                 formData.append("pl_name", selectedPower.pl_name);
                 formData.append("pl_power", selectedPower.pl_power);
                 formData.append("pl_seq", selectedPower.pl_seq);
@@ -269,7 +288,7 @@ const PartyBoardDetail = () => {
         };
 
 
-        //          state: 페이지 상태  모달 창  render -----------  
+    //     //          state: 페이지 상태  모달 창  render -----------  
         return (
             <div className='p_Modal'>
                 <div ref={modalRef} className='p_container'>
@@ -325,21 +344,21 @@ const PartyBoardDetail = () => {
 
     //         render 게시물 상세 화면 컴포넌트 렌더링!!!  //
     return (
-        list && list[num] ?
+        list && list[0] ?
             <div id='board-detail-top'>
                 <div className='board-detail-title'>
                     <div className='detail-top-sub-box'>
                         <div className='board-detail-write-info-box'>
                             <div className='board-detail-writer-profile-image'></div>
-                            <div className='board-detail-writer-nickname'>{list[num].user_nick}</div>
+                            <div className='board-detail-writer-nickname'>{list[0].user_nick}</div>
                             <div className='board-detail-write-divider'>{'|'}</div>
                             <div className='detail-chart-date'>{moment(timestamp).format("YYYY-MM-DD")}</div>
-                            <div className='detail-chart-recruit' style={{ color: list[num].party_isJoin == '모집중' ? '#35AF4B' : '#D1180B' }}>
-                                {list[num].party_isJoin}
+                            <div className='detail-chart-recruit' style={{ color: list[0].party_isJoin == '모집중' ? '#35AF4B' : '#D1180B' }}>
+                                {list[0].party_isJoin}
                             </div>
                             <div className='detail-chart-view'>{`조회수 `} {chartViews}{'회'}</div>
                             {/* 'more-icon' 클릭 시 showEditDelete 상태를 이전 상태의 반대로 설정 */}
-                            {list[num].user_id == sessionStorage.getItem('user_id') ? <div className='more-icon' onClick={() => setShowEditDelete(prev => !prev)}></div> : <></>}
+                            {list[0].user_id == sessionStorage.getItem('user_id') ? <div className='more-icon' onClick={() => setShowEditDelete(prev => !prev)}></div> : <></>}
                             {/* showEditDelete 상태에 따라 BoardEditDelete 컴포넌트 렌더링 */}
                             {showEditDelete && <BoardEditDelete />}
                         </div>
@@ -349,13 +368,13 @@ const PartyBoardDetail = () => {
                     </div>
                     <div className='board-detail-top-main'>
 
-                        <div className='detail-chart-title'>{`[` + list[num].party_title + `]`}</div>
+                        <div className='detail-chart-title'>{`[` + list[0].party_title + `]`}</div>
                         <div className='detail-chart-fix'>
-                            <div className='detail-chart-start'>{'모집 기간  :  '}{list[num].start_at} {' ~ '} {list[num].end_at}</div>
-                            <div className='detail-chart-cnt'>{'목표 수치 : '}{list[num].target_cnt}{'kw'}</div>
-                            <div className='detail-chart-cnt'>{'모집량 : '}{list[num].now_cnt}{'kw'}</div>
+                            <div className='detail-chart-start'>{'모집 기간  :  '}{list[0].start_at} {' ~ '} {list[0].end_at}</div>
+                            <div className='detail-chart-cnt'>{'목표 수치 : '}{list[0].target_cnt}{'kw'}</div>
+                            <div className='detail-chart-cnt'>{'모집량 : '}{list[0].now_cnt}{'kw'}</div>
                         </div>
-                        <div className='detail-chart-content'>{list[num].party_content}</div>
+                        <div className='detail-chart-content'>{list[0].party_content}</div>
                         <br />
                         <div className='divider'></div>
                     </div>
