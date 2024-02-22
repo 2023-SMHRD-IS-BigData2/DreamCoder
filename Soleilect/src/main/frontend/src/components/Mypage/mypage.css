@@ -359,8 +359,10 @@
 }
 
 .edit-nickname-box-card {
-    width: 319px;
+    width: 400px;
     height: 120px;
+    position: relative;
+    right: 70px;
 }
 
 .edit-title {
@@ -541,4 +543,28 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 140%;
+}
+
+.id-check-button-box {
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    position: relative;
+    left: 320px;
+    top: 10px;
+
+    background-color: rgb(26, 117, 191);
+    color: rgba(255, 255, 255, 1);
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 140%;
+
+    z-index: 1;
+
+    cursor: pointer;
 }
