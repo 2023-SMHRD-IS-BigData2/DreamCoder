@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 const BoardDetail = () => {
-  const { list, setList} = useContext(ChartContext);
+  const { list, setList } = useContext(ChartContext);
   let { num } = useParams();
 
   const nav = useNavigate();
@@ -13,69 +13,71 @@ const BoardDetail = () => {
   const [showEditDelete, setShowEditDelete] = useState(false);
   // state : 모달 열기를 위한 상태 선언
   const [isModalOpen, setIsModalOpen] = useState(false);
+  //  state 조회수   
+  // const [chartViews, setChartViews] = useState(0);
 
-  // 
+  // function 모달창 끄기 상태 변환
   const closeModal = () => {
     setIsModalOpen(false);
-};
+  };
 
   // component : 게시글 수정, 삭제 컴포넌트  
-    const BoardEditDelete = () => {
-      return (
-            <div className='party-board-edit-delete'>
-                <div className='edit-icon-box'>{'수정하기'}<div className='edit-icon'></div>
-                </div>
-                <div className='delete-icon-box' onClick={onPartyDeleteClickHandler}>{'삭제하기'}<div className='delete-icon' ></div>
-                </div>
-            </div>
-        )
-    }
-  
+  const BoardEditDelete = () => {
+    return (
+      <div className='party-board-edit-delete'>
+        <div className='edit-icon-box'>{'수정하기'}<div className='edit-icon'></div>
+        </div>
+        <div className='delete-icon-box' onClick={onPartyDeleteClickHandler}>{'삭제하기'}<div className='delete-icon' ></div>
+        </div>
+      </div>
+    )
+  }
+
   const modalRef = useRef(null);
 
   // event handler  삭제 버튼 클릭 핸들러 -------------------
-    const onPartyDeleteClickHandler = () => {
-          console.log('삭제버튼 클릭');
-          // 모달 열기 상태 변경
-          setIsModalOpen(true);
-    }
-  
-    // 삭제 확인 모달 컴포넌트 ---------------------------------
-      const Modal = () => {
-        return (
-            <div className='p_Modal'>
-                <div ref={modalRef} className='delete-container'>
-                    <button className='close' onClick={() => setIsModalOpen(false)}>
-                        X
-                    </button>
-                    <div className='delete-modal-text'>{'['}{list[num].b_title}{']'}</div>
-                    <div className='delete-modal-text'> 게시글을 삭제하시겠습니까?</div>
-                    <div className='delete-ownplant-button-box'>
-                        <div className='delete-ownplant-button' onClick={ondeletePartyBoardClickHandler}>{'삭제하기'}</div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-  
+  const onPartyDeleteClickHandler = () => {
+    console.log('삭제버튼 클릭');
+    // 모달 열기 상태 변경
+    setIsModalOpen(true);
+  }
+
+  // 삭제 확인 모달 컴포넌트 ---------------------------------
+  const Modal = () => {
+    return (
+      <div className='p_Modal'>
+        <div ref={modalRef} className='delete-container'>
+          <button className='close' onClick={() => setIsModalOpen(false)}>
+            X
+          </button>
+          <div className='delete-modal-text'>{'['}{list[num].b_title}{']'}</div>
+          <div className='delete-modal-text'> 게시글을 삭제하시겠습니까?</div>
+          <div className='delete-ownplant-button-box'>
+            <div className='delete-ownplant-button' onClick={ondeletePartyBoardClickHandler}>{'삭제하기'}</div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // event handler 모달 안의 삭제하기 버튼 클릭 핸들러 ------------------
-    const ondeletePartyBoardClickHandler = () => {
-      let formData = new FormData();
-      formData.append("b_seq", list[num].b_seq)
-      axios
-          .post('/Sol/boardCon/delete', formData)
-          .then((res) => {
-              // setList(res.data.data)
-              alert('게시글 삭제 완료!')
-              closeModal();
-              nav('/BoardList')
-              window.location.reload();
-          })
-          .catch((error) => {
-              console.log(error)
-          })
-      // 모달 닫기 상태 변경
-      setIsModalOpen(false);
+  const ondeletePartyBoardClickHandler = () => {
+    let formData = new FormData();
+    formData.append("b_seq", list[num].b_seq)
+    axios
+      .post('/Sol/boardCon/delete', formData)
+      .then((res) => {
+        // setList(res.data.data)
+        alert('게시글 삭제 완료!')
+        closeModal();
+        nav('/BoardList')
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // 모달 닫기 상태 변경
+    setIsModalOpen(false);
   }
 
   // event 일반게시판 목록으로 돌아가기
@@ -103,7 +105,7 @@ const BoardDetail = () => {
                 <div className='board2-detal-titile-box'>{list[num].b_title}</div>
               </div>
             </div>
-    
+
             <div className='board2-detail-middle'>
               <div className='board2-detail-top-icon'>
                 <div className='board-detail-writer-profile-image'></div>
@@ -130,9 +132,9 @@ const BoardDetail = () => {
         <div>로딩중...</div>
       )}
       {/* 삭제 확인 모달 */}
-      {isModalOpen && <Modal />}           
+      {isModalOpen && <Modal />}
     </div>
-)
+  )
 }
 
 export default BoardDetail

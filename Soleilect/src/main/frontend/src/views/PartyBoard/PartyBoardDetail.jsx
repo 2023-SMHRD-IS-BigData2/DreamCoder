@@ -26,8 +26,11 @@ const PartyBoardDetail = () => {
     // state : 모달 열기를 위한 상태 선언
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    //  조회수
-    // const [chartViews, setChartViews] = useState(0);
+    // state : 조회수
+    const [chartViews, setChartViews] = useState(0);
+
+    // state : 조회수  axios 실행 상태
+    const [checkViews,setCheckViews] = useState(false);
 
 
     // 모집 게시글 정보 가져오기 ---------------------
@@ -38,15 +41,30 @@ const PartyBoardDetail = () => {
             .then((res) => {
                 setList(res.data.data)
                 setTimeStamp(list[num].created_at);
+                setChartViews(list[num].party_views+1);
+                // setChartViews(true)
+                partyview();
             })
             .catch((error) => {
                 console.log(error)
             })
-
-        // 조회수
-        // setChartViews((chartViews) => chartViews + 1);
-
     }, [])
+
+    // function 모집 게시판 조회수 실행 함수
+    const partyview = () => {
+        let formData = new FormData();
+        console.log('조회수');
+        formData.append("party_seq", list[num].party_seq)
+        axios
+            .post('/Sol/partyBoardCon/views', formData)
+            .then((res) => {
+                setList(res.data.data)
+                console.log('조회수 상승!');
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
     // chart 부분 ---------------------------------
     let options = {};
@@ -319,7 +337,7 @@ const PartyBoardDetail = () => {
                             <div className='detail-chart-recruit' style={{ color: list[num].party_isJoin == '모집중' ? '#35AF4B' : '#D1180B' }}>
                                 {list[num].party_isJoin}
                             </div>
-                            <div className='detail-chart-view'>{`조회수 `} {list[num].party_views}{'회'}</div>
+                            <div className='detail-chart-view'>{`조회수 `} {chartViews}{'회'}</div>
                             {/* 'more-icon' 클릭 시 showEditDelete 상태를 이전 상태의 반대로 설정 */}
                             {list[num].user_id == sessionStorage.getItem('user_id') ? <div className='more-icon' onClick={() => setShowEditDelete(prev => !prev)}></div> : <></>}
                             {/* showEditDelete 상태에 따라 BoardEditDelete 컴포넌트 렌더링 */}
