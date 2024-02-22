@@ -7,7 +7,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import usePagination from '../../hooks/pagination';
 
 const PartyBoardList = () => {
-    const {list,setList} = useContext(ChartContext);
+    const {list,setList,setNum} = useContext(ChartContext);
     const nav = useNavigate();
 
      // 페이지네이션 훅 호출
@@ -38,7 +38,7 @@ const PartyBoardList = () => {
       </div>
       <div className='list-item'>
         {/* {list && currentData() && currentData().map((item, index) => <PartyBoardItem item={item}
-          key={(currentPage - 1) * 6 + index} index={index}></PartyBoardItem>)} */}
+          key={(currentPage - 1) * 6 + index} ></PartyBoardItem>)} */}
            {list.map((item, index) => <PartyBoardItem item={item}
           key={index} index={index}></PartyBoardItem>)}
       </div>

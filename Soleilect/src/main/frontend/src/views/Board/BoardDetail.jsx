@@ -6,14 +6,17 @@ import axios from 'axios';
 
 const BoardDetail = () => {
   const { list, setList ,num } = useContext(ChartContext);
-  console.log(num);
 
-  // let { num } = useParams();
   const nav = useNavigate();
   // state 수정 삭제 토글 상태  다시 누르면 사라지게
   const [showEditDelete, setShowEditDelete] = useState(false);
   // state : 모달 열기를 위한 상태 선언
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 
+  const closeModal = () => {
+    setIsModalOpen(false);
+};
 
   // component : 게시글 수정, 삭제 컴포넌트  
     const BoardEditDelete = () => {
@@ -62,10 +65,11 @@ const BoardDetail = () => {
       axios
           .post('/Sol/boardCon/delete', formData)
           .then((res) => {
-              setList(res.data.data)
-              alert('삭제 성공!')
+              // setList(res.data.data)
+              alert('게시글 삭제 완료!')
+              closeModal();
               nav('/BoardList')
-              window.location.reload()
+              window.location.reload();
           })
           .catch((error) => {
               console.log(error)
