@@ -17,5 +17,7 @@ public interface BoardService {
 
 	ResultVO boardSearch(String search);
 	
+	ResultVO boardDetail(int b_seq);
+	
 	ResultVO boardViewUP(int b_seq);
 }

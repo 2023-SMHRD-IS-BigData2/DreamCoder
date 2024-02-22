@@ -92,6 +92,18 @@ public class BoardServiceImp implements BoardService {
 			return new ResultVO("99", null);
 		}
 	}
+	
+	@Override
+	public ResultVO boardDetail(int b_seq) {
+		try {
+			Boards dt = boardDao.boardDetail(b_seq);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.add(dt);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 
 	@Override
 	public ResultVO boardViewUP(int b_seq) {
@@ -103,5 +115,6 @@ public class BoardServiceImp implements BoardService {
 			return new ResultVO("99", null);
 		}
 	}
+
 
 }

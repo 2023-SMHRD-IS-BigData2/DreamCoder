@@ -23,5 +23,7 @@ public interface BoardDAO {
 
 	List<Boards> boardSearch(String search);
 	
+	Boards boardDetail(int b_seq);
+	
 	int boardViewUP(int b_seq);
 }

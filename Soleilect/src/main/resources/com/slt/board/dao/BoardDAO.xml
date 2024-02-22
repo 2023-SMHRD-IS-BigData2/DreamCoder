@@ -64,6 +64,13 @@
 			WHERE B_TITLE LIKE CONCAT('%',#{search},'%')
 		</if>
 	</select>
+	<select id="boardDetail" resultType="com.slt.entity.Boards">
+		SELECT B_SEQ, B_TITLE, B_CONTENT, CREATED_AT, B_VIEWS,
+		HD_CODE,
+		HD_NAME, USER_ID, USER_NICK
+		FROM BOARDS_TB
+		WHERE B_SEQ = #{b_seq};F
+	</select>
 	<update id="boardViewUp" parameterType="int">
 		UPDATE
 		BOARDS_TB

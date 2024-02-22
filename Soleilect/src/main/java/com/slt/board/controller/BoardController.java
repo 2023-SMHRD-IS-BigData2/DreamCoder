@@ -75,6 +75,15 @@ public class BoardController {
 	 }
 	
 	/**
+	 * 게시판 상세 조회 
+	 */
+	@RequestMapping("/detail")
+	public ResultVO boardDetail(int b_seq) {
+		System.out.println("일반 게시판 상세 조회");
+		return boardService.boardDetail(b_seq);
+	}
+	
+	/**
 	 * 게시판 조회수 상승
 	 */
 	@RequestMapping("/views")
