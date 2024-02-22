@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import usePagination from '../../hooks/pagination';
 
 const BoardList = () => {
-    const { list, setList } = useContext(ChartContext);
+    const { list, setList,setNum } = useContext(ChartContext);
     const nav = useNavigate();
 
     // state 탭 상태
@@ -46,6 +46,7 @@ const BoardList = () => {
             .get('/Sol/boardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
+                console.log(res.data.data);
             })
             .catch((error) => {
                 console.log(error)
@@ -124,14 +125,15 @@ const BoardList = () => {
                         </thead>
                         {/* 게시글 list */}
                         {list && currentData() && currentData().map((item, index) => (
-                            <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}
+                            <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}                                
                                 onClick={() => {
                                     nav(`/BoardDetail/${index}`);
                                 }}>
+                                    {setNum((currentPage - 1) * 8 + index)}
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>
-                                            <div className='board-title'>{index + 1}</div>
+                                            <div className='board-title'>{(currentPage - 1) * 8 + index}</div>
                                         </div>
                                     </td>
                                     <td className='board-contant-td'>
@@ -165,13 +167,13 @@ const BoardList = () => {
             <div className='repair-info-bottom-box'>
                     <div className='info-list-pagination-box'>
                         {/* 페이지네이션 컴포넌트 */}
-                        {/* <Pagination
+                        <Pagination
                             currentPage={currentPage}
                             totalPages={totalPageCount}
                             onNextPage={nextPage}
                             onPrevPage={prevPage}
                             onGoToPage={goToPage}
-                        /> */}
+                        />
                     </div>
                 </div>
         </div>
