@@ -10,4 +10,6 @@ public interface PartyApplyService {
 	ResultVO partyAccept(int list_seq, int pl_seq);
 
 	ResultVO partyApplypbUpdate(int party_seq, int now_cnt);
+	
+	ResultVO partyRefuse(int list_seq);
 }

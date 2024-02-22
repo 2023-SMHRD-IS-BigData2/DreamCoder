@@ -37,6 +37,15 @@ public class PartyApplyController {
 	}
 	
 	/**
+	 * 	발전소 가입 신청 거절	
+	 */
+	@RequestMapping("/refuse")
+	public ResultVO partyRefuse(int list_seq) {
+		System.out.println("발전소 가입 신청 거절");
+		return partyapplyservice.partyRefuse(list_seq);
+	}
+	
+	/**
 	 * 모집 게시판 현재 발전량 갱신
 	 */
 	@RequestMapping("/pbUpdate")

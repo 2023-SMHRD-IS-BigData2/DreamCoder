@@ -16,4 +16,6 @@ public interface PartyApplyDAO {
 	int partyAcceptPlant(int pl_seq);
 	
 	int partyApplypbUpdate(int party_seq, int now_cnt);
+	
+	int partyRefuse(int list_seq);
 }
