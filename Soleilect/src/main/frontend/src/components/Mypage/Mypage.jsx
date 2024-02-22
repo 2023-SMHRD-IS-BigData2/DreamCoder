@@ -95,7 +95,7 @@ export default function Mypage() {
             })
 
     };
-//              알림내역 가입신청자 불러오기
+    //              알림내역 가입신청자 불러오기
     useEffect(() => {
         if (view !== 'alarm-list') return;
         myPostAcceptUserList()
@@ -333,7 +333,7 @@ export default function Mypage() {
                     <div className='tap-contents-list'>
                         {/* <AlarmTab /> */}
                         {alarmList && alarmList.map((item, index) => (
-                        <JoinAlarmTab pl_seq={item.pl_seq}list_seq={item.list_seq}party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power}party_seq={item.party_seq} pl_name={item.pl_name} />
+                            <JoinAlarmTab pl_seq={item.pl_seq} list_seq={item.list_seq} party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} party_seq={item.party_seq} pl_name={item.pl_name} />
                         ))}
                     </div>
                 </div>
@@ -410,7 +410,43 @@ export default function Mypage() {
     }
     //              component: 작성한 게시물 컴포넌트
     const MyPostCard = () => {
+        //          state: 화면 상태 
+        const [views, setViews] = useState('join-board');
+        //          state: 탭 상태 
+        const [toggle, setToggle] = useState(1);
 
+        //          event handler: 첫번째 탭 클릭 이벤트 처리
+        const onfirstTabClickHandler = () => {
+            setToggle(1);
+            setViews('join-board')
+        }
+        //          event handler: 두번째 탭 클릭 이벤트 처리
+        const onsecondTabClickHandler = () => {
+            setToggle(2);
+            setViews('free-board')
+        }
+        //              component: 자유게시판 탭 컴포넌트
+        const FreeBoardCard = () => {
+            return (
+                <div className='tap-contents-list'>
+                    {secList && secList.map((item, index) => (
+                        <FreeBoardTab b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
+                    ))}
+                </div>
+            );
+        }
+        //              component: 모집게시판 탭 컴포넌트
+        const JoinBoardCard = () => {
+            return (
+                <div className='tap-contents-list'>
+                    {list && list.map((item, index) => (
+                        <JoinedProjectTab onclick={() => {
+                            nav(`/detail/${parseInt(index)}`);
+                        }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
+                    ))}
+                </div>
+            );
+        }
         return (
             <div className='mypage-right-box'>
                 <div className='mypage-right-top'>
@@ -418,24 +454,15 @@ export default function Mypage() {
                         <div className='icon board-icon'></div>
                     </div>
                     <div className='mypage-right-title'>{'작성한 게시물'}</div>
+                    <div className="mypage-right-top-tab">
+                        <div className={toggle === 1 ? 'mypage-right-top-tab-box-active' : 'mypage-right-top-tab-box'} onClick={onfirstTabClickHandler}>{'모집게시판'}</div>
+                        <div className={toggle === 2 ? 'mypage-right-top-tab-box-active' : 'mypage-right-top-tab-box'} onClick={onsecondTabClickHandler}>{'자유게시판'}</div>
+                    </div>
                 </div>
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
-                        {list && list.map((item, index) => (
-
-                            <JoinedProjectTab onclick={() => {
-                                nav(`/detail/${parseInt(index)}`);
-                            }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
-
-                        ))}
-                        {secList && secList.map((item, index) => (
-                            <FreeBoardTab b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
-
-                        ))}
-                        {/* <CreatePowerTab />
-                        <CreatePowerTab />
-                        <FreeBoardTab />
-                        <FreeBoardTab /> */}
+                        {views == 'join-board' && <JoinBoardCard />}
+                        {views == 'free-board' && <FreeBoardCard />}
                     </div>
                 </div>
             </div>

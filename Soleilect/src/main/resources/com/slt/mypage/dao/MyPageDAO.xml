@@ -64,7 +64,8 @@
 		FROM PARTY_LIST_TB
 		WHERE PARTY_SEQ IN
 		(SELECT PARTY_SEQ FROM PARTY_BOARDS_TB
-		WHERE USER_NICK=#{user_nick}) AND PL_ISJOIN = 0;
+		WHERE USER_NICK=#{user_nick})
+		AND PL_ISJOIN = 0;
 	</select>
 	<select id="myGroupAcceptParty"
 		resultType="com.slt.entity.Party_boards">
@@ -88,8 +89,15 @@
 		SET
 		USER_NICK = #{user_nick},
 		USER_PW =sha2(#{user_pw},384)
-		WHERE USER_ID = #{user_id};
-
+		WHERE USER_ID =
+		#{user_id};
 	</update>
+	<select id="myGroup" resultType="com.slt.entity.Party_boards">
+		SELECT PARTY_SEQ, PARTY_TITLE, PARTY_CONTENT,
+		PARTY_LOC, START_AT, END_AT, PARTY_VIEWS, TARGET_CNT, NOW_CNT,
+		CREATED_AT, USER_ID, USER_NICK, PARTY_ISJOIN
+		FROM PARTY_BOARDS_TB
+		WHERE PARTY_SEQ IN (SELECT PARTY_SEQ FROM PARTY_LIST_TB WHERE USER_NICK = #{user_nick});
+	</select>
 
 </mapper>

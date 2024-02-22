@@ -7,6 +7,7 @@ const JoinAlarmTab = (props) => {
     const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index, user_nick, pl_power, pl_name,list_seq,pl_seq,party_seq } = props;
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
+    const [toggle, setToggle] = useState('');
     const partyAccept = () => {
         let formData = new FormData();
         console.log(list_seq,pl_seq);
@@ -15,8 +16,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/accept', formData)
             .then((res) => {
-                console.log(res);
-                console.log('가입승인완료!');
             })
             .catch((error) => {
                 console.log(error)
@@ -29,8 +28,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/refuse', formData)
             .then((res) => {
-                console.log(res);
-                console.log('가입거절완료!');
                 window.location.reload();
             })
             .catch((error) => {
@@ -45,8 +42,6 @@ const JoinAlarmTab = (props) => {
         axios
             .post('/Sol/partyApplyCon/pbUpdate', formData)
             .then((res) => {
-                console.log(res);
-                console.log('발전량변경완료!');
                 window.location.reload();
             })
             .catch((error) => {
@@ -56,10 +51,12 @@ const JoinAlarmTab = (props) => {
     const onJoinAlarmAgree = () => {
         partyAccept();
         plusPartyPower();
+        setToggle('agree');
         setModalOpen(true);
     }
     const onJoinAlarmDeny = () => {
         partyDeny();
+        setToggle('deny');
         setModalOpen(true);
     }
     return (
@@ -106,8 +103,8 @@ const JoinAlarmTab = (props) => {
                     <div className='delete-button' onClick={onJoinAlarmDeny}>X</div>
                 </div>
                 <div className='accept-join-button-box' onClick={onJoinAlarmAgree}>{'수락하기'}</div>
-                {modalOpen && <AlarmSuccessModal toggle={'agree'} setModalOpen={setModalOpen} user_nick={user_nick} />}
-                {modalOpen && <AlarmSuccessModal toggle={'deny'} setModalOpen={setModalOpen} user_nick={user_nick} />}
+                {modalOpen && <AlarmSuccessModal toggle={toggle} setModalOpen={setModalOpen} user_nick={user_nick} />}
+                {modalOpen && <AlarmSuccessModal toggle={toggle} setModalOpen={setModalOpen} user_nick={user_nick} />}
             </div>
         </div>
     );
