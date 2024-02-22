@@ -129,7 +129,6 @@ const BoardList = () => {
                                 onClick={() => {
                                     nav(`/BoardDetail/${item.b_seq}`,{state:{b_seq:item.b_seq}});
                                 }}>
-                                    {console.log(item.b_seq)}
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>
