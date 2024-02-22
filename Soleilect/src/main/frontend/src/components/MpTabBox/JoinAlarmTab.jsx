@@ -22,6 +22,21 @@ const JoinAlarmTab = (props) => {
                 console.log(error)
             })
     };
+    const partyDeny = () => {
+        let formData = new FormData();
+        console.log(list_seq);
+        formData.append("list_seq",list_seq)
+        axios
+            .post('/Sol/partyApplyCon/refuse', formData)
+            .then((res) => {
+                console.log(res);
+                console.log('가입거절완료!');
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    };
     const plusPartyPower = () => {
         let formData = new FormData();
         console.log(party_seq,pl_power);
@@ -44,6 +59,7 @@ const JoinAlarmTab = (props) => {
         setModalOpen(true);
     }
     const onJoinAlarmDeny = () => {
+        partyDeny();
         setModalOpen(true);
     }
     return (
