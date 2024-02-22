@@ -28,6 +28,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
             // console.log(response.data)
             alert('발전소 등록완료')
             closeModal();
+            window.location.reload();
           })
           .catch((error) => {
             console.log(error)
@@ -44,7 +45,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
           .then((response) => {
             alert('발전소 삭제완료')
             closeModal();
-            
+            window.location.reload();
           })
           .catch((error) => {
             console.log(error)
@@ -142,7 +143,7 @@ const OwnPowerModal = forwardRef((props, ref) => {
             setGenerationError(true);
             setGenerationErrorMessage('숫자만 입력해주세요.')
         }
-        const bnumberPattern = /[0-9]{10}$/
+        const bnumberPattern = /^[0-9]{3}[-\s\.]?[0-9]{2}[-\s\.]??[0-9]{5}$/
         const isBnumberPattern = bnumberPattern.test(bnumber);
         if (!isBnumberPattern) {
             setBnumberError(true);

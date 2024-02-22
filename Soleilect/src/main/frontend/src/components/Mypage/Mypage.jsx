@@ -16,12 +16,32 @@ export default function Mypage() {
     const [secList, setSecList] = useState([]);
     const [ownPList, setOwnPList] = useState([]);
     //          state: 화면 상태 
-    const [view, setView] = useState('edit-profile');
+    const [view, setView] = useState(localStorage.getItem('view') || 'edit-profile');
     //          state: 버튼 상태 
-    const [toggle, setToggle] = useState(1);
+    const [toggle, setToggle] = useState(localStorage.getItem('toggle') || 1);
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
 
+    // view 값이 변경될 때마다 localStorage에 저장
+    useEffect(() => {
+        localStorage.setItem('view', view);
+        localStorage.setItem('toggle', toggle);
+    }, [view, toggle]);
+    // 페이지가 로드될 때 localStorage에서 toggle 상태를 가져와서 초기화
+    useEffect(() => {
+        const storedToggle = localStorage.getItem('toggle');
+        if (storedToggle) {
+            setToggle(parseInt(storedToggle));
+        }
+    }, []);
+    useEffect(() => {
+        if (view == 'my-post') {
+            myPostList();
+            myFreePostList();
+        }if (view == 'my-power') {
+            readMyPlantList();
+        }
+    }, []);
     //          마이페이지 작성한 게시물 불러오기
     const myPostList = () => {
         let formData = new FormData();
@@ -213,7 +233,7 @@ export default function Mypage() {
         }
         //          event handler: 발전소 등록 클릭 이벤트 처리
         const onOwnPowerModalClickHandler = () => {
-                setModalOpen(true);
+            setModalOpen(true);
         }
         //              component: 보유 발전소 탭 컴포넌트
         const OwnPowerCard = () => {
@@ -221,13 +241,13 @@ export default function Mypage() {
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
                     {ownPList && ownPList.map((item, index) => (
-                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power}pl_name={item.pl_name}pl_loc={item.pl_loc}  />
+                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} />
                     ))}
 
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
                         <div className='ownPower-add-button' >{'발전소 등록'}</div>
                     </div>
-                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage='add-plant'/>}
+                    {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage='add-plant' />}
                 </div>
 
             );
