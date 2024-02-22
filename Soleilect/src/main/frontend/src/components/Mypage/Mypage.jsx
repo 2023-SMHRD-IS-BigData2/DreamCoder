@@ -381,10 +381,30 @@ export default function Mypage() {
         }
         //              component: 참여한 프로젝트 탭 컴포넌트
         const JoinedProjectCard = () => {
+            const [mGList, setMGList] = useState([]);
+            useEffect(() => {
+                myGroupList();
+            }, []);
+            const myGroupList = () => {
+                let formData = new FormData();
+                formData.append("user_nick", sessionStorage.getItem("user_nick"))
+                axios
+                    .post('/Sol/myPageCon/myGroup', formData)
+                    .then((res) => {
+                        console.log(res.data.data);
+                        setMGList(res.data.data);
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            };
             return (
                 <div className='tap-contents-list'>
-                    <JoinedProjectTab />
-                    <JoinedProjectTab />
+                    {mGList && mGList.map((item, index) => (
+                        <JoinedProjectTab onclick={() => {
+                            nav(`/detail/${parseInt(index)}`);
+                        }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
+                    ))}
                 </div>
             );
         }
