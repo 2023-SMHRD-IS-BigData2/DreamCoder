@@ -25,7 +25,7 @@ public class Chats {
 	// 로그인한 유저 닉네임
 	private String sender_nick;
 	// 발송취소 여부
-	private char cancel_sender;
+	private int cancel_sender;
 	// 삭제한 유저 아이디
 	private String delete_id;
 
