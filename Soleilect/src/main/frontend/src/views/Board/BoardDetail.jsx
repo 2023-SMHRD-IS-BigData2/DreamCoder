@@ -16,14 +16,12 @@ const BoardDetail = () => {
   // const [chartViews, setChartViews] = useState(0);
 
   // 모집 게시판 party_seq 받아옴
-  const location = useLocation();
-  const number = location.state.b_seq;
-
+  const {num}= useParams();
    // 게시글 정보 가져오기 ---------------------
 
    useEffect(() => {
     let formData = new FormData();
-    formData.append("b_seq", number);
+    formData.append("b_seq", num);
     axios
         .post('/Sol/boardCon/detail', formData)
         .then((res) => {
@@ -123,7 +121,6 @@ const BoardDetail = () => {
                 <div className='board2-detal-titile-box'>{list[0].b_title}</div>
               </div>
             </div>
-
             <div className='board2-detail-middle'>
               <div className='board2-detail-top-icon'>
                 <div className='board-detail-writer-profile-image'></div>

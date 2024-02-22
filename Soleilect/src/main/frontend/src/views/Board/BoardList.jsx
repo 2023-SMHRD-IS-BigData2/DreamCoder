@@ -127,7 +127,7 @@ const BoardList = () => {
                         {list && currentData() && currentData().map((item, index) => (
                             <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}                                
                                 onClick={() => {
-                                    nav(`/BoardDetail/${item.b_seq}`,{state:{b_seq:item.b_seq}});
+                                    nav(`/BoardDetail/${item.b_seq}`);
                                 }}>
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>

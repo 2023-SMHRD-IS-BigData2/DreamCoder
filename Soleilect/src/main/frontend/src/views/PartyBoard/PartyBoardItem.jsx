@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
+import axios from 'axios';
 
 const PartyBoardItem = (props) => {
     const {party_seq,end_at, target_cnt, now_cnt, user_nick, party_title, party_isJoin, party_views} = props;
@@ -52,13 +53,33 @@ const PartyBoardItem = (props) => {
         ],
     };
 
+    const onPartyViewsUpClickHandler = () => {
+        nav(`/detail/${party_seq}`);
+        // {partyview()}
+    }
+     // function 모집 게시판 조회수 실행 함수 한번만 실행 되게!!
+    // const partyview = () => {
+    //     let formData = new FormData();
+    //     console.log('조회수');
+    //     formData.append("party_seq", party_seq)
+    //     console.log(party_seq);
+    //     axios
+    //         .post('/Sol/partyBoardCon/views', formData)
+    //         .then((res) => {
+    //             // setList(res.data.data)
+    //             console.log('조회수 상승!');
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }
+
+
     return (
 
         <div
             className='item-container'
-            onClick={() => {
-                nav(`/detail/${party_seq}`,{state:{party_seq:party_seq}});
-            }}
+            onClick={onPartyViewsUpClickHandler}
         >
             <div className='board-top-date'>
                 <div className='board-top-end-date'>{'마감일'} {end_at}</div>
