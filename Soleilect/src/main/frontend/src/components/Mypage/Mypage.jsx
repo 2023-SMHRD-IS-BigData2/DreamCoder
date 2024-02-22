@@ -112,10 +112,8 @@ export default function Mypage() {
         axios
             .post('/Sol/myPageCon/myGroupAccept', formData)
             .then((res) => {
-
                 console.log(res.data.data);
                 readMyAlarm(res);
-
             })
             .catch((error) => {
                 console.log(error)
@@ -335,7 +333,7 @@ export default function Mypage() {
                     <div className='tap-contents-list'>
                         {/* <AlarmTab /> */}
                         {alarmList && alarmList.map((item, index) => (
-                        <JoinAlarmTab party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} pl_name={item.pl_name}/>
+                        <JoinAlarmTab party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} pl_name={item.pl_name} />
                         ))}
                     </div>
                 </div>
@@ -521,4 +519,3 @@ export default function Mypage() {
 
     )
 }
-
