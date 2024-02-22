@@ -1,60 +1,36 @@
-import React from 'react'
-import './style.css'
+import React from 'react';
+import './style.css';
 
-//          component: 페이지네이션 컴포넌트
-export default function Pagination(props) {
-    //              state: Properties
-    const { currentPage, currentSection, viewPageList, totalSection } = props;
-    const { setCurrentpage, setCurrentSection } = props;
-    
+const Pagination = ({ currentPage, totalPages, onNextPage, onPrevPage, onGoToPage }) => {
+    const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1; // 페이지네이션 시작 페이지
+    const endPage = Math.min(startPage + 9, totalPages); // 페이지네이션 끝 페이지
 
-    //             event handler: 페이지 클릭 이벤트 처리
-    const onPageClickHandler = (page) => {
-        // setCurrentpage(page);
-    }
-    //             event handler: 이전 클릭 이벤트 처리
-    const onPreviousClickHandler = () => {
-        // if(currentSection === 1)return;
-        // setCurrentpage((currentPage - 1) * 5);
-        // setCurrentSection(currentSection - 1);
-    }
-    //             event handler: 다음 클릭 이벤트 처리
-    const onNextClickHandler = () => {
-        // if(currentSection === totalSection) return;
-        // setCurrentpage(currentPage * 5 + 1);
-        // setCurrentSection(currentSection + 1);
-    }
-
-    //             render: 페이지네이션 컴포넌트 렌더링
     return (
         <div id='pagination-wrapper'>
-        <div className='pagination-change-link-box'>
-            <div className='icon-box-small'>
-                <div className='icon expand-left-icon'></div>
+            <div className='pagination-change-link-box'>
+                <div className='icon-box-small'>
+                    <div className='icon expand-left-icon'></div>
+                </div>
+                <div className='pagination-change-link-text' onClick={onPrevPage} disabled={currentPage === 1}>{'이전'}</div>
             </div>
-            <div className='pagination-change-link-text' onClick={onPreviousClickHandler}>{'이전'}</div>
-        </div>
-        <div className='pagination-divider'>{'\|'}</div>
-{/* 
-        {viewPageList.map(page =>
-            page === currentPage ?
-                <div key={page} className='pagination-text-active'>{page}</div>
-                :
-                <div key={page} className='pagination-text' onClick={() => onPageClickHandler(page)}>{page}</div>
-        )} */}
-        <div className='pagination-text-active'>{'1'}</div>
-        <div className='pagination-text' onClick={() => onPageClickHandler('2')}>{'2'}</div>
-        <div className='pagination-text' onClick={() => onPageClickHandler('3')}>{'3'}</div>
-        <div className='pagination-text' onClick={() => onPageClickHandler('3')}>{'4'}</div>
-        <div className='pagination-text' onClick={() => onPageClickHandler('3')}>{'5'}</div>
+            <div className='pagination-divider'>{'\|'}</div>
 
-        <div className='pagination-divider'>{'\|'}</div>
-        <div className='pagination-change-link-box'>
-            <div className='pagination-change-link-text' onClick={onNextClickHandler}>{'다음'}</div>
-            <div className='icon-box-small'>
-                <div className='icon expand-right-icon'></div>
+            {/* 페이지 번호를 표시하는 버튼들 */}
+            {Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index).map((page) => (
+                <div className={currentPage === page ? 'pagination-text-active' : 'pagination-text'} key={page} onClick={() => onGoToPage(page)}>
+                    {page}
+                </div>
+            ))}
+
+            <div className='pagination-divider'>{'\|'}</div>
+            <div className='pagination-change-link-text' onClick={onNextPage} disabled={currentPage === totalPages}>{'다음'}</div>
+            <div className='pagination-change-link-box'>
+                <div className='icon-box-small'>
+                    <div className='icon expand-right-icon'></div>
+                </div>
             </div>
         </div>
-    </div>
-    )
-}
+    );
+};
+
+export default Pagination;

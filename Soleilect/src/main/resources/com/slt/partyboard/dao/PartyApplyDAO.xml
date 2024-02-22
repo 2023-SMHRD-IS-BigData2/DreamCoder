@@ -26,6 +26,12 @@
 		PL_ISJOIN = 1
 		WHERE LIST_SEQ = {list_seq};
 	</update>
+	<update id="partyAcceptPlant" parameterType="int">
+		UPDATE PLANTS_TB
+		SET
+		PL_ISJOIN = 1
+		WHERE PL_SEQ = {pl_seq};
+	</update>
 	<update id="partyApplypbUpdate" parameterType="int">
 		UPDATE
 		PARTY_BOARDS_TB

@@ -97,7 +97,13 @@ public class MyPageServiceImp implements MyPageService {
 		try {
 			List<Party_application> dtList = mypageDao.myGroupAccept(user_nick);
 			List<Object> dataList = new ArrayList<Object>();
-			dataList.addAll(dtList);
+			int party_seq = dtList.get(0).getParty_seq();
+			Party_boards pb = mypageDao.myGroupAcceptParty(party_seq);
+			HashMap<Party_boards, List<Party_application>> map = new HashMap<Party_boards, List<Party_application>>();
+			map.put(pb, dtList);
+			
+			dataList.add(map);
+			
 			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
@@ -108,6 +114,22 @@ public class MyPageServiceImp implements MyPageService {
 	public ResultVO myGroupSearch(String user_nick) {
 		try {
 			int row = mypageDao.myGroupSearch(user_nick);
+
+			if (row == 0) {
+				return new ResultVO("01", null);
+			} else {
+				return new ResultVO("00", null);
+			}
+
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
+	@Override
+	public ResultVO userUpdate(String user_id, String user_nick, String user_pw) {
+		try {
+			int row = mypageDao.userUpdate(user_id, user_nick, user_pw);
 
 			if (row == 0) {
 				return new ResultVO("01", null);

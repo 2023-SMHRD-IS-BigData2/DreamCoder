@@ -4,6 +4,7 @@ package com.slt.mypage.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.slt.cmmn.vo.ResultVO;
@@ -81,5 +82,14 @@ public class MyPageController {
 	public ResultVO myGroupSearch(String user_nick) {
 		System.out.println("자신이 모집자인 그룹이 있는지 탐색");
 		return mypageservice.myGroupSearch(user_nick);
+	}
+	
+	/**
+	 * 유저 정보(닉네임, 비밀번호 변경)
+	 **/
+	@RequestMapping("/userUpdate")
+	public ResultVO userUpdate(@RequestParam String user_id, String user_nick, String user_pw) {
+		System.out.println("유저 정보 수정");
+		return null;
 	}
 }

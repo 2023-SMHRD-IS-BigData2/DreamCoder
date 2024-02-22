@@ -40,9 +40,10 @@ public class PartyApplyServiceImp implements PartyApplyService {
 	}
 
 	@Override
-	public ResultVO partyAccept(int list_seq) {
+	public ResultVO partyAccept(int list_seq, int pl_seq) {
 		try {
 			partyapplyDao.partyAccept(list_seq);
+			partyapplyDao.partyAcceptPlant(pl_seq);
 			return new ResultVO("00", null);
 		} catch (Exception e) {
 			return new ResultVO("99", null);

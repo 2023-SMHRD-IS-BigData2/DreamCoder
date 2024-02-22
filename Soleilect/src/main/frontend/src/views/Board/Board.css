@@ -9,7 +9,7 @@
     justify-content: center;
     min-width: 1200px;
     position: relative;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 .board-top-container{
     display: flex;
@@ -256,6 +256,15 @@ tbody.odd {
     justify-content: center;
     border: 1px solid rgb(0, 0, 0,0.1);
     border-radius: 5px;
+}
+.board2-detail-categori-more{
+    display: flex;
+    align-items: center
+}
+.board2-more{
+    display: flex;
+    margin-left: 670px;
+    margin-top: 20px;
 }
 .board2-detail-content{
     padding-left: 50px;

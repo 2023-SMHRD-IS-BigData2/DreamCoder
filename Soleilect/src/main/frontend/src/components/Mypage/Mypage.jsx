@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './mypage.css';
 import axios from 'axios';
 import OwnPowerTab from '../MpTabBox/OwnPowerTab';
@@ -10,17 +10,38 @@ import OwnPowerModal from '../Modal/OwnPowerModal';
 import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
 
 
+
 export default function Mypage() {
     const [list, setList] = useState([]);
     const [secList, setSecList] = useState([]);
     const [ownPList, setOwnPList] = useState([]);
     //          state: 화면 상태 
-    const [view, setView] = useState('edit-profile');
+    const [view, setView] = useState(localStorage.getItem('view') || 'edit-profile');
     //          state: 버튼 상태 
-    const [toggle, setToggle] = useState(1);
+    const [toggle, setToggle] = useState(localStorage.getItem('toggle') || 1);
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
 
+    // view 값이 변경될 때마다 localStorage에 저장
+    useEffect(() => {
+        localStorage.setItem('view', view);
+        localStorage.setItem('toggle', toggle);
+    }, [view, toggle]);
+    // 페이지가 로드될 때 localStorage에서 toggle 상태를 가져와서 초기화
+    useEffect(() => {
+        const storedToggle = localStorage.getItem('toggle');
+        if (storedToggle) {
+            setToggle(parseInt(storedToggle));
+        }
+    }, []);
+    useEffect(() => {
+        if (view == 'my-post') {
+            myPostList();
+            myFreePostList();
+        }if (view == 'my-power') {
+            readMyPlantList();
+        }
+    }, []);
     //          마이페이지 작성한 게시물 불러오기
     const myPostList = () => {
         let formData = new FormData();
@@ -64,7 +85,6 @@ export default function Mypage() {
         axios
             .post('/Sol/myPageCon/plantList', formData)
             .then((response) => {
-                console.log(response.data.data)
                 setOwnPList(response.data.data)
             })
             .catch((error) => {
@@ -72,6 +92,7 @@ export default function Mypage() {
             })
 
     };
+
 
     //          event handler: 환경설정 버튼 클릭 이벤트 처리
     const onEditProfileClickHandler = () => {
@@ -116,7 +137,7 @@ export default function Mypage() {
                 <div className='mypage-right-bottom vanila'>
                     <div className='mypage-right-list'>
                         <div className='mypage-right-first-list'>
-                            <div className='mypage-box edit-profile-image-box-card'>
+                            {/* <div className='mypage-box edit-profile-image-box-card'>
                                 <div className='edit-box-profile-image-box'>
                                     <div className='mypage-profile-image'></div>
                                 </div>
@@ -124,7 +145,7 @@ export default function Mypage() {
                                 <div className='edit-profile-image-button-box'>
                                     <div className='edit-profile-image-button'>{'사진 변경'}</div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className='mypage-box edit-nickname-box-card'>
                                 <div className='card-top'>
                                     <div className='edit-title'>{'닉네임 수정'}</div>
@@ -212,9 +233,7 @@ export default function Mypage() {
         }
         //          event handler: 발전소 등록 클릭 이벤트 처리
         const onOwnPowerModalClickHandler = () => {
-            return (
-                setModalOpen(true)
-            );
+            setModalOpen(true);
         }
         //              component: 보유 발전소 탭 컴포넌트
         const OwnPowerCard = () => {
@@ -222,7 +241,7 @@ export default function Mypage() {
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
                     {ownPList && ownPList.map((item, index) => (
-                        <OwnPowerTab pl_power={item.pl_power}pl_name={item.pl_name}pl_loc={item.pl_loc}  />
+                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} />
                     ))}
 
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
@@ -276,7 +295,8 @@ export default function Mypage() {
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
                         {list && list.map((item, index) => (
-                            <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} />
+                           
+ <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index}/>
 
                         ))}
                         {secList && secList.map((item, index) => (
@@ -350,20 +370,20 @@ export default function Mypage() {
                                 </div>
                                 <div className='mypage-comp-button-text'> {'작성한 게시물'}</div>
                             </div>
-                            <div className={toggle === 5 ? 'mypage-comp-button-active' : 'mypage-comp-button'} onClick={onFavoritesCardClickHandler}>
+                            {/* <div className={toggle === 5 ? 'mypage-comp-button-active' : 'mypage-comp-button'} onClick={onFavoritesCardClickHandler}>
                                 {toggle == 5 && <div className='mypage-icon-bar'></div>}
                                 <div className='mypage-icon-box'>
                                     <div className='icon star-icon'></div>
                                 </div>
                                 <div className='mypage-comp-button-text'> {'즐겨찾기'}</div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     {view == 'edit-profile' && <EditProfileCard />}
                     {view == 'alarm-list' && <AlarmListCard />}
                     {view == 'my-power' && <MyPowerCard />}
                     {view == 'my-post' && <MyPostCard />}
-                    {view == 'favorites' && <FavoritesCard />}
+                    {/* {view == 'favorites' && <FavoritesCard />} */}
                 </div>
             </div>
         </div>

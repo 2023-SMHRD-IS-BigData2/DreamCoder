@@ -182,9 +182,9 @@ const BoardWrite = () => {
                             </div>
                         </div>
                         {/* 이미지 첨부 아이콘 */}
-                        <div className='icon-button-image' onClick={onImageUploadButtonClickHandler}>
+                        {/* <div className='icon-button-image' onClick={onImageUploadButtonClickHandler}>
                             <div className='image-box-light-icon'></div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='board-write-top-box'>
                         <input type='file' ref={imageInputRef} accept="image/*" style={{ display: 'none' }} onChange={onImageChangeHandler} />
@@ -217,11 +217,11 @@ const BoardWrite = () => {
                         )}
                     </div>
                 </div>
-                <div className='write-button-box'>
+                
+            </div>
+            <div className='write-button-box'>
                             <div className='Write-button' onClick={onBoardonClickHandler}>{'등록하기'}</div>
                         </div>
-            </div>
-
         </div>
     )
 }

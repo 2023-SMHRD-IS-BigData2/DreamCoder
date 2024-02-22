@@ -7,7 +7,7 @@ public interface PartyApplyService {
 		
 	ResultVO partyApply(Party_application party);
 	
-	ResultVO partyAccept(int list_seq);
+	ResultVO partyAccept(int list_seq, int pl_seq);
 
 	ResultVO partyApplypbUpdate(int party_seq, int now_cnt);
 }

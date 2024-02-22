@@ -39,7 +39,6 @@ const Comment = () => {
     //     }
     // }
 
-    console.log(sessionStorage.getItem("user_nick"));
     return (
         <div className="comment-container">
             <h2>댓글</h2>

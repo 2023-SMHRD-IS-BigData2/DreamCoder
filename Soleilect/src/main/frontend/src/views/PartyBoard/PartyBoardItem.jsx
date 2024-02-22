@@ -6,7 +6,7 @@ import Highcharts from 'highcharts';
 const PartyBoardItem = ({ item, index }) => {
     const nav = useNavigate();
     const options = {
-        colors: ["#F5F5F5", "#41A4C9"],
+        colors: ["#F5F5F5", "#1A74BD"],
         chart: {
             renderTo: `subscribers-graph-${index}`,
             type: 'pie',
@@ -42,7 +42,7 @@ const PartyBoardItem = ({ item, index }) => {
             {
                 data: [item.target_cnt - item.now_cnt, item.now_cnt],
                 size: '80%',
-                innerSize: '75%',
+                innerSize: '70%',
                 showInLegend: false,
                 dataLabels: {
                     enabled: false

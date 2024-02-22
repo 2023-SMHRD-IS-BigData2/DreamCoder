@@ -9,6 +9,7 @@ const Footer = () => {
     if (locationNow.pathname === '/SignIn') return null;
     if (locationNow.pathname === '/map') return null;
     if (locationNow.pathname === '/Mypage') return null;
+    if (locationNow.pathname === '/MessagePage') return null;
     //              event handler: 인스타 아이콘 버튼 클릭 이벤트 처리
     const onInstaIconButtonClickHandler = () => {
         window.open('https://www.instagram.com');
