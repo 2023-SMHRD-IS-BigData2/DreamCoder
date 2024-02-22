@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import usePagination from '../../hooks/pagination';
 
 const BoardList = () => {
-    const { list, setList,setBoardNum } = useContext(ChartContext);
+    const { list, setList} = useContext(ChartContext);
     const nav = useNavigate();
 
     // state 탭 상태
@@ -46,7 +46,6 @@ const BoardList = () => {
             .get('/Sol/boardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
-                console.log(res.data.data);
             })
             .catch((error) => {
                 console.log(error)
@@ -127,9 +126,8 @@ const BoardList = () => {
                         {list && currentData() && currentData().map((item, index) => (
                             <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}                                
                                 onClick={() => {
-                                    nav(`/BoardDetail/${index}`);
+                                    nav(`/BoardDetail/${(currentPage - 1) * 8 + index}`);
                                 }}>
-                                    {setBoardNum(item.b_seq)}
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>

@@ -5,10 +5,8 @@ import moment from 'moment';
 import axios from 'axios';
 
 const BoardDetail = () => {
-  const { list, setList, boardnum,setBoardNum } = useContext(ChartContext);
+  const { list, setList} = useContext(ChartContext);
   let { num } = useParams();
-  console.log(boardnum);
-  console.log(num);
 
   const nav = useNavigate();
   // state 수정 삭제 토글 상태  다시 누르면 사라지게
@@ -62,7 +60,6 @@ const BoardDetail = () => {
   
   // event handler 모달 안의 삭제하기 버튼 클릭 핸들러 ------------------
     const ondeletePartyBoardClickHandler = () => {
-      console.log(list[num].b_seq);
       let formData = new FormData();
       formData.append("b_seq", list[num].b_seq)
       axios
