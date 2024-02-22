@@ -94,4 +94,14 @@ public class MyPageController {
 		System.out.println("닉네임  : "+user_nick);
 		return mypageservice.userUpdate(user_id, user_nick, user_pw);
 	}
+	
+	/**
+	 * 	자신이 참여중인 프로젝트 목록
+	 **/
+	@RequestMapping("/myGroup")
+	public ResultVO myGroup(String user_nick) {
+		System.out.println("자신이 참여중인 프로젝트 목록");
+		System.out.println("들어온 정보 : "+user_nick);
+		return mypageservice.myGroup(user_nick);
+	}
 }

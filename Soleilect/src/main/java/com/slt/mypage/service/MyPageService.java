@@ -21,4 +21,6 @@ public interface MyPageService {
 	
 	ResultVO userUpdate(String user_id, String user_nick, String user_pw);
 	
+	ResultVO myGroup(String user_nick);
+	
 }

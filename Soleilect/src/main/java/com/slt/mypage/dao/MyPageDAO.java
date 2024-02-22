@@ -30,4 +30,6 @@ public interface MyPageDAO {
 	int myGroupSearch(String user_nick);
 	
 	int userUpdate(String user_id, String user_nick, String user_pw);
+	
+	List<Party_boards> myGroup(String user_nick);
 }
