@@ -4,7 +4,7 @@ import AlarmSuccessModal from '../Modal/AlarmSuccessModal';
 import axios from 'axios';
 
 const JoinAlarmTab = (props) => {
-    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index, user_nick, pl_power, pl_name,list_seq,pl_seq } = props;
+    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index, user_nick, pl_power, pl_name,list_seq,pl_seq,party_seq } = props;
     //          state: 모달창 상태 
     const [modalOpen, setModalOpen] = useState(false);
     const partyAccept = () => {
@@ -22,8 +22,25 @@ const JoinAlarmTab = (props) => {
                 console.log(error)
             })
     };
+    const plusPartyPower = () => {
+        let formData = new FormData();
+        console.log(party_seq,pl_power);
+        formData.append("party_seq",party_seq)
+        formData.append("now_cnt",pl_power)
+        axios
+            .post('/Sol/partyApplyCon/pbUpdate', formData)
+            .then((res) => {
+                console.log(res);
+                console.log('발전량변경완료!');
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    };
     const onJoinAlarmAgree = () => {
         partyAccept();
+        plusPartyPower();
         setModalOpen(true);
     }
     return (
