@@ -68,7 +68,7 @@ public class PartyBoardController {
 	}
 	
 	/**
-	 * 모집 게시판 검색 기능 
+	 * 모집 게시판 상세 조회 기능 
 	 */
 	@RequestMapping("/detail")
 	public ResultVO partyBoardDetail(int party_seq) {

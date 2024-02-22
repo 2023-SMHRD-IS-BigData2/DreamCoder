@@ -8,13 +8,16 @@ import FreeBoardTab from '../MpTabBox/FreeBoardTab';
 import AlarmTab from '../MpTabBox/AlarmTab';
 import OwnPowerModal from '../Modal/OwnPowerModal';
 import JoinAlarmTab from '../MpTabBox/JoinAlarmTab';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Mypage() {
+    const nav = useNavigate();
     const [list, setList] = useState([]);
     const [secList, setSecList] = useState([]);
     const [ownPList, setOwnPList] = useState([]);
+    const [alarmList, setAlarmList] = useState([]);
     //          state: 화면 상태 
     const [view, setView] = useState(localStorage.getItem('view') || 'edit-profile');
     //          state: 버튼 상태 
@@ -97,6 +100,11 @@ export default function Mypage() {
         if (view !== 'alarm-list') return;
         myPostAcceptUserList()
     }, [view]);
+    const readMyAlarm = (res) => {
+        const data = res.data.data[0];
+        setAlarmList(data);
+        console.log(data);
+    };
     const myPostAcceptUserList = () => {
         let formData = new FormData();
         console.log(sessionStorage.getItem("user_nick"));
@@ -104,8 +112,10 @@ export default function Mypage() {
         axios
             .post('/Sol/myPageCon/myGroupAccept', formData)
             .then((res) => {
-                console.log(res);
-                console.log(res.data.data[0][0]);
+
+                console.log(res.data.data);
+                readMyAlarm(res);
+
             })
             .catch((error) => {
                 console.log(error)
@@ -324,8 +334,8 @@ export default function Mypage() {
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
                         {/* <AlarmTab /> */}
-                        {list && list.map((item, index) => (
-                        <JoinAlarmTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} now_cnt={item.now_cnt} index={index} />
+                        {alarmList && alarmList.map((item, index) => (
+                        <JoinAlarmTab party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} pl_name={item.pl_name}/>
                         ))}
                     </div>
                 </div>
@@ -415,7 +425,9 @@ export default function Mypage() {
                     <div className='tap-contents-list'>
                         {list && list.map((item, index) => (
 
-                            <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
+                            <JoinedProjectTab onclick={() => {
+                                nav(`/detail/${parseInt(index)}`);
+                            }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
 
                         ))}
                         {secList && secList.map((item, index) => (
