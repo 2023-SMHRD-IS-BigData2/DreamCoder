@@ -90,6 +90,6 @@ public class MyPageController {
 	@RequestMapping("/userUpdate")
 	public ResultVO userUpdate(@RequestParam String user_id, String user_nick, String user_pw) {
 		System.out.println("유저 정보 수정");
-		return null;
+		return mypageservice.userUpdate(user_id, user_nick, user_pw);
 	}
 }
