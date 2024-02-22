@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
 
-const JoinAlarmTab = () => {
-
+const JoinAlarmTab = (props) => {
+    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index } = props;
     return (
         <div className='tab-content-list'>
             <div className='tab-content-box'>
@@ -15,12 +15,12 @@ const JoinAlarmTab = () => {
                 <div className='alarm-tab-text-content-box'>
                     <div className='tab-top-text-box'>
                         <div className='border-text-box'>
-                            <div className='alarm-tab border-text'>{'모집량'}</div>
+                            <div className='alarm-tab border-text'>{target_cnt / 1000 + 'MW'}</div>
                         </div>
-                        <div className='content-name'>{'모집게시글의 제목이 들어가는 곳'}</div>
+                        <div className='content-name'>{party_title}</div>
                     </div>
                     <div className='tab-bottom-text-box'>
-                        <div className='bottom-text'>{'2024.02.15-2024.03.15'}</div>
+                        <div className='bottom-text'>{start_at + '-' + end_at}</div>
                     </div>
                 </div>
                 <div class='v-line'></div>

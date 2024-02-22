@@ -92,6 +92,24 @@ export default function Mypage() {
             })
 
     };
+//              알림내역 가입신청자 불러오기
+    useEffect(() => {
+        if (view !== 'alarm-list') return;
+        myPostAcceptUserList()
+    }, [view]);
+    const myPostAcceptUserList = () => {
+        let formData = new FormData();
+        console.log(sessionStorage.getItem("user_nick"));
+        formData.append("user_nick", sessionStorage.getItem("user_nick"))
+        axios
+            .post('/Sol/myPageCon/myGroupAccept', formData)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    };
 
 
     //          event handler: 환경설정 버튼 클릭 이벤트 처리
@@ -103,6 +121,7 @@ export default function Mypage() {
     const onAlarmListClickHandler = () => {
         setView('alarm-list');
         setToggle(2);
+        { myPostList() }
     }
     //          event handler: 나의 발전소 클릭 이벤트 처리
     const onMyPowerClickHandler = () => {
@@ -303,14 +322,10 @@ export default function Mypage() {
                 </div>
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
-                        <AlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
-                        <JoinAlarmTab />
+                        {/* <AlarmTab /> */}
+                        {list && list.map((item, index) => (
+                        <JoinAlarmTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} now_cnt={item.now_cnt} index={index} />
+                        ))}
                     </div>
                 </div>
             </div>
