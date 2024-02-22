@@ -5,7 +5,7 @@ import Highcharts from 'highcharts';
 
 const JoinedProjectTab = (props) => {
     //          받아와야할 정보
-    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index } = props;
+    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index, onclick } = props;
     //             state: 즐겨찾기 버튼 상태
     const [toggle, setToggle] = useState(0);
     //             event handler: 즐겨찾기 아이콘 클릭 이벤트 처리
@@ -64,7 +64,7 @@ const JoinedProjectTab = (props) => {
     };
     return (
         <div className='tab-content-list'>
-            <div className='tab-content-box'>
+            <div className='tab-content-box' onClick={onclick}>
                 <div className='tab-image-box'>
                     <div className='tab-image'>
                             <div className='chart'>
