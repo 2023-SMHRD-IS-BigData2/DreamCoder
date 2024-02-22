@@ -450,7 +450,7 @@ export default function Mypage() {
             return (
                 <div className='tap-contents-list'>
                     {secList && secList.map((item, index) => (
-                        <FreeBoardTab b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
+                        <FreeBoardTab key={index} b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
                     ))}
                 </div>
             );

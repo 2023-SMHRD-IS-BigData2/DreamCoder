@@ -28,7 +28,7 @@ const JoinedProjectTab = (props) => {
             textalign: `center`,
 
             style: {
-                fontSize: '100',
+                fontSize: '90',
                 fontWeight: '400',
                 width: '120%',
                 height: '120%',
@@ -56,7 +56,7 @@ const JoinedProjectTab = (props) => {
         series: [
             {
                 data: [target_cnt - now_cnt, now_cnt],
-                size: '73%',
+                size: '70%',
                 innerSize: '70%',
                 showInLegend: false,
                 dataLabels: {
