@@ -333,7 +333,7 @@ export default function Mypage() {
                     <div className='tap-contents-list'>
                         {/* <AlarmTab /> */}
                         {alarmList && alarmList.map((item, index) => (
-                        <JoinAlarmTab party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} pl_name={item.pl_name} />
+                        <JoinAlarmTab pl_seq={item.pl_seq}list_seq={item.list_seq}party_title={item.party_title} index={index} user_nick={item.user_nick} pl_power={item.pl_power} pl_name={item.pl_name} />
                         ))}
                     </div>
                 </div>

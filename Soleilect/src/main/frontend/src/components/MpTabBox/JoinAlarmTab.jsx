@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
+import AlarmSuccessModal from '../Modal/AlarmSuccessModal';
+import axios from 'axios';
 
 const JoinAlarmTab = (props) => {
-    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index,user_nick,pl_power,pl_name } = props;
+    const { target_cnt, party_title, start_at, end_at, party_content, now_cnt, index, user_nick, pl_power, pl_name,list_seq,pl_seq } = props;
+    //          state: 모달창 상태 
+    const [modalOpen, setModalOpen] = useState(false);
+    const partyAccept = () => {
+        let formData = new FormData();
+        console.log(list_seq,pl_seq);
+        formData.append("list_seq",list_seq)
+        formData.append("pl_seq",pl_seq)
+        axios
+            .post('/Sol/partyApplyCon/accept', formData)
+            .then((res) => {
+                console.log(res);
+                console.log('가입승인완료!');
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    };
+    const onJoinAlarmAgree = () => {
+        partyAccept();
+        setModalOpen(true);
+    }
     return (
         <div className='tab-content-list'>
             <div className='tab-content-box'>
@@ -44,10 +67,10 @@ const JoinAlarmTab = (props) => {
                     </div>
                 </div>
                 <div className='alarm-delete-content-box'>
-                        <div className='delete-button'>X</div>
-                    </div>
-                <div className='accept-join-button-box'>{'수락하기'}</div>
-
+                    <div className='delete-button'>X</div>
+                </div>
+                <div className='accept-join-button-box' onClick={onJoinAlarmAgree}>{'수락하기'}</div>
+                {modalOpen && <AlarmSuccessModal setModalOpen={setModalOpen} user_nick={user_nick} />}
             </div>
         </div>
     );
