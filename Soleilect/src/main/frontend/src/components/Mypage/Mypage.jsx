@@ -185,7 +185,7 @@ export default function Mypage() {
             const { value } = event.target;
             setPasswordSec(value);
         }
-        //          event handler: 재패스워드 변경 이벤트 처리 
+        //          event handler: 재재패스워드 변경 이벤트 처리 
         const onPasswordThrdChangeHandler = (event) => {
             const { value } = event.target;
             setPasswordThrd(value);
@@ -368,7 +368,7 @@ export default function Mypage() {
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
                     {ownPList && ownPList.map((item, index) => (
-                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} />
+                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} pl_isJoin={item.pl_isJoin} />
                     ))}
 
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>

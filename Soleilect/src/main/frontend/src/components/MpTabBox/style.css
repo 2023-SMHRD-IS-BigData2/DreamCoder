@@ -23,6 +23,22 @@
     flex-direction: row;
     align-items: center;
 }
+.tab-content-box-joined {
+    width: 634px;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border: 2px;
+    border-style: solid;
+    border-color: rgba(26, 117, 191, 0.9);
+
+    gap: 15px;
+
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 .tab-image-box {
     width: 80px;
@@ -151,6 +167,20 @@
     -webkit-box-align: center;
     overflow: hidden;
 }
+.content-name-joined {
+    width: 240px;
+    height: 26px;
+
+    /* align-items: center; */
+
+    color: rgba(26, 117, 191, 0.9);
+    font-size: 12px;
+    font-weight: 550;
+    line-height: 140%;
+
+    position: relative;
+    top: 4px;
+}
 
 .tab-bottom-text-box {
     display: flex;
@@ -265,6 +295,18 @@
     height: 35px;
     border-radius: 10px;
     background-color: rgba(26, 117, 191, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.tab-content-edit-button-box-joined {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: rgb(201, 204, 207);
 
     display: flex;
     align-items: center;

@@ -22,8 +22,11 @@ const InputBox = forwardRef((props, ref) => {
                     </div>
                 }
             </div>
-            {message !== undefined &&
+            {message !== undefined && error &&
                 <div className='inputbox-message'>{message}</div>
+            }
+            {message !== undefined && !error &&
+                <div className='inputbox-message-black'>{message}</div>
             }
         </div>
     );

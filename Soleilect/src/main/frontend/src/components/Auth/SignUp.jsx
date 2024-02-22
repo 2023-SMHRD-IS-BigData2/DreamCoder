@@ -99,6 +99,7 @@ const SignUp = () => {
           setIdErrorMessage('중복되는 아이디입니다.');
         } else {
           setIdCheckError(false);
+          setIdErrorMessage('사용할 수 있는 아이디입니다.')
         }
       })
       .catch((error) => {
@@ -119,6 +120,7 @@ const SignUp = () => {
           setNicknameErrorMessage('중복되는 닉네임입니다.');
         } else {
           setNicknameCheckError(false);
+          setNicknameErrorMessage('사용할 수 있는 닉네임입니다.');
         }
       })
       .catch((error) => {
