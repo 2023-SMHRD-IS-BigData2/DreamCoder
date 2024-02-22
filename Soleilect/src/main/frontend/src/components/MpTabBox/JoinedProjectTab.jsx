@@ -39,6 +39,9 @@ const JoinedProjectTab = (props) => {
             text: Math.floor(now_cnt / target_cnt * 100) + '%',
             size: 20,
         },
+        accessibility: {
+            enabled: false
+        },
         // 워터마크 해제
         credits: {
             enabled: false,
@@ -67,9 +70,9 @@ const JoinedProjectTab = (props) => {
             <div className='tab-content-box' onClick={onclick}>
                 <div className='tab-image-box'>
                     <div className='tab-image'>
-                            <div className='chart'>
-                                <HighchartsReact highcharts={Highcharts} options={options} />
-                            </div>
+                        <div className='chart'>
+                            <HighchartsReact highcharts={Highcharts} options={options} />
+                        </div>
                     </div>
                 </div>
                 <div className='tab-text-content-box'>

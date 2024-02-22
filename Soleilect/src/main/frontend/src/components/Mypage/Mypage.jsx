@@ -301,10 +301,10 @@ export default function Mypage() {
                                 <div className='edit-title'>{'알림 설정'}</div>
                             </div>
                             <div className='card-bottom'>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <input type="checkbox" id="switch" />
-                                    <label for="switch" class="switch_label">
-                                        <span class="onf_btn"></span>
+                                    <label htmlFor="switch" className="switch_label">
+                                        <span className="onf_btn"></span>
                                     </label>
                                 </div>
                             </div>
@@ -368,7 +368,7 @@ export default function Mypage() {
                 // tab 안의 내용은 따로빼서 작성
                 <div className='tap-contents-list'>
                     {ownPList && ownPList.map((item, index) => (
-                        <OwnPowerTab pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} pl_isJoin={item.pl_isJoin} />
+                        <OwnPowerTab key={item.pl_seq} pl_seq={item.pl_seq} pl_power={item.pl_power} pl_name={item.pl_name} pl_loc={item.pl_loc} pl_isJoin={item.pl_isJoin} />
                     ))}
 
                     <div className='ownPower-add-button-box' onClick={onOwnPowerModalClickHandler}>
@@ -402,8 +402,8 @@ export default function Mypage() {
                 <div className='tap-contents-list'>
                     {mGList && mGList.map((item, index) => (
                         <JoinedProjectTab onclick={() => {
-                            nav(`/detail/${parseInt(index)}`);
-                        }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
+                            nav(`/detail/${parseInt(item.party_seq)}`);
+                        }}key={item.party_seq} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
                     ))}
                 </div>
             );
@@ -462,7 +462,7 @@ export default function Mypage() {
                     {list && list.map((item, index) => (
                         <JoinedProjectTab onclick={() => {
                             nav(`/detail/${parseInt(index)}`);
-                        }} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
+                        }}key={item.party_seq} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
                     ))}
                 </div>
             );
