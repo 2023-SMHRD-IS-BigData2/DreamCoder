@@ -26,8 +26,11 @@ function App() {
   
   const [data, setData] =useState('');
   
-  // 모집 게시판 useState
+  // state 모집 게시판 
   const[list,setList] = useState([]);
+
+  // state 게시판 순번
+  const [num,setNum] = useState();
 
   // useEffect(()=>{
   //   axios.get('/Sol/test')
@@ -37,7 +40,7 @@ function App() {
 
 
   return (
-    <ChartContext.Provider value={{list, setList}}>
+    <ChartContext.Provider value={{list, setList,num,setNum}}>
     <div>
       <Header/>
       <Routes>
