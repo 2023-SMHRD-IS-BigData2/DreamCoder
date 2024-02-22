@@ -69,7 +69,7 @@
 		HD_CODE,
 		HD_NAME, USER_ID, USER_NICK
 		FROM BOARDS_TB
-		WHERE B_SEQ = #{b_seq};F
+		WHERE B_SEQ = #{b_seq};
 	</select>
 	<update id="boardViewUp" parameterType="int">
 		UPDATE
