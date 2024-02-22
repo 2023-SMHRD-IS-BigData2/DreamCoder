@@ -14,9 +14,7 @@ const PartyBoardDetail = () => {
     // 모집 게시판 party_seq 받아옴
     const location = useLocation();
     const number = location.state.party_seq;
-    console.log(number);
 
-    // let { num } = useParams();
     const nav = useNavigate();
 
     // state 년월일 시간 자르기
@@ -258,7 +256,6 @@ const PartyBoardDetail = () => {
         // 발전소 신청 정보 보내기 --------------------------------------
         const powerChecksend = (selectedPower) => {
             if (selectedPower) {
-                console.log(selectedPower.pl_loc, '이거');
                 let formData = new FormData();
                 formData.append("party_seq", list[0].party_seq);
                 formData.append("party_title", list[0].party_title);
@@ -374,7 +371,7 @@ const PartyBoardDetail = () => {
                         <br />
                         <div className='divider'></div>
                     </div>
-                    <Comment />
+                    <Comment party_seq={list[0].party_seq} user_id={list[0].user_id} user_nick={list[0].user_nick} />
                     <BoardDetailBottom />
                 </div>
                 {/* 삭제 확인 모달 */}

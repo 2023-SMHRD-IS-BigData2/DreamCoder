@@ -5,7 +5,6 @@ import Highcharts from 'highcharts';
 
 const PartyBoardItem = (props) => {
     const {party_seq,end_at, target_cnt, now_cnt, user_nick, party_title, party_isJoin, party_views} = props;
-    console.log(party_seq);
     const nav = useNavigate();
     const options = {
         colors: ["#F5F5F5", "#1A74BD"],
