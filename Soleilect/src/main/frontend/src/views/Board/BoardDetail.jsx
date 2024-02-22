@@ -5,7 +5,10 @@ import moment from 'moment';
 import axios from 'axios';
 
 const BoardDetail = () => {
-  const { list, setList ,num } = useContext(ChartContext);
+  const { list, setList, boardnum,setBoardNum } = useContext(ChartContext);
+  let { num } = useParams();
+  console.log(boardnum);
+  console.log(num);
 
   const nav = useNavigate();
   // state 수정 삭제 토글 상태  다시 누르면 사라지게

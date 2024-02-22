@@ -53,10 +53,10 @@
 /* 작성하러가기 버튼 */
 
 .board-top-write-box{
-    background-color: rgba(237, 237, 237, 0.9);
+    background-color: #F3BA62;
     padding: 8px 18px 8px;
     border-radius: 5px;
-    color: rgb(0, 0, 0);
+    color: white;
     cursor: pointer;
     margin-left: 500px;
     

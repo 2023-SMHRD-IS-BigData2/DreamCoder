@@ -30,7 +30,7 @@ function App() {
   const[list,setList] = useState([]);
 
   // state 게시판 순번
-  const [num,setNum] = useState();
+  const [boardnum,setBoardNum] = useState(0);
 
   // useEffect(()=>{
   //   axios.get('/Sol/test')
@@ -40,7 +40,7 @@ function App() {
 
 
   return (
-    <ChartContext.Provider value={{list, setList,num,setNum}}>
+    <ChartContext.Provider value={{list, setList,boardnum,setBoardNum}}>
     <div>
       <Header/>
       <Routes>

@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import usePagination from '../../hooks/pagination';
 
 const BoardList = () => {
-    const { list, setList,setNum } = useContext(ChartContext);
+    const { list, setList,setBoardNum } = useContext(ChartContext);
     const nav = useNavigate();
 
     // state 탭 상태
@@ -129,11 +129,11 @@ const BoardList = () => {
                                 onClick={() => {
                                     nav(`/BoardDetail/${index}`);
                                 }}>
-                                    {setNum((currentPage - 1) * 8 + index)}
+                                    {setBoardNum(item.b_seq)}
                                 <tr className='board-bottom-list'>
                                     <td className='board-contant-td'>
                                         <div className='board-content-title'>
-                                            <div className='board-title'>{(currentPage - 1) * 8 + index}</div>
+                                            <div className='board-title'>{(currentPage - 1) * 8 + index+1}</div>
                                         </div>
                                     </td>
                                     <td className='board-contant-td'>
