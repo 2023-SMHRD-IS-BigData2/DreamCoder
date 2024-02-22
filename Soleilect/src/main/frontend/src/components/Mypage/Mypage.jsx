@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './mypage.css';
 import axios from 'axios';
 import OwnPowerTab from '../MpTabBox/OwnPowerTab';
@@ -38,7 +38,7 @@ export default function Mypage() {
         if (view == 'my-post') {
             myPostList();
             myFreePostList();
-        }if (view == 'my-power') {
+        } if (view == 'my-power') {
             readMyPlantList();
         }
     }, []);
@@ -125,6 +125,77 @@ export default function Mypage() {
 
     //              component: 환경설정 컴포넌트
     const EditProfileCard = () => {
+        //          state: 패스워드 요소 참조 상태 
+        const passwordRef = useRef(null);
+        //          state: 닉네임 요소 참조 상태 
+        const nicknameRef = useRef(null);
+
+        //          state: 패스워드 상태 
+        const [password, setPassword] = useState('');
+        //          state: 닉네임 상태 
+        const [nickname, setNickname] = useState(sessionStorage.getItem("user_nick"));
+        //          event handler: 닉네임 변경 이벤트 처리 
+        const onNicknameChangeHandler = (event) => {
+            const { value } = event.target;
+            setNickname(value);
+        }
+        //          event handler: 패스워드 변경 이벤트 처리 
+        const onPasswordChangeHandler = (event) => {
+            const { value } = event.target;
+            setPassword(value);
+        }
+        const submitPost = () => {
+            let formData = new FormData();
+            console.log(sessionStorage.getItem("user_id"),sessionStorage.getItem("user_pw"));
+            formData.append("user_id", sessionStorage.getItem("user_id"))
+            if (password == '') {
+                formData.append("user_pw", sessionStorage.getItem("user_pw"))
+            } else {
+                formData.append("user_pw", password)
+            }
+            if (nickname == sessionStorage.getItem("user_nick")) {
+                formData.append("user_nick", sessionStorage.getItem("user_nick"))
+            } else {
+                formData.append("user_nick", nickname)
+            }
+            axios
+                .post('/Sol/myPageCon/userUpdate', formData)
+                .then((response) => {
+                    console.log(password, nickname);
+                    console.log(response);
+                    // sessionStorage.setItem("user_nick",nickname)
+                    alert('수정 완료');
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+        const nickCheckPost = () => {
+            let formData = new FormData();
+            formData.append("nick", nickname)
+            axios
+                .post('/Sol/joinCon/nickCheck', formData)
+                .then((response) => {
+                    console.log(response.data)
+                    if (response.data.reMsg == '실패') {
+                        alert('중복되는 닉네임입니다.');
+                    } else {
+                        alert('사용 가능한 닉네임입니다.')
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+        };
+        //         event handler: 닉네임 중복체크 버튼 클릭 이벤트 처리
+        const onNicknameCheckButtonClickHandler = () => {
+            { nickCheckPost() }
+        }
+        //          event handler: 수정하기 버튼 클릭 이벤트 처리 
+        const onChangeButtonClickHandler = () => {
+            { submitPost() }
+        }
 
         return (
             <div className='mypage-right-box'>
@@ -137,6 +208,7 @@ export default function Mypage() {
                 <div className='mypage-right-bottom vanila'>
                     <div className='mypage-right-list'>
                         <div className='mypage-right-first-list'>
+                            <div className='id-check-button-box' onClick={onNicknameCheckButtonClickHandler}>{'중복체크'}</div>
                             {/* <div className='mypage-box edit-profile-image-box-card'>
                                 <div className='edit-box-profile-image-box'>
                                     <div className='mypage-profile-image'></div>
@@ -151,7 +223,7 @@ export default function Mypage() {
                                     <div className='edit-title'>{'닉네임 수정'}</div>
                                 </div>
                                 <div className='card-bottom'>
-                                    <input className='edit-box edit-nickname-box' type="text" placeholder={'닉네임'}></input>
+                                    <input ref={nicknameRef} value={nickname} onChange={onNicknameChangeHandler} className='edit-box edit-nickname-box' type="text" placeholder={'닉네임 입력'}></input>
                                 </div>
                             </div>
                         </div>
@@ -160,9 +232,9 @@ export default function Mypage() {
                                 <div className='edit-title'>{'비밀번호 변경'}</div>
                             </div>
                             <div className='card-bottom'>
-                                <input className='edit-box edit-password-box' type="text" placeholder={'현재 비밀번호'} />
-                                <input className='edit-box edit-password-box' type="text" placeholder={'새 비밀번호'} />
-                                <input className='edit-box edit-password-box' type="text" placeholder={'새 비밀번호 재입력'} />
+                                <input ref={passwordRef} value={password} onChange={onPasswordChangeHandler} className='edit-box edit-password-box' type="password" placeholder={'현재 비밀번호'} />
+                                <input ref={passwordRef} onChange={onPasswordChangeHandler} className='edit-box edit-password-box' type="text" placeholder={'새 비밀번호'} />
+                                <input className='edit-box edit-password-box' type="password" placeholder={'새 비밀번호 재입력'} />
                             </div>
                         </div>
                         <div className='mypage-box edit-alarm-box-card'>
@@ -178,7 +250,7 @@ export default function Mypage() {
                                 </div>
                             </div>
                         </div>
-                        <div className='mypage-set-save-button-box'>
+                        <div className='mypage-set-save-button-box' onClick={onChangeButtonClickHandler}>
                             <div className='mypage-set-save-button'>{'수정하기'}</div>
                         </div>
                     </div>
@@ -295,8 +367,8 @@ export default function Mypage() {
                 <div className='mypage-right-bottom scroll'>
                     <div className='tap-contents-list'>
                         {list && list.map((item, index) => (
-                           
- <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index}/>
+
+                            <JoinedProjectTab target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
 
                         ))}
                         {secList && secList.map((item, index) => (
