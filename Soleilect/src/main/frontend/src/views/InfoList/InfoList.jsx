@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './index.css';
+import './InfoList.css';
 import { ChartContext } from '../../context/ChartContext';
 import usePagination from '../../hooks/pagination.js'; // pagination 훅 불러오기
 import Pagination from '../../components/Pagination/Pagination.jsx';
@@ -84,7 +84,7 @@ const InfoList = () => {
                                   
                                         {currentData().map((item, index) => (
                                             <tbody key={(currentPage - 1) * 8 + index} className={index % 2 === 0 ? 'even' : 'odd'}>
-                                                <tr className='board-bottom-list'>
+                                                <tr className='board-bottom-list-info'>
                                                     <td className='board-contant-td'>
                                                         <div className='board-content-title'>
                                                             <div className='board-title'>{(currentPage - 1) * 8 + index + 1}</div>
