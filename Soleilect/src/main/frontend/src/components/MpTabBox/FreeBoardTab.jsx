@@ -3,7 +3,7 @@ import './style.css';
 import moment from 'moment';
 
 const FreeBoardTab = (props) => {
-    const { b_title, created_at, hd_code, b_content } = props;
+    const { b_title, created_at, hd_code, b_content, onclick } = props;
     //             state: 즐겨찾기 버튼 상태
     const [toggle, setToggle] = useState(0);
     //             event handler: 즐겨찾기 아이콘 클릭 이벤트 처리
@@ -17,7 +17,7 @@ const FreeBoardTab = (props) => {
     }
     return (
         <div className='tab-content-list'>
-            <div className='tab-content-box'>
+            <div className='tab-content-box' onClick={onclick}>
                 <div className='tab-text-content-box'>
                     <div className='tab-top-text-box'>
                         <div className='border-text-box'>

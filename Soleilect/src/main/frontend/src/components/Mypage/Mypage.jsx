@@ -450,7 +450,7 @@ export default function Mypage() {
             return (
                 <div className='tap-contents-list'>
                     {secList && secList.map((item, index) => (
-                        <FreeBoardTab key={index} b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
+                        <FreeBoardTab onclick={()=>{ nav(`/BoardDetail/${item.b_seq}`);}} key={index} b_title={item.b_title} created_at={item.created_at} hd_code={item.hd_code} b_content={item.b_content} />
                     ))}
                 </div>
             );
@@ -461,7 +461,7 @@ export default function Mypage() {
                 <div className='tap-contents-list'>
                     {list && list.map((item, index) => (
                         <JoinedProjectTab onclick={() => {
-                            nav(`/detail/${parseInt(index)}`);
+                            nav(`/detail/${item.party_seq}`);
                         }}key={item.party_seq} target_cnt={item.target_cnt} party_title={item.party_title} start_at={item.start_at} end_at={item.end_at} party_content={item.party_content} now_cnt={item.now_cnt} index={index} />
                     ))}
                 </div>
