@@ -10,5 +10,7 @@ import com.slt.entity.Plant_deep;
 
 @Mapper
 public interface MapDAO {
-	List<Plant_deep> mapList();
+//	List<Plant_deep> mapList();
+	
+	List<Plant_deep> mapSumList();
 }
