@@ -2,6 +2,7 @@ import React, { useEffect ,useState } from 'react'
 import './Map.css';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
+import useInterval from './useInterval';
 import axios from 'axios';
 
 const Map = () => {
@@ -84,8 +85,15 @@ const Map = () => {
     })
   }
 
+//   85G1 - 광양항세방태양광
+// 85M1 - 두산엔진MG태양광
+// 85S5 - 구미태양광
+// 987A - 영흠태양광 #3
+// 9878 - 예천태양광
+// C005 - 경상대태양광
 
-  // 우측 발전량 예측 인포메이션  ------------------
+
+  // --------------------  마커 인포메이션  ------------------
 
   //  test 인포메이션 
   // state 예측 발전량
@@ -94,8 +102,23 @@ const Map = () => {
   // state 예측 수익
   const [revenue, setRevenue] = useState(0);
 
-  // state 지역 이름
+  // state 발전소 이름
   const locations = ['광주광역시 동구', '부산광역시 남구', '대구광역시 서구'];
+  const [loc, setLoc] = useState(locations[0]);
+  const [locIndex, setLocIndex] = useState(0);
+
+  useInterval(() => {
+    setCount(count + 1);
+    setRevenue(revenue + 1);
+
+    const nextIndex = (locIndex + 1) % locations.length;
+    // console.log(locIndex+1);
+    // console.log(locations.length);
+    // console.log((locIndex + 1) % locations.length);
+    setLoc(locations[nextIndex]);
+    setLocIndex(nextIndex);
+
+  }, 2000);
 
 
   // 우측 꺾은선 그래프 발전량 예측 인포메이션
