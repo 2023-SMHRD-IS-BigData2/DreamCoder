@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { ChartContext } from '../../context/ChartContext';
 import moment from 'moment';
 import axios from 'axios';
+import Loading from '../../components/Loading/Loading';
 
 const BoardDetail = () => {
   const { list, setList } = useContext(ChartContext);
@@ -144,7 +145,7 @@ const BoardDetail = () => {
           </div>
         </div>
        ) : ( 
-        <div>로딩중...</div>
+        <div><Loading/></div>
        )} 
       {/* 삭제 확인 모달 */}
        {isModalOpen && <Modal />} 
