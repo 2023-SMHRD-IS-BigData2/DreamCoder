@@ -50,13 +50,13 @@ public class ChatsServicelmp implements ChatsService {
 	}
 
 	// 필수
-	// 내용, 수신자 닉네임, 발신자 닉네임
-	// (chat_group_seq, chat_msg, receiver_nick, sender_nick)
+	// 내용, 수신자 닉네임, 수신자 아이디, 발신자 닉네임, 발신자 아이디
+	// (chat_group_seq, chat_msg, receiver_nick, receiver_id, sender_nick, sender_id)
 	@Override
 	public ResultVO chatsInfoInsert(Chats chats) {
 		try {
 			Chats data = chatsGroupDAO.chatsGroupSelectOne(chats);
-			if (data.getChat_group_seq() == null) {
+			if (data == null) {
 				chatsGroupDAO.chatsGroupInfoInsert(chats);
 				chats.setChat_group_seq(chatsGroupDAO.chatsGroupSelectOne(chats).getChat_group_seq());
 				chatsMsgDAO.chatsMsgInfoInsert(chats);
@@ -68,6 +68,7 @@ public class ChatsServicelmp implements ChatsService {
 				return new ResultVO("00", null);
 			}
 		} catch (Exception e) {
+			System.err.println(e);
 			return new ResultVO("99", null);
 		}
 		
