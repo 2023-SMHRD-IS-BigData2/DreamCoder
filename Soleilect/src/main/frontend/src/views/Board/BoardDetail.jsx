@@ -98,7 +98,7 @@ const BoardDetail = () => {
 
   // event 일반게시판 목록으로 돌아가기
   const onListClickHandler = () => {
-    nav('/BoardList')
+    window.history.back();
   }
 
   return (
