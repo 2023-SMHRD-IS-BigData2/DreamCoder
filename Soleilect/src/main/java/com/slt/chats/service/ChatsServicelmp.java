@@ -49,7 +49,7 @@ public class ChatsServicelmp implements ChatsService {
 		}
 	}
 
-	// 필수!
+	// 필수
 	// 내용, 수신자 닉네임, 발신자 닉네임
 	// (chat_group_seq, chat_msg, receiver_nick, sender_nick)
 	@Override
