@@ -28,6 +28,8 @@ const PartyBoardDetail = () => {
     const [showEditDelete, setShowEditDelete] = useState(false);
     // state : 모달 열기를 위한 상태 선언
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // state : 발전소 선택 불가 상태 
+    const [powerToggle,setPowerToggle] = useState('p_tab-content-edit-button-box')
 
 
     // 모집 게시글 정보 가져오기 ---------------------
@@ -221,13 +223,13 @@ const PartyBoardDetail = () => {
 
         // event handler 나의 발전소 선택하기 클릭 이벤트
         const onPowerIsJoinClickHandler = (power) => {
-            console.log('선택하기 클릭', power);
             powerChecksend(power);
+            {power.pl_isJoin === 1 ? alert('이미 선택된 발전소 입니다') : <></>}
         }
 
         // 발전소 신청 정보 보내기 --------------------------------------
         const powerChecksend = (selectedPower) => {
-            if (selectedPower) {
+            if (selectedPower && selectedPower.pl_isJoin === 0) {
                 let formData = new FormData();
                 formData.append("party_seq", partyList[0].party_seq);
                 formData.append("party_title", partyList[0].party_title);
@@ -239,6 +241,7 @@ const PartyBoardDetail = () => {
                     .post('/Sol/partyApplyCon/apply', formData)
                     .then((res) => {
                         setPartyList(res.data.data);
+                        console.log(res.data.data);
                         alert('신청 성공!')
                         nav('/PartyBoardpartyList')
 
@@ -268,7 +271,7 @@ const PartyBoardDetail = () => {
                             {powerPlantpartyList && powerPlantpartyList.map((power, index) => (
                                 <div className='p_tab-content-partyList' key={index}>
 
-                                    <div className='p_tab-content-box'>
+                                    <div className={power.pl_isJoin === 1 ? 'p1_tab-content-box' :'p_tab-content-box'}>
                                         <div className='p_tab-image-box'>
                                             <div className='p_tab-image'></div>
                                         </div>
@@ -284,8 +287,10 @@ const PartyBoardDetail = () => {
                                             </div>
                                         </div>
                                         <div className='p_tab-content-button-partyList'>
-                                            <div className='p_tab-content-edit-button-box'>
-                                                <div className='p_edit-button' onClick={() => onPowerIsJoinClickHandler(power)} >{'선택하기'}</div>
+                                            {console.log(power.pl_isJoin)}
+                                            <div className={power.pl_isJoin === 1 ? 'p1_tab-content-edit-button-box' :'p_tab-content-edit-button-box'}>
+                                                <div className={power.pl_isJoin === 1?'p1_edit-button' :'p_edit-button'} onClick={() => onPowerIsJoinClickHandler(power)} >
+                                                {power.pl_isJoin === 1?'선택불가' :'선택하기'}</div>
                                             </div>
                                         </div>
                                     </div>

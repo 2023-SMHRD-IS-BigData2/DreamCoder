@@ -394,6 +394,7 @@ hr{
 
     /* 모달창 디자인 */
     background-color: rgba(252, 252, 252, 1);
+    /* background-color: rgb(241, 241, 241); */
     border: 1px solid rgb(216, 216, 216);
     border-radius: 10px;
 
@@ -410,14 +411,32 @@ hr{
     cursor: pointer;
 }
 
-.p_tab-content-box {
+.p1_tab-content-box {
     width: 334px;
     height: 80px;
-    /* background-color: rgb(255, 255, 255); */
-    background-color: #f8f8f8;
+    background-color: rgb(246, 246, 246);
+    /* background-color: #f8f8f8; */
     border: 2px;
     border-style: solid;
     border-color: rgb(208, 208, 208);
+
+    gap: 15px;
+
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p_tab-content-box{
+    width: 334px;
+    height: 80px;
+    background-color: rgb(246, 246, 246);
+    /* background-color: #f8f8f8; */
+    border: 2px;
+    border-style: solid;
+    border-color: rgba(26, 117, 191, 0.9);
 
     gap: 15px;
 
@@ -456,7 +475,8 @@ hr{
     padding-inline: 13px;
     height: 27px;
     width: 150px;
-    background-color: rgba(241, 241, 241, 1);
+    /* background-color: rgba(241, 241, 241, 1); */
+    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid rgb(171, 171, 171);
     border-radius: 5px;
 
@@ -470,9 +490,9 @@ hr{
 }
 
 .p_border-text {
-    color: rgb(171, 171, 171);
+    color: rgb(0,0,0,0.7);
     font-size: 16px;
-    font-weight: 530;
+    font-weight: bold;
     line-height: 140%;
 }
 .p_content-name {
@@ -509,9 +529,9 @@ hr{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    color: rgb(171, 171, 171);
+    color: rgb(0,0,0,0.7);
     font-size: 14px;
-    font-weight: 520;
+    font-weight: bold;
     line-height: 140%;
 }
 .p_tab-content-button-list {
@@ -531,12 +551,24 @@ hr{
 
     cursor: pointer;
 }
+.p1_tab-content-edit-button-box{
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: rgb(201, 204, 207);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .p_tab-content-edit-button-box:hover {
     background-color: rgba(26, 117, 191, 0.9);
 }
 
 .p_edit-button {
+    color: rgba(241, 241, 241, 1);
+}
+.p1_edit-button{
     color: rgba(241, 241, 241, 1);
 }
 
