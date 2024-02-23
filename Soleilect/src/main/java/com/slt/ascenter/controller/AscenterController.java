@@ -3,6 +3,7 @@ package com.slt.ascenter.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class AscenterController {
 	/**
 	 * 수리업체 정보조회
 	 */
-	@GetMapping("/list")
+	@PostMapping("/list")
 	public ResultVO ascenterSelectList() {
 		return ascenterService.ascenterSelectList();
 	}
@@ -28,7 +29,7 @@ public class AscenterController {
 	/**
 	 * 수리업체 등록
 	 */
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public ResultVO ascenterInsert(@ModelAttribute Ascenter ascenter) {
 		return ascenterService.ascenterInsert(ascenter);
 	}
@@ -36,7 +37,7 @@ public class AscenterController {
 	/**
 	 * 수리업체 삭제
 	 */
-	@GetMapping("/delete")
+	@PostMapping("/delete")
 	public ResultVO ascenterDelete(@ModelAttribute Long num) {
 		return ascenterService.ascenterDelete(num);
 	}
