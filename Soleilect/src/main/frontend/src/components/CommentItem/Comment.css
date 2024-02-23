@@ -19,7 +19,7 @@
   .comment-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
     padding-right: 10px;
     border-radius: 5px;
     flex-direction: row;
@@ -42,7 +42,7 @@
 
   .comment-bottom-date{
     display: flex;
-    font-size: 15-4px;
+    font-size: 14px;
     color: rgba(0,0,0,0.5);
   }
 
@@ -93,7 +93,7 @@
   }
   
   .comment-text {
-    margin-top: 5px;
+    /* margin-top: 2px; */
     color: #333;
   }
   

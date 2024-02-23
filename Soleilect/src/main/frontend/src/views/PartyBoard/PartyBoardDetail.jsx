@@ -345,7 +345,7 @@ const PartyBoardDetail = () => {
                         <br />
                         <div className='divider'></div>
                     </div>
-                    <Comment party_seq={partyList[0].party_seq} user_id={partyList[0].user_id} user_nick={partyList[0].user_nick} />
+                    <Comment party_seq={partyList[0].party_seq} user_id={partyList[0].user_id} user_nick={sessionStorage.getItem('user_nick')} />
                     {/* <PartyComment/> */}
                     <BoardDetailBottom />
                 </div>
