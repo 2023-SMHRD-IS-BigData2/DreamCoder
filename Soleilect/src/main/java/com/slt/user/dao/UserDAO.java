@@ -9,4 +9,6 @@ import com.slt.entity.User;
 @Mapper
 public interface UserDAO {
 	List<User> userList();
+	
+	List<User> userSearch(String search);
 }

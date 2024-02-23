@@ -111,7 +111,8 @@
     /* padding-top: 30px; */
 }
 .write-button{
-    background-color:rgba(237, 237, 237, 0.9);
+    background-color:#F3BA62;
+    color: white;
     border-radius: 5px;
     width: 150px;
     height: 50px;
@@ -128,8 +129,7 @@
 
 }
 .write-button:hover{
-    background-color: rgba(226, 226, 226, 0.9);
-    color: rgba(26, 117, 191, 1);
+    background-color: #f3c279;
 }
 
 .highcharts-root{
@@ -401,7 +401,23 @@ hr{
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
 
     animation: fadeInUpModal 0.5s;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+
 }
+/*  */
+.p_container::-webkit-scrollbar{
+    display:none;
+  }
+
+/* .power-plant-scroll{
+    overflow-y: scroll;
+    overflow-x: hidden;
+} */
+/* .p_tab-content-partyList {
+    overflow-y: scroll;
+    overflow-x: hidden;
+} */
 .p_tab-content-list {
     width: 100%;
     display: flex;
@@ -410,7 +426,9 @@ hr{
 
     cursor: pointer;
 }
+.p_auth-card-top{
 
+}
 .p1_tab-content-box {
     width: 334px;
     height: 80px;
@@ -427,6 +445,8 @@ hr{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .p_tab-content-box{
@@ -445,6 +465,8 @@ hr{
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* .p_tab-image-box {

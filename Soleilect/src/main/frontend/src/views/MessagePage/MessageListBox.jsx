@@ -1,16 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './style.css'
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const MessageListBox = () => {
     //      state: 유저 검색창 상태
     const [searchbox, setSearchbox] = useState(false);
+    const searchUserNick = () => {
+        axios
+            .post('/Sol/userCon/list')
+            .then((response) => {
+                console.log(response.data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
     //          components: 유저검색창 컴포넌트
     const UserSearchBoxModal = () => {
-        const closeModal = () => {
-            setSearchbox(false);
-        };
+
         // 모달 외부 클릭시 끄기 처리
         // Modal 창을 useRef로 취득
         const modalRef = useRef(null);
@@ -39,24 +48,6 @@ const MessageListBox = () => {
                     </div>
                     <div className='user-search-nickname'>{'검색어가포함된닉'}</div>
                 </div>
-                <div className='user-box-content'>
-                    <div className='user-search-icon-box'>
-                        <div className='user-search-icon'></div>
-                    </div>
-                    <div className='user-search-nickname'>{'검색어가포함된닉'}</div>
-                </div>
-                <div className='user-box-content'>
-                    <div className='user-search-icon-box'>
-                        <div className='user-search-icon'></div>
-                    </div>
-                    <div className='user-search-nickname'>{'검색어가포함된닉'}</div>
-                </div>
-                <div className='user-box-content'>
-                    <div className='user-search-icon-box'>
-                        <div className='user-search-icon'></div>
-                    </div>
-                    <div className='user-search-nickname'>{'검색어가포함된닉'}</div>
-                </div>
             </div>
         );
     }
@@ -76,6 +67,7 @@ const MessageListBox = () => {
         const onSearchWordChangeHandler = (event) => {
             const value = event.target.value;
             setWord(value);
+            console.log(value);
         };
         //        event handler: 검색어 키 이벤트 처리 함수
         const onSearchWordKeyDownHandler = (event) => {
@@ -93,6 +85,7 @@ const MessageListBox = () => {
 
         //        event handler: 검색버튼클릭 이벤트
         const searchUser = () => {
+            {searchUserNick()}
             setSearchbox(true);
         }
 

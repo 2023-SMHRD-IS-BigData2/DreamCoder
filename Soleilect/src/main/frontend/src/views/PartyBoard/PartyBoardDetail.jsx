@@ -8,6 +8,7 @@ import { ChartContext } from '../../context/ChartContext';
 import Comment from '../../components/CommentItem/Comment';
 import moment from 'moment';
 import '../../components/CommentItem/Comment.css';
+import Loading from '../../components/Loading/Loading';
 
 const PartyBoardDetail = () => {
     // const { partyList, setpartyList } = useContext(ChartContext);
@@ -40,9 +41,7 @@ const PartyBoardDetail = () => {
             .post('/Sol/partyBoardCon/detail', formData)
             .then((res) => {
                 setPartyList(res.data.data)
-                console.log(res.data.data);
                 setTimeStamp(partyList[0].created_at);
-
             })
             .catch((error) => {
                 console.log(error)
@@ -261,13 +260,14 @@ const PartyBoardDetail = () => {
             <div className='p_Modal'>
                 <div ref={modalRef} className='p_container'>
                     <div className='auth-card-box'>
-                        <div className='auth-card-top'>
+                        <div className='p_auth-card-top'>
                             <div className='auth-card-title-box'>
                                 <div className='auth-card-title'>{'발전소 선택'}</div>
                                 <button className='close' onClick={closeModal}>
                                     X
                                 </button>
                             </div>
+                            <div className='power-plant-scroll'>
                             {powerPlantpartyList && powerPlantpartyList.map((power, index) => (
                                 <div className='p_tab-content-partyList' key={index}>
 
@@ -298,6 +298,7 @@ const PartyBoardDetail = () => {
                                     {/* {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage={modalPage} />} */}
                                 </div>
                             ))}
+                            </div>
                         </div>
                         <div className='auth-card-bottom'>
                             <div className='auth-description-box'>
@@ -359,7 +360,7 @@ const PartyBoardDetail = () => {
             </div>
 
             //  데이터를 가져오는 동안에는 "Loading..."을 표시하고, 데이터가 준비되면 컴포넌트를 렌더링
-            : <div>Loading...</div>}
+            : <div><Loading/></div>}
            </div>
     )
 }

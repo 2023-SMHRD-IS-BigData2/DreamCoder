@@ -4,4 +4,7 @@
 	<select id="userList" resultType="com.slt.entity.User">
 		SELECT USER_ID, USER_NICK FROM USERS_TB;
 	</select>
+	<select id="userSearch" resultType="com.slt.entity.User">
+		SELECT USER_ID, USER_NICK FROM USERS_TB WHERE USER_NICK LIKE CONCAT('%',#{search},'%')
+	</select>
 </mapper>
