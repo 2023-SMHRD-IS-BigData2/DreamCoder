@@ -167,7 +167,6 @@
 /* 쪽지 내용 컴포넌트 CSS */
 .messageContentCard-wrapper {
     width: 507px;
-    height: 138px;
 
     display: flex;
     flex-direction: column;
@@ -406,20 +405,8 @@
     overflow-x: hidden;
 }
 .user-search-box::-webkit-scrollbar {
-    width: 13px;
-    border-radius: 5px;
-}
-
-.user-search-box::-webkit-scrollbar-thumb {
-    background-color: rgb(208, 208, 208);
-    border-radius: 5px;
-    height: 10px;
-}
-
-.user-search-box::-webkit-scrollbar-track {
-    /* background-color: rgb(255, 255, 255); */
-    border-radius: 5px;
-}
+    display: none;
+  }
 .user-box-content{
     width: 100%;
     height: 30px;
