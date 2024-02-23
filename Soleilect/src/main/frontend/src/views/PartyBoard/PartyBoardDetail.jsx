@@ -40,9 +40,7 @@ const PartyBoardDetail = () => {
             .post('/Sol/partyBoardCon/detail', formData)
             .then((res) => {
                 setPartyList(res.data.data)
-                console.log(res.data.data);
                 setTimeStamp(partyList[0].created_at);
-
             })
             .catch((error) => {
                 console.log(error)
@@ -261,13 +259,14 @@ const PartyBoardDetail = () => {
             <div className='p_Modal'>
                 <div ref={modalRef} className='p_container'>
                     <div className='auth-card-box'>
-                        <div className='auth-card-top'>
+                        <div className='p_auth-card-top'>
                             <div className='auth-card-title-box'>
                                 <div className='auth-card-title'>{'발전소 선택'}</div>
                                 <button className='close' onClick={closeModal}>
                                     X
                                 </button>
                             </div>
+                            <div className='power-plant-scroll'>
                             {powerPlantpartyList && powerPlantpartyList.map((power, index) => (
                                 <div className='p_tab-content-partyList' key={index}>
 
@@ -298,6 +297,7 @@ const PartyBoardDetail = () => {
                                     {/* {modalOpen && <OwnPowerModal setModalOpen={setModalOpen} setModalPage={modalPage} />} */}
                                 </div>
                             ))}
+                            </div>
                         </div>
                         <div className='auth-card-bottom'>
                             <div className='auth-description-box'>
