@@ -175,3 +175,9 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.search-light-icon{
+  background-image: url('./assets/image/search-light.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

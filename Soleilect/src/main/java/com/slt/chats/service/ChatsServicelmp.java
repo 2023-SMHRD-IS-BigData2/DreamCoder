@@ -1,13 +1,13 @@
 package com.slt.chats.service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.slt.chats.dao.ChatsDAO;
+import com.slt.chats.dao.ChatsGroupDAO;
+import com.slt.chats.dao.ChatsMsgDAO;
 import com.slt.cmmn.vo.ResultVO;
 import com.slt.entity.Chats;
 
@@ -15,13 +15,27 @@ import com.slt.entity.Chats;
 public class ChatsServicelmp implements ChatsService {
 
 	@Autowired
-	private ChatsDAO chatsDao;
+	private ChatsGroupDAO chatsGroupDAO;
+	
+	@Autowired
+	private ChatsMsgDAO chatsMsgDAO;
 
-	// 쪽지 리스트 조회
 	@Override
-	public ResultVO chatsSelectList(Chats chats) {
+	public ResultVO chatsGroupSelectList(Chats chats) {
 		try {
-			List<Chats> dtList = chatsDao.chatsSelectList(chats);
+			List<Chats> dtList = chatsGroupDAO.chatsGroupSelectList(chats);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+	
+	@Override
+	public ResultVO chatsMsgSelectList(Chats chats) {
+		try {
+			List<Chats> dtList = chatsMsgDAO.chatsMsgSelectList(chats);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
 			return new ResultVO("00", dataList);
@@ -30,19 +44,25 @@ public class ChatsServicelmp implements ChatsService {
 		}
 	}
 
-	// 쪽지 발송
 	@Override
 	public ResultVO chatsInfoInsert(Chats chats) {
 		try {
-			if (chats.getReceiver_id() != null) {
-				chatsDao.chatsInfoInsert(chats);
+			Chats data = chatsGroupDAO.chatsGroupSelectOne(chats);
+			if (data.getChat_group_seq() == null) {
+				chatsGroupDAO.chatsGroupInfoInsert(chats);
+				chats.setChat_group_seq(chatsGroupDAO.chatsGroupSelectOne(chats).getChat_group_seq());
+				chatsMsgDAO.chatsMsgInfoInsert(chats);
 				return new ResultVO("00", null);
 			} else {
-				return new ResultVO("03", null);
+				chats.setChat_group_seq(data.getChat_group_seq());
+				chatsMsgDAO.chatsMsgInfoInsert(chats);
+				chatsGroupDAO.chatsGroupUpdateLate(chatsMsgDAO.chatsMsgSelectOne(chats));
+				return new ResultVO("00", null);
 			}
 		} catch (Exception e) {
 			return new ResultVO("99", null);
 		}
+		
 	}
 
 }

@@ -17,9 +17,14 @@ public class ChatsController {
 	@Autowired
 	private ChatsService chatsService;
 	
-	@GetMapping("/list")
-	public ResultVO chatsSelectList(@ModelAttribute Chats chats) {
-		return chatsService.chatsSelectList(chats);
+	@GetMapping("/groupList")
+	public ResultVO chatsGroupSelectList(@ModelAttribute Chats chats) {
+		return chatsService.chatsGroupSelectList(chats);
+	}
+	
+	@GetMapping("/msgList")
+	public ResultVO chatsMsgSelectList(@ModelAttribute Chats chats) {
+		return chatsService.chatsMsgSelectList(chats);
 	}
 	
 	@GetMapping("/insert")

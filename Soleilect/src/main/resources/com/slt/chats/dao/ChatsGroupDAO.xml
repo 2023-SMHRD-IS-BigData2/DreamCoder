@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slt.chats.dao.ChatsGroupDAO">
+
+	<select id="chatsGroupSelectList"
+		parameterType="com.slt.entity.Chats" 
+		resultType="com.slt.entity.Chats">
+		select chat_group_seq, chat_msg, receiver_id, receiver_nick, 
+		sender_id, sender_nick, created_at
+		from CHATS_GROUP_TB
+		where receiver_id IN (#{sender_id})
+		OR sender_id IN (#{sender_id});
+	</select>
+	
+	<select id="chatsGroupSelectOne"
+		parameterType="com.slt.entity.Chats" 
+		resultType="com.slt.entity.Chats">
+		select chat_group_seq, chat_msg, receiver_id, receiver_nick, 
+		sender_id, sender_nick, created_at
+		from CHATS_GROUP_TB
+		where receiver_id IN (#{receiver_id}, #{sender_id})
+		AND sender_id IN (#{receiver_id}, #{sender_id});
+	</select>
+	
+	<insert id="chatsGroupInfoInsert"
+		parameterType="com.slt.entity.Chats">
+		insert into CHATS_GROUP_TB(chat_msg, receiver_id,
+		receiver_nick, sender_id,
+		sender_nick, created_at)
+		values(#{chat_msg},#{receiver_id},
+		#{receiver_nick},#{sender_id},
+		#{sender_nick},NOW());
+	</insert>
+
+	<update id="chatsGroupUpdateLate" 
+		parameterType="com.slt.entity.Chats">
+		UPDATE CHATS_GROUP_TB 
+		SET chat_msg = #{chat_msg}, created_at = #{created_at} 
+		WHERE chat_group_seq = #{chat_group_seq};
+	</update>
+
+</mapper>

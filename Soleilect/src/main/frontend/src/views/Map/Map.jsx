@@ -165,7 +165,7 @@ const Map = () => {
 
   return (
     <div className='map-container'>
-      <div id="map" style={{ width: '100%', height: '820px' }} />
+      <div id="map" style={{ width: '100%', height: '853px'}} />
       <div className='map-info-container'>
         <div className='map-info-box'>
           <div className='map-info-content'>
