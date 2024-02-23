@@ -36,7 +36,7 @@ public class ChatsServicelmp implements ChatsService {
 	
 	// 쪽지 방 내용 리스트 불러오기
 	// 필수!
-	// 발신자 ID, 수신자ID, 쪽지 방 순번(receiver_id, sender_id, chat_group_seq)
+	// 발신자 닉, 수신자 닉, 쪽지 방 순번(receiver_nick, sender_nick, chat_group_seq)
 	@Override
 	public ResultVO chatsMsgSelectList(Chats chats) {
 		try {
