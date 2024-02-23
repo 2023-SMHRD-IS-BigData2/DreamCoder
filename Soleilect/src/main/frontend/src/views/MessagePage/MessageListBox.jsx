@@ -13,6 +13,12 @@ const MessageListBox = () => {
     const [saveSelectNickList, setSelectSearchNickList] = useState('');
     //      state: 쪽지방 리스트 상태
     const [msgGroupList, setMsgGroupList] = useState([]);
+    //      state: 쪽지방 클릭상태
+    const [activeRoom, setActiveRoom] = useState(null); // 활성화된 방의 인덱스를 상태로 관리
+
+    const RoomClickEvenHandler = (index) => {
+        setActiveRoom(index); // 클릭된 방의 인덱스를 상태로 설정
+    };
 
     useEffect(() => {
         msgGroupListRender();
@@ -140,14 +146,11 @@ const MessageListBox = () => {
             </div>
         );
     }
-    //          state: 쪽지방 클릭 상태 
-    const RoomClickEvenHandler = () => {
 
-    }
-    const MessageRoom = ({ clicked, onClick, receiver_nick,created_at,chat_msg }) => {
+    const MessageRoom = ({ isActive, onClick, receiver_nick, created_at, chat_msg, chat_group_seq, index }) => {
         return (
             <div className='messageRoom-wrapper'>
-                <div className={clicked ? 'messageRoom-container-active' : 'messageRoom-container'} onClick={onClick}>
+                <div className={isActive ? 'messageRoom-container-active' : 'messageRoom-container'} onClick={() => onClick(index)}>
                     <div className='messageRoom-icon-box'>
                         <div className='messageRoom-icon'></div>
                     </div>
@@ -163,7 +166,8 @@ const MessageListBox = () => {
                 </div>
             </div>
         );
-    }
+    };
+
     return (
         <div className='messageListBox-container'>
             <div className='messageListBox-top'>
@@ -172,11 +176,19 @@ const MessageListBox = () => {
             </div>
             <div className='messageListBox-middle'>
                 {msgGroupList && msgGroupList.map((item, index) => (
-                    <MessageRoom receiver_nick={item.receiver_nick} created_at={moment(item.created_at).format("YYYY-MM-DD")} chat_msg={item.chat_msg} key={item.chat_group_seq} onClick={RoomClickEvenHandler} />
+                    <MessageRoom
+                        isActive={index === activeRoom}
+                        chat_group_seq={item.chat_group_seq}
+                        receiver_nick={item.receiver_nick}
+                        created_at={moment(item.created_at).format("YYYY-MM-DD")}
+                        chat_msg={item.chat_msg}
+                        key={item.chat_group_seq}
+                        onClick={RoomClickEvenHandler}
+                        index={index}
+                    />
                 ))}
             </div>
             <div className='messageListBox-bottom'></div>
-        </div>
-    )
+        </div>)
 }
 export default MessageListBox
