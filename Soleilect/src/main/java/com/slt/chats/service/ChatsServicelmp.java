@@ -40,6 +40,7 @@ public class ChatsServicelmp implements ChatsService {
 	@Override
 	public ResultVO chatsMsgSelectList(Chats chats) {
 		try {
+			System.out.println(chats);
 			List<Chats> dtList = chatsMsgDAO.chatsMsgSelectList(chats);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.addAll(dtList);
