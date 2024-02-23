@@ -63,10 +63,12 @@ public class ChatsServicelmp implements ChatsService {
 				chatsMsgDAO.chatsMsgInfoInsert(chats);
 				return new ResultVO("00", null);
 			} else {
-				System.out.println(data.getChat_group_seq());
+				System.out.println(data);
 				chats.setChat_group_seq(data.getChat_group_seq());
 				chatsMsgDAO.chatsMsgInfoInsert(chats);
+				System.out.println(chats);
 				chatsGroupDAO.chatsGroupUpdateLate(chatsMsgDAO.chatsMsgSelectOne(chats));
+				System.out.println(chats);
 				return new ResultVO("00", null);
 			}
 		} catch (Exception e) {
