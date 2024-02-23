@@ -13,9 +13,14 @@ public class MapController {
 	@Autowired
 	private MapService mapservice;
 
-	@RequestMapping("/list")
-	public ResultVO mapList() {
-		
-		return mapservice.mapList();
+//	@RequestMapping("/list")
+//	public ResultVO mapList() {
+//		
+//		return mapservice.mapList();
+//	}
+	
+	@RequestMapping("/sum")
+	public ResultVO mapSumList() {
+		return mapservice.mapSumList();
 	}
 }
