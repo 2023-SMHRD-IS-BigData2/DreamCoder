@@ -23,7 +23,7 @@
 		#{p_cmt_parent});
 	</insert>
 	<delete id="partyCommentDelete">
-		delete from COMMENTS_TB where P_CMT_SEQ=#{p_cmt_seq}
+		delete from PARTY_COMMENTS_TB where P_CMT_SEQ=#{p_cmt_seq}
 	</delete>
 
 	<select id="partyCommentList"
