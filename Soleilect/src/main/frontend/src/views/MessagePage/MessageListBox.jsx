@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './style.css'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 const MessageListBox = () => {
     //      state: 유저 검색창 상태
@@ -10,7 +11,29 @@ const MessageListBox = () => {
     const [saveSearchNickList, setSaveSearchNickList] = useState([]);
     //      state: 검색한 유저 저장 상태
     const [saveSelectNickList, setSelectSearchNickList] = useState('');
+    //      state: 쪽지방 리스트 상태
+    const [msgGroupList, setMsgGroupList] = useState([]);
 
+    useEffect(() => {
+        msgGroupListRender();
+    }, []);
+    const readMyMsgGroup = (res) => {
+        setMsgGroupList(res);
+    };
+    //      참여중인 쪽지방 리스트
+    const msgGroupListRender = () => {
+        let formData = new FormData();
+        formData.append("sender_id", sessionStorage.getItem("user_id"))
+        axios
+            .post('/Sol/chatsCon/groupList', formData)
+            .then((response) => {
+                console.log(response.data.data);
+                readMyMsgGroup(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
     //        component: 검색 버튼 컴포넌트
     const SearchButton = () => {
@@ -21,6 +44,8 @@ const MessageListBox = () => {
         const [word, setWord] = useState('');
         //      state: 검색어 path variable 상태
         const { searchWord } = useParams();
+
+        //      유저 닉네임 검색
         const searchUserNick = () => {
             let formData = new FormData();
             formData.append("search", word)
@@ -105,7 +130,7 @@ const MessageListBox = () => {
         return (
             <div ref={modalRef} className='user-search-box'>
                 {saveSearchNickList && saveSearchNickList.map((item, index) => (
-                    <div key={item.user_nick} data-nick={item.user_nick}data-id={item.user_id} className='user-box-content' onClick={SelectSearchNick}>
+                    <div key={item.user_nick} data-nick={item.user_nick} data-id={item.user_id} className='user-box-content' onClick={SelectSearchNick}>
                         <div className='user-search-icon-box'>
                             <div className='user-search-icon'></div>
                         </div>
@@ -119,7 +144,7 @@ const MessageListBox = () => {
     const RoomClickEvenHandler = () => {
 
     }
-    const MessageRoom = ({ clicked, onClick }) => {
+    const MessageRoom = ({ clicked, onClick, receiver_nick,created_at,chat_msg }) => {
         return (
             <div className='messageRoom-wrapper'>
                 <div className={clicked ? 'messageRoom-container-active' : 'messageRoom-container'} onClick={onClick}>
@@ -128,11 +153,11 @@ const MessageListBox = () => {
                     </div>
                     <div className='messageRoom-text-box'>
                         <div className='messageRoom-top-text'>
-                            <div className='messageRoom-nickname'>{'닉네임'}</div>
-                            <div className='messageRoom-date'>{'Jan 21'}</div>
+                            <div className='messageRoom-nickname'>{receiver_nick}</div>
+                            <div className='messageRoom-date'>{created_at}</div>
                         </div>
                         <div className='messageRoom-bottom-text-box'>
-                            <div className='messageRoom-bottom-text'>{'마지막쪽지내용마지막쪽지내용마지막쪽지내용마지막쪽지내용'}</div>
+                            <div className='messageRoom-bottom-text'>{chat_msg}</div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +171,9 @@ const MessageListBox = () => {
                 {searchbox && <UserSearchBoxModal />}
             </div>
             <div className='messageListBox-middle'>
-                {/* <MessageRoom onClick={RoomClickEvenHandler} /> */}
+                {msgGroupList && msgGroupList.map((item, index) => (
+                    <MessageRoom receiver_nick={item.receiver_nick} created_at={moment(item.created_at).format("YYYY-MM-DD")} chat_msg={item.chat_msg} key={item.chat_group_seq} onClick={RoomClickEvenHandler} />
+                ))}
             </div>
             <div className='messageListBox-bottom'></div>
         </div>

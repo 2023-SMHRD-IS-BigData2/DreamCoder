@@ -17,9 +17,10 @@ const MessageContentBox = () => {
         formData.append("sender_nick", sessionStorage.getItem("user_nick"))
         formData.append("sender_id", sessionStorage.getItem("user_id"))
         axios
-            .get('/Sol/chatsCon/insert', formData)
+            .post('/Sol/chatsCon/insert', formData)
             .then((response) => {
                 console.log(response);
+                window.location.reload();
             })
             .catch((error) => {
                 console.log(error)
