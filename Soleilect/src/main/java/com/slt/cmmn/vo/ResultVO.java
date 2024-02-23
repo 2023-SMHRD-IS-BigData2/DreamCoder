@@ -13,13 +13,22 @@ public class ResultVO {
 	
 	private String reMsg;
 	private String reCode;
-	private List<Object> data;
+	private List<Object> dataList;
+	private Object data;
+
 	
 	public ResultVO(String reCode, List<Object> dataList) {
 		this.reCode = reCode;
 		this.reMsg = getResultDescription(reCode);
-        this.data = dataList;
+        this.dataList = dataList;
 	}
+	
+	public ResultVO(String reCode, Object data) {
+		this.reCode = reCode;
+		this.reMsg = getResultDescription(reCode);
+        this.data = data;
+	}
+	
 
     private String getResultDescription(String reCode) {
         switch (reCode) {
@@ -36,7 +45,7 @@ public class ResultVO {
             case "05":
             	return "시스템 오류"; 
             case "06":
-            	return "해당 데이터 없음";
+            	return "해당 데이터 없음"; 
             case "98":
             	return "NULL";
             case "99":
