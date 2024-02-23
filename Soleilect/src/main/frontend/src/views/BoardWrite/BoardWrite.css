@@ -1,4 +1,4 @@
-.board-write-progres ,.board-write-input-fix, .board-write-input-fix-loc{
+.board-write-progres{
     width: 100%;
     border: none;
     outline: none;
@@ -11,54 +11,7 @@
 .board-wrtie-content-input{
     width: 100%;
 }
-/* 모집기간 */
-.board-write-date{
-    font-size: 23px;
-    color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 5px;
-}
 
-/* 장소 */
-.board-write-input-fix-loc input{
-    width: 200px;
-    height: 30px;
-    box-sizing: border-box;
-    margin-left: 5px;
-    padding: 5px 0 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #d9d6d6;
-    color: #383838;
-    background-color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-}
-/* 목표, 현재 수치 */
-.board-write-input-fix input{
-    width: 120px;
-    height: 30px;
-    box-sizing: border-box;
-    margin-left: 5px;
-    padding: 5px 0 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #d9d6d6;
-    color: #383838;
-    background-color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* 달력 css */
-.board-write-date-calender{
-    width: 110px;
-    height: 30px;
-    box-sizing: border-box;
-    margin-left: 5px;
-    padding: 5px 0 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #d9d6d6;
-    color: #383838;
-    background-color: #ffffff;
-}
 
 .board-check-top{
     display: flex;
@@ -113,9 +66,7 @@ select.write-check-select {
     font-size: 20px;
     font-weight: bold;
   }
-  option.write-check-isjoin-select {
-    font-size: 20px;
-  }
+
   .info .write-check-isjoin-select#write-select-isjoin-box option {
     font-size: 20px;
     background-color: #ffffff;
