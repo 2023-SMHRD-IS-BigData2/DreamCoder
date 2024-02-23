@@ -28,4 +28,16 @@ public class UserServiceImp implements UserService{
 		}
 	}
 
+	@Override
+	public ResultVO userSearch(String search) {
+		try {
+			List<User> dtList = userDao.userSearch(search);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
+
 }
