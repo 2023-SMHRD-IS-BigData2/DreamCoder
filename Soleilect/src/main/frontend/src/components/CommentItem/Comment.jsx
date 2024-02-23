@@ -30,20 +30,20 @@ const Comment = (props) => {
     //     setComments(updatedComments);
     // };
 
-    // useEffect(()=>{
-    //     let formData = new FormData();
-    //     console.log(party_seq);
-    //     formData.append("party_seq",party_seq)
-    // axios
-    // .post('/Sol/partyCommentCon/list',formData)
-    // .then((res)=>{
-    //     setComments(res.data.data)
-    //     console.log(res);
-    // })
-    // .catch((error) => {
-    //   console.log(error)
-    // })
-    // },[])
+    useEffect(()=>{
+        let formData = new FormData();
+        console.log(party_seq);
+        formData.append("party_seq",party_seq)
+    axios
+    .post('/Sol/partyCommentCon/list',formData)
+    .then((res)=>{
+        setComments(res.data.data)
+        console.log(res);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    },[])
 
     // event handler  : 댓글 등록 클릭 이벤트-------------------------------
     const onCommentsSubmitClickHandler = () => {

@@ -190,10 +190,12 @@ const PartyBoardDetail = () => {
     // ------- 나의 발전소 가져오기 ------------------
     useEffect(() => {
         if (modalOpen) {
+            console.log('열림');
             let formData = new FormData();
             formData.append("user_id", sessionStorage.getItem('user_id'));
+            console.log(sessionStorage.getItem('user_id'));
             axios
-                .post('/Sol/myPageCon/plantpartyList', formData)
+                .post('/Sol/myPageCon/plantList', formData)
                 .then((res) => {
                     setPowerPlantpartyList(res.data.data);
                 })
