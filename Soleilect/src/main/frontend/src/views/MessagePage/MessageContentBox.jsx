@@ -19,7 +19,7 @@ const MessageContentBox = () => {
                         <div className='messageContentCard-date'>{'24/02/20 09:55'}</div>
                     </div>
                     <div className='messageContentCard-bottom-box'>
-                        <div className='messageContentCard-content'>{'쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이쪽지내용이들어갑니당쪽지내용이들어갑니당쪽지내용이들어갑니당쪽지내용이들어갑니당쪽지내용이들어갑니당쪽지내용이들어갑니당'}</div>
+                        <div className='messageContentCard-content'>{'쪽지내용이들어갑니당쪽지내용이들어갑니당'}</div>
                     </div>
                     <div className='division-line'></div>
                 </div>
