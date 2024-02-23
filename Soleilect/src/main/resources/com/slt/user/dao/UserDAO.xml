@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.slt.user.dao.UserDAO">
+	<select id="userList" resultType="com.slt.entity.User">
+		SELECT USER_ID, USER_NICK FROM USERS_TB;
+	</select>
+</mapper>
