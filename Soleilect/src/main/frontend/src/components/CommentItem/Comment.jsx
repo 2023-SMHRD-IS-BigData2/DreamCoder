@@ -109,7 +109,11 @@ const Comment = (props) => {
                              <span className="comment-username">{item.user_nick}</span> 
                             <div className="comment-text">{item.p_cmt_content}</div>
                         </div>
-                        <div onClick={() => onCommentsDeleteClickHandler(item.p_cmt_seq)} className='comment-text-delete' >{'삭제'}</div>
+                        {console.log(item.user_nick,sessionStorage.getItem('user_nick'))}
+                        {item.user_nick === sessionStorage.getItem('user_nick') ?
+                         <div onClick={() => onCommentsDeleteClickHandler(item.p_cmt_seq)} className='comment-text-delete' >{'삭제'}</div>
+                         : <></>}
+                        
                     </div>
                     <div className='comment-bottom-box'>
                         <div className='comment-bottom-date'>{'2024-02-16'}</div>
