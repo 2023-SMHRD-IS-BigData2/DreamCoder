@@ -23,4 +23,6 @@ public interface MyPageService {
 	
 	ResultVO myGroup(String user_nick);
 	
+	ResultVO myGroupNick(int party_seq);
+	
 }

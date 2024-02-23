@@ -99,5 +99,8 @@
 		FROM PARTY_BOARDS_TB
 		WHERE PARTY_SEQ IN (SELECT PARTY_SEQ FROM PARTY_LIST_TB WHERE USER_NICK = #{user_nick});
 	</select>
+	<select id="myGroupNick" resultType="String">
+		SELECT USER_NICK FROM PARTY_LIST_TB WHERE PARTY_SEQ = #{party_seq}
+	</select>
 
 </mapper>

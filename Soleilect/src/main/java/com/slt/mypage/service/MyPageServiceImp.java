@@ -149,4 +149,16 @@ public class MyPageServiceImp implements MyPageService {
 			return new ResultVO("99", null);
 		}
 	}
+
+	@Override
+	public ResultVO myGroupNick(int party_seq) {
+		try {
+			List<String> dtList = mypageDao.myGroupNick(party_seq);
+			List<Object> dataList = new ArrayList<Object>();
+			dataList.addAll(dtList);
+			return new ResultVO("00", dataList);
+		} catch (Exception e) {
+			return new ResultVO("99", null);
+		}
+	}
 }

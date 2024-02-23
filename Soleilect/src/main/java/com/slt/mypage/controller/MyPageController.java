@@ -104,4 +104,16 @@ public class MyPageController {
 		System.out.println("들어온 정보 : "+user_nick);
 		return mypageservice.myGroup(user_nick);
 	}
+	
+	/**
+	 * 	자신이 참여중인 그룹의 참여자 닉네임 목록
+	 */
+	@RequestMapping("/myGroupNick")
+	public ResultVO myGroupNick(int party_seq) {
+		System.out.println("참여중인 그룹의 참여자 닉네임 목록");
+		System.out.println("들어온 party_seq : "+party_seq);
+		return mypageservice.myGroupNick(party_seq);
+	}
+		
+	
 }
