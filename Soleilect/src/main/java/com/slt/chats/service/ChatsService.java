@@ -5,7 +5,11 @@ import com.slt.entity.Chats;
 
 public interface ChatsService {
 	
-	ResultVO chatsSelectList(Chats chats);
+	ResultVO chatsGroupSelectList(Chats chats);
+
+	ResultVO chatsMsgSelectList(Chats chats);
 
 	ResultVO chatsInfoInsert(Chats chats);
+	
+	
 }

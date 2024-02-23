@@ -10,8 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Chats {
+	
+	// 쪽지 그룹 고유번호
+	private Long chat_group_seq;
 	// 쪽지 고유번호
-	private Long chat_seq;
+	private Long chat_msg_seq;
 	// 쪽지 내용
 	private String chat_msg;
 	// 발송 시간
