@@ -8,6 +8,7 @@ import { ChartContext } from '../../context/ChartContext';
 import Comment from '../../components/CommentItem/Comment';
 import moment from 'moment';
 import '../../components/CommentItem/Comment.css';
+import Loading from '../../components/Loading/Loading';
 
 const PartyBoardDetail = () => {
     // const { partyList, setpartyList } = useContext(ChartContext);
@@ -359,7 +360,7 @@ const PartyBoardDetail = () => {
             </div>
 
             //  데이터를 가져오는 동안에는 "Loading..."을 표시하고, 데이터가 준비되면 컴포넌트를 렌더링
-            : <div>Loading...</div>}
+            : <div><Loading/></div>}
            </div>
     )
 }

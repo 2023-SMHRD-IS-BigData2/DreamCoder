@@ -19,4 +19,9 @@ public class UserController {
 		return userservice.userList();
 	}
 	
+	@RequestMapping("/search")
+	public ResultVO userSearch(String search) {
+		return userservice.userSearch(search);
+	}
+	
 }

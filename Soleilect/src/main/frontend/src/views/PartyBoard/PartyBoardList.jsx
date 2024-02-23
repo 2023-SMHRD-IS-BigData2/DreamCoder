@@ -3,6 +3,7 @@ import PartyBoardItem from './PartyBoardItem'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ChartContext } from '../../context/ChartContext';
+import Loading from '../../components/Loading/Loading';
 import Pagination from '../../components/Pagination/Pagination';
 import usePagination from '../../hooks/pagination';
 
@@ -58,7 +59,7 @@ const PartyBoardList = () => {
                     </div>
                 </div>
     </div>
-    :<div> Loading...</div>
+    :<><Loading/></>
   )
 }
 
