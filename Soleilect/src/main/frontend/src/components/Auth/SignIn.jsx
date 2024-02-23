@@ -57,7 +57,6 @@ const SignIn = () => {
             .post('/Sol/logCon/login', formData)
             .then((res) => {
                 sessionStorage.setItem("user_nick", res.data.data[0].user_nick);
-                console.log(sessionStorage.getItem("user_nick"));
             })
             .catch((error) => {
                 console.log(error)

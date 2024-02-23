@@ -5,19 +5,21 @@
 	<select id="chatsMsgSelectList"
 		parameterType="com.slt.entity.Chats" resultType="com.slt.entity.Chats">
 		select chat_group_seq, chat_msg_seq, chat_msg, 
-		receiver_id, sender_id, created_at
+		receiver_nick, sender_nick, created_at
 		from CHATS_MSG_TB
-		where receiver_id IN (#{receiver_id}, #{sender_id})
-		AND sender_id IN (#{receiver_id}, #{sender_id})
+		where receiver_nick IN (#{receiver_nick}, #{sender_nick})
+		AND sender_nick IN (#{receiver_nick}, #{sender_nick})
 		AND chat_group_seq = #{chat_group_seq};
 	</select>
 	
 	<select id="chatsMsgSelectOne"
 		parameterType="com.slt.entity.Chats" resultType="com.slt.entity.Chats">
-		select MAX(chat_msg_seq)
+		select MAX(chat_msg_seq) as chat_group_seq, 
+		chat_msg_seq, chat_msg, receiver_nick, 
+		sender_nick, created_at 
 		from CHATS_MSG_TB
-		where receiver_id IN (#{receiver_id}, #{sender_id})
-		AND sender_id IN (#{receiver_id}, #{sender_id})
+		where receiver_nick IN (#{receiver_nick}, #{sender_nick})
+		AND sender_nick IN (#{receiver_nick}, #{sender_nick})
 		AND chat_group_seq = #{chat_group_seq};
 	</select>
 	

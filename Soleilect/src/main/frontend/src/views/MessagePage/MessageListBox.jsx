@@ -6,17 +6,68 @@ import axios from 'axios';
 const MessageListBox = () => {
     //      state: 유저 검색창 상태
     const [searchbox, setSearchbox] = useState(false);
-    const searchUserNick = () => {
-        axios
-            .post('/Sol/userCon/list')
-            .then((response) => {
-                console.log(response.data.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+    //      state: 유저 검색창 상태
+    const [saveSearchNickList, setSaveSearchNickList] = useState([]);
+    //      state: 검색한 유저 저장 상태
+    const [saveSelectNickList, setSelectSearchNickList] = useState('');
 
+
+    //        component: 검색 버튼 컴포넌트
+    const SearchButton = () => {
+
+        //      state: 검색 버튼 요소 참조 상태
+        const searchButtonRef = useRef(null);
+        //      state: 검색어 상태
+        const [word, setWord] = useState('');
+        //      state: 검색어 path variable 상태
+        const { searchWord } = useParams();
+        const searchUserNick = () => {
+            let formData = new FormData();
+            formData.append("search", word)
+            axios
+                .post('/Sol/userCon/search', formData)
+                .then((response) => {
+                    setSaveSearchNickList(response.data.data);
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+
+        //        event handler: 검색어 변경 이벤트 처리 함수
+        const onSearchWordChangeHandler = (event) => {
+            const value = event.target.value;
+            setWord(value);
+        };
+        //        event handler: 검색어 키 이벤트 처리 함수
+        const onSearchWordKeyDownHandler = (event) => {
+            if (event.key !== 'Enter') return;
+            if (!searchButtonRef.current) return;
+            searchButtonRef.current?.click();
+        };
+
+        //        effect: 검색어 path variable 변경 될때마가 실행될 함수
+        useEffect(() => {
+            if (searchWord) {
+                setWord(searchWord);
+            }
+        }, [searchWord]);
+
+        //        event handler: 검색버튼클릭 이벤트
+        const searchUser = () => {
+            { searchUserNick() }
+            setSearchbox(true);
+        }
+
+        return (
+            <div className='header-search-input-box'>
+                <input className='header-search-input' type='text' placeholder='닉네임을 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
+                <div ref={searchButtonRef} className='icon-button' onClick={searchUser}>
+                    <div className='icon search-light-icon'></div>
+                </div>
+            </div>
+        );
+    };
     //          components: 유저검색창 컴포넌트
     const UserSearchBoxModal = () => {
 
@@ -40,64 +91,30 @@ const MessageListBox = () => {
                 document.removeEventListener('mousedown', handler);
             };
         }, [setSearchbox]);
+        //          event handler: 검색한 유저 클릭시
+        const SelectSearchNick = (event) => {
+            const selectedNick = event.currentTarget.getAttribute('data-nick');
+            const selectedNickId = event.currentTarget.getAttribute('data-id');
+            console.log(selectedNick);
+            console.log(selectedNickId);
+            setSelectSearchNickList(selectedNick);
+            sessionStorage.setItem("receiver", selectedNick);
+            sessionStorage.setItem("receiver_id", selectedNickId);
+            window.location.reload();
+        }
         return (
             <div ref={modalRef} className='user-search-box'>
-                <div className='user-box-content'>
-                    <div className='user-search-icon-box'>
-                        <div className='user-search-icon'></div>
+                {saveSearchNickList && saveSearchNickList.map((item, index) => (
+                    <div key={item.user_nick} data-nick={item.user_nick}data-id={item.user_id} className='user-box-content' onClick={SelectSearchNick}>
+                        <div className='user-search-icon-box'>
+                            <div className='user-search-icon'></div>
+                        </div>
+                        <div className='user-search-nickname'>{item.user_nick}</div>
                     </div>
-                    <div className='user-search-nickname'>{'검색어가포함된닉'}</div>
-                </div>
+                ))}
             </div>
         );
     }
-
-    //        component: 검색 버튼 컴포넌트
-    const SearchButton = () => {
-
-        //      state: 검색 버튼 요소 참조 상태
-        const searchButtonRef = useRef(null);
-        //      state: 검색어 상태
-        const [word, setWord] = useState('');
-        //      state: 검색어 path variable 상태
-        const { searchWord } = useParams();
-
-
-        //        event handler: 검색어 변경 이벤트 처리 함수
-        const onSearchWordChangeHandler = (event) => {
-            const value = event.target.value;
-            setWord(value);
-            console.log(value);
-        };
-        //        event handler: 검색어 키 이벤트 처리 함수
-        const onSearchWordKeyDownHandler = (event) => {
-            if (event.key !== 'Enter') return;
-            if (!searchButtonRef.current) return;
-            searchButtonRef.current?.click();
-        };
-
-        //        effect: 검색어 path variable 변경 될때마가 실행될 함수
-        useEffect(() => {
-            if (searchWord) {
-                setWord(searchWord);
-            }
-        }, [searchWord]);
-
-        //        event handler: 검색버튼클릭 이벤트
-        const searchUser = () => {
-            {searchUserNick()}
-            setSearchbox(true);
-        }
-
-        return (
-            <div className='header-search-input-box'>
-                <input className='header-search-input' type='text' placeholder='닉네임을 입력해주세요.' value={word} onChange={onSearchWordChangeHandler} onKeyDown={onSearchWordKeyDownHandler} />
-                <div ref={searchButtonRef} className='icon-button' onClick={searchUser}>
-                    <div className='icon search-light-icon'></div>
-                </div>
-            </div>
-        );
-    };
     //          state: 쪽지방 클릭 상태 
     const RoomClickEvenHandler = () => {
 
@@ -129,9 +146,7 @@ const MessageListBox = () => {
                 {searchbox && <UserSearchBoxModal />}
             </div>
             <div className='messageListBox-middle'>
-                <MessageRoom onClick={RoomClickEvenHandler} />
-                <MessageRoom onClick={RoomClickEvenHandler} />
-                <MessageRoom onClick={RoomClickEvenHandler} />
+                {/* <MessageRoom onClick={RoomClickEvenHandler} /> */}
             </div>
             <div className='messageListBox-bottom'></div>
         </div>

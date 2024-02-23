@@ -3,6 +3,7 @@ package com.slt.chats.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,17 +18,17 @@ public class ChatsController {
 	@Autowired
 	private ChatsService chatsService;
 	
-	@GetMapping("/groupList")
+	@PostMapping("/groupList")
 	public ResultVO chatsGroupSelectList(@ModelAttribute Chats chats) {
 		return chatsService.chatsGroupSelectList(chats);
 	}
 	
-	@GetMapping("/msgList")
+	@PostMapping("/msgList")
 	public ResultVO chatsMsgSelectList(@ModelAttribute Chats chats) {
 		return chatsService.chatsMsgSelectList(chats);
 	}
 	
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public ResultVO chatsInfoInsert(@ModelAttribute Chats chats) {
 		return chatsService.chatsInfoInsert(chats);
 	}
