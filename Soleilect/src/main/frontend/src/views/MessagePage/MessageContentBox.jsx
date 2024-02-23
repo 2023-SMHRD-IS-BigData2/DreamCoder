@@ -13,7 +13,9 @@ const MessageContentBox = () => {
         let formData = new FormData();
         formData.append("chat_msg", chatMsg)
         formData.append("receiver_nick", sessionStorage.getItem("receiver"))
+        formData.append("receiver_id", sessionStorage.getItem("receiver_id"))
         formData.append("sender_nick", sessionStorage.getItem("user_nick"))
+        formData.append("sender_id", sessionStorage.getItem("user_id"))
         axios
             .get('/Sol/chatsCon/insert', formData)
             .then((response) => {

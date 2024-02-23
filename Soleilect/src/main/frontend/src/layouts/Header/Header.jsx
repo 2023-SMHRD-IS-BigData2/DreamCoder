@@ -140,7 +140,7 @@ const Header = () => {
               </>)
               :
               (<>
-                <div className='black-button' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
+                <div className='black-button-logout' onClick={onLogoutButtonClickHandler}>{'로그아웃'}</div>
                 <div className='black-button' onClick={onMypageButtonClickHandler}>{'마이페이지'}</div>
                 <div className='header-icon-box' onClick={onMessagepageButtonClickHandler}><div className='icon message-icon'></div></div>
               </>)

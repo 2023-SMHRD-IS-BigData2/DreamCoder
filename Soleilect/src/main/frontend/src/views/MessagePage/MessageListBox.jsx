@@ -94,15 +94,18 @@ const MessageListBox = () => {
         //          event handler: 검색한 유저 클릭시
         const SelectSearchNick = (event) => {
             const selectedNick = event.currentTarget.getAttribute('data-nick');
+            const selectedNickId = event.currentTarget.getAttribute('data-id');
             console.log(selectedNick);
+            console.log(selectedNickId);
             setSelectSearchNickList(selectedNick);
             sessionStorage.setItem("receiver", selectedNick);
+            sessionStorage.setItem("receiver_id", selectedNickId);
             window.location.reload();
         }
         return (
             <div ref={modalRef} className='user-search-box'>
                 {saveSearchNickList && saveSearchNickList.map((item, index) => (
-                    <div key={item.user_nick} data-nick={item.user_nick} className='user-box-content' onClick={SelectSearchNick}>
+                    <div key={item.user_nick} data-nick={item.user_nick}data-id={item.user_id} className='user-box-content' onClick={SelectSearchNick}>
                         <div className='user-search-icon-box'>
                             <div className='user-search-icon'></div>
                         </div>
