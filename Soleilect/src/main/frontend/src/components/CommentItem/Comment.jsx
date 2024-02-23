@@ -37,7 +37,6 @@ const Comment = (props) => {
     // 백엔드에서 댓글 목록 가져오기 -----------
     useEffect(() => {
         let formData = new FormData();
-        console.log(party_seq);
         formData.append("party_seq", party_seq)
         axios
             .post('/Sol/partyCommentCon/list', formData)
@@ -47,7 +46,6 @@ const Comment = (props) => {
             .catch((error) => {
                 console.log(error)
             })
-        console.log(comments);
     }, [])
 
     // event handler  : 댓글 등록 클릭 이벤트-------------------------------
@@ -90,8 +88,8 @@ const Comment = (props) => {
             .post('/Sol/partyCommentCon/delete', formaData)
             .then((res) => {
                 setCommentsDelete(res.data.data)
-                console.log(res.data.data);
-                console.log('댓글삭제 성공');
+                alert('댓글삭제 성공');
+                window.location.reload();
             })
     }
 
@@ -100,7 +98,7 @@ const Comment = (props) => {
             <h2>댓글</h2>
 
             {comments.map((item,index)=>(
-            <div className='comment-box'>
+            <div key={index}className='comment-box'>
                 <ul className="comment-list">
                     <li>
                     <div className="comment-header">
@@ -109,7 +107,6 @@ const Comment = (props) => {
                              <span className="comment-username">{item.user_nick}</span> 
                             <div className="comment-text">{item.p_cmt_content}</div>
                         </div>
-                        {console.log(item.user_nick,sessionStorage.getItem('user_nick'))}
                         {item.user_nick === sessionStorage.getItem('user_nick') ?
                          <div onClick={() => onCommentsDeleteClickHandler(item.p_cmt_seq)} className='comment-text-delete' >{'삭제'}</div>
                          : <></>}
