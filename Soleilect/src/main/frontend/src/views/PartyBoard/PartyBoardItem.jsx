@@ -73,7 +73,7 @@ const PartyBoardItem = (props) => {
     //             console.log(error)
     //         })
     // }
-
+console.log(end_at);
 
     return (
 

@@ -42,7 +42,7 @@ const PartyBoardList = () => {
         {/* {list && currentData() && currentData().map((item, index) => <PartyBoardItem item={item}
           key={(currentPage - 1) * 6 + index} ></PartyBoardItem>)} */}
            {list.map((item, index) => <PartyBoardItem item={item}
-          key={index} index={index} party_seq={item.party_seq} target_cnt={item.target_cnt} now_cnt={item.now_cnt} user_nick={item.user_nick} party_title={item.party_title} party_isJoin={item.party_isJoin} party_views={item.party_views} end_at={item.party_end_at}>
+          key={index} index={index} party_seq={item.party_seq} target_cnt={item.target_cnt} now_cnt={item.now_cnt} user_nick={item.user_nick} party_title={item.party_title} party_isJoin={item.party_isJoin} party_views={item.party_views} end_at={item.end_at}>
           </PartyBoardItem>)}
       </div>
       <br></br>

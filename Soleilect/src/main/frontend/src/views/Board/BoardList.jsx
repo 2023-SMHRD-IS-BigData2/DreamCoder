@@ -111,7 +111,7 @@ const BoardList = () => {
 
             <div className='board-content-container'>
                 <div className='board-contant-container-box'>
-                    <div className='board-contant-top'>{headName}</div>
+                    <div className='board-contant-top'></div>
 
                     <table className='board-table'>
                         <thead >
