@@ -56,6 +56,7 @@ const SignIn = () => {
         axios
             .post('/Sol/logCon/login', formData)
             .then((res) => {
+                console.log(res.data.data[0].user_nick);
                 sessionStorage.setItem("user_nick", res.data.data[0].user_nick);
             })
             .catch((error) => {

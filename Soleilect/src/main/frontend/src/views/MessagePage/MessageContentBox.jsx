@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
 import './style.css'
 import axios from 'axios';
+import moment from 'moment';
 
-const MessageContentBox = ({chatGroupSeq,saveSelectNickList}) => {
+const MessageContentBox = ({ chatGroupSeq, saveSelectNickList, saveSelectMsg }) => {
     //          state: 메세지내용 상태
     const [chatMsg, setChatMsg] = useState('');
     //          state: 메세지내용 요소 참조 상태 
@@ -42,27 +43,29 @@ const MessageContentBox = ({chatGroupSeq,saveSelectNickList}) => {
         submitMessageButton();
     }
     //              component: 쪽지 내용 컴포넌트
-    const MessageContentCard = ({ tab }) => {
+    const MessageContentCard = () => {
 
         return (
-
             <div className='messageContentCard-wrapper'>
-                <div className='messageContentCard-container'>
-                    <div className='messageContentCard-top-box'>
-                        {tab === 'send' &&
-                            <div className='messageContentCard-title-send'>{'보낸 쪽지'}</div>
-                        }
-                        {tab === 'receive' &&
-                            <div className='messageContentCard-title-receive'>{'받은 쪽지'}</div>
-                        }
-                        <div className='messageContentCard-date'>{'24/02/20 09:55'}</div>
+                {saveSelectMsg && saveSelectMsg.map((item, index) => (
+                    <div key={index} className='messageContentCard-container'>
+                        <div className='messageContentCard-top-box'>
+                            {item.sender_nick==sessionStorage.getItem("user_nick") &&
+                                <div className='messageContentCard-title-send'>{'보낸 쪽지'}</div>
+                            }
+                            {item.sender_nick!==sessionStorage.getItem("user_nick") &&
+                                <div className='messageContentCard-title-receive'>{'받은 쪽지'}</div>
+                            }
+                            <div className='messageContentCard-date'>{moment(item.created_at).format("YYYY-MM-DD")}</div>
+                        </div>
+                        <div className='messageContentCard-bottom-box'>
+                            <div className='messageContentCard-content'>{item.chat_msg}</div>
+                        </div>
+                        <div className='division-line'></div>
                     </div>
-                    <div className='messageContentCard-bottom-box'>
-                        <div className='messageContentCard-content'>{'쪽지내용이들어갑니당쪽지내용이들어갑니당'}</div>
-                    </div>
-                    <div className='division-line'></div>
-                </div>
+                ))}
             </div>
+
         );
     }
     return (
@@ -74,7 +77,7 @@ const MessageContentBox = ({chatGroupSeq,saveSelectNickList}) => {
                 <div className='messageContentBox-nickname'>{sessionStorage.getItem("receiver")}</div>
             </div>
             <div className='messageContentBox-middle'>
-                <MessageContentCard tab='send' />
+                <MessageContentCard />
             </div>
             <div className='messageContentBox-bottom'>
                 <div className='messageContentBox-send-box'>

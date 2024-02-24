@@ -24,7 +24,7 @@ const Header = () => {
     navigate('/Mypage');
   }
   const onLogoutButtonClickHandler = () => {
-    sessionStorage.removeItem("user_id");
+    sessionStorage.clear();
     setIslogin(false);
     navigate('/');
   }
