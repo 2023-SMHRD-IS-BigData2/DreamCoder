@@ -170,7 +170,7 @@ const PartyWrite = () => {
                     </div>
                     <div className='board-write-top-box'>
                         <div className='board-write-title'>
-                            <input name='party_title' ref={titleRef} className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onTitleChangeHandler} value={title}></input>
+                            <input name='party_title' ref={titleRef} className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onTitleChangeHandler} value={title} autocomplete="off"></input>
                         </div>
                     </div>
                     <div className='divider'></div>
@@ -178,22 +178,22 @@ const PartyWrite = () => {
                         <div className='board-wrtie-content-input'>
                             {/* date,progress,region */}
                             <div className='board-write-date'>
-                                모집 기간 : <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler} className='board-write-date-calender'></input> {' ~ '}
+                                모집 기간 <input type='date' name='start_at' ref={startRef} data-placeholder="날짜 선택" onChange={onStartChangeHandler} className='board-write-date-calender'></input> {' ~ '}
                                 <input type='date' name='end_at' ref={endRef} data-placeholder="날짜 선택" onChange={onEndChangeHandler} className='board-write-date-calender'></input>
                             </div>
 
 
                             <div className='board-write-input-fix'>
-                                모집 목표 수치 <input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} />{' kw'}
+                                모집 목표 수치 :<input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} autocomplete="off"/>{' kw'}
                             </div>
-                            <div className='board-write-input-fix'>
-                                모집 현재수치<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} value={nowCnt} placeholder='현재수치' />{' kw'}
-                            </div>
-                            <div className='board-write-input-fix'>
-                                모집 장소<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} />
+                            <div className='board-write-input-fix-now'>
+                                모집 현재 수치 :<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} value={nowCnt} placeholder='현재수치' autocomplete="off"/>{' kw'}
                             </div>
                             <div className='board-write-input-fix-loc'>
-                                모집 상황 :<select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
+                                모집 장소 :<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} autocomplete="off" placeholder=''/>
+                            </div>
+                            <div className='board-write-input-fix-isJoin'>
+                                모집 상황 <select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
                                     <option value="모집 중" className="write-check-isjoin-select">{'모집 중 '}</option>
                                     <option value="마감" className="write-check-select">{'마감 '}</option>
                                 </select>
@@ -203,7 +203,7 @@ const PartyWrite = () => {
                             <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수' value={partyViews}></input>
                         </div>
                         {/* content */}
-                        <textarea name='party_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onContentChangeHandler} value={content}></textarea>
+                        <textarea name='party_content' ref={contentRef} className='party-board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onContentChangeHandler} value={content} rows={10}></textarea>
                         {/* 임시로 넣어 놓음 */}
 
                     </div>

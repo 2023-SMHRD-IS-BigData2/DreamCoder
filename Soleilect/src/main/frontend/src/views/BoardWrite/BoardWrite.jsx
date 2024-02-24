@@ -189,7 +189,7 @@ const BoardWrite = () => {
                     <div className='board-write-top-box'>
                         <input type='file' ref={imageInputRef} accept="image/*" style={{ display: 'none' }} onChange={onImageChangeHandler} />
                         <div className='board-write-title'>
-                            <input ref={titleRef} name='b_title' className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onBoardTitleChangeHandler} value={title}></input>
+                            <input ref={titleRef} name='b_title' className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onBoardTitleChangeHandler} value={title} autocomplete="off"></input>
                         </div>
                     </div>
 
