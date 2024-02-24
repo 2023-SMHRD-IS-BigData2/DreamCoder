@@ -49,6 +49,11 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
 }
+.main-log-icon-white {
+  background-image: url('./assets/image/sunIcon-white.png') ;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 .search-icon-box {
   background-image: url('./assets/image/search.png');

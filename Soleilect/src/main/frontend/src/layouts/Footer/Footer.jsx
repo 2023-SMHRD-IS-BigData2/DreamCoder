@@ -23,12 +23,12 @@ const Footer = () => {
     //             render: 푸터 레이아웃 렌더링
     return (
         <div id='footer'>
-            <div className='footer-division-line'></div>
+            {/* <div className='footer-division-line'></div> */}
             <div className='footer-container'>
                 <div className='footer-top'>
                     <div className='footer-logo-box'>
                         <div className='icon-box'>
-                            <div className='icon main-log-icon'></div>
+                            <div className='icon main-log-icon-white'></div>
                         </div>
                         <div className='footer-logo-text'>{'솔레일렛트'}</div>
                     </div>
