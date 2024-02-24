@@ -35,10 +35,8 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
     };
 
     function swapIdNickList(dataList) {
-        // 입력된 객체 리스트를 복제하여 새로운 객체 리스트 생성
         const newList = dataList.map(obj => ({ ...obj }));
       
-        // 복제된 리스트의 각 객체를 반복하면서 속성 값을 교환합니다.
         return newList.map(obj => {
           if (obj['receiver_id'] === sessionStorage.getItem("user_id")) {
             const receiver_id = obj['receiver_id'];
