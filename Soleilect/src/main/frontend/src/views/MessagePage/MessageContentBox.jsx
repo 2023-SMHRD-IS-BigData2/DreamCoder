@@ -56,7 +56,7 @@ const MessageContentBox = ({ chatGroupSeq, saveSelectNickList, saveSelectMsg }) 
                             {item.sender_nick!==sessionStorage.getItem("user_nick") &&
                                 <div className='messageContentCard-title-receive'>{'받은 쪽지'}</div>
                             }
-                            <div className='messageContentCard-date'>{moment(item.created_at).format("YYYY-MM-DD")}</div>
+                            <div className='messageContentCard-date'>{moment(item.created_at).format("MM/DD h:mm A")}</div>
                         </div>
                         <div className='messageContentCard-bottom-box'>
                             <div className='messageContentCard-content'>{item.chat_msg}</div>

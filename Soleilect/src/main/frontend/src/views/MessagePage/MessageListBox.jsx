@@ -206,7 +206,7 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
                         isActive={item.chat_group_seq === activeRoom} 
                         chat_group_seq={item.chat_group_seq} 
                         receiver_nick={item.receiver_nick} 
-                        created_at={moment(item.created_at).format("YYYY-MM-DD")} 
+                        created_at={moment(item.created_at).format("YYYY-MM-DD h:mm A")} 
                         chat_msg={item.chat_msg} 
                         key={item.chat_group_seq} 
                         receiver_id={item.receiver_id}
