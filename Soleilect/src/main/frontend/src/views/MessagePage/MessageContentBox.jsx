@@ -2,12 +2,13 @@ import React, { useRef, useState } from 'react'
 import './style.css'
 import axios from 'axios';
 
-const MessageContentBox = () => {
+const MessageContentBox = ({chatGroupSeq,saveSelectNickList}) => {
     //          state: 메세지내용 상태
     const [chatMsg, setChatMsg] = useState('');
     //          state: 메세지내용 요소 참조 상태 
     const chatMsgRef = useRef(null);
 
+    //          메세지 전송 함수
     const submitMessage = () => {
         console.log(chatMsg, sessionStorage.getItem("receiver"), sessionStorage.getItem("user_nick"));
         let formData = new FormData();
@@ -70,11 +71,10 @@ const MessageContentBox = () => {
                 <div className='messageContentBox-icon-box'>
                     <div className='messageContentBox-icon'></div>
                 </div>
-                <div className='messageContentBox-nickname'>{(sessionStorage.getItem("receiver"))}</div>
+                <div className='messageContentBox-nickname'>{sessionStorage.getItem("receiver")}</div>
             </div>
             <div className='messageContentBox-middle'>
-                {/* <MessageContentCard tab='send' />
-                <MessageContentCard tab='receive' /> */}
+                <MessageContentCard tab='send' />
             </div>
             <div className='messageContentBox-bottom'>
                 <div className='messageContentBox-send-box'>

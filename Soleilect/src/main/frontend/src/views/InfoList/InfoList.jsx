@@ -18,7 +18,7 @@ const InfoList = () => {
     useEffect(() => {
         let formData = new FormData();
         axios
-            .get('/Sol/ascenterCon/list', formData)
+            .post('/Sol/ascenterCon/list', formData)
             .then((res) => {
                 setList(res.data.data);
             })
@@ -31,9 +31,8 @@ const InfoList = () => {
             if (!list.length) { // list가 비어있으면 데이터를 다시 가져옴
                 let formData = new FormData();
                 axios
-                    .get('/Sol/ascenterCon/list', formData)
+                    .post('/Sol/ascenterCon/list', formData)
                     .then((res) => {
-                        console.log(res.data.data);
                         setList(res.data.data);
                     })
                     .catch((error) => {
