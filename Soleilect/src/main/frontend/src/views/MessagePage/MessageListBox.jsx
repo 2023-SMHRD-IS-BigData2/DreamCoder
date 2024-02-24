@@ -33,6 +33,25 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
     const readMyMsgGroup = (res) => {
         setMsgGroupList(res);
     };
+
+    function swapIdNickList(dataList) {
+        // 입력된 객체 리스트를 복제하여 새로운 객체 리스트 생성
+        const newList = dataList.map(obj => ({ ...obj }));
+      
+        // 복제된 리스트의 각 객체를 반복하면서 속성 값을 교환합니다.
+        return newList.map(obj => {
+          if (obj['receiver_id'] === sessionStorage.getItem("user_id")) {
+            const receiver_id = obj['receiver_id'];
+            const receiver_nick = obj['receiver_nick'];
+            obj['receiver_id'] = obj['sender_id'];
+            obj['receiver_nick'] = obj['sender_nick'];
+            obj['sender_id'] = receiver_id;
+            obj['sender_nick'] = receiver_nick;
+          }
+          return obj;
+        });
+      }
+
     //      참여중인 쪽지방 리스트
     const msgGroupListRender = () => {
         let formData = new FormData();
@@ -41,7 +60,7 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
             .post('/Sol/chatsCon/groupList', formData)
             .then((response) => {
                 console.log(response.data.data);
-                readMyMsgGroup(response.data.data);
+                readMyMsgGroup(swapIdNickList(response.data.data));
             })
             .catch((error) => {
                 console.log(error)
@@ -175,6 +194,8 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
         );
     };
 
+
+    
     return (
         <div className='messageListBox-container'>
             <div className='messageListBox-top'>
