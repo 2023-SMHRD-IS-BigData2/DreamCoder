@@ -38,7 +38,7 @@ const MessagePage = () => {
                     <MessageListBox showMessage={showMessage} setChatGroupSeq={setChatGroupSeq} setSelectSearchNickList={setSelectSearchNickList} />
                 </div>
                 <div className='message-page-right-box'>
-                        <MessageContentBox saveSelectMsg={saveSelectMsg} chatGroupSeq={chatGroupSeq} saveSelectNickList={saveSelectNickList} />
+                <MessageContentBox saveSelectMsg={saveSelectMsg} chatGroupSeq={chatGroupSeq} saveSelectNickList={saveSelectNickList} />
                 </div>
             </div>
         </div>

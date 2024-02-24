@@ -124,10 +124,10 @@ const Header = () => {
               <div className='icon main-log-icon'></div>
             </div>
 
-            <div><Link to='/PartyBoardList'>모집게시판</Link></div>
-            <div><Link to='/map'>발전량지도</Link></div>
-            <div><Link to='/InfoList'>정보게시판</Link></div>
-            <div><Link to='/BoardList'>자유게시판</Link></div>
+            <div className='header-text'><Link to='/PartyBoardList'>모집게시판</Link></div>
+            <div className='header-text'><Link to='/map'>발전량지도</Link></div>
+            <div className='header-text'><Link to='/InfoList'>정보게시판</Link></div>
+            <div className='header-text'><Link to='/BoardList'>자유게시판</Link></div>
 
           </div>
 

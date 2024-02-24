@@ -8,7 +8,7 @@
 #header {
   padding: 20px 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
   background-color: white;
 
   height: 60px;
@@ -21,19 +21,31 @@
 }
 
 .header-container {
-  width: 1200px;
+  width: 1900px;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
+
+  flex-direction: row;
   align-items: center;
+  gap: 90px;
 }
 
 .header-left-box {
+  width: 1000px;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   font-size: 20px;
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 310px;
+}
+
+.header-text{
+  display: flex;
+  width: 100px;
+  height: 30px;
 }
 
 .log-icon {

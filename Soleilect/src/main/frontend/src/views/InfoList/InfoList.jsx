@@ -53,7 +53,7 @@ const InfoList = () => {
         <div id='repair-info-wrapper'>
             <div className='repair-info-container'>
                 <div className='repair-info-top-box'>
-                    <div
+                    {/* <div
                         className={toggle === 'repair-info' ? 'info-tab-button-box-active' : 'info-tab-button-box'}
                         onClick={repairTabClickHandler}
                     >
@@ -64,13 +64,13 @@ const InfoList = () => {
                         onClick={newsTabClickHandler}
                     >
                         <div className='info-tab-button'>{'시사이슈 정보'}</div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='repair-info-middle-box'>
                     {toggle == 'repair-info' && (
                         <div className='board-content-container'>
                             <div className='board-contant-container-box'>
-                                <div className='board-contant-top'>{'정보게시판'}</div>
+                                <div className='board-contant-top'></div>
                                 <table className='board-table'>
                                     <thead>
                                         <tr>

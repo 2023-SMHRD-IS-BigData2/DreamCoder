@@ -315,7 +315,10 @@
     height: 100%;
 
     border-radius: 50% 50%;
-    border: 1px solid rgba(167, 167, 167, 0.9);
+    border: 1px solid rgb(145, 145, 145);
+    background: url('../../assets/image/profile-image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .messageRoom-text-box{
     display: flex;
