@@ -203,6 +203,9 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 140%;
+    text-decoration: underline;
+
+    cursor: pointer;
 }
 .main-middle-left-icon{
     width: 150px;
@@ -221,14 +224,16 @@
     flex-direction: column;
     gap: 40px;
 }
-.main-middle-left-top-box{
+.main-middle-right-top-box{
     width: 225px;
-    height: 300px;
+    height: 320px;
 
     display: flex;
     flex-direction: column;
     padding-left: 45px;
-    padding-top: 50px;
+    padding-top: 30px;
+
+    gap: 20px;
 
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -238,14 +243,27 @@
     background: rgb(255, 255, 255);
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
 }
-.main-middle-left-bottom-box{
-    width: 200px;
-    height: 300px;
+.main-middle-right-top-icon{
+    width: 60px;
+    height: 60px;
+
+    position: relative;
+
+    margin-bottom: 50px;
+    background-image: url('../../assets/image/main_map_sun.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main-middle-right-bottom-box{
+    width: 225px;
+    height: 320px;
 
     display: flex;
     flex-direction: column;
-    padding-left: 70px;
-    padding-top: 50px;
+    padding-left: 45px;
+    padding-top: 30px;
+
+    gap: 20px;
 
     position: relative;
     left: 330px;
@@ -258,4 +276,39 @@
 
     background: rgb(255, 255, 255);
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+}
+.main-middle-right-bottom-icon{
+    width: 60px;
+    height: 60px;
+
+    position: relative;
+
+    margin-bottom: 50px;
+    background-image: url('../../assets/image/main_repair.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main-middle-right-light-text{
+    color: rgb(131, 131, 131);
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 140%;
+}
+.main-middle-right-light-text-link{
+    color: rgb(131, 131, 131);
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 140%;
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+.main-middle-right-text{
+    color: rgb(0, 0, 0);
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 140%;
 }

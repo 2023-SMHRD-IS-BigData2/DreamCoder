@@ -10,6 +10,16 @@ const Main = () => {
     nav('/SignUp')
   }
 
+  const goToInfo = () => {
+    nav('/InfoList')
+  }
+  const goToMap = () => {
+    nav('/map')
+  }
+  const goToParty = () => {
+    nav('/PartyBoardList')
+  }
+
   return (
     <div className='main-wrapper'>
       <div className='main-cover'>
@@ -39,18 +49,29 @@ const Main = () => {
           <div className='main-middle-left-button-box'>
             <div className='main-middle-left-button-text-light'>쉽고 빠른</div>
             <div className='main-middle-left-button-text'>전력 모집 서비스</div>
-            <div className='main-middle-left-button-text-link'>바로보기</div>
+            <div className='main-middle-left-button-text-link' onClick={goToParty}>바로보기</div>
           </div>
           <div className='main-middle-left-icon'></div>
         </div>
         <div className='main-middle-right'>
-          <div className='main-middle-left-top-box'>
-            <div className=''>발전량 지도</div>
-            <div className=''>발전량 예측 정보를</div>
-            <div className=''>확인하세요!</div>
-            <div className=''>자세히보기</div>
+          <div className='main-middle-right-top-box'>
+            <div className='main-middle-right-top-icon'></div>
+            <div className='main-middle-right-light-text'>발전량 지도</div>
+            <div className='main-middle-right-text'>
+              <div>발전량 예측 정보를</div>
+              <div>확인하세요!</div>
+            </div>
+            <div className='main-middle-right-light-text-link' onClick={goToMap}>자세히보기</div>
           </div>
-          <div className='main-middle-left-bottom-box'></div>
+          <div className='main-middle-right-bottom-box'>
+            <div className='main-middle-right-bottom-icon'></div>
+            <div className='main-middle-right-light-text'>정보게시판</div>
+            <div className='main-middle-right-text'>
+              <div>내게 필요한</div>
+              <div>수리업체 정보</div>
+            </div>
+            <div className='main-middle-right-light-text-link' onClick={goToInfo}>자세히보기</div>
+          </div>
         </div>
       </div>
     </div>
