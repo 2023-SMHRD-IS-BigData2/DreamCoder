@@ -3,7 +3,8 @@
 <mapper namespace="com.slt.chats.dao.ChatsMsgDAO">
 
 	<select id="chatsMsgSelectList"
-		parameterType="com.slt.entity.Chats" resultType="com.slt.entity.Chats">
+		parameterType="com.slt.entity.Chats" 
+		resultType="com.slt.entity.Chats">
 		select chat_group_seq, chat_msg_seq, chat_msg, 
 		receiver_nick, sender_nick, created_at
 		from CHATS_MSG_TB
@@ -13,7 +14,8 @@
 	</select>
 	
 	<select id="chatsMsgSelectOne"
-		parameterType="com.slt.entity.Chats" resultType="com.slt.entity.Chats">
+		parameterType="com.slt.entity.Chats" 
+		resultType="com.slt.entity.Chats">
 		select chat_msg_seq, 
 		chat_group_seq, chat_msg, receiver_nick, 
 		sender_nick, created_at 
