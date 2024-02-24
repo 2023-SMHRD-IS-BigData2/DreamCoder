@@ -14,13 +14,16 @@
 	
 	<select id="chatsMsgSelectOne"
 		parameterType="com.slt.entity.Chats" resultType="com.slt.entity.Chats">
-		select MAX(chat_msg_seq) as chat_group_seq, 
-		chat_msg_seq, chat_msg, receiver_nick, 
+		select chat_msg_seq, 
+		chat_group_seq, chat_msg, receiver_nick, 
 		sender_nick, created_at 
 		from CHATS_MSG_TB
 		where receiver_nick IN (#{receiver_nick}, #{sender_nick})
 		AND sender_nick IN (#{receiver_nick}, #{sender_nick})
-		AND chat_group_seq = #{chat_group_seq};
+		AND chat_msg_seq =
+        (Select MAX(chat_msg_seq) as chat_msg_seq
+        from CHATS_MSG_TB
+        where chat_group_seq = #{chat_group_seq})
 	</select>
 	
 	<insert id="chatsMsgInfoInsert"
