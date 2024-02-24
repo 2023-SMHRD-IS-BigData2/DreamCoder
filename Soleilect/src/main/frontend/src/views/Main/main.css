@@ -114,11 +114,11 @@
 }
 
 .main-middle-cover {
-    width: 1152px;
+    width: 1200px;
     height: 800px;
 
-    padding-left: 300px;
-    padding-right: 200px;
+    padding-left: 345px;
+    padding-right: 100px;
     padding-top: 100px;
     display: grid;
     grid-template-columns: 5fr 6fr;
@@ -215,4 +215,47 @@
     background-image: url('../../assets/image/main_solar.png');
     background-repeat: no-repeat;
     background-size: cover;
+}
+.main-middle-right{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.main-middle-left-top-box{
+    width: 225px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 45px;
+    padding-top: 50px;
+
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 35px;
+    border-top-right-radius: 35px;
+
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+}
+.main-middle-left-bottom-box{
+    width: 200px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 70px;
+    padding-top: 50px;
+
+    position: relative;
+    left: 330px;
+    top: 50px;
+
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 35px;
+    border-top-right-radius: 35px;
+
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
 }

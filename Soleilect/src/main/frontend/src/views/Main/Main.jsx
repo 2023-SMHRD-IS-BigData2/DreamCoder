@@ -32,7 +32,7 @@ const Main = () => {
           <div className='main-middle-left-text-box'>
             <div className='main-left-text'>만나보세요!</div>
             <div className='main-left-text'>솔레일렛트와 함께</div>
-            <div className='main-left-text'>원더풀 라이프</div>
+            <div className='main-left-text'>그린 라이프</div>
             <div className='main-left-text-light'>친환경 에너지,</div>
             <div className='main-left-text-light'>태양광 에너지 사업의 시작</div>
           </div>
@@ -43,7 +43,15 @@ const Main = () => {
           </div>
           <div className='main-middle-left-icon'></div>
         </div>
-        <div className='main-middle-right'></div>
+        <div className='main-middle-right'>
+          <div className='main-middle-left-top-box'>
+            <div className=''>발전량 지도</div>
+            <div className=''>발전량 예측 정보를</div>
+            <div className=''>확인하세요!</div>
+            <div className=''>자세히보기</div>
+          </div>
+          <div className='main-middle-left-bottom-box'></div>
+        </div>
       </div>
     </div>
   )
