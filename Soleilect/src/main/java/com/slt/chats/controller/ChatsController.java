@@ -28,7 +28,7 @@ public class ChatsController {
 		return chatsService.chatsMsgSelectList(chats);
 	}
 	
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public ResultVO chatsInfoInsert(@ModelAttribute Chats chats) {
 		return chatsService.chatsInfoInsert(chats);
 	}
