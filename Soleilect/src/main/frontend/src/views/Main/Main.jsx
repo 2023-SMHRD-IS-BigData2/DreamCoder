@@ -1,13 +1,27 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './main.css';
 import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
+  //          state: 로그인 상태
+  const [isLogin, setIslogin] = useState(false);
+  useEffect(() => {
+    if (sessionStorage.getItem("user_id") === null) {
+
+    } else {
+      setIslogin(true);
+
+    }
+  })
   const nav = useNavigate();
   //        event handler: 시작하기 누르면 회원가입창으로 감
   const goToJoinIn = () => {
-    nav('/SignUp')
+    if (isLogin == true) {
+      nav('/PartyBoardList')
+    } else {
+      nav('/SignUp')
+    }
   }
 
   const goToInfo = () => {
