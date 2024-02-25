@@ -7,10 +7,11 @@ const Header = () => {
   //  function : 네비게이트
   const navigate = useNavigate();
   //  state : 토글 상태
-  const [toggle ,setToggle] = useState(localStorage.getItem('header-toggle') || 'party-toggle')
+  const [toggle ,setToggle] = useState(localStorage.getItem('header-toggle') || '')
 
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
+    setToggle('header-text')
     navigate('/');
 
   };

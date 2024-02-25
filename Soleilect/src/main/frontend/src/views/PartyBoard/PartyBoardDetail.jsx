@@ -243,8 +243,8 @@ const PartyBoardDetail = () => {
                     .then((res) => {
                         setPartyList(res.data.data);
                         console.log(res.data.data);
-                        alert('신청 성공!')
-                        nav('/PartyBoardpartyList')
+                        alert('신청 성공!');
+                        nav('/BoardList');
 
                     })
                     .catch((error) => {
