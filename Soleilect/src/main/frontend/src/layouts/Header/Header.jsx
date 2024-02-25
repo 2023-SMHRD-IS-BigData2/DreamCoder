@@ -11,7 +11,7 @@ const Header = () => {
 
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
-    setToggle('header-text')
+    setToggle('');
     navigate('/');
 
   };
@@ -24,6 +24,7 @@ const Header = () => {
 
   };
   const onMypageButtonClickHandler = () => {
+    setToggle('');
     navigate('/Mypage');
   }
   const onLogoutButtonClickHandler = () => {
@@ -32,6 +33,7 @@ const Header = () => {
     navigate('/');
   }
   const onMessagepageButtonClickHandler = () => {
+    setToggle('');
     navigate('/MessagePage');
   }
   //          state: 로그인 상태
