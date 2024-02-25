@@ -66,7 +66,6 @@ const Map = () => {
   // component 지도 열기 -------------------------------
   const mapMarkerInfoWindow = (plantList) => {
 
-    console.log(plantList);// 이 값을 넘어오게 하는 방법
     const { sop } = window;
     const map = sop.map("map"); //map 생성
     
@@ -84,14 +83,12 @@ const Map = () => {
       shadowAnchor: [5, 0],
       popupAnchor: [-3, -76]
     });
-    console.log(plantList);
     const utmkXYm = new sop.LatLng(35.14627776, 126.9230903);
     const marker = sop.marker([utmkXYm.x, utmkXYm.y], { icon: myIcon });
 
     // 인포윈도우 좌표 찍기 위도경도 -> utmk
     // 인포윈도우 생성
     const infoWindow = sop.infoWindow();
-    console.log(loc);
     const contents = 
       "<div style='font-size: 18px; font-weight: bold; margin-bottom: 5px; text-align: center;'>"+plantList[0].dgen_ymd+"</div>" +
       "<div style='font-size: 18px; font-weight: bold; margin-bottom: 5px;'>"+plantList[0].ippt+"</div>" +

@@ -28,15 +28,20 @@ const PartyBoardList = () => {
     
   },[])
   // console.log(list);
-  
+  const partyWriteClickHandler = () => {
+    const userId = sessionStorage.getItem("user_id");
+    if (userId) {
+        nav('/PartyWrite');
+    } else {
+        alert("로그인 해주세요."); 
+    }
+}
 
   return (
     list ?
     <div className='list-container'>
       <div className='write-box'>
-        <div className='write-button' onClick={()=>{
-          nav('/PartyWrite');
-        }}>{'모집하러 가기'}</div>
+        <div className='write-button' onClick={partyWriteClickHandler}>{'모집하러 가기'}</div>
       </div>
       <div className='list-item'>
         {/* {list && currentData() && currentData().map((item, index) => <PartyBoardItem item={item}

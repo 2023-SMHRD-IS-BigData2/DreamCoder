@@ -32,7 +32,6 @@ const BoardList = () => {
             .post('/Sol/boardCon/filter', formData)
             .then((res) => {
                 setList(res.data.data)
-                console.log(list);
             })
             .catch((error) => {
                 console.log(error)
@@ -83,6 +82,14 @@ const BoardList = () => {
         setToggleCode('hd02');
         setHeadName('꿀팁 메뉴얼')
     }
+    const boardWriteClickHandler = () => {
+        const userId = sessionStorage.getItem("user_id");
+        if (userId) {
+            nav('/BoardWrite');
+        } else {
+            alert("로그인 해주세요."); 
+        }
+    }
 
 
     return (
@@ -102,7 +109,7 @@ const BoardList = () => {
                         <div className='board-top-tap-button'>{'꿀팁메뉴얼'}</div>
                     </div>
                     <div className='board-top-write-box'>
-                        <div className='board-top-write-button' onClick={() => { nav('/BoardWrite') }} style={{ cursor: "pointer" }}>
+                        <div className='board-top-write-button' onClick={boardWriteClickHandler} style={{ cursor: "pointer" }}>
                             {'게시글 작성'}
                         </div>
                     </div>

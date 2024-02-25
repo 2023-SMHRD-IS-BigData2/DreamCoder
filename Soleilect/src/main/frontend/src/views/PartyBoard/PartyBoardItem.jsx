@@ -29,6 +29,10 @@ const PartyBoardItem = (props) => {
             text: Math.floor(now_cnt/target_cnt*100) + '%',
             size: 20,
         },
+        // 경고창 해제
+        accessibility: {
+            enabled: false
+          },
         // 워터마크 해제
         credits: {
             enabled: false,
@@ -73,7 +77,6 @@ const PartyBoardItem = (props) => {
     //             console.log(error)
     //         })
     // }
-console.log(end_at);
 
     return (
 

@@ -115,8 +115,8 @@ const PartyWrite = () => {
         formData.append("party_views", partyViews)
         formData.append("target_cnt", targetCnt)
         formData.append("now_cnt", nowCnt)
-        formData.append("user_id", userId)
-        formData.append("user_nick", userNick)
+        formData.append("user_id", sessionStorage.getItem("user_id"))
+        formData.append("user_nick", sessionStorage.getItem("user_nick"))
         formData.append("party_isjoin", partyIsJoin)
         axios
             .post('/Sol/partyBoardCon/insert', formData)
@@ -135,21 +135,21 @@ const PartyWrite = () => {
     }
 
     //  회원정보 상태 가져오기
-    useEffect(() => {
-        let formData = new FormData();
-        formData.append("user_id", sessionStorage.getItem("user_id"))
-        formData.append("user_pw", sessionStorage.getItem("user_pw"))
-        axios
-            .post('/Sol/logCon/login', formData)
-            .then((res) => {   
-                setUserId(res.data.data[0].user_id)
-                setUserNick(res.data.data[0].user_nick)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    // useEffect(() => {
+    //     let formData = new FormData();
+    //     formData.append("user_id", sessionStorage.getItem("user_id"))
+    //     formData.append("user_pw", sessionStorage.getItem("user_pw"))
+    //     axios
+    //         .post('/Sol/logCon/login', formData)
+    //         .then((res) => {   
+    //             setUserId(res.data.data[0].user_id)
+    //             setUserNick(res.data.data[0].user_nick)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
 
-    }, [])
+    // }, [])
 
     // render 게시물 작성 화면 컴포넌트 렌더링 
     return (
@@ -170,7 +170,7 @@ const PartyWrite = () => {
                     </div>
                     <div className='board-write-top-box'>
                         <div className='board-write-title'>
-                            <input name='party_title' ref={titleRef} className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onTitleChangeHandler} value={title} autocomplete="off"></input>
+                            <input name='party_title' ref={titleRef} className='board-write-title-input' type='text' placeholder='제목을 작성해주세요' onChange={onTitleChangeHandler} value={title} autoComplete="off"></input>
                         </div>
                     </div>
                     <div className='divider'></div>
@@ -184,13 +184,13 @@ const PartyWrite = () => {
 
 
                             <div className='board-write-input-fix'>
-                                모집 목표 수치 :<input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} autocomplete="off"/>{' kw'}
+                                모집 목표 수치 :<input type='text' name='target_cnt' className='board-write-progress' ref={targetCntRef} onChange={ontargetCntChangeHandler} autoComplete="off"/>{' kw'}
                             </div>
                             <div className='board-write-input-fix-now'>
-                                모집 현재 수치 :<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} value={nowCnt} placeholder='현재수치' autocomplete="off"/>{' kw'}
+                                모집 현재 수치 :<input type='text' name='now_cnt' className='board-write-progress' ref={nowCntRef} value={nowCnt} placeholder='현재수치' autoComplete="off" readOnly/>{' kw'}
                             </div>
                             <div className='board-write-input-fix-loc'>
-                                모집 장소 :<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} autocomplete="off" placeholder=''/>
+                                모집 장소 :<input type='text' name='party_loc' className='board-write-region' ref={partLocRef} onChange={onpartLocChangeHandler} autoComplete="off" placeholder=''/>
                             </div>
                             <div className='board-write-input-fix-isJoin'>
                                 모집 상황 <select name="party_isJoin" className="write-check-isjoin-select" id='write-select-isjoin-box' onChange={onpartyisjoinChangeHandler} ref={partyIsJoinRef}>
@@ -198,9 +198,9 @@ const PartyWrite = () => {
                                     <option value="마감" className="write-check-select">{'마감 '}</option>
                                 </select>
                             </div>
-                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디' value={userId}></input>
-                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={userNick}></input>
-                            <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수' value={partyViews}></input>
+                            <input type='hidden' name='user_id' ref={userIdRef} placeholder='아이디' value={sessionStorage.getItem("user_id")} readOnly></input>
+                            <input type='hidden' name='user_nick' ref={userNickRef} placeholder='닉네임' value={sessionStorage.getItem("user_nick")} readOnly></input>
+                            <input type='hidden' name='party_views' ref={partyViewsRef} placeholder='조회수' value={partyViews} readOnly></input>
                         </div>
                         {/* content */}
                         <textarea name='party_content' ref={contentRef} className='party-board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onContentChangeHandler} value={content} rows={10}></textarea>

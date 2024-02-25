@@ -41,7 +41,7 @@ const PartyBoardDetail = () => {
             .post('/Sol/partyBoardCon/detail', formData)
             .then((res) => {
                 setPartyList(res.data.data)
-                setTimeStamp(partyList[0].created_at);
+                // setTimeStamp(partyList[0].created_at);
             })
             .catch((error) => {
                 console.log(error)
@@ -183,15 +183,17 @@ const PartyBoardDetail = () => {
 
     // event handler : 발전소 선택 클릭 이벤트 처리---------
     const onPowerCheckClickHandler = () => {
-        return (
-            setModalOpen(true)
-        )
+        const userId = sessionStorage.getItem("user_id");
+        if (userId) {
+                setModalOpen(true)
+        } else {
+            alert("로그인 해주세요."); 
+        }
     }
 
     // ------- 나의 발전소 가져오기 ------------------
     useEffect(() => {
         if (modalOpen) {
-            console.log('열림');
             let formData = new FormData();
             formData.append("user_id", sessionStorage.getItem('user_id'));
             console.log(sessionStorage.getItem('user_id'));
