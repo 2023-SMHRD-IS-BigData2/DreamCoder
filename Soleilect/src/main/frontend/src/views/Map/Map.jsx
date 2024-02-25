@@ -129,7 +129,11 @@ const Map = () => {
           title: {
             text: '발전량 예측',
             align: 'center'
-          },         
+          }, 
+          // 경고창 해제
+          accessibility: {
+            enabled: false
+          },        
       
           yAxis: {
             title: {

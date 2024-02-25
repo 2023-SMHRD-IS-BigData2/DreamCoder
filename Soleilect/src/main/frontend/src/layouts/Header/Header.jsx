@@ -6,6 +6,8 @@ import '../../App.css';
 const Header = () => {
   //  function : 네비게이트
   const navigate = useNavigate();
+  //  state : 토글 상태
+  const [toggle ,setToggle] = useState()
 
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
@@ -82,6 +84,8 @@ const Header = () => {
       navigate(`/Search/:{word}`);
     };
 
+
+
     //  effect : 검색어 면경 될때마다 실행될 함수 //
     useEffect(() => {
       if (searchWord) {
@@ -113,6 +117,18 @@ const Header = () => {
     );
 
   }
+  const onPartyBoardClickHandler = () => {
+    setToggle('party-board')
+  }
+  const  onMapClickHandler = () => {
+    setToggle('map')
+  }
+  const  onInfoClickHandler = () => {
+    setToggle('info-board')
+  }
+  const  onFreeBoardClickHandler = () => {
+    setToggle('free-board')
+  }
 
   return (
     <div id='header-wrapper'>
@@ -124,10 +140,10 @@ const Header = () => {
               <div className='icon main-log-icon'></div>
             </div>
 
-            <div className='header-text'><Link to='/PartyBoardList'>모집게시판</Link></div>
-            <div className='header-text'><Link to='/map'>발전량지도</Link></div>
-            <div className='header-text'><Link to='/InfoList'>정보게시판</Link></div>
-            <div className='header-text'><Link to='/BoardList'>자유게시판</Link></div>
+            <div className='header-text' onClick={onPartyBoardClickHandler}><Link to='/PartyBoardList' className={toggle === 'party-board' ? 'header-text-tab' : 'header-text'}>모집게시판</Link></div>
+            <div className='header-text' onClick={onMapClickHandler}><Link to='/map' className={toggle === 'map' ? 'header-text-tab' : 'header-text'}>발전량지도</Link></div>
+            <div className='header-text' onClick={onInfoClickHandler}><Link to='/InfoList' className={toggle === 'info-board' ? 'header-text-tab' : 'header-text'}>정보게시판</Link></div>
+            <div className='header-text' onClick={onFreeBoardClickHandler}><Link to='/BoardList' className={toggle === 'free-board' ? 'header-text-tab' : 'header-text'}>자유게시판</Link></div>
 
           </div>
 

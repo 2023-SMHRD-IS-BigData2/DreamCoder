@@ -71,8 +71,11 @@ a {
   font-weight: bolder;
 }
 
-a:hover {
+.header-text:hover {
   color: rgb(219, 215, 215);
+}
+.header-text-tab{
+  color: #1A74BD;
 }
 
 /* 오른쪽 헤더 css */

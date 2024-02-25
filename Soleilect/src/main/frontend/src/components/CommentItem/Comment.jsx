@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ChartContext } from '../../context/ChartContext';
+import moment from 'moment';
 
 const Comment = (props) => {
     //  State 댓글 목록 상태
@@ -113,7 +114,7 @@ const Comment = (props) => {
                         
                     </div>
                     <div className='comment-bottom-box'>
-                        <div className='comment-bottom-date'>{'2024-02-16'}</div>
+                        <div className='comment-bottom-date'>{moment(item.created_at).format("MM/DD h:mm A")}</div>
                     </div>
                     <div className='divider-comment'></div>
 
@@ -124,7 +125,7 @@ const Comment = (props) => {
 
             <div className='comment-new-box'>
                 <form>
-                    <input type="text" name="p_cmt_content" placeholder="댓글 입력" onChange={onCommentContentChangeHandler} ref={contentRef} value={p_cmt_content} />
+                    <input type="text" name="p_cmt_content" placeholder="댓글 입력" onChange={onCommentContentChangeHandler} ref={contentRef} value={p_cmt_content} autoComplete="off"/>
                     <button type="submit" onClick={onCommentsSubmitClickHandler} >댓글 등록</button>
                 </form>
             </div>
