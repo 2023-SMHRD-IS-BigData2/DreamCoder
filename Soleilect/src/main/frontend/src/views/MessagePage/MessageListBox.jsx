@@ -12,24 +12,25 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
     //      state: 쪽지방 리스트 상태
     const [msgGroupList, setMsgGroupList] = useState([]);
     //      state: 쪽지방 클릭상태
-    const [activeRoom, setActiveRoom] = useState(null); // 활성화된 방의 인덱스를 상태로 관리
-    const [selectedChatGroupSeq, setSelectedChatGroupSeq] = useState(null); // 선택된 방의 chat_group_seq 값을 상태로 관리
+    const [activeRoom, setActiveRoom] = useState(null || parseInt(sessionStorage.getItem("chat_group_seq"))); // 활성화된 방의 인덱스를 상태로 관리
+    const [selectedChatGroupSeq, setSelectedChatGroupSeq] = useState(null || sessionStorage.getItem("chat_group_seq")); // 선택된 방의 chat_group_seq 값을 상태로 관리
 
     //      쪽지방 클릭시
     const RoomClickEvenHandler = (chatGroupSeq,receiver_nick,receiver_id) => {
-        setActiveRoom(chatGroupSeq,receiver_nick); // 클릭된 방의 chat_group_seq 값을 상태로 설정
-        setSelectedChatGroupSeq(chatGroupSeq); // 클릭된 방의 chat_group_seq 값을 상태로 설정
+        console.log("RoomClickEvenHandler");
+        setActiveRoom(chatGroupSeq); // 클릭된 방의 chat_group_seq 값을 상태로 설정
+        setChatGroupSeq(chatGroupSeq);
+        setSelectedChatGroupSeq(chatGroupSeq); // 클릭된 방의 chat_group_seq 값을 상태로 설정 
         setSelectSearchNickList(receiver_nick);
-        console.log(selectedChatGroupSeq);
-        sessionStorage.setItem("chat_group_seq",selectedChatGroupSeq)
+        sessionStorage.setItem("chat_group_seq",chatGroupSeq)
         sessionStorage.setItem("receiver", receiver_nick);
         sessionStorage.setItem("receiver_id", receiver_id);
-        setChatGroupSeq(chatGroupSeq);
     };
 
     useEffect(() => {
         msgGroupListRender();
     }, []);
+
     const readMyMsgGroup = (res) => {
         setMsgGroupList(res);
     };
@@ -57,7 +58,6 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
         axios
             .post('/Sol/chatsCon/groupList', formData)
             .then((response) => {
-                console.log(response.data.data);
                 readMyMsgGroup(swapIdNickList(response.data.data));
             })
             .catch((error) => {
@@ -155,7 +155,8 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
             setSelectSearchNickList(selectedNick);
             sessionStorage.setItem("receiver", selectedNick);
             sessionStorage.setItem("receiver_id", selectedNickId);
-            // window.location.reload();
+            sessionStorage.setItem("chat_group_seq",null)
+            window.location.reload();
         }
         return (
             <div ref={modalRef} className='user-search-box'>

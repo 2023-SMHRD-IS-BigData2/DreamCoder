@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const MessagePage = () => {
     //      state: 쪽지방 시퀀스 상태
-    const [chatGroupSeq, setChatGroupSeq] = useState('');
+    const [chatGroupSeq, setChatGroupSeq] = useState('' || sessionStorage.getItem("chat_group_seq"));
     //      state: 검색한 유저 저장 상태
     const [saveSelectNickList, setSelectSearchNickList] = useState('');
     //      state: 선택한 유저방 메세지 저장상태
@@ -16,8 +16,11 @@ const MessagePage = () => {
         showMessage();
     }, [chatGroupSeq]);
 
+
     const showMessage = () => {
         let formData = new FormData();
+        console.log(sessionStorage.getItem("chat_group_seq"),sessionStorage.getItem("receiver"),sessionStorage.getItem("receiver_id"));
+        console.log(chatGroupSeq);
         formData.append("receiver_nick", sessionStorage.getItem("receiver"))
         formData.append("sender_nick", sessionStorage.getItem("user_nick"))
         formData.append("chat_group_seq", chatGroupSeq)
@@ -38,7 +41,7 @@ const MessagePage = () => {
                     <MessageListBox showMessage={showMessage} setChatGroupSeq={setChatGroupSeq} setSelectSearchNickList={setSelectSearchNickList} />
                 </div>
                 <div className='message-page-right-box'>
-                <MessageContentBox saveSelectMsg={saveSelectMsg} chatGroupSeq={chatGroupSeq} saveSelectNickList={saveSelectNickList} />
+                    <MessageContentBox saveSelectMsg={saveSelectMsg} chatGroupSeq={chatGroupSeq} saveSelectNickList={saveSelectNickList} />
                 </div>
             </div>
         </div>
