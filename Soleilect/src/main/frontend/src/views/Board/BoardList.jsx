@@ -32,6 +32,8 @@ const BoardList = () => {
             .post('/Sol/boardCon/filter', formData)
             .then((res) => {
                 setList(res.data.data)
+                // localStorage.setItem('boardList-toggle',toggle)
+                // localStorage.setItem('boardList-code',toggleCode)
             })
             .catch((error) => {
                 console.log(error)
@@ -46,6 +48,8 @@ const BoardList = () => {
             .get('/Sol/boardCon/list', formData)
             .then((res) => {
                 setList(res.data.data)
+                // localStorage.setItem('boardList-toggle',toggle)
+                // localStorage.setItem('boardList-code',toggleCode)
             })
             .catch((error) => {
                 console.log(error)

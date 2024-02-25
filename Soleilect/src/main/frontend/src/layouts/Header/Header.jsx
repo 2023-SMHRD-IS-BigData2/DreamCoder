@@ -7,7 +7,7 @@ const Header = () => {
   //  function : 네비게이트
   const navigate = useNavigate();
   //  state : 토글 상태
-  const [toggle ,setToggle] = useState()
+  const [toggle ,setToggle] = useState(localStorage.getItem('header-toggle') || 'party-toggle')
 
   // 로고이벤트 클릭 
   const onLogoClickHandler = () => {
@@ -117,6 +117,13 @@ const Header = () => {
     );
 
   }
+
+  // toggle 값이 변경될때마다 localStorage에 저장
+  useEffect(() => {
+    localStorage.setItem('header-toggle',toggle)
+  }, [toggle]);
+
+
   const onPartyBoardClickHandler = () => {
     setToggle('party-board')
   }
