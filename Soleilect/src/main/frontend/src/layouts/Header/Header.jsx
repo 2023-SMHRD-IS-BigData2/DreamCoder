@@ -16,10 +16,12 @@ const Header = () => {
 
   };
   const onSignUpButtonClickHandler = () => {
+    setToggle('');
     navigate('/SignUp');
 
   };
   const onSignInButtonClickHandler = () => {
+    setToggle('');
     navigate('/SignIn');
 
   };
@@ -31,6 +33,7 @@ const Header = () => {
     sessionStorage.clear();
     setIslogin(false);
     navigate('/');
+    setToggle('');
   }
   const onMessagepageButtonClickHandler = () => {
     setToggle('');

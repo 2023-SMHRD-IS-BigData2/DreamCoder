@@ -152,7 +152,7 @@ const PartyBoardDetail = () => {
                 setPartyList(res.data.data)
                 console.log(res.data);
                 alert('삭제 성공!')
-                nav('/BoardList')
+                nav('/PartyBoardList')
                 // window.location.reload()
             })
             .catch((error) => {
@@ -244,7 +244,7 @@ const PartyBoardDetail = () => {
                         setPartyList(res.data.data);
                         console.log(res.data.data);
                         alert('신청 성공!');
-                        nav('/BoardList');
+                        nav('/PartyBoardList');
 
                     })
                     .catch((error) => {
