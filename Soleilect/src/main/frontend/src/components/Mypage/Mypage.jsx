@@ -103,16 +103,13 @@ export default function Mypage() {
     const readMyAlarm = (res) => {
         const data = res.data.data[0];
         setAlarmList(data);
-        console.log(data);
     };
     const myPostAcceptUserList = () => {
         let formData = new FormData();
-        console.log(sessionStorage.getItem("user_nick"));
         formData.append("user_nick", sessionStorage.getItem("user_nick"))
         axios
             .post('/Sol/myPageCon/myGroupAccept', formData)
             .then((res) => {
-                console.log(res.data.data);
                 readMyAlarm(res);
             })
             .catch((error) => {
@@ -192,7 +189,6 @@ export default function Mypage() {
         }
         const submitPost = () => {
             let formData = new FormData();
-            console.log(sessionStorage.getItem("user_id"), sessionStorage.getItem("user_pw"));
             formData.append("user_id", sessionStorage.getItem("user_id"))
             if (password == '') {
                 formData.append("user_pw", sessionStorage.getItem("user_pw"))
@@ -208,8 +204,6 @@ export default function Mypage() {
             axios
                 .post('/Sol/myPageCon/userUpdate', formData)
                 .then((response) => {
-                    console.log(passwordThrd, nickname);
-                    console.log(response);
                     sessionStorage.setItem("user_nick", nickname)
                     alert('수정 완료');
                     window.location.reload();
@@ -224,7 +218,6 @@ export default function Mypage() {
             axios
                 .post('/Sol/joinCon/nickCheck', formData)
                 .then((response) => {
-                    console.log(response.data)
                     if (response.data.reMsg == '실패') {
                         alert('중복되는 닉네임입니다.');
                     } else {
@@ -391,7 +384,6 @@ export default function Mypage() {
                 axios
                     .post('/Sol/myPageCon/myGroup', formData)
                     .then((res) => {
-                        console.log(res.data.data);
                         setMGList(res.data.data);
                     })
                     .catch((error) => {

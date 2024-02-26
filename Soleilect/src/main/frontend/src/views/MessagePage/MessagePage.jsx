@@ -19,15 +19,12 @@ const MessagePage = () => {
 
     const showMessage = () => {
         let formData = new FormData();
-        console.log(sessionStorage.getItem("chat_group_seq"),sessionStorage.getItem("receiver"),sessionStorage.getItem("receiver_id"));
-        console.log(chatGroupSeq);
         formData.append("receiver_nick", sessionStorage.getItem("receiver"))
         formData.append("sender_nick", sessionStorage.getItem("user_nick"))
         formData.append("chat_group_seq", chatGroupSeq)
         axios
             .post('/Sol/chatsCon/msgList', formData)
             .then((response) => {
-                console.log(response.data.data);
                 setSaveSelectMsg(response.data.data);
             })
             .catch((error) => {

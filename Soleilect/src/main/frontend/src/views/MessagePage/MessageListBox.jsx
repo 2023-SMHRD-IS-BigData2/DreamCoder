@@ -17,7 +17,6 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
 
     //      쪽지방 클릭시
     const RoomClickEvenHandler = (chatGroupSeq,receiver_nick,receiver_id) => {
-        console.log("RoomClickEvenHandler");
         setActiveRoom(chatGroupSeq); // 클릭된 방의 chat_group_seq 값을 상태로 설정
         setChatGroupSeq(chatGroupSeq);
         setSelectedChatGroupSeq(chatGroupSeq); // 클릭된 방의 chat_group_seq 값을 상태로 설정 
@@ -150,8 +149,6 @@ const MessageListBox = ({ showMessage, setChatGroupSeq,setSelectSearchNickList }
         const SelectSearchNick = (event) => {
             const selectedNick = event.currentTarget.getAttribute('data-nick');
             const selectedNickId = event.currentTarget.getAttribute('data-id');
-            console.log(selectedNick);
-            console.log(selectedNickId);
             setSelectSearchNickList(selectedNick);
             sessionStorage.setItem("receiver", selectedNick);
             sessionStorage.setItem("receiver_id", selectedNickId);

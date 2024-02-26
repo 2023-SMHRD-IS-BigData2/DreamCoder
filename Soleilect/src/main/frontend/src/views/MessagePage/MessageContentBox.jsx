@@ -11,7 +11,6 @@ const MessageContentBox = ({ chatGroupSeq, saveSelectNickList, saveSelectMsg }) 
 
     //          메세지 전송 함수
     const submitMessage = () => {
-        console.log(chatMsg, sessionStorage.getItem("receiver"), sessionStorage.getItem("user_nick"));
         let formData = new FormData();
         formData.append("chat_msg", chatMsg)
         formData.append("receiver_nick", sessionStorage.getItem("receiver"))
@@ -21,7 +20,6 @@ const MessageContentBox = ({ chatGroupSeq, saveSelectNickList, saveSelectMsg }) 
         axios
             .post('/Sol/chatsCon/insert', formData)
             .then((response) => {
-                console.log(response);
                 window.location.reload();
             })
             .catch((error) => {

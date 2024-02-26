@@ -77,7 +77,6 @@ const SignUp = () => {
     axios
       .post('/Sol/joinCon/join', formData)
       .then((response) => {
-        console.log(response.data)
         setModalOpen(true);
       })
       .catch((error) => {
@@ -92,7 +91,6 @@ const SignUp = () => {
     axios
       .post('/Sol/joinCon/idCheck', formData)
       .then((response) => {
-        console.log(response.data.reMsg)
         if (response.data.reMsg == '실패') {
           setIdError(true);
           setIdCheckError(true);
@@ -113,7 +111,6 @@ const SignUp = () => {
     axios
       .post('/Sol/joinCon/nickCheck', formData)
       .then((response) => {
-        console.log(response.data)
         if (response.data.reMsg == '실패') {
           setNicknameError(true);
           setNicknameCheckError(true);

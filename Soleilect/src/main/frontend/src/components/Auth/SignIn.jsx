@@ -41,7 +41,6 @@ const SignIn = () => {
                     storageNick();
                     nav('/');
                 }
-                console.log(response.data.data)
             })
             .catch((error) => {
                 console.log(error)
@@ -50,13 +49,11 @@ const SignIn = () => {
     //  회원정보 상태 가져오기
     const storageNick = () => {
         let formData = new FormData();
-        console.log('회원닉가져오기');
         formData.append("user_id", sessionStorage.getItem("user_id"))
         formData.append("user_pw", sessionStorage.getItem("user_pw"))
         axios
             .post('/Sol/logCon/login', formData)
             .then((res) => {
-                console.log(res.data.data[0].user_nick);
                 sessionStorage.setItem("user_nick", res.data.data[0].user_nick);
             })
             .catch((error) => {

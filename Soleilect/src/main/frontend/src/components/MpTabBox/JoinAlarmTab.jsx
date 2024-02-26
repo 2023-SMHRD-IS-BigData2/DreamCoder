@@ -10,7 +10,6 @@ const JoinAlarmTab = (props) => {
     const [toggle, setToggle] = useState('');
     const partyAccept = () => {
         let formData = new FormData();
-        console.log(list_seq,pl_seq);
         formData.append("list_seq",list_seq)
         formData.append("pl_seq",pl_seq)
         axios
@@ -23,7 +22,6 @@ const JoinAlarmTab = (props) => {
     };
     const partyDeny = () => {
         let formData = new FormData();
-        console.log(list_seq);
         formData.append("list_seq",list_seq)
         axios
             .post('/Sol/partyApplyCon/refuse', formData)
@@ -36,7 +34,6 @@ const JoinAlarmTab = (props) => {
     };
     const plusPartyPower = () => {
         let formData = new FormData();
-        console.log(party_seq,pl_power);
         formData.append("party_seq",party_seq)
         formData.append("now_cnt",pl_power)
         axios
