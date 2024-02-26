@@ -52,6 +52,7 @@ const BoardWrite = () => {
         titleRef.current.style.height = `${titleRef.current.scrollHeight}px`;
     }
 
+
     // event handler : 내용 변경 이벤트 처리
     const onBoardContentChangeHandler = (e) => {
         const value = e.target.value;
@@ -60,6 +61,13 @@ const BoardWrite = () => {
         if (!contentRef.current) return;
         contentRef.current.style.height = 'auto';
         contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
+    }
+
+    const handleKeyDown = (e) => {
+
+        if(e.key === 'Enter'){
+            setContent((prevText) =>  prevText + "\n");
+        }
     }
 
     // event handler : 말머리 이름 변경 이벤트 처리
@@ -120,23 +128,23 @@ const BoardWrite = () => {
     const submitPost = () => {
 
         let formData = new FormData();
-        formData.append("b_title",title)
-        formData.append("b_content",content)
-        formData.append("hd_code",headCode)
-        formData.append("hd_name",headName)
-        formData.append("user_id",userId)
-        formData.append("user_nick",userNick)
-        formData.append("b_views",views)
+        formData.append("b_title", title)
+        formData.append("b_content", content)
+        formData.append("hd_code", headCode)
+        formData.append("hd_name", headName)
+        formData.append("user_id", userId)
+        formData.append("user_nick", userNick)
+        formData.append("b_views", views)
         axios
             .post('/Sol/boardCon/insert', formData)
             .then((response) => {
-                console.log('일반 게시글 작성 성공')
-                console.log(response.data);
+                
             })
             .catch((error) => {
                 console.log(error)
             })
         nav("/BoardList")
+        window.location.reload()
     }
 
     useEffect(() => {
@@ -160,6 +168,7 @@ const BoardWrite = () => {
     const onBoardonClickHandler = () => {
         submitPost()
     }
+
 
 
 
@@ -198,12 +207,12 @@ const BoardWrite = () => {
                         <div className='board-wrtie-content-input'>
                         </div>
                         {/* content */}
-                        <textarea name='b_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onBoardContentChangeHandler} value={content} rows={10}></textarea>
+                        <textarea name='b_content' ref={contentRef} className='board-write-content-textarea' placeholder='본문을 작성해주세요' onChange={onBoardContentChangeHandler} onKeyDown={handleKeyDown} value={content} rows={10}></textarea>
 
                         {/* 아이디, 닉네임, 조회수 */}
                         <input name='user_id' type="hidden" ref={userIdRef} value={userId} />
-                        <input name='user_nick' type="hidden" ref={userNickRef} value={userNick}/>
-                        <input name="b_views" type="hidden" ref={viewsRef} value={views}/>
+                        <input name='user_nick' type="hidden" ref={userNickRef} value={userNick} />
+                        <input name="b_views" type="hidden" ref={viewsRef} value={views} />
                     </div>
                     {/* 이미지 미리보기 */}
                     <div className='board-write-images-box'>
@@ -217,11 +226,11 @@ const BoardWrite = () => {
                         )}
                     </div>
                 </div>
-                
+
             </div>
             <div className='write-button-box'>
-                            <div className='Write-button' onClick={onBoardonClickHandler}>{'등록하기'}</div>
-                        </div>
+                <div className='Write-button' onClick={onBoardonClickHandler}>{'등록하기'}</div>
+            </div>
         </div>
     )
 }

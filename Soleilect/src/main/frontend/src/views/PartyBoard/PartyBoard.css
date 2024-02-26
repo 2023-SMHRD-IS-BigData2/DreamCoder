@@ -91,13 +91,14 @@
     font-weight: bold;
     line-height: 140%;
     width: 370px;
+    white-space: pre-line;
 }
 
 .board-list-item-bottom {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    font-size: 15px;
+    font-size: 18px;
     padding-top: 2%;
 }
 .board-list-item-recruit{
@@ -212,7 +213,7 @@
 }
 .detail-chart-recruit{
     display: flex;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bolder;
     /* color: 	#35AF4B; */
 }
@@ -241,7 +242,7 @@
     z-index: 1;
 }
 .more-icon{
-    margin-left: 610px;
+    margin-left: 680px;
     width: 32px;
     height: 32px;
     cursor: pointer;
@@ -294,6 +295,7 @@
 .detail-chart-content{
     font-size: 18px;
     max-width: 900px;
+    white-space: pre-line;
 }
 
 .bar{

@@ -132,7 +132,7 @@ const BoardDetail = () => {
                 </div>
                 <div className='board2-detail-top-date-view'>
                   <div className='board2-detail-top-date-box'>{moment(list[0].created_at).format("YYYY-MM-DD")}</div>
-                  <div className='board2-detail-top-view-box'>{'조회수'}{list[0].b_views}</div>
+                  {/* <div className='board2-detail-top-view-box'>{'조회수'}{list[0].b_views}</div> */}
                 </div>
               </div>
             </div>

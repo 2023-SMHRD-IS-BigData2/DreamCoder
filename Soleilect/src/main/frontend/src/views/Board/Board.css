@@ -283,7 +283,7 @@ tbody.odd {
     padding-bottom: 10px;
 }
 .board2-detail-top-icon{
-    padding-top: 7.5px;
+    padding-top: 0.5px;
     display: flex;
 }
 
@@ -319,6 +319,7 @@ flex-direction: column;
 .board2-detail-detailcontent{
     padding-top: 20px;
     width: 812px;
+    white-space: pre-line;
 }
 
 /* ----------------- 삭제하기 토글 -------------- */

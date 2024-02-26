@@ -48,20 +48,6 @@ const Map = () => {
     // console.log(loc);
   }, 2000);
 
-  // state 인포윈도우 content 상태
-  // const [contents, setContents] = useState('');
-  // useEffect(() => {
-  //   // loc가 변경될 때마다 contents를 갱신합니다.
-  //   if (loc !== null) {
-  //     setContents("<div style='font-size: 18px; font-weight: bold; margin-bottom: 5px;'>광주광역시 동구</div>" +
-  //     "<table style='border-spacing: 2px; border: 0px'><tbody><tr>" +
-
-  //     "<td style='width: 80px; color:#767676; padding-right:12px font-size: 18px;'><div style='font-size: 15px;'>발전량<div/></td>" +
-  //     "<td><span style='font-size: 15px; font-weight: bold;'>"+loc+"kw</span></td></tr>"+
-  //     +"</tbody></table>"
-  //     );
-  //   }
-  // }, [loc]); 
 
   // component 지도 열기 -------------------------------
   const mapMarkerInfoWindow = (plantList) => {
@@ -83,32 +69,60 @@ const Map = () => {
       shadowAnchor: [5, 0],
       popupAnchor: [-3, -76]
     });
-    const utmkXYm = new sop.LatLng(35.14627776, 126.9230903);
-    const marker = sop.marker([utmkXYm.x, utmkXYm.y], { icon: myIcon });
 
+    // 85G1 - 광양항세방태양광 34.911494 / 127.679291
+    // 85M1 - 두산엔진MG태양광 35.214112 / 128.631138
+    // 85S5 - 구미태양광 36.134421 / 128.448690
+    // 987A - 영흠태양광 #3 37.240875 /  126.4372226
+    // 9978 - 예천태양광 36.752973 / 128.426090
+    // C005 - 경상대태양광 35.158898 / 128.090460
+
+    // 85G1 - 광양항세방태양광
+    const utmkXYm = new sop.LatLng(34.911494, 127.679291);
+    const marker1 = sop.marker([utmkXYm.x, utmkXYm.y], { icon: myIcon });
+    // 85M1 - 두산엔진MG태양광 
+    const utmkXYm2 = new sop.LatLng(35.214112, 128.631138);
+    const marker2 = sop.marker([utmkXYm2.x, utmkXYm2.y], { icon: myIcon });
+    // 85S5 - 구미태양광
+    const utmkXYm3 = new sop.LatLng(36.134421 , 128.448690);
+    const marker3 = sop.marker([utmkXYm3.x, utmkXYm3.y], { icon: myIcon });
+    // 987A - 영흠태양광
+    const utmkXYm4 = new sop.LatLng(37.240875 ,  126.4372226);
+    const marker4 = sop.marker([utmkXYm4.x, utmkXYm4.y], { icon: myIcon });
+    // 9978 - 예천태양광
+    const utmkXYm5 = new sop.LatLng(36.752973 , 128.426090);
+    const marker5 = sop.marker([utmkXYm5.x, utmkXYm5.y], { icon: myIcon });
+    // C005 - 경상대태양광
+    const utmkXYm6 = new sop.LatLng(35.158898 , 128.090460);
+    const marker6 = sop.marker([utmkXYm6.x, utmkXYm6.y], { icon: myIcon });
     // 인포윈도우 좌표 찍기 위도경도 -> utmk
     // 인포윈도우 생성
     const infoWindow = sop.infoWindow();
-    const contents = 
+    const contents1 = 
       "<div style='font-size: 18px; font-weight: bold; margin-bottom: 5px; text-align: center;'>"+plantList[0].dgen_ymd+"</div>" +
-      "<div style='font-size: 18px; font-weight: bold; margin-bottom: 5px;'>"+plantList[0].ippt+"</div>" +
+      "<div style='font-size: 15px;  margin-bottom: 5px;'>광양항 세방 태양광</div>" +
       "<table style='border-spacing: 2px; border: 0px'><tbody><tr>" +
 
-      "<td style='width: 80px; color:#767676; padding-right:12px font-size: 18px;'><div style='font-size: 15px;'>발전량<div/></td>" +
-      "<td><span style='font-size: 15px; font-weight: bold;'>"+Math.floor(plantList[0].ippt_gen)+"MWh</span></td></tr>" +
+      "<td style='width: 80px; color:#767676; padding-right:14px font-size: 18px;'><div style='font-size: 15px;'>발전량<div/></td>" +
+      "<td><span style='font-size: 15px; color:rgba(0,0,0,0.9)'>"+Math.floor(plantList[0].ippt_gen)+"MWh</span></td></tr>" +
 
       "</tr></tbody></table>";
 
-    infoWindow.setContent(contents);
+    infoWindow.setContent(contents1);
 
-    marker.on("mouseover", function (e) {
+    marker1.on("mouseover", function (e) {
       infoWindow.setUTMK([utmkXYm.x, utmkXYm.y]);
       infoWindow.openOn(map);
     });
-    marker.on("mouseout", function (e) {
+    marker1.on("mouseout", function (e) {
       // infoWindow.close(map);
     });
-    marker.addTo(map);
+    marker1.addTo(map);
+    marker2.addTo(map);
+    marker3.addTo(map);
+    marker4.addTo(map);
+    marker5.addTo(map);
+    marker6.addTo(map);
   }
 
 

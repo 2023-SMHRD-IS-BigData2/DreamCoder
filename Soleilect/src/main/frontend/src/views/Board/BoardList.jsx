@@ -69,7 +69,7 @@ const BoardList = () => {
     // event handler : 공지 탭 클릭 이벤트
     const notionTabonClickHandler = () => {
         setToggle('notion-board');
-        setToggleCode('n1');
+        setToggleCode('hd00');
         setHeadName('공지')
      
     }
@@ -131,7 +131,7 @@ const BoardList = () => {
                                 <th className='board-contant-th'>{'제목'}</th>
                                 <th className='board-contant-th'>{'작성자'}</th>
                                 <th className='board-contant-th'>{'작성일'}</th>
-                                <th className='board-contant-th'>{'조회수'}</th>
+                                {/* <th className='board-contant-th'>{'조회수'}</th> */}
                             </tr>
                         </thead>
                         {/* 게시글 list */}
@@ -161,11 +161,11 @@ const BoardList = () => {
                                             <div className='board-bottom-date'>{moment(item.created_at).format("YYYY-MM-DD")}</div>
                                         </div>
                                     </td>
-                                    <td className='board-contant-td'>
+                                    {/* <td className='board-contant-td'>
                                         <div className='board-content-bottom-view'>
                                             <div className='board-bottom-view'>{item.b_views}</div>
                                         </div>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             </tbody>
                         ))}

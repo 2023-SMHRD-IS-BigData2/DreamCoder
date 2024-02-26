@@ -101,7 +101,7 @@ const PartyBoardItem = (props) => {
                     </div>
                     <div className='board-list-item-bottom'>
                         <div className='board-list-item-recruit' style={{color: party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>{party_isJoin}</div>
-                        <div className='board-list-item-counts'>{`조회수 `}{party_views}</div>
+                        {/* <div className='board-list-item-counts'>{`조회수 `}{party_views}</div> */}
                     </div>
                 </div>
         </div>
