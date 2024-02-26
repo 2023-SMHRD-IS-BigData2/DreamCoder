@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Main = () => {
   //          state: 로그인 상태
   const [isLogin, setIslogin] = useState(false);
+
   useEffect(() => {
     if (sessionStorage.getItem("user_id") === null) {
 
@@ -25,13 +26,19 @@ const Main = () => {
   }
 
   const goToInfo = () => {
+    localStorage.setItem('header-toggle','info-board')
     nav('/InfoList')
+    window.location.reload();
   }
   const goToMap = () => {
+    localStorage.setItem('header-toggle','map')
     nav('/map')
+    window.location.reload();
   }
   const goToParty = () => {
+    localStorage.setItem('header-toggle','party-board')
     nav('/PartyBoardList')
+    window.location.reload();
   }
 
   return (
