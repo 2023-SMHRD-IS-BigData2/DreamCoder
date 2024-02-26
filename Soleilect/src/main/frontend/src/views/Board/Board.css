@@ -271,6 +271,7 @@ tbody.odd {
 .board2-detail-top{
     padding-top: 20px;
     padding-bottom: 10px;
+    width: 800px;
 }
 .board2-detal-titile-box{
     font-size: 26px;
@@ -317,6 +318,7 @@ flex-direction: column;
 
 .board2-detail-detailcontent{
     padding-top: 20px;
+    width: 812px;
 }
 
 /* ----------------- 삭제하기 토글 -------------- */
