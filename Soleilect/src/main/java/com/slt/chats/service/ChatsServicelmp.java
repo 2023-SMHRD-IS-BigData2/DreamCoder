@@ -20,8 +20,6 @@ public class ChatsServicelmp implements ChatsService {
 	@Autowired
 	private ChatsMsgDAO chatsMsgDAO;
 
-	// 쪽지 방 리스트 출력
-	// 발신자 ID만 필수(sender_id)
 	@Override
 	public ResultVO chatsGroupSelectList(Chats chats) {
 		try {
@@ -34,9 +32,6 @@ public class ChatsServicelmp implements ChatsService {
 		}
 	}
 	
-	// 쪽지 방 내용 리스트 불러오기
-	// 필수!
-	// 발신자 닉, 수신자 닉, 쪽지 방 순번(receiver_nick, sender_nick, chat_group_seq)
 	@Override
 	public ResultVO chatsMsgSelectList(Chats chats) {
 		try {
@@ -50,9 +45,6 @@ public class ChatsServicelmp implements ChatsService {
 		}
 	}
 
-	// 필수
-	// 내용, 수신자 닉네임, 수신자 아이디, 발신자 닉네임, 발신자 아이디
-	// (chat_group_seq, chat_msg, receiver_nick, receiver_id, sender_nick, sender_id)
 	@Override
 	public ResultVO chatsInfoInsert(Chats chats) {
 		try {
@@ -63,17 +55,12 @@ public class ChatsServicelmp implements ChatsService {
 				chatsMsgDAO.chatsMsgInfoInsert(chats);
 				return new ResultVO("00", null);
 			} else {
-				System.out.println("1번째 : " +  data);
 				chats.setChat_group_seq(data.getChat_group_seq());
 				chatsMsgDAO.chatsMsgInfoInsert(chats);
-				System.out.println("2번째 : " +chats);
-				System.out.println("3번째 : " +chatsMsgDAO.chatsMsgSelectOne(chats));
 				chatsGroupDAO.chatsGroupUpdateLate(chatsMsgDAO.chatsMsgSelectOne(chats));
-				System.out.println("4번째 : " +chats);
 				return new ResultVO("00", null);
 			}
 		} catch (Exception e) {
-			System.err.println(e);
 			return new ResultVO("99", null);
 		}
 		
