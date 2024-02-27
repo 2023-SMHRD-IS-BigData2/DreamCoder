@@ -68,9 +68,10 @@ const PartyBoardItem = (props) => {
     //     formData.append("party_seq", party_seq)
     //     console.log(party_seq);
     //     axios
-    //         .post('/Sol/partyBoardCon/views', formData)
+    //         .post('/Sol/partyBoardCon/detail', formData)
     //         .then((res) => {
     //             // setList(res.data.data)
+    //             console.log(res.data.data);
     //             console.log('조회수 상승!');
     //         })
     //         .catch((error) => {
@@ -101,7 +102,7 @@ const PartyBoardItem = (props) => {
                     </div>
                     <div className='board-list-item-bottom'>
                         <div className='board-list-item-recruit' style={{color: party_isJoin =='모집중' ? '#35AF4B' : '#D1180B'}}>{party_isJoin}</div>
-                        {/* <div className='board-list-item-counts'>{`조회수 `}{party_views}</div> */}
+                        <div className='board-list-item-counts'>{`조회수 `}{party_views}{'회'}</div>
                     </div>
                 </div>
         </div>

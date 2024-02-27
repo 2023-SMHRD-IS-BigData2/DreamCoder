@@ -331,7 +331,7 @@ const PartyBoardDetail = () => {
                             <div className='detail-chart-recruit' style={{ color: partyList[0].party_isJoin === '모집중' ? '#35AF4B' : '#D1180B' }}>
                                 {partyList[0].party_isJoin}
                             </div>
-                            {/* <div className='detail-chart-view'>{`조회수 `} {partyList[0].party_views}{'회'}</div> */}
+                            <div className='detail-chart-view'>{`조회수 `} {partyList[0].party_views+1}{'회'}</div>
                             {/* 'more-icon' 클릭 시 showEditDelete 상태를 이전 상태의 반대로 설정 */}
                             {partyList[0].user_id === sessionStorage.getItem('user_id') ? <div className='more-icon' onClick={() => setShowEditDelete(prev => !prev)}></div> : <></>}
                             {/* showEditDelete 상태에 따라 BoardEditDelete 컴포넌트 렌더링 */}

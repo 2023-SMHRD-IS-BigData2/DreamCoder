@@ -19,7 +19,6 @@ const Map = () => {
       .get('/Sol/mapCon/sum', formData)
       .then((res) => {
         setPlantList(res.data.data)
-        console.log(res.data.data);
         // 지도 여는 함수 실행
         mapMarkerInfoWindow(res.data.data);
       })
