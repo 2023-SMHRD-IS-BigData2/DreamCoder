@@ -25,5 +25,5 @@ public interface BoardDAO {
 	
 	Boards boardDetail(int b_seq);
 	
-	int boardViewUP(int b_seq);
+	void boardViewUp(int b_seq);
 }

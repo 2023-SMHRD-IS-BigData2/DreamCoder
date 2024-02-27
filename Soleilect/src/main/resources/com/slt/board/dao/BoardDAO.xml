@@ -71,11 +71,10 @@
 		FROM BOARDS_TB
 		WHERE B_SEQ = #{b_seq};
 	</select>
-	<update id="boardViewUp" parameterType="int">
-		UPDATE
-		BOARDS_TB
+	<update id="boardViewUp">
+		UPDATE BOARDS_TB
 		SET
-		B_VIEWS = B_VIEWS + 1,
+		B_VIEWS = B_VIEWS + 1 
 		WHERE B_SEQ = #{b_seq};
 	</update>
 </mapper>
