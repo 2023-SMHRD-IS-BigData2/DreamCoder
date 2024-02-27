@@ -67,10 +67,8 @@
 		WHERE PARTY_SEQ = #{party_seq};
 	</select>	
 	<update id="partyBoardViewUp" parameterType="int">
-		UPDATE
-		PARTY_BOARDS_TB
-		SET
-		PARTY_VIEWS = PARTY_BOARDS_TB.PARTY_VIEWS + 1,
+		UPDATE PARTY_BOARDS_TB 
+		SET PARTY_VIEWS = PARTY_VIEWS + 1
 		WHERE PARTY_SEQ = #{party_seq};
 	</update>
 </mapper>

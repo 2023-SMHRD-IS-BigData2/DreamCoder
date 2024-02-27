@@ -93,6 +93,9 @@ public class PartyBoardServiceImp implements PartyBoardService {
 			Party_boards dt = partyboardDao.partyBoardDetail(party_seq);
 			List<Object> dataList = new ArrayList<Object>();
 			dataList.add(dt);
+			System.out.println("dt : " + dt + "\nparty_seq : " + party_seq);
+			int row = partyboardDao.partyBoardViewUp(party_seq);
+			System.out.println(row);
 			return new ResultVO("00", dataList);
 		} catch (Exception e) {
 			return new ResultVO("99", null);
