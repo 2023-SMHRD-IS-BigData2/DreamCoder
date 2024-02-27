@@ -16,6 +16,4 @@ public interface PartyBoardService {
 	ResultVO partyBoardSearch(String search);
 	
 	ResultVO partyBoardDetail(int party_seq);
-	
-	ResultVO partyBoardViewUp(int party_seq);
 }

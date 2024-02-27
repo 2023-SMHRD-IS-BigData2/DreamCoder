@@ -83,13 +83,4 @@ public class BoardController {
 		return boardService.boardDetail(b_seq);
 	}
 	
-	/**
-	 * 게시판 조회수 상승
-	 */
-	@RequestMapping("/views")
-	public ResultVO boardViewUP(int b_seq) {
-		System.out.println("일반 게시판 조회수 상승");
-		return boardService.boardViewUP(b_seq);
-	}
-
 }

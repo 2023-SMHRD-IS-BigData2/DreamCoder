@@ -21,5 +21,5 @@ public interface PartyBoardDAO {
 	
 	Party_boards partyBoardDetail(int party_seq);
 	
-	int partyBoardViewUp(int party_seq);
+	void partyBoardViewUp(int party_seq);
 }

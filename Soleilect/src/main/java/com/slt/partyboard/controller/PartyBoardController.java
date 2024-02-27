@@ -76,15 +76,4 @@ public class PartyBoardController {
 		return partyboardservice.partyBoardDetail(party_seq);
 	}
 	
-	
-	/**
-	 * 모집 게시판 조회수 상승 
-	 */
-	@RequestMapping("/views")
-	public ResultVO partyBoardViewUp(int party_seq) {
-		System.out.println("모집 게시판 조회수 상승");
-		return partyBoardViewUp(party_seq);
-	}
-	
-	
 }
