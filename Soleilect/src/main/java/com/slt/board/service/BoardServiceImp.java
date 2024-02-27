@@ -105,16 +105,6 @@ public class BoardServiceImp implements BoardService {
 		}
 	}
 
-	@Override
-	public ResultVO boardViewUP(int b_seq) {
-		try {
-			boardDao.boardViewUP(b_seq);
-			return new ResultVO("00", null);
-
-		} catch (Exception e) {
-			return new ResultVO("99", null);
-		}
-	}
-
+	
 
 }
