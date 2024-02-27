@@ -150,7 +150,6 @@ const PartyBoardDetail = () => {
             .post('/Sol/partyBoardCon/delete', formData)
             .then((res) => {
                 setPartyList(res.data.data)
-                console.log(res.data);
                 alert('삭제 성공!')
                 nav('/PartyBoardList')
                 // window.location.reload()
@@ -196,7 +195,6 @@ const PartyBoardDetail = () => {
         if (modalOpen) {
             let formData = new FormData();
             formData.append("user_id", sessionStorage.getItem('user_id'));
-            console.log(sessionStorage.getItem('user_id'));
             axios
                 .post('/Sol/myPageCon/plantList', formData)
                 .then((res) => {
@@ -242,7 +240,6 @@ const PartyBoardDetail = () => {
                     .post('/Sol/partyApplyCon/apply', formData)
                     .then((res) => {
                         setPartyList(res.data.data);
-                        console.log(res.data.data);
                         alert('신청 성공!');
                         nav('/PartyBoardList');
 
@@ -289,7 +286,6 @@ const PartyBoardDetail = () => {
                                             </div>
                                         </div>
                                         <div className='p_tab-content-button-partyList'>
-                                            {console.log(power.pl_isJoin)}
                                             <div className={power.pl_isJoin === 1 ? 'p1_tab-content-edit-button-box' :'p_tab-content-edit-button-box'}>
                                                 <div className={power.pl_isJoin === 1?'p1_edit-button' :'p_edit-button'} onClick={() => onPowerIsJoinClickHandler(power)} >
                                                 {power.pl_isJoin === 1?'선택불가' :'선택하기'}</div>

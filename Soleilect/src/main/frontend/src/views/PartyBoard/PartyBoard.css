@@ -402,6 +402,11 @@
  
      animation: fadeInUpModal 0.5s;
  }
+ .p_tab-content-partyList{
+    display: flex;
+    padding: relative;
+    padding-top: 20px;
+ }
  .p_tab-content-list {
      width: 100%;
      display: flex;
